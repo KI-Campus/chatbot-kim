@@ -1,0 +1,133 @@
+version: '3.0'
+forms:
+  course_form:
+    ignored_intents:
+    - faq
+    - greet
+    - goodbye
+    - thank
+    - deny
+    - affirm
+    required_slots:
+    - current_course_title
+intents:
+- deny
+- affirm
+- faq
+- get_course
+- get_achievements
+- get_courses
+- inform:
+    use_entities: true
+actions:
+- action_get_courses
+- action_get_courses_buttons
+- action_get_achievements
+- action_course_set
+- action_set_current_course
+- action_download_certificate
+- action_all_slots
+entities:
+- certificate_type
+- course_name
+- Course
+- country
+slots:
+  all_courses:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  current_course_title:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: course_form
+        requested_slot: current_course_title
+  current_course:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  current_achievements:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  course-set:
+    type: bool
+    mappings:
+    - type: custom
+  current_course_achieved:
+    type: bool
+    mappings:
+    - type: custom
+  courses_available:
+    type: bool
+    mappings:
+    - type: custom
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+responses:
+  utter_submit:
+  - text: Verstanden!
+  utter_starting_search_with_parameters:
+  - text: "Ich mache eine Kurssuchen mit den folgenden Parametern:\n - Kurs: {current_course_title}"
+  utter_finished:
+  - text: Konversation hat geendet.
+  utter_download_certificate:
+  - text: Möchtest du das Zertifikat herunterladen?
+  utter_ask_which_course:
+  - text: Bitte wähle einen Kurs aus für den du deine Leistung erhalten möchtest.
+  utter_out_of_scope:
+  - text: Tut mir leid, diese Anfrage kann ich nicht bearbeiten.
+  utter_ask_rephrase:
+  - text: Es tut mir leid, das habe ich nicht ganz verstanden. Könntest du es anders formulieren?
+  utter_use_contact_form:
+  - text: Du kannst auch unser Kontaktformular verwenden, um Hilfe für dein technisches Problem zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
+  utter_end_of_conversation:
+  - custom:
+      signal: End of Conversation
+  utter_have_a_nice_day:
+  - text: Okay. Ich wünsche dir noch einen schönen Tag! Auf Wiedersehen.
+  utter_more_info:
+  - text: Okay. Wie kann ich dir weiterhelfen?
+  utter_anything_else:
+  - text: Kann ich dir noch mit etwas anderem behilflich sein?
+  utter_faq/ask_about_moocs:
+  - text: Ein paar grundlegende Informationen zum Thema MOOC haben wir <a href="https://open.hpi.de/pages/mooc">hier</a> zusammen getragen.
+  utter_faq/ask_about_ki:
+  - text: Künstliche Intelligenz (KI) ist ein Fachgebiet der Informatik, das sich mit Konzepten und Methoden beschäftigt, die Computer befähigen ihre Umgebung wahrzunehmen, zu denken, zu handeln, zu kommunizieren und zu lernen. Die Methoden und Konzepte werden durch Algorithmen als KI-Systeme realisiert.
+  utter_faq/ask_about_ki_campus:
+  - text: Der KI-Campus ist eine auf das Thema Künstliche Intelligenz (KI) spezialisierte digitale Lernplattform, die seit Juli 2020 als Beta-Version öffentlich verfügbar ist und fortlaufend weiterentwickelt wird.  Als Forschungs- und Entwicklungsprojekt wird der KI-Campus vom Bundesministerium für Bildung und Forschung (BMBF) gefördert.
+  utter_faq/ask_about_target_group:
+  - text: Der KI-Campus richtet sich an Studierende, Berufstätige und andere lebenslang Lernende, die sich für Künstliche Intelligenz interessieren.  Er richtet sich außerdem an Hochschulen, Forschungseinrichtungen und Unternehmen, die sich am KI-Campus mit eigenen Lernangeboten beteiligen oder Lernangebote des KI-Campus in die Lehre integrieren möchten.
+  utter_faq/ask_about_goals:
+  - text: Die Vision des KI-Campus ist eine KI-kompetente Gesellschaft. Die Lernplattform möchte KI-Kompetenzen vermitteln und mehr Menschen für das Thema begeistern.  Lernende sollen befähigt werden, KI-Entwicklungen zu verstehen, zu hinterfragen und mitzugestalten.  Damit begegnet der KI-Campus dem akuten Fachkräftemangel und stärkt zugleich in der Breite einen mündigen Umgang mit KI.
+  utter_faq/ask_about_developers:
+  - text: Der KI-Campus wird als Pilotprojekt gemeinsam durch den Stifterverband, das Deutsche Forschungszentrum für Künstliche Intelligenz (DFKI), das Hasso-Plattner-Institut (HPI), NEOCOSMO und das mmb Institut entwickelt.  Der Stifterverband leitet und koordiniert das Projekt über ein KI-Campus-Büro in Berlin.  Zahlreiche weitere Institutionen bringen sich als Partner ein, sowohl in der Erstellung von Lernangeboten als auch der Erreichung von unterschiedlichen Zielgruppen.
+  utter_faq/ask_about_learningoffer:
+  - text: Von Podcasts über Videos und Kursen bis hin zum „Micro-Degree“ – der KI-Campus stellt Lernenden eine vielfältige Auswahl hochwertiger Lernangebote zu unterschiedlichen Themenfeldern der KI gebündelt auf einer Lernplattform zur Verfügung.  Alle Lernangebote haben den Anspruch, auf akademischem Niveau KI-Kompetenzen zu vermitteln. Eigene Lernangebote werden als „KI-Campus-Originale“ speziell für den KI-Campus entwickelt.  Bestehende Lernangebote anderer Plattformen werden basierend auf akademischen Qualitätsstandards ausgewählt und als „Extern“ auf dem KI-Campus empfohlen.  Unsere Lernangebote sind alle offen lizenziert und kostenlos verfügbar.
+  utter_faq/ask_about_topics:
+  - text: 'Der KI-Campus umfasst sowohl Grundlagen als auch interdisziplinäre Fragestellungen und Vertiefungen einzelner Bereiche und Themenfelder der KI (wie z. B. Machine Learning).  Darüber hinaus gibt es spezifische Angebote, die gezielt die Bedürfnisse einzelner Berufsfelder bzw. Fachbereiche (wie z. B. KI in der Medizin, KI in der Bildung etc.) abdecken.  Die Lernangebote werden fortlaufend ausgebaut. '
+  utter_faq/ask_about_prior_knowledge:
+  - text: Für einführende Lernangebote sind über mathematische Grundkenntnisse hinaus keine fachlichen Vorkenntnisse notwendig.  Weiterführende Lernangebote setzen Vorkenntnisse voraus.  Die jeweiligen Voraussetzungen kannst du der Beschreibung des Lernangebots entnehmen.  Alle Lernangebote haben den Anspruch, KI-Kompetenzen auf akademischem Niveau zu vermitteln.
+  utter_faq/ask_about_student:
+  - text: Du musst generell an keiner Hochschule eingeschrieben sein, um die Lernangebote des KI-Campus online zu nutzen.  Für manche Kurse wird jedoch zusätzlich im Blended-Learning-Format eine Einbettung in Studiengänge ermöglicht, die auch eine ECTS-Vergütung sicherstellt.  Hierfür ist im Einzelfall eine Einschreibung notwendig.
+  utter_faq/ask_about_recognition:
+  - text: Ausgewählte Kurse können mit ECTS-Punkten ausgewiesen und in Abstimmung mit der jeweiligen Hochschule anerkannt bzw. angerechnet werden.  Der KI-Campus kann Ihnen keine generelle Zusage für eine Anerkennung gewähren.  Bitte wende dich mit deinem konkreten Anliegen an deiner Hochschule.
+  utter_faq/ask_about_lang_english:
+  - text: Ausgewählte Lernangebote stehen auf Englisch zur Verfügung. Das englischsprachige Angebot wird fortlaufend ausgebaut.
+  utter_faq/ask_about_certification:
+  - text: 'Aktuell können auf  dem KI-Campus für alle Online-Kurse auf der Lernplattform Teilnahmebestätigungen und für ausgewählte Online-Kurse auf der Lernplattform auch Leistungsnachweise erworben werden. Für alle Online-Kurse auf der KI-Campus-Lernplattform gilt: Eine KI-Campus-Teilnahmebestätigung erhalten alle, die auf mindestens 50 Prozent der Lerninhalte zugegriffen haben. Einen KI-Campus-Leistungsnachweis erhält, wer in der Summe aller bewerteten Aufgaben des Kurses mindestens 60 Prozent der Gesamtpunktzahl erreicht hat. Weitere Informationen zu den Bescheinigungen des KI-Campus, die schrittweise erprobt und umgesetzt werden, findest du in unserem <a href="https://ki-campus.org/blog/leistungsnachweise" _blank>Blogbeitrag</a>.'
+  utter_faq/ask_about_course_timelimit:
+  - text: Manche Lernangebote können nach eigener Zeiteinteilung absolviert werden, für andere gibt Zeitvorgaben.  Du findest diese Information in der Beschreibung des jeweiligen Lernangebots.
+  utter_faq/ask_about_course_costs:
+  - text: Die Nutzung aller Lernangebote des KI-Campus ist kostenlos.  Alle KI-Campus-Originale unterliegen darüber hinaus auch einer offenen Lizenzierung (im Regelfall <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" _blank>CC BY-SA 4.0</a>), die eine kostenlose Nachnutzung der Lernangebote und z. B. auch eine Integration in die eigene Lehre ermöglichen.  Auch alle kuratierten Angebote werden nur ausgewählt, wenn sie als Grundangebot kostenlos verfügbar sind.  Nur für Prüfungen und die Ausgabe von Zertifikaten können bei externen Lernangeboten, die auf dem KI-Campus empfohlen werden, möglicherweise Kosten entstehen.
+  utter_faq/ask_become_editor:
+  - text: Wir sind immer offen für neue Lernangebote und freuen uns über deine Ideen.  Bitte <a href="https://ki-campus.org/contact" _blank>skontaktiere uns</a>!
+  utter_faq/ask_about_partners_cooperations:
+  - text: Die Kooperation mit anderen Plattformen und Initiativen gilt als handlungsleitend bei der Umsetzung des KI-Campus.  Wir tauschen uns sehr gerne mit Ihnen über Möglichkeiten einer Zusammenarbeit aus, um gemeinsam innovative Lernangebote zu entwickeln und möglichst viele Lernende zu erreichen.  Bitte <a href="https://ki-campus.org/contact" _blank>kontaktiere uns</a>!

@@ -1,0 +1,172 @@
+version: '3.0'
+
+nlu:
+  - intent: out_of_scope
+    examples: |
+      - I want to order food
+      - What is 2 + 2?
+      - Who's the [US(country)] President?
+      - How can I move to the [US](country)?
+      - What's the capital of [Germany](country)?
+  - intent: inform
+    examples: |
+      - For the course [Schule macht Daten]{"entity": "Course"}
+      - For [Schule macht Daten]{"entity": "Course"}
+      - Course [Schule macht Daten]{"entity": "Course"}
+      - The course is [Schule macht Daten]{"entity": "Course"}
+      - [Schule macht Daten]{"entity": "Course"}
+
+  - lookup: Course
+    examples: |
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Launchpad to Fundamental Questions on AI
+      - Schule macht KI
+      - Wegweisende Anwendungen fürs Web
+      - Wie das Web technisch funktioniert
+      - Programmieregen fürs Web
+      - Mensch-Maschine-Interaktion
+      - Robot Learning
+      - Den Daten auf der Spur - Der Process Mining Podcast
+      - Daten- und Algorithmenethik
+      - AutoML - Automated Machine Learning
+      - Einführung in die KI
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Schule macht Daten
+      - Dr. med. KI
+      - Team Peer Assessments
+  
+  - intent: get_courses
+    examples: |
+      - I want my courses
+      - Give me all my courses
+      - Show me all my courses
+      - Show my all the courses I am enrolled to
+      - List all my courses
+      - I want a list of all my courses
+      - I want my course list
+  - intent: get_achievements
+    examples: |
+      - I want to see my current achievements
+      - I want to see my current progress
+      - How good am I at the moment
+      - Show me all my achievements
+      - Show me my progress
+      - List my achievements
+      - I want my course achievements
+      - I want my course progress
+  - intent: affirm
+    examples: |
+      - yes
+      - yep
+      - yeah
+      - indeed
+      - that's right
+      - ok
+      - great
+      - right, thank you
+      - correct
+      - great choice
+      - sounds really good
+
+  - intent: deny
+    examples: |
+      - I don't want to
+      - I don't want to give it to you
+      - I don't want to say
+      - I dont want to tell
+      - I'm not giving you my email address
+      - I'm not going to give it to you
+      - NEIN
+      - NO
+      - NO DON"T WANT THIS!
+      - Nah
+      - Neither
+      - Never
+      - Nevermind
+      - No
+      - No thank you
+      - No, not really.
+      - No, thank you
+      - No.
+      - Nopes
+      - Not really
+      - absolutely not
+      - decline
+      - definitely not
+      - deny
+      - i decline
+      - i don not like this
+      - i don't think so
+      - i don't want either of those
+      - i don't want to
+      - i don't want to give you my email
+      - i dont want to
+      - i dont want to accept :P lol
+      - i guess it means - no
+      - i'm afraid not
+      - i'm not sure
+      - it is going pretty badly
+      - it sucks
+      - it sux
+      - n
+      - na
+      - nah
+      - nah I'm good
+      - nah not for me
+      - nah, first time
+      - nah, i'm good
+      - nehi
+      - nein
+      - neither
+      - never
+      - never mind
+      - no
+      - no :(
+      - no I dont want
+      - no I haven't decided yet if I want to sign up
+      - no and no again
+      - no bots at all
+      - no go
+      - no i can't
+      - no i don't accept
+      - no i dont want to
+      - no i dont want to accept :P lol
+      - no i won't
+      - no ma'am
+      - no sir
+      - no sorry
+      - no thank s
+      - no thank you
+      - no thanks
+      - no way
+      - no you did it wrong
+      - no!!!!
+      - no, i hate it
+      - no, my frst time
+      - no, thank you
+      - no, thanks
+      - no, thankyou
+      - no. u r idiot
+      - non
+      - noooooooooo
+      - noooooooooooooooooooooooooooooooooooooooo
+      - nop
+      - nope
+      - nope!
+      - nope. i am good
+      - not going well at all
+      - not really
+      - not right now
+      - not yet
+      - nö
+      - sorry not right now
+      - still dont want to tell
+      - thanks but no thanks
+      - this sucks
+      - very bad
+      - I do not need help installing
+      - I don't wanna tell the name of my company
+      - no stop
+      - stop it, i do not care!!!
+      - none of them
+      - I don't agree

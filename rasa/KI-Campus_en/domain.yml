@@ -1,0 +1,123 @@
+version: '3.0'
+forms:
+  course_form:
+    ignored_intents:
+    - faq
+    - greet
+    - goodbye
+    - thank
+    - deny
+    - affirm
+    required_slots:
+    - current_course_title
+intents:
+- deny
+- affirm
+- faq
+- get_course
+- get_achievements
+- get_courses
+- inform:
+    use_entities: true
+actions:
+- action_get_courses
+- action_get_courses_buttons
+- action_get_achievements
+- action_course_set
+- action_set_current_course
+- action_download_certificate
+- action_all_slots
+entities:
+- certificate_type
+- course_name
+- Course
+- country
+slots:
+  all_courses:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  current_course_title:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: course_form
+        requested_slot: current_course_title
+  current_course:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  current_achievements:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  course-set:
+    type: bool
+    mappings:
+    - type: custom
+  current_course_achieved:
+    type: bool
+    mappings:
+    - type: custom
+  courses_available:
+    type: bool
+    mappings:
+    - type: custom
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+responses:
+  utter_submit:
+  - text: Thanks for providing me with the course title!
+  utter_starting_search_with_parameters:
+  - text: "I am doing a course search now with the following paramenters:\n - course: {current_course_title}"
+  utter_finished:
+  - text: Conversation ends.
+  utter_download_certificate:
+  - text: Do you want to download the certificate?
+  utter_ask_which_course:
+  - text: Please select a course for which you want to receive your achievements.
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request.
+  utter_ask_rephrase:
+  - text: I'm sorry, I didn't quite understand that. Could you rephrase?
+  utter_use_contact_form:
+  - text: You can also use our contact form to get help for your technical problem. We will try to answer you as soon as possible.
+  utter_end_of_conversation:
+  - custom:
+      signal: End of Conversation
+  utter_have_a_nice_day:
+  - text: Okay. Have a nice day! Bye.
+  utter_more_info:
+  - text: Okay. What can I help you with?
+  utter_anything_else:
+  - text: Is there anything else I can help you with?
+  utter_faq/ask_payment:
+  - text: The use of all learning offers of the AI Campus is free of charge.  In addition, all AI Campus originals are subject to open licensing (usually <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" _blank>CC BY-SA 4.0</a>), which allows free subsequent use of the learning offerings and, for example, integration into your own teaching.  All curated offers are also only selected if they are available free of charge as a basic offer.  Only for exams and the issue of certificates may costs possibly arise for external learning offers recommended on the AI Campus.
+  utter_faq/ask_account_creation:
+  - text: Anyone can create a profile on KI Campus.  'Log in' button is located on the top navigation bar, on the far right.  Click on it and choose 'Create new account.'  It's going to open a new page where you will need to fill out your email, first name, last name and a user name.  Once it's done, click on 'Register for KI Campus.'  You will receive a link in your email to confirm your account and to set a password.
+  utter_faq/ask_confirmation_email:
+  - text: If you have not received a confirmation email, please check your spam folder and move the email to your primary mailbox.  If your problem persists please try resetting your password <a href="https://ki-campus.org/user/password" _blank>here</a>.
+  utter_faq/ask_password_reset:
+  - text: Don't worry.  Open the <a href="https://ki-campus.org/user/password" _blank>password reset page</a>.  Type in your email address and click on 'Request password reset.'  Your new password has been sent to your email.
+  utter_faq/ask_whats_aicampus:
+  - text: 'The AI Campus is a digital learning platform specialized in the field of Artificial Intelligence (AI), which has been publicly available as a beta version since July 2020 and is being continuously developed.  As a research and development project, the AI Campus is funded by the Federal Ministry of Education and Research (BMBF). '
+  utter_faq/ask_access_aicampus:
+  - text: The AI Campus is aimed at students, professionals and other lifelong learners interested in artificial intelligence.  It is also aimed at universities, research institutes and companies who wish to participate in the AI Campus with their own learning opportunities or who wish to integrate AI Campus learning opportunities into their teaching.
+  utter_faq/ask_course_types:
+  - text: From podcasts, videos and courses to the "Micro-Degree" - the AI-Campus provides learners with a diverse selection of high-quality learning offers on various topics of AI bundled on one learning platform.  All learning opportunities are designed to impart AI competencies at an academic level. Own learning offers are developed as "AI-Campus originals" especially for the AI-Campus.  Existing learning offers of other platforms are selected based on academic quality standards and recommended as "external" to the AI Campus.  Our learning offerings are all openly licensed and available for free.
+  utter_faq/ask_course_structure:
+  - text: Many courses consist of a combination of downloadable video lectures and presentation slides, as well as self-assessments to test your knowledge. Discussion forums are also available for users to share insight with experts in the field. A knowledge resource package for the use of health emergency response usually consists of presentations in the format of PDF, accompanied by audio recordings in the language spoken by the local communities.
+  utter_faq/ask_course_timelimit:
+  - text: Some learning opportunities can be completed according to your own time schedule, for others there are time limits.  You will find this information in the description of the respective learning offer.
+  utter_faq/ask_how_change_info:
+  - text: You can change this information in your KI Campus profile.  Please log on to KI Campus and click on your profile picture and select settings.  There you can change your email address, name or profile picture.
+  utter_faq/ask_about_certification:
+  - text: 'Currently, certificates of participation can be obtained on the KI-Campus for all online courses on the learning platform and certificates of achievement can also be obtained for selected online courses on the learning platform. The following applies to all online courses on the KI-Campus learning platform: A KI-Campus certificate of participation is awarded to everyone who has accessed at least 50 percent of the learning content. A KI Campus certificate of achievement is awarded to anyone who has achieved at least 60 percent of the total points in the sum of all assessed tasks in the course. For more information on the AI Campus certificates, which are being piloted and implemented in stages, see our <a href="https://ki-campus.org/blog/leistungsnachweise" _blank>blog post</a>.'
+  utter_faq/ask_whatspossible:
+  - text: I am happy to help you with your technical problems and questions about the courses.  For example, I can explain course structure, types, and time-limits to you as well as answer questions about certificate, resetting the password, or changing your personal information.

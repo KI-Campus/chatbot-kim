@@ -1,0 +1,28 @@
+version: '3.0'
+intents:
+- greet
+- goodbye
+- thank
+actions:
+- utter_anything_else
+- utter_greet
+- utter_goodbye
+- utter_you_are_welcome
+- utter_end_of_conversation
+responses:
+  utter_end_of_conversation:
+  - custom:
+      signal: End of Conversation
+  utter_anything_else:
+  - text: Kann ich dir noch mit etwas anderem behilflich sein?
+  utter_greet:
+  - text: Hey, wie kann ich dir helfen?
+  - text: Hey, was kann ich für dich tun?
+  utter_goodbye:
+  - text: Auf Wiedersehen!
+  utter_you_are_welcome:
+  - text: Bitte sehr.
+  - text: Es ist immer schön, hilfreich zu sein.
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

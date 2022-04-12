@@ -1,0 +1,54 @@
+version: '3.0'
+
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hallo
+      - hi
+      - hey du
+      - guten morgen
+      - guten abend
+      - moin
+      - was geht
+      - let's go
+      - hey dude
+      - gude
+      - guden
+      - mahlzeit
+      - grüß gott
+      - Hello
+      - Hey
+      - Hallo
+
+  - intent: goodbye
+    examples: |
+      - cu
+      - good bye
+      - cya
+      - gute nacht
+      - tschüss
+      - tschüß
+      - bye
+      - goodbye
+      - schönen tag noch
+      - man sieht sich
+      - bye bye
+      - tschö
+      - hau rein
+
+  - intent: thank
+    examples: |
+      - danke dir
+      - danke
+      - thx
+      - vielen dank
+      - okay, danke dir
+      - okay, danke
+      - das ist hilfreich
+      - danke dir du bist sehr hilfreich
+      - danke vielmals
+      - danke für die Hilfe
+      - vielen dank, dass du mir hilfst
+      - du bist der Beste
+      - Danke

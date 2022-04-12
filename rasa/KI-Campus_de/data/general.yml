@@ -1,0 +1,107 @@
+version: '3.0'
+
+nlu:
+  - intent: out_of_scope
+    examples: |
+      - Ich will Essen bestellen
+      - Ich will Pizza
+      - Was ist 2 + 2?
+      - Wer ist der Präsident von [US]{"entity": "country"}?
+      - Wie kann ich nach [US]{"entity": "country"} ziehen?
+      - Was ist die Hauptstadt von [Germany]{"entity": "country"}?
+  - intent: inform
+    examples: |
+      - Für den Kurs [Schule macht Daten]{"entity": "Course"}
+      - Für [Schule macht Daten]{"entity": "Course"}
+      - Der Kurs [Schule macht Daten]{"entity": "Course"}
+      - Der Kurs ist [Schule macht Daten]{"entity": "Course"}
+      - [Schule macht Daten]{"entity": "Course"}
+
+  - lookup: Course
+    examples: |
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Launchpad to Fundamental Questions on AI
+      - Schule macht KI
+      - Wegweisende Anwendungen fürs Web
+      - Wie das Web technisch funktioniert
+      - Programmieregen fürs Web
+      - Mensch-Maschine-Interaktion
+      - Robot Learning
+      - Den Daten auf der Spur - Der Process Mining Podcast
+      - Daten- und Algorithmenethik
+      - AutoML - Automated Machine Learning
+      - Einführung in die KI
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Schule macht Daten
+      - Dr. med. KI
+      - Team Peer Assessments
+    
+  - intent: get_courses
+    examples: |
+      - Ich möchte meine Kurse
+      - Gib mir alle meine Kurse
+      - Zeig mir alle meine Kurse
+      - Zeig mir alle Kurse, für die ich eingeschrieben bin
+      - Alle meine Kurse auflisten
+      - Ich möchte eine Liste aller meiner Kurse
+      - Ich möchte meine Kursliste
+  - intent: get_achievements
+    examples: |
+      - Ich möchte meine aktuellen Erfolge sehen
+      - Ich möchte meinen aktuellen Fortschritt sehen
+      - Ich möchte meine Leistung haben
+      - Wie gut bin ich im Moment
+      - Zeig mir alle meine Leistungen
+      - Zeige mir meinen Fortschritt
+      - Meine Leistungen auflisten
+      - Ich möchte meinen Kursfortschritt
+  - intent: affirm
+    examples: |
+      - yes
+      - yep
+      - ja
+      - jap
+      - okay
+      - gut
+      - passt
+      - jaha
+      - jo
+      - yeah
+      - ok
+      - korrekt
+      - genau
+      - jup
+      - auf jeden Fall
+      - ja, bitte
+  - intent: deny
+    examples: |
+      - Nein danke
+      - Nein
+      - Ich möchte nicht
+      - Nah
+      - No
+      - Na
+      - Nee
+      - Ne
+      - Neeee
+      - Nein, nicht wirklich
+      - Absolut nicht
+      - ablehnen
+      - Ich lehne ab
+      - Ich denke nicht
+      - Nopes
+      - n
+      - na
+      - nah
+      - nehi
+      - nope
+      - nop
+      - vergiss es
+      - nein tu es nicht
+      - nicht jetzt
+      - das wollte ich nicht
+      - stop
+      - tu es nicht
+      - bitte nicht
+      - nein
+      - nö
