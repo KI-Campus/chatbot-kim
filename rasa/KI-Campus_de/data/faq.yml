@@ -35,6 +35,7 @@ nlu:
       - Was ist diese Seite?
       - Was ist die Idee des KI Campus?
       - Warum gibt es den KI Campus?
+      - Wo kann ich mehr über den KI-Campus erfahren?
 
   - intent: faq/ask_about_target_group
     examples: |
@@ -119,6 +120,10 @@ nlu:
       - Bekomme ich nach Kursabschluss ein Zertifikat?
       - Bekomme ich eine Bescheinigung?
       - Bekomme ich ein Zertifikat?
+      - Was bekomme ich am Ende eines Kurses?
+      - Erhalte ich ein Zertifikat am Ende des Kurses?
+      - Was erhalte ich bei Abschluss des Kurses?
+      - Erhalte ich eine Bescheinigung am Ende des Kurses?
 
   - intent: faq/ask_about_course_timelimit
     examples: |
@@ -155,6 +160,130 @@ nlu:
       - Ist eine Kooperation mit dem KI Campus möglich?
       - Wie ist eine Kooperation mit dem KI Campus möglich?
       - Wie ist eine Kooperation möglich?
+  
+  - intent: faq/ask_reset_password
+    examples: |
+      - Wie kann ich mein Passwort zurücksetzen? 
+      - Mein Passwort funktioniert nicht
+      - Ich möchte mein Passwort zurücksetzen
+      - Ich möchte mein Passwort resetten
+      - Ich brauche ein neues Passwort
+      - Wie bekomme ich ein neues Passwort?
+      - Reset Passwort
+      - Passwort zurücksetzen
+  
+  - intent: faq/ask_go_to_profile
+    examples: |
+      - Wie komme ich auf mein Profil?
+      - Wo ist mein Profil?
+      - Wie gelange ich zu meinem Profil?
+      - Ich möchte auf mein Profil
+      - Ich möchte zu meinem Profil
+      - Wie komme ich zu meinem Profil
+      - Mein Profil
+      - Zu meinem Profil
+      - Zu meinem Konto
+      - Wie komme ich zu meinem Konto?
+      - Wo ist mein Konto?
+
+  - intent: faq/ask_change_name
+    examples: |
+      - Wie kann ich meinen Namen ändern?
+      - Wie änder ich meinen Namen?
+      - Wo kann ich meinen Namen ändern?
+      - Ich möchte meinen Namen ändern
+      - Ich will meinen Namen ändern
+      - Ich will in meinem Profil meinen Namen ändern
+      - Ich will einen anderen Namen in meinem Profil
+      - Name ändern
+      - Ich will einen anderen Namen
+      - Mein Name ist nicht richtig
+      - Ändert meinen Namen
+      - Mein Name ist nicht korrekt
+
+  - intent: faq/ask_change_username
+    examples: |
+      - Wie kann ich meinen Benutzernamen ändern?
+      - Wie änder ich meinen Benutzernamen?
+      - Wo kann ich meinen Benutzernamen ändern?
+      - Ich will meinen Benutzernamen ändern
+      - Benutzernamen ändern
+      - Mein Benutzername gefällt mir nicht mehr
+      - Wo ändere ich meinen Benutzernamen?
+
+  - intent: faq/ask_delete_account
+    examples: |
+      - Wie kann ich meinen Account löschen?
+      - Wie lösche ich meinen Account?
+      - Wo lösche ich meinen Account?
+      - Ich will meinen Account löschen
+      - Account löschen
+      - Löscht meinen Account
+      - Ich brauche meinen Account nicht mehr
+      - Ich will meinen Account nicht mehr haben
+      
+  - intent: faq/ask_report_error
+    examples: |
+      - Ich habe einen Fehler in einem Kurs gefunden, wem kann ich das mitteilen? 
+      - Wie kann ich einen Fehler im Kurs melden?
+      - Ich möchte einen Fehler im Kurs melden
+      - der Kurs hat einen Fehler
+      - [Schule macht Daten]{"entity": "Course"} hat einen Fehler
+      - Der Kurs [Schule macht Daten]{"entity": "Course"} hat Fehler
+      - Im Kurs [Schule macht Daten]{"entity": "Course"} war etwas nicht korrekt
+      - Ich will einen Fehler im Kurs [Schule macht Daten]{"entity": "Course"} melden
+      - Fehler melden
+      - Ich will einen Fehler melden
+  
+  - intent: faq/ask_technical_error
+    examples: |
+      - Ich habe ein technisches Problem auf KI-Campus
+      - Ich hab ein technisches Problem
+      - Bei mir funktioniert etwas nicht
+  
+  - intent: faq/ask_video_problem
+    examples: |
+      - Das Video startet nicht!
+      - Ich hab Probleme mit dem Video
+      - Das Video spielt nicht ab
+      - Mein Video geht nicht
+      - Mein Video funktioniert nicht
+      - Es gibt Probleme mit dem Video
+      - Mein Video startet nicht
+      - Das Video geht nicht
+      - Warum spielt das Video nicht ab?
+
+  - intent: faq/ask_finish_course
+    examples: |
+      - Wie schließe ich einen Kurs ab?
+      - Wie beende ich einen Kurs?
+      - Ich möchte den Kurs beenden
+      - Wie beende ich den Kurs [Schule macht Daten]{"entity": "Course"}
+      - Kurs beenden
+      - Kurs abschließen
+      - Ich will den Kurs abschließen
+  
+  - intent: faq/ask_learning_offer
+    examples: |
+      - Wo finde ich anwendungsspezifische Lernangebote?
+      - Wo finde ich das Lernangebot?
+      - Wo ist das anwendungsspezifische Lernangebot?
+
+  - intent: faq/ask_expert_labs
+    examples: |
+      - Was sind KI-ExpertLabs?
+      - Was ist das KI-ExpertLabs?
+      - Wie kann ich mit dem KI-Expert Labs arbeiten?
+      - Kann ich mit den KI-ExpertLabs arbeiten?
+      - Wo kann ich mehr über die ExpertLabs erfahren?
+      - Ich möchte mehr über die KI-ExpertLabs erfahren
+      - KI-ExpertLabs
+  
+  - intent: faq/ask_fellowship
+    examples: |
+      - Was ist das KI-Fellowship?
+      - Ich möchte mehr über das KI-Fellowship erfahren
+      - KI Fellowship
 
   - synonym: KI
     examples: |
