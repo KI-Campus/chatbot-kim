@@ -45,6 +45,13 @@ nlu:
       - Alle meine Kurse auflisten
       - Ich möchte eine Liste aller meiner Kurse
       - Ich möchte meine Kursliste
+      - Bei welchen Kursen bin ich gerade eingeschrieben? 
+      - In welchem Kurs bin ich zur Zeit eingeschrieben?
+      - Zeig mir meine eingeschriebenen Kurse
+      - Bei welchem Kurs bin ich eingeschrieben?
+      - Bei welchen Kursen bin ich zur Zeit eingeschrieben?
+      - In welchen Kursen bin ich drin?
+
   - intent: get_achievements
     examples: |
       - Ich möchte meine aktuellen Erfolge sehen
@@ -55,6 +62,7 @@ nlu:
       - Zeige mir meinen Fortschritt
       - Meine Leistungen auflisten
       - Ich möchte meinen Kursfortschritt
+
   - intent: affirm
     examples: |
       - yes
