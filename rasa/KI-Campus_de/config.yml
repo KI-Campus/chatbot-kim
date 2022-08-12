@@ -3,12 +3,12 @@ recipe: default.v1
 language: "de"
 
 pipeline:
-  - name: SpacyNLP
-    model: de_core_news_md
-    case_sensitive: False
-  - name: SpacyTokenizer
-  - name: SpacyFeaturizer
-  #- name: WhitespaceTokenizer
+  # - name: SpacyNLP
+  #   model: de_core_news_md
+  #   case_sensitive: False
+  # - name: SpacyTokenizer
+  # - name: SpacyFeaturizer
+  - name: WhitespaceTokenizer
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
