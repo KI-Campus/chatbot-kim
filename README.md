@@ -23,6 +23,17 @@ Choose the folder with the chatbot in English (KI-Campus_en) or in German (KI-Ca
     rasa run actions
 ```
 
+### Start for Development
+
+Change configuration to 'for local development' endpoint in `endpoints.yml`
+
+In folder with the chatbot: 
+start chatbot in shell
+
+```sh
+    rasa shell
+```
+
 ## Docker
 
 In the outer project structure run:

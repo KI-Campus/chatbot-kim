@@ -1,0 +1,22 @@
+version: '3.0'
+
+rules:
+
+  - rule: restart conversation
+    steps:
+    - intent: restart
+    - action: action_restart
+
+# course search
+
+  - rule: submit course form
+    condition:
+    - active_loop: coursesearch_form   # this form must be active
+    steps:
+    - action: coursesearch_form      # run the form
+    - active_loop: null            # the form is no longer active because it has been filled
+    - action: utter_submit_coursesearch_form
+    - action: action_get_learning_recommendation  # action to take after the form is complete
+    - action: utter_anything_else_v2
+
+

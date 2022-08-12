@@ -3,7 +3,12 @@ recipe: default.v1
 language: "de"
 
 pipeline:
-  - name: WhitespaceTokenizer
+  - name: SpacyNLP
+    model: de_core_news_md
+    case_sensitive: False
+  - name: SpacyTokenizer
+  - name: SpacyFeaturizer
+  #- name: WhitespaceTokenizer
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
@@ -18,6 +23,7 @@ pipeline:
     use_lookup_tables: True
   - name: ResponseSelector
     epochs: 100
+    constrain_similarities: True
     retrieval_intent: faq
 
 policies:
@@ -33,3 +39,4 @@ importers:
 
 imports:
   - ./GreetBot_de
+  - ./DFKIBot_de

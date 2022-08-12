@@ -1,0 +1,859 @@
+
+version: "3.0"
+stories:
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_how_can_i_help
+  - action: utter_tip_formulation
+  - intent: start_coursesearch_form
+  - slot_was_set:
+    - user_login: true
+  - action: utter_tip_login
+  - action: utter_affirm_start_coursesearch_form
+  - intent: deny
+  - action: action_fetch_profile
+  - slot_was_set:
+    - user_id: 22218451-41f0-23dd-c50f-cdd8096610c1
+  - slot_was_set:
+    - enrollments:
+      - Einführung in die KI
+      - Mensch-Maschine-Interaktion
+  - slot_was_set:
+    - course_visits:
+      - Big Data Analytics
+  - slot_was_set:
+    - search_terms:
+      - KI
+      - Machine Learning
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - intent: start_coursesearch_form
+  - slot_was_set:
+    - user_login: false
+  - action: utter_tip_login
+  - action: utter_affirm_start_coursesearch_form
+  - intent: affirm
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Anfänger
+  - slot_was_set:
+    - level: Anfänger
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: negative_feedback
+  - slot_was_set:
+    - user_login: false
+  - action: utter_bot_apology
+  - action: utter_bot_apology_feedback
+  - action: utter_anything_else_v2
+  - intent: change_language_slot
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - level: Anfänger
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: additional_learning_recommendation
+  - action: utter_course_form_slots
+  - action: action_additional_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: thank
+  - action: utter_you_are_welcome
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_goodbye
+  - action: utter_end_of_conversation
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_how_can_i_help
+  - action: utter_tip_formulation
+  - intent: start_coursesearch_form
+    entities:
+    - topic: KI
+  - slot_was_set:
+    - user_login: true
+  - action: utter_tip_login
+  - action: utter_affirm_start_coursesearch_form
+  - intent: affirm
+  - slot_was_set:
+    - user_login: false
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - intent: interjection_languages
+  - slot_was_set:
+    - user_login: true
+  - action: utter_interjection_languages
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: interjection_costs
+  - action: utter_interjection_costs
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-vertiefung
+  - slot_was_set:
+    - topic: ki-vertiefung
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: interjection_topic
+  - slot_was_set:
+    - user_login: true
+  - action: utter_interjection_topic
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_topic_slot
+    entities:
+    - topic: KI
+  - action: action_delete_slot_value
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_how_can_i_help
+  - action: utter_tip_formulation
+  - intent: start_coursesearch_form
+  - slot_was_set:
+    - user_login: true
+  - action: utter_tip_login
+  - action: utter_affirm_start_coursesearch_form
+  - intent: affirm
+  - slot_was_set:
+    - user_login: false
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - intent: interjection_languages
+  - slot_was_set:
+    - user_login: true
+  - action: utter_interjection_languages
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Englisch
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - language: englisch
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: interjection_topic
+  - action: utter_interjection_topic
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: topic
+  # - intent: faq
+  # - slot_was_set:
+  #   - user_login: tru
+  # - action: utter_faq
+  # - action: coursesearch_form
+  # - slot_was_set:
+  #   - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: additional_learning_recommendation
+  - action: utter_course_form_slots
+  - action: action_additional_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_language_slot
+  - slot_was_set:
+    - user_login: true
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: deny
+  - action: utter_goodbye
+  - action: utter_end_of_conversation
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_how_can_i_help
+  - action: utter_tip_formulation
+  - intent: faq
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: start_coursesearch_form
+  - slot_was_set:
+    - user_login: true
+  - action: utter_tip_login
+  - action: utter_affirm_start_coursesearch_form
+  - intent: affirm
+  - action: action_fetch_profile
+  - slot_was_set:
+    - user_id: 22218451-41f0-23dd-c50f-cdd8096610c1
+  - slot_was_set:
+    - enrollments:
+      - Einführung in die KI
+      - Mensch-Maschine-Interaktion
+  - slot_was_set:
+    - course_visits:
+      - Big Data Analytics
+  - slot_was_set:
+    - search_terms:
+      - KI
+      - Machine Learning
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: Data Science
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - topic: data science
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: level
+  # - intent: faq
+  # - slot_was_set: 
+  #   - user_login: true
+  # - action: utter_faq
+  # - action: coursesearch_form
+  # - slot_was_set:
+  #   - requested_slot: level
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_topic_slot
+  - slot_was_set:
+    - user_login: true
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - topic: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-berufsfelder
+  - slot_was_set:
+    - topic: ki-berufsfelder
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_language_slot
+    entities:
+    - language: englisch
+  - slot_was_set:
+    - user_login: false
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - topic: ki-berufsfelder
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: thank
+  - action: utter_you_are_welcome
+  - action: utter_anything_else
+  - intent: deny
+  - slot_was_set:
+    - user_login: true
+  - action: utter_goodbye
+  - action: utter_end_of_conversation
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - user_login: true
+  - action: utter_greet
+  - action: utter_how_can_i_help
+  - action: utter_tip_formulation
+  - intent: faq
+  - slot_was_set:
+    - user_login: false
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: affirm
+  - slot_was_set:
+    - user_login: true
+  - action: utter_more_info
+  - intent: get_courses
+  - slot_was_set:
+    - user_login: false
+  - action: action_get_courses
+  - slot_was_set:
+    - courses_available: false
+  - intent: start_coursesearch_form
+  - action: utter_tip_login
+  - action: utter_affirm_start_coursesearch_form
+  - intent: affirm
+  - slot_was_set:
+    - user_login: true
+  - action: action_fetch_profile
+  - slot_was_set:
+    - user_id: 22218451-41f0-23dd-c50f-cdd8096610c1
+  - slot_was_set:
+    - enrollments:
+      - Einführung in die KI
+      - Mensch-Maschine-Interaktion
+  - slot_was_set:
+    - course_visits:
+      - Big Data Analytics
+  - slot_was_set:
+    - search_terms:
+      - KI
+      - Machine Learning
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - intent: stop_form
+  - action: utter_ask_continue_coursesearch_form
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_bot_introduction
+  - intent: start_coursesearch_form
+  - action: utter_tip_login
+  - action: utter_affirm_start_coursesearch_form
+  - intent: affirm
+  - slot_was_set:
+    - user_login: false
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Englisch
+  - slot_was_set:
+    - language: englisch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: additional_learning_recommendation
+  - slot_was_set:
+    - user_login: true
+  - action: utter_course_form_slots
+  - action: action_additional_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_language_slot
+    entities:
+    - language: deutsch
+  - slot_was_set:
+    - user_login: false
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_max_duration_slot
+  - slot_was_set:
+    - user_login: true
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - max_duration: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_topic_slot
+    entities:
+    - topic: Maschinelles Lernen
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - topic: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: Maschinelles Lernen
+  - slot_was_set:
+    - topic: maschinelles lernen
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: deny
+  - slot_was_set:
+    - user_login: false
+  - action: utter_goodbye
+  - action: utter_end_of_conversation
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - user_login: true
+  - action: utter_greet
+  - action: utter_how_can_i_help
+  - action: utter_tip_formulation
+  - intent: start_coursesearch_form
+  - slot_was_set:
+    - user_login: false
+  - action: utter_tip_login
+  - action: utter_affirm_start_coursesearch_form
+  - intent: affirm
+  - slot_was_set:
+    - user_login: true
+  - action: action_fetch_profile
+  - slot_was_set:
+    - user_id: 22218451-41f0-23dd-c50f-cdd8096610c1
+  - slot_was_set:
+    - enrollments:
+      - Einführung in die KI
+      - Mensch-Maschine-Interaktion
+  - slot_was_set:
+    - course_visits:
+      - Big Data Analytics
+  - slot_was_set:
+    - search_terms:
+      - KI
+      - Machine Learning
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-gesellschaft
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - topic: ki-gesellschaft
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - user_login: false
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_level_slot
+    entities:
+    - level: Experte
+  - slot_was_set:
+    - user_login: true
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - level: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - topic: ki-gesellschaft
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: change_certificate_slot
+    entities:
+    - certificate: Leistungsnachweis
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - certificate: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - topic: ki-gesellschaft
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_coursesearch_form
+  - action: action_get_learning_recommendation
+  - action: utter_anything_else_v2
+  - intent: get_courses
+  - slot_was_set:
+    - user_login: false
+  - action: action_get_courses
+  - slot_was_set:
+    - courses_available: false
+  - action: utter_anything_else
+  - intent: change_topic_slot
+  - slot_was_set:
+    - user_login: true
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - topic: null
+  - action: coursesearch_form
+  - active_loop: coursesearch_form
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: stop_form
+  - action: utter_ask_continue_coursesearch_form
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_bot_introduction
+  - intent: thank
+  - slot_was_set:
+    - user_login: false
+  - action: utter_you_are_welcome
+  - action: utter_anything_else
+  - intent: goodbye
+  - slot_was_set:
+    - user_login: true
+  - action: utter_goodbye
+  - action: utter_end_of_conversation

@@ -1,12 +1,13 @@
 # This file contains the different endpoints your bot can use.
 
 # for docker development
-action_endpoint:
-  url: "http://action_server:5045/webhook"
-
-# for local development
 # action_endpoint:
-#   url: "http://localhost:5055/webhook"
+#   url: "http://action_server:5045/webhook"
+
+# dfki test
+# for local development
+ action_endpoint:
+   url: "http://localhost:5055/webhook"
 
 
 #tracker_store:

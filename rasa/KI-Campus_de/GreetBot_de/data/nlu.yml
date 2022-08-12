@@ -20,6 +20,10 @@ nlu:
       - Hello
       - Hey
       - Hallo
+      - hi kim
+      - hallo kim
+      - hallo bot
+      
 
   - intent: goodbye
     examples: |
