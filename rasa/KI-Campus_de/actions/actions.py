@@ -435,7 +435,7 @@ class ValidateCourseSearchForm(FormValidationAction):
 		return ["0", "10", "50", "51"]
 
 	@staticmethod
-	def duration_db() -> List[Text]:
+	def levels_db() -> List[Text]:
 		"""Database of levels"""
 		return ["einsteiger", "fortgeschritten", "experte"]
 
