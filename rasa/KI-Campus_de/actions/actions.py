@@ -229,9 +229,14 @@ class ActionGetLearningRecommendation(Action):
 		course_visits = tracker.get_slot("course_visits")
 		search_terms = tracker.get_slot("search_terms")
 
-		# to do: implement recommender
 		# to do: maybe option 2 implement after delete slot value
-		dispatcher.utter_message(text = "Also, ich empfehle dir folgende Lernangebote: \n\nLernangebot Beispiel")
+
+		# to do: implement recommender
+		debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
+						 "enrollments {5} | course_visits {6} | search_terms {7}\n".fomat(
+							language, topic, level, max_duration, certificate, enrollments, course_visits, search_terms
+						 )
+		dispatcher.utter_message(text = "Also, ich empfehle dir folgende Lernangebote: \n\nLernangebot Beispiel" + debug_info_msg)
 		return []
 
 class ActionAdditionalLearningRecommendation(Action):
@@ -338,14 +343,14 @@ class ActionAskLevel(Action):
 			text = "Du möchtest also das Level von deinem Wunschkurs ändern. Die Kurse auf dem KI-Campus haben die folgenden Level zur Auswahl:"
 			buttons = [{'title': 'Anfänger*in', 'payload': '/inform_coursesearch{"level":"Anfänger"}'},
 			{'title': 'Fortgeschrittene*r', 'payload': '/inform_coursesearch{"level":"Fortgeschritten"}'},
-			{'title': 'Experte', 'payload': '/inform_coursesearch/inform_coursesearch{"level":"Experte"}'}]
+			{'title': 'Experte', 'payload': '/inform_coursesearch{"level":"Experte"}'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
 		else:
 			text = "Wie schätzt du deine Vorkenntnisse im Bereich KI ein?"
 			buttons = [{'title': 'Anfänger*in', 'payload': '/inform_coursesearch{"level":"Anfänger"}'},
 			{'title': 'Fortgeschrittene*r', 'payload': '/inform_coursesearch{"level":"Fortgeschritten"}'},
-			{'title': 'Experte', 'payload': '/inform_coursesearch/inform_coursesearch{"level":"Experte"}'}]
+			{'title': 'Experte', 'payload': '/inform_coursesearch{"level":"Experte"}'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
 		return []
