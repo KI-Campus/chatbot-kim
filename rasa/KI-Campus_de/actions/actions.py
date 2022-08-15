@@ -233,7 +233,7 @@ class ActionGetLearningRecommendation(Action):
 
 		# to do: implement recommender
 		debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
-						 "enrollments {5} | course_visits {6} | search_terms {7}\n".fomat(
+						 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
 							language, topic, level, max_duration, certificate, enrollments, course_visits, search_terms
 						 )
 		dispatcher.utter_message(text = "Also, ich empfehle dir folgende Lernangebote: \n\nLernangebot Beispiel" + debug_info_msg)
