@@ -338,14 +338,14 @@ class ActionAskLevel(Action):
             text = "Du möchtest also das Level von deinem Wunschkurs ändern. Die Kurse auf dem KI-Campus haben die folgenden Level zur Auswahl:"
             buttons = [{'title': 'Anfänger*in', 'payload': '/inform_coursesearch{"level":"Anfänger"}'},
     		{'title': 'Fortgeschrittene*r', 'payload': '/inform_coursesearch{"level":"Fortgeschritten"}'},
-			{'title': 'Experte', 'payload': '/inform_coursesearch/inform_coursesearch{"level":"Experte"}'}]
+			{'title': 'Experte', 'payload': '/inform_coursesearch{"level":"Experte"}'}]
         
             dispatcher.utter_message(text = text, buttons = buttons)
         else:
             text = "Wie schätzt du deine Vorkenntnisse im Bereich KI ein?"
             buttons = [{'title': 'Anfänger*in', 'payload': '/inform_coursesearch{"level":"Anfänger"}'},
     		{'title': 'Fortgeschrittene*r', 'payload': '/inform_coursesearch{"level":"Fortgeschritten"}'},
-			{'title': 'Experte', 'payload': '/inform_coursesearch/inform_coursesearch{"level":"Experte"}'}]
+			{'title': 'Experte', 'payload': '/inform_coursesearch{"level":"Experte"}'}]
         
             dispatcher.utter_message(text = text, buttons = buttons)
         return []
