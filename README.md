@@ -25,10 +25,13 @@ Choose the folder with the chatbot in English (KI-Campus_en) or in German (KI-Ca
 
 ### Start for Development
 
-Change configuration to 'for local development' endpoint in `endpoints.yml`
+Change configuration to _'for local development'_ endpoint in `endpoints.yml` in sub-directories
+```
+    rasa/KI-Campus_de/
+    rasa/KI-Campus_en/
+```
 
-In folder with the chatbot: 
-start chatbot in shell
+then (within the respective directory) start the chatbot shell with
 
 ```sh
     rasa shell
