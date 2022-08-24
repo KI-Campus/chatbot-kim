@@ -8,6 +8,29 @@ Choose the folder with the chatbot in English (KI-Campus_en) or in German (KI-Ca
     rasa train
 ```
 
+## Configuration
+
+### Course Recommender Endpoint
+
+> __NOTE__ Currently only supported for German chabot (`rasa/KI-Campus_de/`)
+
+Create (or modify) the configuration file `kic_recommender.yml` in directory
+```
+    rasa/KI-Campus_de/
+```
+
+and add/modify configuration entry for Course Recommender Endpoint with the
+base URL for the endpoint and the access token:
+```yml
+# This file contains the custom service endpoints your bot can use.
+
+# recommender service (DFKI) configuration
+recommender_api:
+  url: "<base URL for recommender service endpoint>"
+  token: "<recommender access token>"
+
+```
+
 ## Usage
 
 ### Start the Rasa Server
