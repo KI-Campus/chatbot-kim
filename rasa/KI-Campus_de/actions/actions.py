@@ -1,5 +1,4 @@
-from typing import Text, Dict, Any, List, Optional
-
+from typing import Text, Dict, Any, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet, SessionStarted
 from sanic.request import Request
@@ -11,8 +10,6 @@ import json
 # dfki test
 import random
 
-from rasa.utils import endpoints
-from rasa.utils.endpoints import EndpointConfig
 from rasa_sdk import FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import EventType, Restarted, AllSlotsReset
@@ -214,18 +211,7 @@ class ActionFetchProfile(Action):
 # RECOMMENDER
 ######################################################################################
 
-
 class ActionGetLearningRecommendation(Action):
-
-	service_url: str
-	service_token: str
-
-	def __init__(self):
-		# NOTE will print error message if file is missing:
-		recommender_config = endpoints.read_endpoint_config("../kic_recommender.yml", "recommender_api")
-
-		self.service_url = recommender_config.url
-		self.service_token = recommender_config.token
 
 	def name(self) -> Text:
 		return "action_get_learning_recommendation"
@@ -239,54 +225,19 @@ class ActionGetLearningRecommendation(Action):
 		level = str(tracker.get_slot("level"))
 		max_duration = int(tracker.get_slot("max_duration"))
 		certificate = str(tracker.get_slot("certificate"))
-
-		# TODO retrieve from user's profile/account (when logged-in):
 		enrollments = tracker.get_slot("enrollments")
 		course_visits = tracker.get_slot("course_visits")
 		search_terms = tracker.get_slot("search_terms")
 
 		# to do: maybe option 2 implement after delete slot value
 
-		r = requests.get('{0}filtered_recommendation_learnings/'.format(self.service_url),
-			headers={
-				"content-type": "application/json",
-				"Authorization": 'Token {0}'.format(self.service_token),
-			},
-			params={
-				"language": language,
-				"topic": topic,
-				"level": level,
-				"max_duration": str(max_duration),
-				"certificate": certificate,
-				"enrollments": enrollments,
-				"course_visits": course_visits,
-				"search_terms": search_terms,
-			})
-		status = r.status_code
-		if status == 200:
-			response = json.loads(r.content)
-			if len(response) < 1:
-				dispatcher.utter_message('Leider wurde kein Kurs für diese Parameter gefunden.')
-			else:
-				size = len(response)
-				limit = min(size, 5)
-				dispatcher.utter_message('Es wurden folgende Kurse gefunden ({0}): '.format(size))
-				button_group = []
-				for course in response[0:limit]:
-					title = course['name']
-					button_group.append({"title": title, "payload": '{0}'.format(title)})
-				dispatcher.utter_message(buttons=button_group)
-				if limit < size:
-					rest = size - limit
-					mult_msg = "weiterer Kurs" if rest == 1 else "weitere Kurse"
-					dispatcher.utter_message("... und {0} {1}".format(rest, mult_msg))
-		elif status == 404:  # Status-Code 404 None
-			dispatcher.utter_message('Leider wurde kein Kurs für diese Parameter gefunden.')
-		elif status == 500:  # Status-Code 500 Invalid Parameter
-			dispatcher.utter_message('Es gab einen Fehler bei der Abfrage.')
-
+		# to do: implement recommender
+		debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
+						 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
+							language, topic, level, max_duration, certificate, enrollments, course_visits, search_terms
+						 )
+		dispatcher.utter_message(text = "Also, ich empfehle dir folgende Lernangebote: \n\nLernangebot Beispiel" + debug_info_msg)
 		return []
-
 
 class ActionAdditionalLearningRecommendation(Action):
 
