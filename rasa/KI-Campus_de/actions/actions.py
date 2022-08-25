@@ -229,6 +229,12 @@ class ActionGetLearningRecommendation(Action):
 		self.service_url = recommender_config.url
 		self.service_token = recommender_config.token
 
+		# DEBUG output TODO remove after testing
+		if recommender_config and recommender_config.url and recommender_config.token:
+			print("\n  endpoint config: {0}\n".format(recommender_config.__dict__))
+		else:
+			print("\n  endpoint config: NO CONFIGURATION FOR RECOMMENDER (recommender_api)\n")
+
 	def name(self) -> Text:
 		return "action_get_learning_recommendation"
 
@@ -246,6 +252,13 @@ class ActionGetLearningRecommendation(Action):
 		search_terms = tracker.get_slot("search_terms")
 
 		# to do: maybe option 2 implement after delete slot value
+
+		# FIXME DEBUG: show search/filter parameters
+		debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
+						 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
+							language, topic, level, max_duration, certificate, enrollments, course_visits, search_terms
+						 )
+		dispatcher.utter_message(text="Suche Lernangebote für folgende Parameter:" + debug_info_msg)
 
 		r = requests.get('{0}filtered_recommendation_learnings/'.format(self.service_url),
 			headers={
@@ -282,12 +295,20 @@ class ActionGetLearningRecommendation(Action):
 					dispatcher.utter_message("... und {0} {1}".format(rest, mult_msg))
 		elif status == 401:  # Status-Code 401 Unauthorized: wrong access token setting in kic_recommender.yml!
 			dispatcher.utter_message('Leider gab es einen Fehler beim Zugriff auf die Kurse, bitte wende dich an den Administrator (Status 401).')
+			# FIXME DEBUG:
+			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
 		elif status == 404:  # Status-Code 404 None
 			dispatcher.utter_message('Leider wurde kein Kurs für diese Parameter gefunden.')
+			# FIXME DEBUG:
+			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
 		elif status == 500:  # Status-Code 500 Invalid Parameter
 			dispatcher.utter_message('Es gab einen Fehler bei der Abfrage.')
+			# FIXME DEBUG:
+			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
 		else:
 			dispatcher.utter_message('Es gab einen Fehler bei der Abfrage, bitte wende dich an den Administrator. Fehler: ' + str(r.content))
+			# FIXME DEBUG:
+			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
 
 		return []
 
