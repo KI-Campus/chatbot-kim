@@ -1,3 +1,4 @@
+import os
 from typing import Text, Dict, Any, List, Optional
 
 from rasa_sdk import Action, Tracker
@@ -221,8 +222,9 @@ class ActionGetLearningRecommendation(Action):
 	service_token: str
 
 	def __init__(self):
+		service_config_path = os.path.join(os.path.dirname(__file__), '..', 'kic_recommender.yml')
 		# NOTE will print error message if file is missing:
-		recommender_config = endpoints.read_endpoint_config("../kic_recommender.yml", "recommender_api")
+		recommender_config = endpoints.read_endpoint_config(service_config_path, "recommender_api")
 
 		self.service_url = recommender_config.url
 		self.service_token = recommender_config.token
