@@ -239,8 +239,6 @@ class ActionGetLearningRecommendation(Action):
 		level = str(tracker.get_slot("level"))
 		max_duration = int(tracker.get_slot("max_duration"))
 		certificate = str(tracker.get_slot("certificate"))
-
-		# TODO retrieve from user's profile/account (when logged-in):
 		enrollments = tracker.get_slot("enrollments")
 		course_visits = tracker.get_slot("course_visits")
 		search_terms = tracker.get_slot("search_terms")
@@ -280,13 +278,16 @@ class ActionGetLearningRecommendation(Action):
 					rest = size - limit
 					mult_msg = "weiterer Kurs" if rest == 1 else "weitere Kurse"
 					dispatcher.utter_message("... und {0} {1}".format(rest, mult_msg))
+		elif status == 401:  # Status-Code 401 Unauthorized: wrong access token setting in kic_recommender.yml!
+			dispatcher.utter_message('Leider gab es einen Fehler beim Zugriff auf die Kurse, bitte wende dich an den Administrator (Status 401).')
 		elif status == 404:  # Status-Code 404 None
 			dispatcher.utter_message('Leider wurde kein Kurs für diese Parameter gefunden.')
 		elif status == 500:  # Status-Code 500 Invalid Parameter
 			dispatcher.utter_message('Es gab einen Fehler bei der Abfrage.')
+		else:
+			dispatcher.utter_message('Es gab einen Fehler bei der Abfrage, bitte wende dich an den Administrator. Fehler: ' + str(r.content))
 
 		return []
-
 
 class ActionAdditionalLearningRecommendation(Action):
 
