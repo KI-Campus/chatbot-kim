@@ -1,4 +1,6 @@
-from typing import Text, Dict, Any, List
+import os
+from typing import Text, Dict, Any, List, Optional
+
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet, SessionStarted
 from sanic.request import Request
@@ -10,6 +12,8 @@ import json
 # dfki test
 import random
 
+from rasa.utils import endpoints
+from rasa.utils.endpoints import EndpointConfig
 from rasa_sdk import FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import EventType, Restarted, AllSlotsReset
@@ -211,7 +215,25 @@ class ActionFetchProfile(Action):
 # RECOMMENDER
 ######################################################################################
 
+
 class ActionGetLearningRecommendation(Action):
+
+	service_url: str
+	service_token: str
+
+	def __init__(self):
+		service_config_path = os.path.join(os.path.dirname(__file__), '..', 'kic_recommender.yml')
+		# NOTE will print error message if file is missing:
+		recommender_config = endpoints.read_endpoint_config(service_config_path, "recommender_api")
+
+		self.service_url = recommender_config.url
+		self.service_token = recommender_config.token
+
+		# DEBUG output TODO remove after testing
+		if recommender_config and recommender_config.url and recommender_config.token:
+			print("\n  endpoint config: {0}\n".format(recommender_config.__dict__))
+		else:
+			print("\n  endpoint config: NO CONFIGURATION FOR RECOMMENDER (recommender_api)\n")
 
 	def name(self) -> Text:
 		return "action_get_learning_recommendation"
@@ -231,12 +253,63 @@ class ActionGetLearningRecommendation(Action):
 
 		# to do: maybe option 2 implement after delete slot value
 
-		# to do: implement recommender
+		# FIXME DEBUG: show search/filter parameters
 		debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
 						 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
 							language, topic, level, max_duration, certificate, enrollments, course_visits, search_terms
 						 )
-		dispatcher.utter_message(text = "Also, ich empfehle dir folgende Lernangebote: \n\nLernangebot Beispiel" + debug_info_msg)
+		dispatcher.utter_message(text="Suche Lernangebote für folgende Parameter:" + debug_info_msg)
+
+		r = requests.get('{0}filtered_recommendation_learnings/'.format(self.service_url),
+			headers={
+				"content-type": "application/json",
+				"Authorization": 'Token {0}'.format(self.service_token),
+			},
+			params={
+				"language": language,
+				"topic": topic,
+				"level": level,
+				"max_duration": str(max_duration),
+				"certificate": certificate,
+				"enrollments": enrollments,
+				"course_visits": course_visits,
+				"search_terms": search_terms,
+			})
+		status = r.status_code
+		if status == 200:
+			response = json.loads(r.content)
+			if len(response) < 1:
+				dispatcher.utter_message('Leider wurde kein Kurs für diese Parameter gefunden.')
+			else:
+				size = len(response)
+				limit = min(size, 5)
+				dispatcher.utter_message('Es wurden folgende Kurse gefunden ({0}): '.format(size))
+				button_group = []
+				for course in response[0:limit]:
+					title = course['name']
+					button_group.append({"title": title, "payload": '{0}'.format(title)})
+				dispatcher.utter_message(buttons=button_group)
+				if limit < size:
+					rest = size - limit
+					mult_msg = "weiterer Kurs" if rest == 1 else "weitere Kurse"
+					dispatcher.utter_message("... und {0} {1}".format(rest, mult_msg))
+		elif status == 401:  # Status-Code 401 Unauthorized: wrong access token setting in kic_recommender.yml!
+			dispatcher.utter_message('Leider gab es einen Fehler beim Zugriff auf die Kurse, bitte wende dich an den Administrator (Status 401).')
+			# FIXME DEBUG:
+			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
+		elif status == 404:  # Status-Code 404 None
+			dispatcher.utter_message('Leider wurde kein Kurs für diese Parameter gefunden.')
+			# FIXME DEBUG:
+			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
+		elif status == 500:  # Status-Code 500 Invalid Parameter
+			dispatcher.utter_message('Es gab einen Fehler bei der Abfrage.')
+			# FIXME DEBUG:
+			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
+		else:
+			dispatcher.utter_message('Es gab einen Fehler bei der Abfrage, bitte wende dich an den Administrator. Fehler: ' + str(r.content))
+			# FIXME DEBUG:
+			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
+
 		return []
 
 class ActionAdditionalLearningRecommendation(Action):
