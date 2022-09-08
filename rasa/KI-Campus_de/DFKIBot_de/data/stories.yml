@@ -1,13 +1,11 @@
 version: '3.0'
 
 stories:
-
 # check user login utter_anything_else_v2 vs rule utter_anything_else ändern
-
-
   - story: check login happy + start coursesearch
     steps:
     - intent: start_coursesearch_form
+    - action: action_delete_slot_value
     - action: utter_tip_login
     - action: utter_affirm_start_coursesearch_form
     - intent: affirm
@@ -24,6 +22,7 @@ stories:
   - story: check login happy + no coursesearch
     steps:
     - intent: start_coursesearch_form
+    - action: action_delete_slot_value
     - action: utter_tip_login
     - action: utter_affirm_start_coursesearch_form
     - intent: deny
@@ -40,6 +39,7 @@ stories:
   - story: check login unhappy + start courseseach
     steps:
     - intent: start_coursesearch_form
+    - action: action_delete_slot_value
     - action: utter_tip_login
     - action: utter_affirm_start_coursesearch_form
     - intent: affirm
@@ -50,6 +50,7 @@ stories:
   - story: check login unhappy + no courseseach
     steps:
     - intent: start_coursesearch_form
+    - action: action_delete_slot_value
     - action: utter_tip_login
     - action: utter_affirm_start_coursesearch_form
     - intent: deny
@@ -61,8 +62,8 @@ stories:
   - story: activate course form
     steps:
     - checkpoint: start_coursesearch_form
-    - action: coursesearch_form      # run the form
-    - active_loop: coursesearch_form # this form is active
+    - action: coursesearch_form      
+    - active_loop: coursesearch_form 
 
 # course search variations
   - story: languages interjection
@@ -108,14 +109,12 @@ stories:
     - active_loop: coursesearch_form
     - intent: stop_form
     - action: utter_ask_continue_coursesearch_form
-    - or:
-      - intent: stop_form
-      - intent: affirm
+    - intent: affirm
     - action: action_deactivate_loop
     - active_loop: null
     - slot_was_set:
       - requested_slot: null
-    - action: utter_bot_introduction
+    - action: utter_bot_information
     - intent: goodbye
     - action: utter_goodbye
 
@@ -126,14 +125,12 @@ stories:
     - active_loop: coursesearch_form
     - intent: stop_form
     - action: utter_ask_continue_coursesearch_form
-    - or:
-      - intent: stop_form
-      - intent: affirm
+    - intent: affirm
     - action: action_deactivate_loop
     - active_loop: null
     - slot_was_set:
       - requested_slot: null
-    - action: utter_bot_introduction
+    - action: utter_bot_information
     - intent: faq
     - action: utter_faq
     - action: utter_anything_else
@@ -145,15 +142,8 @@ stories:
     - active_loop: coursesearch_form
     - intent: stop_form
     - action: utter_ask_continue_coursesearch_form
-    - or:
-      - intent: deny
+    - intent: deny
     - action: coursesearch_form
-
-#  utter_more_info:
-#   - text: Okay. Wie kann ich dir weiterhelfen?
-#   utter_anything_else:
-#   - text: Kann ich dir noch mit etwas anderem behilflich sein?
-# - checkpoint: more_information
 
 # negative feedback
   - story: negative feedback reaction
@@ -171,7 +161,6 @@ stories:
     - action: action_additional_learning_recommendation
     - action: utter_anything_else_v2
 
-# option 2 problem: start only after form 
   - story: change language learning recommendation
     steps:
     - intent: change_language_slot

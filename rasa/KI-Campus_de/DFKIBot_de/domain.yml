@@ -1,5 +1,16 @@
 version: '3.0'
-
+forms:
+  coursesearch_form:
+    ignored_intents:
+      - greet
+      - goodbye
+      - thank
+    required_slots:
+      - language
+      - topic 
+      - certificate
+      - max_duration
+      - level
 intents:
   - start_coursesearch_form
   - inform_coursesearch
@@ -41,75 +52,13 @@ actions:
   - action_delete_slot_value
   - utter_bot_apology_feedback
   - utter_bot_apology
-responses:
-
-  utter_tip_login:
-  - text: "💡 Tipp: Für eine möglichst gute Kursempfehlung helfen mir die Informationen aus deinem Profil. Melde dich bitte hier an." 
-  utter_affirm_start_coursesearch_form:
-  - text: "Super! Hast du dich eingeloggt? Falls du dich nicht einloggen möchtest oder noch kein Profil bei uns hast, ist das auch kein Problem! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
-    buttons: 
-      - title: Ja, los geht's!
-        payload: /affirm   
-      - title: Nein, ich habe ein anderes Anliegen!
-        payload: /deny
-
-  utter_anything_else_v2:
-  - text: Womit kann ich dir noch behilflich sein?
-  - text: Wie kann ich dir sonst noch helfen?
-
-  utter_ask_continue_coursesearch_form:
-  - text: Alles klar, dann beenden wir die Kurssuche und wechseln das Thema! Einverstanden?
-
-  utter_bot_apology:
-  - text: Das tut mir leid! Ich muss noch vieles dazu lernen und werde mich immer weiter verbessern!
-  utter_bot_apology_feedback:
-  - text: Ich freue mich über dein Feedback! Um mir Feedback zu hinterlassen, klicke hier. 
-
-  utter_bot_introduction:
-  - text: Ich helfe dir bei Fragen rund um den KI-Campus oder unterstütze dich bei der Suche nach einem passenden Kurs! Was kann ich für dich tun?
-
-  utter_interjection_languages:
-  - text: Wir bieten auf dem KI-Campus nur Kurse auf Deutsch und Englisch an. Bestimmt ist für dich etwas Passendes dabei!
-  utter_interjection_costs:
-  - text: Alle Kurse des KI-Campus sind kostenlos und du kannst jederzeit loslegen.
-  utter_interjection_time:
-  - text: Damit du den Arbeitsaufwand eines Kurses gut einschätzen kannst, habe ich unsere Kurse nach ihrer gesamten Stundenanzahl unterteilt.
-  utter_interjection_topic:
-  - text: Du findest auf dem KI-Campus sowohl Kurse über Grundlagenwissen zu KI als auch interdisziplinäre Fragestellungen und vertiefende Lernangebote.
-  utter_restart:
-  - text: Wir starten die Konversation jetzt noch mal neu!
-
-  utter_submit_coursesearch_form:
-  - text: "Einen kleinen Moment bitte, ich suche passende Kurse für dich raus."
-  
-  utter_course_form_slots:
-  - text: "Du hast eine Kurssuche mit folgenden Angaben gemacht:\n\n 
-           - Sprache: {language}\n\n
-           - Thema: {topic}\n\n
-           - Level: {level}\n\n
-           - Zertifikat: {certificate}\n\n
-           - Dauer: {max_duration}"
-
-forms:
-
-  coursesearch_form:
-    required_slots:
-        - language
-        - topic 
-        - certificate
-        - max_duration
-        - level
-
 entities:
-
   - language
   - topic
   - level
   - certificate
   - max_duration
-
 slots:
-
   language:
     type: categorical
     values:
@@ -199,7 +148,6 @@ slots:
       conditions:
       - active_loop: coursesearch_form
         requested_slot: max_duration
-
   user_login:
     type: bool
     influence_conversation: true
@@ -222,7 +170,47 @@ slots:
     type: list
     mappings:
     - type: custom
-
+responses:
+  utter_tip_login:
+  - text: "💡 Tipp: Für eine möglichst gute Kursempfehlung helfen mir die Informationen aus deinem Profil. Melde dich bitte hier an." 
+  utter_affirm_start_coursesearch_form:
+  - text: "Super! Hast du dich eingeloggt? Falls du dich nicht einloggen möchtest oder noch kein Profil bei uns hast, ist das auch kein Problem! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
+    buttons: 
+      - title: Ja, los geht's!
+        payload: /affirm   
+      - title: Nein, ich habe ein anderes Anliegen!
+        payload: /deny
+  utter_anything_else_v2:
+  - text: Womit kann ich dir noch behilflich sein?
+  - text: Wie kann ich dir sonst noch helfen?
+  utter_ask_continue_coursesearch_form:
+  - text: Alles klar, dann beenden wir die Kurssuche und wechseln das Thema! Einverstanden?
+  utter_bot_apology:
+  - text: Das tut mir leid! Ich muss noch vieles dazu lernen und werde mich immer weiter verbessern!
+  utter_bot_apology_feedback:
+  - text: Ich freue mich über dein Feedback! Um mir Feedback zu hinterlassen, klicke hier. 
+  utter_bot_information:
+  - text: Ich helfe dir bei Fragen rund um den KI-Campus oder unterstütze dich bei der Suche nach einem passenden Kurs! Was kann ich für dich tun?
+  utter_interjection_languages:
+  - text: Wir bieten auf dem KI-Campus nur Kurse auf Deutsch und Englisch an. Bestimmt ist für dich etwas Passendes dabei!
+  utter_interjection_costs:
+  - text: Alle Kurse des KI-Campus sind kostenlos und du kannst jederzeit loslegen.
+  utter_interjection_time:
+  - text: Damit du den Arbeitsaufwand eines Kurses gut einschätzen kannst, habe ich unsere Kurse nach ihrer gesamten Stundenanzahl unterteilt.
+  utter_interjection_topic:
+  - text: Du findest auf dem KI-Campus sowohl Kurse über Grundlagenwissen zu KI als auch interdisziplinäre Fragestellungen und vertiefende Lernangebote.
+  utter_restart:
+  - text: Wir starten die Konversation jetzt noch mal neu!
+  utter_submit_coursesearch_form:
+  - text: "Einen kleinen Moment bitte, ich suche passende Kurse für dich raus."
+  # #debug
+  # utter_course_form_slots:
+  # - text: "Du hast eine Kurssuche mit folgenden Angaben gemacht:\n\n 
+  #          - Sprache: {language}\n\n
+  #          - Thema: {topic}\n\n
+  #          - Level: {level}\n\n
+  #          - Zertifikat: {certificate}\n\n
+  #          - Dauer: {max_duration}"
 session_config:
   session_expiration_time: 60  # value in minutes, 0 means infinitely long
   carry_over_slots_to_new_session: true  # set to false to forget slots between sessions

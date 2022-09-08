@@ -345,6 +345,7 @@ class ActionDeleteSlotValue(Action):
 		elif  intent == 'change_level_slot': return [SlotSet("level", None)]
 		elif  intent == 'change_max_duration_slot': return [SlotSet("max_duration", None)]
 		elif  intent == 'change_certificate_slot': return [SlotSet("certificate", None)]
+		elif  intent == 'start_coursesearch_form': return [SlotSet("language", None), SlotSet("topic", None), SlotSet("level", None), SlotSet("max_duration", None), SlotSet("certificate", None)]
 		else:  return [dispatcher.utter_message('Kein Slot Value gelöscht')]
 
 class ActionAskLanguage(Action):
@@ -490,7 +491,7 @@ class ValidateCourseSearchForm(FormValidationAction):
 	@staticmethod
 	def language_no_support_db() -> List[Text]:
 		"""Database of not supported languages"""
-		return ["spanisch", "französisch", "robotisch", "russisch", "slowakisch", "katalanisch", "tschechisch", "mandarin", "hindi", "niederländisch", "schwedisch"]
+		return ["spanisch", "französisch", "robotisch", "russisch", "slowakisch", "katalanisch", "tschechisch", "mandarin", "hindi", "niederländisch", "schwedisch", "holländisch"]
 
 	@staticmethod
 	def topic_db() -> List[Text]:
@@ -526,7 +527,7 @@ class ValidateCourseSearchForm(FormValidationAction):
 		elif slot_value.lower() in self.language_no_support_db():
 			lang = str(slot_value).capitalize()
 			print(lang) # for testing
-			dispatcher.utter_message(text = f"Wir bieten auf dem KI-Campus nur Kurse auf Deutsch und Englisch an. Bestimmt ist für dich etwas Passendes dabei!")
+			dispatcher.utter_message(text = f"Wir bieten auf dem KI-Campus keine Kurse auf {lang} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!")
 			return {"language": None}
 		else:
 			dispatcher.utter_message(response = "utter_interjection_languages")

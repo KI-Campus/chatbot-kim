@@ -10,6 +10,7 @@ stories:
   - action: utter_how_can_i_help
   - action: utter_tip_formulation
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: true
   - action: utter_tip_login
@@ -136,6 +137,7 @@ stories:
   - intent: start_coursesearch_form
     entities:
     - topic: KI
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: true
   - action: utter_tip_login
@@ -218,6 +220,7 @@ stories:
   - action: utter_how_can_i_help
   - action: utter_tip_formulation
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: true
   - action: utter_tip_login
@@ -340,6 +343,7 @@ stories:
   - action: utter_faq
   - action: utter_anything_else
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: true
   - action: utter_tip_login
@@ -505,6 +509,7 @@ stories:
   - slot_was_set:
     - courses_available: false
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - action: utter_tip_login
   - action: utter_affirm_start_coursesearch_form
   - intent: affirm
@@ -691,6 +696,7 @@ stories:
   - action: utter_how_can_i_help
   - action: utter_tip_formulation
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: false
   - action: utter_tip_login

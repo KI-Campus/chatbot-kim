@@ -230,7 +230,7 @@ nlu:
       - Bitte die Konversation neu machen .
       - Konversation neu beginnen .
       - Konversation neu anfangen .
-      - Konversation neu starten .
+      - Konversation neustarten .
       - Konversation neu machen .
     
 # coursesearch
@@ -338,6 +338,10 @@ nlu:
       - starte die suche
       - beginne die kurssuche
       - starte kurssuche
+      - Gib mir eine Empfehlung
+      - Kannst du mir eine Empfehlung geben
+      - neue Empfehlung
+      - empfehle mir einen kurs
 
   - intent: inform_coursesearch
     examples: |
@@ -475,40 +479,39 @@ nlu:
       - [mit Note]{"entity": "certificate", "value": "Leistungsnachweis"}
       - [benotete Teilnahme]{"entity": "certificate", "value": "Leistungsnachweis"}
       - [benotet]{"entity": "certificate", "value": "Leistungsnachweis"}
-      - [Teilnahmebescheinigung]{"entity": "certificate", "value": "Teilnahmeschein"}
-      - [nur teilnehmen]{"entity": "certificate", "value": "Teilnahmeschein"}
-      - [nur Teilnhame]{"entity": "certificate", "value": "Teilnahmeschein"}
-      - [Teilnahme]{"entity": "certificate", "value": "Teilnahmeschein"}
-      - [Anwesenheit]{"entity": "certificate", "value": "Teilnahmeschein"}
+      - [Teilnahmebescheinigung]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [nur teilnehmen]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [nur Teilnhame]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [Teilnahme]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [Anwesenheit]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
 
   - intent: stop_form
     examples: |
-      - stop
-      - anhalten
-      - halt
       - ich möchte die kurssuche beenden
       - ich will die Suche stoppen
       - ich will die Suche anhalten
       - ich will die Suche beenden
+      - ich will die Suche abbrechen
       - ich will die Befragung stoppen
       - ich will die Befragung anhalten
       - ich will die Befragung beenden
       - ich will die kurssuche stoppen
       - ich will die kurssuche anhalten
       - ich will die kurssuche beenden
+      - ich will die kurssuche abbrechen
       - ich möchte die Suche stoppen
       - ich möchte die Suche anhalten
       - ich möchte die Suche beenden
       - ich möchte die Befragung stoppen
       - ich möchte die Befragung anhalten
       - ich möchte die Befragung beenden
+      - ich möchte die Befragung abbrechen
       - ich möchte die kurssuche stoppen
       - ich möchte die kurssuche anhalten
       - ich möchte die kurssuche beenden
       - ich möchte die kurssuche abbrechen
-      - bitte beenden
-      - bitte stoppen
       - befragnung anhalten
+      - befragung abbrechen
       - kurssuche beenden
       - suche abbrechen
       - abbruch
@@ -517,7 +520,7 @@ nlu:
       - ich will abbrechen
 
 # synonyme course_form  
-  - synonym: Teilnahmeschein
+  - synonym: Teilnahmebescheinigung
     examples: |
       - Teilnahme
       - Bescheinigung
@@ -601,5 +604,3 @@ nlu:
       - R Programmierung
   # - regex: max_duration
   #   - \b[a-zA-Z*] \d{2}|[a-zA-Z*]\b
-
-
