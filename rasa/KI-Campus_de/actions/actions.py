@@ -35,7 +35,7 @@ class SetCurrentCourse(Action):
 		return [SlotSet('current_course_title', currentCourse)]
 
 
-class ActionGetCourses(Action):
+class ActionGetCoursesButtons(Action):
 	def name(self) -> Text:
 		return "action_get_courses_buttons"
 
