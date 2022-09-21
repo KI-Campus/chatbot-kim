@@ -9,11 +9,12 @@ import json
 
 import random
 
-from rasa.utils import endpoints
 from rasa_sdk import FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import Restarted
 from rasa_sdk.types import DomainDict
+
+from .settings import get_recommender_config
 
 
 class ActionRestart(Action):
@@ -73,16 +74,16 @@ class ActionGetLearningRecommendation(Action):
 	service_token: str
 
 	def __init__(self):
-		service_config_path = os.path.join(os.path.dirname(__file__), '..', 'kic_recommender.yml')
+		# service_config_path = os.path.join(os.path.dirname(__file__), '..', 'kic_recommender.yml')
 		# NOTE will print error message if file is missing:
-		recommender_config = endpoints.read_endpoint_config(service_config_path, "recommender_api")
+		recommender_config = get_recommender_config()  # endpoints.read_endpoint_config(service_config_path, "recommender_api")
 
-		self.service_url = recommender_config.url
-		self.service_token = recommender_config.token
+		self.service_url = recommender_config['url']
+		self.service_token = recommender_config['token']
 
 		# DEBUG output TODO remove after testing
-		if recommender_config and recommender_config.url and recommender_config.token:
-			print("\n  endpoint config: {0}\n".format(recommender_config.__dict__))
+		if recommender_config and recommender_config['url'] and recommender_config['token']:
+			print("\n  endpoint config: {0}\n".format(recommender_config))
 		else:
 			print("\n  endpoint config: NO CONFIGURATION FOR RECOMMENDER (recommender_api)\n")
 
