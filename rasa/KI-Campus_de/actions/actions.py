@@ -8,7 +8,7 @@ from rasa_sdk.executor import CollectingDispatcher
 import requests
 import json
 
-from actions.responses import get_response_texts, assert_responses_exist, ResponseEnum, get_response
+from .responses import get_response_texts, assert_responses_exist, ResponseEnum, get_response
 
 
 class CourseSet(Action):
@@ -45,6 +45,11 @@ class ActionGetCoursesButtons(Action):
 	class Responses(ResponseEnum):
 		no_courses = auto()
 		list_courses = auto()
+		course_label = auto()
+		"""
+		text course_label has 1 parameter:
+        * parameter 0: the title of the course
+		"""
 		error_401 = auto()
 
 	responses: Dict[str, str]
@@ -68,18 +73,20 @@ class ActionGetCoursesButtons(Action):
 		if status == 200:
 			response = json.loads(r.content)
 			if len(response) < 1:
-				dispatcher.utter_message(get_response(self.responses, self.Responses.no_courses))  # 'Du bist derzeit in keinem Kursen eingeschrieben.')
+				dispatcher.utter_message(get_response(self.responses, self.Responses.no_courses))
 				return [SlotSet('courses_available', False)]
 			else:
-				dispatcher.utter_message(get_response(self.responses, self.Responses.list_courses))  #'Du bist derzeit in diesen Kursen eingeschrieben:')
+				dispatcher.utter_message(get_response(self.responses, self.Responses.list_courses))
 				buttonGroup = []
 				for course in response:
 					title = course['title']
-					buttonGroup.append({"title": title, "payload": '{0}'.format(title)})
+					buttonGroup.append({
+						"title": get_response(self.responses, self.Responses.course_label).format(title),
+						"payload": '{0}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
 		elif status == 401:  # Status-Code 401 None
-			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))  #'Du bist derzeit in keinem Kursen eingeschrieben.')
+			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
 			return [SlotSet('courses_available', False)]
 		else:
 			return []
@@ -89,6 +96,11 @@ class ActionGetCourses(Action):
 	class Responses(ResponseEnum):
 		no_courses = auto()
 		list_courses = auto()
+		course_title = auto()
+		"""
+		text course_title has 1 parameter:
+        * parameter 0: the title of the course
+		"""
 		error_401 = auto()
 
 	responses: Dict[str, str]
@@ -112,16 +124,16 @@ class ActionGetCourses(Action):
 		if status == 200:
 			response = json.loads(r.content)
 			if len(response) < 1:
-				dispatcher.utter_message(get_response(self.responses, self.Responses.no_courses))  #'Du bist derzeit in keinem Kursen eingeschrieben.')
+				dispatcher.utter_message(get_response(self.responses, self.Responses.no_courses))
 				return [SlotSet('courses_available', False)]
 			else:
-				dispatcher.utter_message(get_response(self.responses, self.Responses.list_courses))  #'Du bist derzeit in diesen Kursen eingeschrieben:')
+				dispatcher.utter_message(get_response(self.responses, self.Responses.list_courses))
 				for course in response:
-					title = course['title']
+					title = get_response(self.responses, self.Responses.course_title).format(course['title'])
 					dispatcher.utter_message(title)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
 		elif status == 401:  # Status-Code 401 None
-			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))  #'Du bist derzeit in keinem Kursen eingeschrieben.')
+			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
 			return [SlotSet('courses_available', False)]
 		else:
 			return []
@@ -176,7 +188,7 @@ class ActionGetAchievements(Action):
 						course_achieved = True
 			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
 		else:
-			dispatcher.utter_message(get_response(self.responses, self.Responses.course_not_found))  #'Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, indem du mir den Kurstitel nennen.')
+			dispatcher.utter_message(get_response(self.responses, self.Responses.course_not_found))
 			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
 
 

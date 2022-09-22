@@ -14,11 +14,15 @@
 action_get_courses_buttons:
   no_courses: Du bist derzeit in keinem Kursen eingeschrieben.
   list_courses: "Du bist derzeit in diesen Kursen eingeschrieben:"
+  # course_label parameter 0: the title of the course
+  course_label: "{0}"
   error_401: Du bist derzeit in keinem Kursen eingeschrieben.
 
 action_get_courses:
   no_courses: Du bist derzeit in keinem Kursen eingeschrieben.
   list_courses: "Du bist derzeit in diesen Kursen eingeschrieben:"
+  # course_title parameter 0: the title of the course
+  course_title: "{0}"
   error_401: Du bist derzeit in keinem Kursen eingeschrieben.
 
 action_get_achievements:
