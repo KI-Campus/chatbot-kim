@@ -6,7 +6,7 @@ services:
       build: 
         context: ./rasa/KI-Campus_de
       volumes:
-      - "./rasa/KI-Campus_de:/app"
+        - "./rasa/KI-Campus_de:/app"
       ports: 
         - "12345:5005"
         # Server Port: 12345:5005
