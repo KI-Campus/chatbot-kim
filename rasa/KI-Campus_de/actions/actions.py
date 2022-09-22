@@ -1,3 +1,4 @@
+from enum import auto
 from typing import Text, Dict, Any, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet, SessionStarted
@@ -6,6 +7,9 @@ from rasa_sdk.executor import CollectingDispatcher
 
 import requests
 import json
+
+from actions.responses import get_response_texts, assert_responses_exist, ResponseEnum, get_response
+
 
 class CourseSet(Action):
 	def name(self):
@@ -18,6 +22,7 @@ class CourseSet(Action):
 		else:
 			return [SlotSet('course-set', False)]
 
+
 class PrintAllSlots(Action):
 	def name(self):
 		return "action_all_slots"
@@ -25,6 +30,7 @@ class PrintAllSlots(Action):
 	def run(self, dispatcher, tracker, domain):
 		currentCourse = tracker.get_slot('current_course_title')
 		return []
+
 
 class SetCurrentCourse(Action):
 	def name(self):
@@ -36,6 +42,17 @@ class SetCurrentCourse(Action):
 
 
 class ActionGetCoursesButtons(Action):
+	class Responses(ResponseEnum):
+		no_courses = auto()
+		list_courses = auto()
+		error_401 = auto()
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name())
+		assert_responses_exist(self.responses, self.Responses)
+
 	def name(self) -> Text:
 		return "action_get_courses_buttons"
 
@@ -51,23 +68,35 @@ class ActionGetCoursesButtons(Action):
 		if status == 200:
 			response = json.loads(r.content)
 			if len(response) < 1:
-				dispatcher.utter_message('Du bist derzeit in keinem Kursen eingeschrieben.')
+				dispatcher.utter_message(get_response(self.responses, self.Responses.no_courses))  # 'Du bist derzeit in keinem Kursen eingeschrieben.')
 				return [SlotSet('courses_available', False)]
 			else:
-				dispatcher.utter_message('Du bist derzeit in diesen Kursen eingeschrieben:')
+				dispatcher.utter_message(get_response(self.responses, self.Responses.list_courses))  #'Du bist derzeit in diesen Kursen eingeschrieben:')
 				buttonGroup = []
 				for course in response:
 					title = course['title']
 					buttonGroup.append({"title": title, "payload": '{0}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
-		elif status == 401: # Status-Code 401 None
-			dispatcher.utter_message('Du bist derzeit in keinem Kursen eingeschrieben.')
+		elif status == 401:  # Status-Code 401 None
+			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))  #'Du bist derzeit in keinem Kursen eingeschrieben.')
 			return [SlotSet('courses_available', False)]
 		else:
 			return []
 
+
 class ActionGetCourses(Action):
+	class Responses(ResponseEnum):
+		no_courses = auto()
+		list_courses = auto()
+		error_401 = auto()
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name())
+		assert_responses_exist(self.responses, self.Responses)
+
 	def name(self) -> Text:
 		return "action_get_courses"
 
@@ -83,21 +112,36 @@ class ActionGetCourses(Action):
 		if status == 200:
 			response = json.loads(r.content)
 			if len(response) < 1:
-				dispatcher.utter_message('Du bist derzeit in keinem Kursen eingeschrieben.')
+				dispatcher.utter_message(get_response(self.responses, self.Responses.no_courses))  #'Du bist derzeit in keinem Kursen eingeschrieben.')
 				return [SlotSet('courses_available', False)]
 			else:
-				dispatcher.utter_message('Du bist derzeit in diesen Kursen eingeschrieben:')
+				dispatcher.utter_message(get_response(self.responses, self.Responses.list_courses))  #'Du bist derzeit in diesen Kursen eingeschrieben:')
 				for course in response:
 					title = course['title']
 					dispatcher.utter_message(title)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
-		elif status == 401: # Status-Code 401 None
-			dispatcher.utter_message('Du bist derzeit in keinem Kursen eingeschrieben.')
+		elif status == 401:  # Status-Code 401 None
+			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))  #'Du bist derzeit in keinem Kursen eingeschrieben.')
 			return [SlotSet('courses_available', False)]
 		else:
 			return []
 
+
 class ActionGetAchievements(Action):
+	class Responses(ResponseEnum):
+		achievement_description = auto()
+		"""
+		text achievement_description has 1 parameter:
+        * parameter 0: (textual) description of field "description" in data-object for achievement
+		"""
+		course_not_found = auto()
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name())
+		assert_responses_exist(self.responses, self.Responses)
+
 	def name(self) -> Text:
 		return "action_get_achievements"
 
@@ -127,16 +171,35 @@ class ActionGetAchievements(Action):
 				response = json.loads(r.content)
 				currentAchievements = response['certificates']
 				for achievement in currentAchievements:
-					dispatcher.utter_message('{0}'.format(achievement['description']))
+					dispatcher.utter_message(get_response(self.responses, self.Responses.achievement_description).format(achievement['description']))
 					if achievement['achieved'] and not course_achieved:
 						course_achieved = True
 			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
 		else:
-			dispatcher.utter_message('Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, indem du mir den Kurstitel nennen.')
+			dispatcher.utter_message(get_response(self.responses, self.Responses.course_not_found))  #'Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, indem du mir den Kurstitel nennen.')
 			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
 
 
 class ActionGetCertificate(Action):
+	class Responses(ResponseEnum):
+		download_achievement = auto()
+		"""
+		text download_achievement has 2 parameters:
+        * parameter 0: field "name" in data-object for achievement
+        * parameter 1: field "url" in "download"-field in data-object for achievement, i.e. achievement['download']['url']
+		"""
+		download_not_available = auto()
+		"""
+		text download_not_available has 1 parameter:
+        * parameter 0: field "name" in data-object for achievement
+		"""
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name())
+		assert_responses_exist(self.responses, self.Responses)
+
 	def name(self) -> Text:
 		return "action_download_certificate"
 
@@ -145,7 +208,7 @@ class ActionGetCertificate(Action):
 		for achievement in currentAchievements:
 			if achievement['achieved']:
 				if achievement['download']['available']:
-					dispatcher.utter_message('Hier kannst du {0}: {1} herunterladen!'.format(achievement['name'], achievement['download']['url']))
+					dispatcher.utter_message(get_response(self.responses, self.Responses.download_achievement).format(achievement['name'], achievement['download']['url']))
 				else:
-					dispatcher.utter_message('Es tut mir sehr leid! Das {0} ist nicht mehr verfügbar und kann leider nicht mehr heruntergeladen werden!'.format(achievement['name']))
+					dispatcher.utter_message(get_response(self.responses, self.Responses.download_not_available).format(achievement['name']))
 		return []
