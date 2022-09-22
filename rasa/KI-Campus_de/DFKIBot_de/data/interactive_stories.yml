@@ -252,13 +252,13 @@ stories:
   - action: coursesearch_form
   - slot_was_set:
     - requested_slot: topic
-  # - intent: faq
-  # - slot_was_set:
-  #   - user_login: tru
-  # - action: utter_faq
-  # - action: coursesearch_form
-  # - slot_was_set:
-  #   - requested_slot: topic
+  - intent: faq
+  - slot_was_set:
+    - user_login: tru
+  - action: utter_faq
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: topic
   - slot_was_set:
     - topic: ki-einführung
   - slot_was_set:
@@ -397,13 +397,13 @@ stories:
     - max_duration: '51'
   - slot_was_set:
     - requested_slot: level
-  # - intent: faq
-  # - slot_was_set: 
-  #   - user_login: true
-  # - action: utter_faq
-  # - action: coursesearch_form
-  # - slot_was_set:
-  #   - requested_slot: level
+  - intent: faq
+  - slot_was_set: 
+    - user_login: true
+  - action: utter_faq
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: level
   - slot_was_set:
     - level: Experte
   - slot_was_set:

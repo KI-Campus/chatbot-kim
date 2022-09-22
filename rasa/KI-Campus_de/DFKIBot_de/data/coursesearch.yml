@@ -46,6 +46,7 @@ nlu:
       - Hast du zusätzliche Vorschläge?
       - Hast du extra Empfehlungen
       - Nenne mir mehr Kursempfehlungen
+      - kannst du mir weitere kurse empfehlen? 
 
   - intent: change_language_slot
     examples: |
@@ -105,7 +106,6 @@ nlu:
       - Andere Themenkategorie
       - Ändere das Themenfeld
 
-
   - intent: change_level_slot
     examples: |
       - Suche auch für [Experten]{"entity": "level", "value": "Experte"}
@@ -134,7 +134,6 @@ nlu:
       - Kannst du mir anspruchsvollere Kurse empfehlen
       - Empfehle mir anspruchsvollere Kurse
 
-
   - intent: change_max_duration_slot
     examples: |
       - Suche auch nach längeren Kursen
@@ -160,7 +159,6 @@ nlu:
       - Kursdauer anpassen auf 
       - Gib mir Empfehlungen für umfangreichere Kurse
       - ich will doch auch empfehlungen bekommen, die über [50]{"entity": "max_duration", "value": "50"} h gehen   
-
 
   - intent: change_certificate_slot
     examples: |
@@ -342,8 +340,9 @@ nlu:
       - Kannst du mir eine Empfehlung geben
       - neue Empfehlung
       - empfehle mir einen kurs
+      - empfehle mir was
 
-  - intent: inform_coursesearch
+  - intent: inform
     examples: |
       - gerne in [Englisch]{"entity": "language", "value": "englisch"}
       - gerne in [Deutsch]{"entity": "language", "value": "deutsch"}
@@ -407,7 +406,6 @@ nlu:
       - in [französisch]{"entity": "language", "value": "französisch"}
       - auf [spanisch]{"entity": "language", "value": "spanisch"}
       - auf [französisch]{"entity": "language", "value": "französisch"}
-
 
       - ich schätze mich als [Einsteiger]{"entity": "level", "value": "Einsteiger"}
       - ich schätze mich als [Einsteigerin]{"entity": "level", "value": "Einsteiger"}

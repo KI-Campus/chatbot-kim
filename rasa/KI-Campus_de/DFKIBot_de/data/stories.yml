@@ -145,7 +145,7 @@ stories:
     - intent: deny
     - action: coursesearch_form
 
-# negative feedback
+# negative feedback / theresa implementiert was 09092022
   - story: negative feedback reaction
     steps:
     - intent: negative_feedback 

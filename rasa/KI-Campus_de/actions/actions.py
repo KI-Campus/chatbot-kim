@@ -11,6 +11,7 @@ import json
 
 # dfki test
 import random
+import itertools
 
 from rasa.utils import endpoints
 from rasa.utils.endpoints import EndpointConfig
@@ -279,11 +280,11 @@ class ActionGetLearningRecommendation(Action):
 		if status == 200:
 			response = json.loads(r.content)
 			if len(response) < 1:
-				dispatcher.utter_message('Leider wurde kein Kurs für diese Parameter gefunden.')
+				dispatcher.utter_message('Leider konnte ich keinen Kurs für diese Parameter finden.')
 			else:
 				size = len(response)
-				limit = min(size, 5)
-				dispatcher.utter_message('Es wurden folgende Kurse gefunden ({0}): '.format(size))
+				limit = min(size, 3)
+				dispatcher.utter_message('Also, ich empfehle dir folgende Kurse ({0}): '.format(size))
 				button_group = []
 				for course in response[0:limit]:
 					title = course['name']
@@ -310,7 +311,7 @@ class ActionGetLearningRecommendation(Action):
 			# FIXME DEBUG:
 			dispatcher.utter_message('Fehlerantwort (Status '+str(r.status_code)+'):\n  Headers: '+str(r.headers)+')\n  Body: ' + str(r.content))
 
-		return []
+		return [SlotSet("recommendations", response)]
 
 class ActionAdditionalLearningRecommendation(Action):
 
@@ -321,9 +322,25 @@ class ActionAdditionalLearningRecommendation(Action):
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-		# to do: implement search for more recommendations
-		dispatcher.utter_message(text = "Also, ich empfehle dir folgende Lernangebote: \n\nLernangebot Beispiel")
-		return []
+		recommendations = tracker.get_slot("recommendations")
+		if len(recommendations) <= 3:
+			dispatcher.utter_message('Leider konnte ich keine weitere Empfehlungen zu deinen Suchparametern finden.')
+		else:
+			recommendations = recommendations[3:]
+			size = len(recommendations)
+			limit = min(size, 3)
+			dispatcher.utter_message('Also, ich empfehle dir folgende Kurse ({0}): '.format(size))
+			button_group = []
+			for course in recommendations[0:limit]:
+				title = course['name']
+				button_group.append({"title": title, "payload": '{0}'.format(title)})
+			dispatcher.utter_message(buttons=button_group)
+			if limit < size:
+				rest = size - limit
+				mult_msg = "weiterer Kurs" if rest == 1 else "weitere Kurse"
+				dispatcher.utter_message("... und {0} {1}".format(rest, mult_msg))
+
+		return [SlotSet("recommendations", recommendations)]
 
 ##########################################################################################
 # FORMS & SLOTS
@@ -346,7 +363,7 @@ class ActionDeleteSlotValue(Action):
 		elif  intent == 'change_max_duration_slot': return [SlotSet("max_duration", None)]
 		elif  intent == 'change_certificate_slot': return [SlotSet("certificate", None)]
 		elif  intent == 'start_coursesearch_form': return [SlotSet("language", None), SlotSet("topic", None), SlotSet("level", None), SlotSet("max_duration", None), SlotSet("certificate", None)]
-		else:  return [dispatcher.utter_message('Kein Slot Value gelöscht')]
+		else:  return []
 
 class ActionAskLanguage(Action):
 	def name(self):
@@ -360,15 +377,15 @@ class ActionAskLanguage(Action):
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_language_slot':
 			text = "Wie ich verstanden habe, möchtest du die Sprache für deine Kursempfehlungen ändern. Wähle eine der Sprachoptionen aus!"
-			buttons = [{'title': 'Deutsch', 'payload': '/inform_coursesearch{"language":"Deutsch"}'},
-				{'title': 'Englisch', 'payload': '/inform_coursesearch{"language":"Englisch"}'},
+			buttons = [{'title': 'Deutsch', 'payload': '/inform{"language":"Deutsch"}'},
+				{'title': 'Englisch', 'payload': '/inform{"language":"Englisch"}'},
 				{'title': 'Beide Sprachen', 'payload': '/undecided'}]
 			dispatcher.utter_message(text = text, buttons = buttons)
 		# default question
 		else:
 			text = "Soll der Kurs auf Deutsch oder auf Englisch sein?"
-			buttons = [{'title': 'Deutsch', 'payload': '/inform_coursesearch{"language":"Deutsch"}'},
-				{'title': 'Englisch', 'payload': '/inform_coursesearch{"language":"Englisch"}'},
+			buttons = [{'title': 'Deutsch', 'payload': '/inform{"language":"Deutsch"}'},
+				{'title': 'Englisch', 'payload': '/inform{"language":"Englisch"}'},
 				{'title': 'Beide Sprachen', 'payload': '/undecided'}]
 			dispatcher.utter_message(text = text, buttons = buttons)
 		return []
@@ -384,22 +401,22 @@ class ActionAskTopic(Action):
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_topic_slot':
 			text = "Du möchtest also das Thema für deine Kursempfehlungen ändern. Hier ist eine Auswahl unserer Themen:"
-			buttons = [{'title': 'Einführung in die KI', 'payload': '/inform_coursesearch{"topic":"ki-einführung"}'},
-				{'title': 'Vertiefung einzelner Themenfelder der KI', 'payload': '/inform_coursesearch{"topic":"ki-vertiefung"}'},
-				{'title': 'KI in Berufsfeldern', 'payload': '/inform_coursesearch{"topic":"ki-berufsfelder"}'},
-				{'title': 'KI und Gesellschaft', 'payload': '/inform_coursesearch{"topic":"ki-gesellschaft"}'},
-				{'title': 'Data Science', 'payload': '/inform_coursesearch{"topic":"Data Science"}'},
-				{'title': 'Maschinelles Lernen', 'payload': '/inform_coursesearch{"topic":"Maschinelles Lernen"}'},
+			buttons = [{'title': 'Einführung in die KI', 'payload': '/inform{"topic":"ki-einführung"}'},
+				{'title': 'Vertiefung einzelner Themenfelder der KI', 'payload': '/inform{"topic":"ki-vertiefung"}'},
+				{'title': 'KI in Berufsfeldern', 'payload': '/inform{"topic":"ki-berufsfelder"}'},
+				{'title': 'KI und Gesellschaft', 'payload': '/inform{"topic":"ki-gesellschaft"}'},
+				{'title': 'Data Science', 'payload': '/inform{"topic":"Data Science"}'},
+				{'title': 'Maschinelles Lernen', 'payload': '/inform{"topic":"Maschinelles Lernen"}'},
 				{'title': 'egal', 'payload': '/undecided'}]
 			dispatcher.utter_message(text = text, buttons = buttons)
 		else:
 			text = "Worum soll es in deinem Wunsschkurs gehen? Wähle eins der folgenden Themenfelder!"
-			buttons = [{'title': 'Einführung in die KI', 'payload': '/inform_coursesearch{"topic":"ki-einführung"}'},
-				{'title': 'Vertiefung einzelner Themenfelder der KI', 'payload': '/inform_coursesearch{"topic":"ki-vertiefung"}'},
-				{'title': 'KI in Berufsfeldern', 'payload': '/inform_coursesearch{"topic":"ki-berufsfelder"}'},
-				{'title': 'KI und Gesellschaft', 'payload': '/inform_coursesearch{"topic":"ki-gesellschaft"}'},
-				{'title': 'Data Science', 'payload': '/inform_coursesearch{"topic":"Data Science"}'},
-				{'title': 'Maschinelles Lernen', 'payload': '/inform_coursesearch{"topic":"Maschinelles Lernen"}'},
+			buttons = [{'title': 'Einführung in die KI', 'payload': '/inform{"topic":"ki-einführung"}'},
+				{'title': 'Vertiefung einzelner Themenfelder der KI', 'payload': '/inform{"topic":"ki-vertiefung"}'},
+				{'title': 'KI in Berufsfeldern', 'payload': '/inform{"topic":"ki-berufsfelder"}'},
+				{'title': 'KI und Gesellschaft', 'payload': '/inform{"topic":"ki-gesellschaft"}'},
+				{'title': 'Data Science', 'payload': '/inform{"topic":"Data Science"}'},
+				{'title': 'Maschinelles Lernen', 'payload': '/inform{"topic":"Maschinelles Lernen"}'},
 				{'title': 'egal', 'payload': '/undecided'}]
 			dispatcher.utter_message(text = text, buttons = buttons)
 		return []
@@ -415,16 +432,16 @@ class ActionAskLevel(Action):
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_level_slot':
 			text = "Du möchtest also das Level von deinem Wunschkurs ändern. Die Kurse auf dem KI-Campus haben die folgenden Level zur Auswahl:"
-			buttons = [{'title': 'Anfänger*in', 'payload': '/inform_coursesearch{"level":"Anfänger"}'},
-			{'title': 'Fortgeschrittene*r', 'payload': '/inform_coursesearch{"level":"Fortgeschritten"}'},
-			{'title': 'Experte', 'payload': '/inform_coursesearch{"level":"Experte"}'}]
+			buttons = [{'title': 'Anfänger*in', 'payload': '/inform{"level":"Anfänger"}'},
+			{'title': 'Fortgeschrittene*r', 'payload': '/inform{"level":"Fortgeschritten"}'},
+			{'title': 'Experte', 'payload': '/inform{"level":"Experte"}'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
 		else:
 			text = "Wie schätzt du deine Vorkenntnisse im Bereich KI ein?"
-			buttons = [{'title': 'Anfänger*in', 'payload': '/inform_coursesearch{"level":"Anfänger"}'},
-			{'title': 'Fortgeschrittene*r', 'payload': '/inform_coursesearch{"level":"Fortgeschritten"}'},
-			{'title': 'Experte', 'payload': '/inform_coursesearch{"level":"Experte"}'}]
+			buttons = [{'title': 'Anfänger*in', 'payload': '/inform{"level":"Anfänger"}'},
+			{'title': 'Fortgeschrittene*r', 'payload': '/inform{"level":"Fortgeschritten"}'},
+			{'title': 'Experte', 'payload': '/inform{"level":"Experte"}'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
 		return []
@@ -440,16 +457,16 @@ class ActionAskMaxDuration(Action):
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_max_duration_slot':
 			text = "Wir haben unsere Kurse nach ihrer gesamten Stundenzahl unterteilt, wähle die für dich passende Kursdauer!"
-			buttons = [{'title': 'bis zu 10 Stunden', 'payload': '/inform_coursesearch{"max_duration":"10"}'},
-			{'title': 'maximal 50 Stunden', 'payload': '/inform_coursesearch{"max_duration":"50"}'},
-			{'title': 'auch über 50 Stunden', 'payload': '/inform_coursesearch{"max_duration":"51"}'}]
+			buttons = [{'title': 'bis zu 10 Stunden', 'payload': '/inform{"max_duration":"10"}'},
+			{'title': 'maximal 50 Stunden', 'payload': '/inform{"max_duration":"50"}'},
+			{'title': 'auch über 50 Stunden', 'payload': '/inform{"max_duration":"51"}'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
 		else:
 			text = "Wie umfangreich darf der Kurs insgesamt sein?"
-			buttons = [{'title': 'bis zu 10 Stunden', 'payload': '/inform_coursesearch{"max_duration":"10"}'},
-			{'title': 'maximal 50 Stunden', 'payload': '/inform_coursesearch{"max_duration":"50"}'},
-			{'title': 'auch über 50 Stunden', 'payload': '/inform_coursesearch{"max_duration":"51"}'}]
+			buttons = [{'title': 'bis zu 10 Stunden', 'payload': '/inform{"max_duration":"10"}'},
+			{'title': 'maximal 50 Stunden', 'payload': '/inform{"max_duration":"50"}'},
+			{'title': 'auch über 50 Stunden', 'payload': '/inform{"max_duration":"51"}'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
 		return []
@@ -465,15 +482,15 @@ class ActionAskCertificate(Action):
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_certificate_slot':
 			text = "Wie ich verstanden habe, möchtest du einen neuen Nachweis wählen, den du in deinem Wunschkurs erhalten kannst. Wir haben zwei Optionen:"
-			buttons = [{'title': 'Teilnahmebescheinigung (unbenotet)', 'payload': '/inform_coursesearch{"certificate":"Teilnahmebescheinigung"}'},
-			{'title': 'Leistungsnachweis (benotet)', 'payload': '/inform_coursesearch{"certificate":"Leistungsnachweis"}'},
+			buttons = [{'title': 'Teilnahmebescheinigung (unbenotet)', 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
+			{'title': 'Leistungsnachweis (benotet)', 'payload': '/inform{"certificate":"Leistungsnachweis"}'},
 			{'title': 'egal', 'payload': '/undecided'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
 		else:
 			text = "Welcher Nachweis ist dir wichtig?"
-			buttons = [{'title': 'Teilnahmebescheinigung (unbenotet)', 'payload': '/inform_coursesearch{"certificate":"Teilnahmebescheinigung"}'},
-			{'title': 'Leistungsnachweis (benotet)', 'payload': '/inform_coursesearch{"certificate":"Leistungsnachweis"}'},
+			buttons = [{'title': 'Teilnahmebescheinigung (unbenotet)', 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
+			{'title': 'Leistungsnachweis (benotet)', 'payload': '/inform{"certificate":"Leistungsnachweis"}'},
 			{'title': 'egal', 'payload': '/undecided'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
@@ -526,7 +543,7 @@ class ValidateCourseSearchForm(FormValidationAction):
 			return {"language": slot_value.lower()}
 		elif slot_value.lower() in self.language_no_support_db():
 			lang = str(slot_value).capitalize()
-			print(lang) # for testing
+			# test for variable 
 			dispatcher.utter_message(text = f"Wir bieten auf dem KI-Campus keine Kurse auf {lang} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!")
 			return {"language": None}
 		else:
@@ -544,5 +561,5 @@ class ValidateCourseSearchForm(FormValidationAction):
 		if slot_value.lower() in self.topic_db():
 			return {"topic": slot_value.lower()}
 		else:
-			dispatcher.utter_message("Dieses Thema habe ich leider nicht. Damit du einen guten Überblick hast, habe ich dir eine Auswahl unserer Themenkategorien vorbereitet.")
+			dispatcher.utter_message(response = "utter_unavailable_topic")
 			return {"topic": None}
