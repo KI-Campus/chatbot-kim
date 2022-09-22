@@ -10,6 +10,7 @@ stories:
   - action: utter_how_can_i_help
   - action: utter_tip_formulation
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: true
   - action: utter_tip_login
@@ -136,6 +137,7 @@ stories:
   - intent: start_coursesearch_form
     entities:
     - topic: KI
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: true
   - action: utter_tip_login
@@ -218,6 +220,7 @@ stories:
   - action: utter_how_can_i_help
   - action: utter_tip_formulation
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: true
   - action: utter_tip_login
@@ -249,13 +252,13 @@ stories:
   - action: coursesearch_form
   - slot_was_set:
     - requested_slot: topic
-  # - intent: faq
-  # - slot_was_set:
-  #   - user_login: tru
-  # - action: utter_faq
-  # - action: coursesearch_form
-  # - slot_was_set:
-  #   - requested_slot: topic
+  - intent: faq
+  - slot_was_set:
+    - user_login: tru
+  - action: utter_faq
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: topic
   - slot_was_set:
     - topic: ki-einführung
   - slot_was_set:
@@ -340,6 +343,7 @@ stories:
   - action: utter_faq
   - action: utter_anything_else
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: true
   - action: utter_tip_login
@@ -393,13 +397,13 @@ stories:
     - max_duration: '51'
   - slot_was_set:
     - requested_slot: level
-  # - intent: faq
-  # - slot_was_set: 
-  #   - user_login: true
-  # - action: utter_faq
-  # - action: coursesearch_form
-  # - slot_was_set:
-  #   - requested_slot: level
+  - intent: faq
+  - slot_was_set: 
+    - user_login: true
+  - action: utter_faq
+  - action: coursesearch_form
+  - slot_was_set:
+    - requested_slot: level
   - slot_was_set:
     - level: Experte
   - slot_was_set:
@@ -505,6 +509,7 @@ stories:
   - slot_was_set:
     - courses_available: false
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - action: utter_tip_login
   - action: utter_affirm_start_coursesearch_form
   - intent: affirm
@@ -691,6 +696,7 @@ stories:
   - action: utter_how_can_i_help
   - action: utter_tip_formulation
   - intent: start_coursesearch_form
+  - action: action_delete_slot_value
   - slot_was_set:
     - user_login: false
   - action: utter_tip_login
