@@ -77,11 +77,12 @@ class ActionGetCoursesButtons(Action):
 				return [SlotSet('courses_available', False)]
 			else:
 				dispatcher.utter_message(get_response(self.responses, self.Responses.list_courses))
+				courseTitle = get_response(self.responses, self.Responses.course_label)
 				buttonGroup = []
 				for course in response:
 					title = course['title']
 					buttonGroup.append({
-						"title": get_response(self.responses, self.Responses.course_label).format(title),
+						"title": courseTitle.format(title),
 						"payload": '{0}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
