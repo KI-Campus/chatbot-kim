@@ -129,8 +129,9 @@ class ActionGetCourses(Action):
 				return [SlotSet('courses_available', False)]
 			else:
 				dispatcher.utter_message(get_response(self.responses, self.Responses.list_courses))
+				courseTitle = get_response(self.responses, self.Responses.course_title)
 				for course in response:
-					title = get_response(self.responses, self.Responses.course_title).format(course['title'])
+					title = courseTitle.format(course['title'])
 					dispatcher.utter_message(title)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
 		elif status == 401:  # Status-Code 401 None
