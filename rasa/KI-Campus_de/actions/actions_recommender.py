@@ -179,12 +179,14 @@ class ActionGetLearningRecommendation(Action):
 			else:
 				size = len(response)
 				limit = min(size, 3)
-				dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations).format(size))
 				button_group = []
 				for course in response[0:limit]:
 					title = course['name']
-					button_group.append({"title": title, "payload": '{0}'.format(title)})
-				dispatcher.utter_message(buttons=button_group)
+					# dispatcher.utter_message(text="* [{0}](https://ki-campus.org/course/{1})".format(title, course['id']))
+					button_group.append({"title": '{0}'.format(title), "payload": '{0}'.format(title)})
+				message = get_response(self.responses, self.Responses.found_recommendations).format(size)
+				dispatcher.utter_message(text=message, buttons=button_group)
+
 				if limit < size:
 					rest = size - limit
 					msg_type = self.Responses.found_recommendations_more_single if rest == 1 else self.Responses.found_recommendations_more_multiple
@@ -248,12 +250,13 @@ class ActionAdditionalLearningRecommendation(Action):
 			recommendations = recommendations[3:]
 			size = len(recommendations)
 			limit = min(size, 3)
-			dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations).format(size))
 			button_group = []
 			for course in recommendations[0:limit]:
 				title = course['name']
 				button_group.append({"title": title, "payload": '{0}'.format(title)})
-			dispatcher.utter_message(buttons=button_group)
+			message = get_response(self.responses, self.Responses.additional_recommendations).format(size)
+			dispatcher.utter_message(text=message, buttons=button_group)
+
 			if limit < size:
 				rest = size - limit
 				msg_type = self.Responses.additional_recommendations_more_single if rest == 1 else self.Responses.additional_recommendations_more_multiple
