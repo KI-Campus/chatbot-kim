@@ -15,7 +15,7 @@ def load_config(file_name: str, relative_dir_path: Optional[str] = None) -> Dict
 	"""
 	target_dir = os.path.join('..', relative_dir_path) if relative_dir_path else '..'
 	response_texts_path = os.path.join(os.path.dirname(__file__), target_dir, file_name)
-	with open(response_texts_path, 'r') as file:
+	with open(response_texts_path, 'r', encoding='utf-8') as file:
 		return yaml.safe_load(file)
 
 
