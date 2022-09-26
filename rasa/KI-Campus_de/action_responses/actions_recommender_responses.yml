@@ -15,6 +15,9 @@ action_get_learning_recommendation:
   no_recommendations_found: Leider konnte ich keinen Kurs für diese Parameter finden.
   # found_recommendations parameter 0: total number (int) of found course recommendations
   found_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): "
+  # found_course_item parameter 0: the title of the course
+  # found_course_item parameter 1: the URL-parameter /-ID for the course
+  found_course_item: "{0}"
   # found_recommendations_more_single parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
   found_recommendations_more_single: "... und {0} weiterer Kurs"
   # found_recommendations_more_multiple parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
@@ -35,6 +38,9 @@ action_additional_learning_recommendation:
   no_more_recommendations: Leider konnte ich keine weitere Empfehlungen zu deinen Suchparametern finden.
   # additional_recommendations parameter 0: total number (int) of additional (not yet displayed) course recommendations
   additional_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): "
+  # additional_course_item parameter 0: the title of the course
+  # additional_course_item parameter 1: the URL-parameter /-ID for the course
+  additional_course_item: "{0}"
   # additional_recommendations_more_single parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
   additional_recommendations_more_single: "... und {0} weiterer Kurs"
   # additional_recommendations_more_multiple parameter 0: number (int) of found, additional course recommendations (that are not shown yet)

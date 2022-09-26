@@ -79,6 +79,12 @@ class ActionGetLearningRecommendation(Action):
 		text found_recommendations has 1 parameter: 
         * parameter 0: total number (int) of found course recommendations
 		"""
+		found_course_item = auto()
+		"""
+		text found_course_item has 2 parameters:
+        * parameter 0: the title of the course
+        * parameter 1: the URL-parameter /-ID for the course
+		"""
 		found_recommendations_more_single = auto()
 		"""
 		text found_recommendations_more_single has 1 parameter:
@@ -179,11 +185,13 @@ class ActionGetLearningRecommendation(Action):
 			else:
 				size = len(response)
 				limit = min(size, 3)
+				course_label = get_response(self.responses, self.Responses.found_course_item)
 				button_group = []
 				for course in response[0:limit]:
 					title = course['name']
-					# dispatcher.utter_message(text="* [{0}](https://ki-campus.org/course/{1})".format(title, course['id']))
-					button_group.append({"title": '{0}'.format(title), "payload": '{0}'.format(title)})
+					url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
+					# dispatcher.utter_message(text="* [{0}](https://ki-campus.org/course/{1})".format(title, url_param))
+					button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
 				message = get_response(self.responses, self.Responses.found_recommendations).format(size)
 				dispatcher.utter_message(text=message, buttons=button_group)
 
@@ -219,6 +227,12 @@ class ActionAdditionalLearningRecommendation(Action):
 		text additional_recommendations has 1 parameter:
         * parameter 0: total number (int) of additional (not yet displayed) course recommendations
 		"""
+		additional_course_item = auto()
+		"""
+		text additional_course_item has 2 parameters:
+        * parameter 0: the title of the course
+        * parameter 1: the URL-parameter /-ID for the course
+		"""
 		additional_recommendations_more_single = auto()
 		"""
 		text additional_recommendations_more_single has 1 parameter:
@@ -250,10 +264,12 @@ class ActionAdditionalLearningRecommendation(Action):
 			recommendations = recommendations[3:]
 			size = len(recommendations)
 			limit = min(size, 3)
+			course_label = get_response(self.responses, self.Responses.additional_course_item)
 			button_group = []
 			for course in recommendations[0:limit]:
 				title = course['name']
-				button_group.append({"title": title, "payload": '{0}'.format(title)})
+				url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
+				button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
 			message = get_response(self.responses, self.Responses.additional_recommendations).format(size)
 			dispatcher.utter_message(text=message, buttons=button_group)
 
