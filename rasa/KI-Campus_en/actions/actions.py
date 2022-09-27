@@ -48,7 +48,7 @@ class ActionGetCoursesButtons(Action):
 		course_label = auto()
 		"""
 		text course_label has 1 parameter:
-        * parameter 0: the title of the course
+        * parameter {0}: the title of the course
 		"""
 		error_401 = auto()
 
@@ -98,7 +98,7 @@ class ActionGetCourses(Action):
 		course_title = auto()
 		"""
 		text course_title has 1 parameter:
-        * parameter 0: the title of the course
+        * parameter {0}: the title of the course
 		"""
 		error_401 = auto()
 
@@ -144,7 +144,7 @@ class ActionGetAchievements(Action):
 		achievement_description = auto()
 		"""
 		text achievement_description has 1 parameter:
-        * parameter 0: (textual) description of field "description" in data-object for achievement
+        * parameter {0}: (textual) description of field "description" in data-object for achievement
 		"""
 		course_not_found = auto()
 
@@ -198,13 +198,13 @@ class ActionGetCertificate(Action):
 		download_achievement = auto()
 		"""
 		text download_achievement has 2 parameters:
-        * parameter 0: field "name" in data-object for achievement
-        * parameter 1: field "url" in "download"-field in data-object for achievement, i.e. achievement['download']['url']
+        * parameter {0}: field "name" in data-object for achievement
+        * parameter {1}: field "url" in "download"-field in data-object for achievement, i.e. achievement['download']['url']
 		"""
 		download_not_available = auto()
 		"""
 		text download_not_available has 1 parameter:
-        * parameter 0: field "name" in data-object for achievement
+        * parameter {0}: field "name" in data-object for achievement
 		"""
 
 	responses: Dict[str, str]

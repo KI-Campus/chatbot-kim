@@ -14,25 +14,25 @@
 action_get_courses_buttons:
   no_courses: Du bist derzeit in keinem Kursen eingeschrieben.
   list_courses: "Du bist derzeit in diesen Kursen eingeschrieben:"
-  # course_label parameter 0: the title of the course
+  # course_label parameter {0}: the title of the course
   course_label: "{0}"
   error_401: Du bist derzeit in keinem Kursen eingeschrieben.
 
 action_get_courses:
   no_courses: Du bist derzeit in keinem Kursen eingeschrieben.
   list_courses: "Du bist derzeit in diesen Kursen eingeschrieben:"
-  # course_title parameter 0: the title of the course
+  # course_title parameter {0}: the title of the course
   course_title: "{0}"
   error_401: Du bist derzeit in keinem Kursen eingeschrieben.
 
 action_get_achievements:
-  # achievement_description parameter 0: (textual) description of field "description" in data-object for achievement
+  # achievement_description parameter {0}: (textual) description of field "description" in data-object for achievement
   achievement_description: "{0}"
   course_not_found: Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, indem du mir den Kurstitel nennen.
 
 action_download_certificate:
-  # download_achievement parameter 0: field "name" in data-object for achievement
-  # download_achievement parameter 1: field "url" in "download"-field in data-object for achievement, i.e. achievement['download']['url']
+  # download_achievement parameter {0}: field "name" in data-object for achievement
+  # download_achievement parameter {1}: field "url" in "download"-field in data-object for achievement, i.e. achievement['download']['url']
   download_achievement: "Hier kannst du {0}: { 1 } herunterladen!"
-  # download_not_available parameter 0: field "name" in data-object for achievement
+  # download_not_available parameter {0}: field "name" in data-object for achievement
   download_not_available: "Es tut mir sehr leid! Das {0} ist nicht mehr verfügbar und kann leider nicht mehr heruntergeladen werden!"

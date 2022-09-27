@@ -77,23 +77,23 @@ class ActionGetLearningRecommendation(Action):
 		found_recommendations = auto()
 		"""
 		text found_recommendations has 1 parameter: 
-        * parameter 0: total number (int) of found course recommendations
+        * parameter {0}: total number (int) of found course recommendations
 		"""
 		found_course_item = auto()
 		"""
 		text found_course_item has 2 parameters:
-        * parameter 0: the title of the course
-        * parameter 1: the URL-parameter /-ID for the course
+        * parameter {0}: the title of the course
+        * parameter {1}: the URL-parameter /-ID for the course
 		"""
 		found_recommendations_more_single = auto()
 		"""
 		text found_recommendations_more_single has 1 parameter:
-        * parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
+        * parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
 		"""
 		found_recommendations_more_multiple = auto()
 		"""
 		text found_recommendations_more_multiple has 1 parameter:
-        * parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
+        * parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
 		"""
 		error_401 = auto()
 		error_404 = auto()
@@ -101,19 +101,19 @@ class ActionGetLearningRecommendation(Action):
 		error_unknown = auto()
 		"""
 		text error_unknown has 1 parameter:
-        * parameter 0: the (text) content of the error message
+        * parameter {0}: the (text) content of the error message
 		"""
 		debug_error = auto()
 		"""
 		text debug_error has 3 parameters:
-        * parameter 0: the (HTTP) status code of the error message
-        * parameter 1: the (HTTP) headers of the error message
-        * parameter 2: the body/content of (HTTP) error message
+        * parameter {0}: the (HTTP) status code of the error message
+        * parameter {1}: the (HTTP) headers of the error message
+        * parameter {2}: the body/content of (HTTP) error message
 		"""
 		debug_recommendation_parameters = auto()
 		"""
 		text debug_recommendation_parameters has 1 parameter:
-        * parameter 0: string/description for the course recommendation/filter parameters
+        * parameter {0}: string/description for the course recommendation/filter parameters
 		"""
 
 	responses: Dict[str, str]
@@ -225,23 +225,23 @@ class ActionAdditionalLearningRecommendation(Action):
 		additional_recommendations = auto()
 		"""
 		text additional_recommendations has 1 parameter:
-        * parameter 0: total number (int) of additional (not yet displayed) course recommendations
+        * parameter {0}: total number (int) of additional (not yet displayed) course recommendations
 		"""
 		additional_course_item = auto()
 		"""
 		text additional_course_item has 2 parameters:
-        * parameter 0: the title of the course
-        * parameter 1: the URL-parameter /-ID for the course
+        * parameter {0}: the title of the course
+        * parameter {1}: the URL-parameter /-ID for the course
 		"""
 		additional_recommendations_more_single = auto()
 		"""
 		text additional_recommendations_more_single has 1 parameter:
-        * parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
+        * parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
 		"""
 		additional_recommendations_more_multiple = auto()
 		"""
 		text additional_recommendations_more_multiple has 1 parameter:
-        * parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
+        * parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
 		"""
 
 	responses: Dict[str, str]
@@ -500,7 +500,7 @@ class ValidateCourseSearchForm(FormValidationAction):
 		unsupported_language_selection = auto()
 		"""
 		text unsupported_language_selection has 1 parameter:
-        * parameter 0: the (unsupported) language
+        * parameter {0}: the (unsupported) language
 		"""
 
 	responses: Dict[str, str]

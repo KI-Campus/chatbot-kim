@@ -13,37 +13,37 @@
 
 action_get_learning_recommendation:
   no_recommendations_found: Leider konnte ich keinen Kurs für diese Parameter finden.
-  # found_recommendations parameter 0: total number (int) of found course recommendations
+  # found_recommendations parameter {0}: total number (int) of found course recommendations
   found_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): "
-  # found_course_item parameter 0: the title of the course
-  # found_course_item parameter 1: the URL-parameter /-ID for the course
+  # found_course_item parameter {0}: the title of the course
+  # found_course_item parameter {1}: the URL-parameter /-ID for the course
   found_course_item: "{0}"
-  # found_recommendations_more_single parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
+  # found_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   found_recommendations_more_single: "... und {0} weiterer Kurs"
-  # found_recommendations_more_multiple parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
+  # found_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   found_recommendations_more_multiple: "... und {0} weitere Kurse"
   error_401: Leider gab es einen Fehler beim Zugriff auf die Kurse, bitte wende dich an den Administrator (Status 401).
   error_404: Leider wurde kein Kurs für diese Parameter gefunden.
   error_500: Es gab einen Fehler bei der Abfrage.
-  # error_unknown parameter 0: the (text) content of the error message
+  # error_unknown parameter {0}: the (text) content of the error message
   error_unknown: "Es gab einen Fehler bei der Abfrage, bitte wende dich an den Administrator. Fehler: {0}"
-  # debug_error parameter 0: the (HTTP) status code of the error message
-  # debug_error parameter 1: the (HTTP) headers of the error message
-  # debug_error parameter 2: the body/content of (HTTP) error message
+  # debug_error parameter {0}: the (HTTP) status code of the error message
+  # debug_error parameter {1}: the (HTTP) headers of the error message
+  # debug_error parameter {2}: the body/content of (HTTP) error message
   debug_error: "Fehlerantwort (Status {0}):\n  Headers: {1}\n  Body: {2}'"
-  # debug_recommendation_parameters parameter 0: string/description for the course recommendation/filter parameters
+  # debug_recommendation_parameters parameter {0}: string/description for the course recommendation/filter parameters
   debug_recommendation_parameters: "Suche Lernangebote für folgende Parameter: {0}"
 
 action_additional_learning_recommendation:
   no_more_recommendations: Leider konnte ich keine weitere Empfehlungen zu deinen Suchparametern finden.
-  # additional_recommendations parameter 0: total number (int) of additional (not yet displayed) course recommendations
+  # additional_recommendations parameter {0}: total number (int) of additional (not yet displayed) course recommendations
   additional_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): "
-  # additional_course_item parameter 0: the title of the course
-  # additional_course_item parameter 1: the URL-parameter /-ID for the course
+  # additional_course_item parameter {0}: the title of the course
+  # additional_course_item parameter {1}: the URL-parameter /-ID for the course
   additional_course_item: "{0}"
-  # additional_recommendations_more_single parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
+  # additional_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   additional_recommendations_more_single: "... und {0} weiterer Kurs"
-  # additional_recommendations_more_multiple parameter 0: number (int) of found, additional course recommendations (that are not shown yet)
+  # additional_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   additional_recommendations_more_multiple: "... und {0} weitere Kurse"
 
 action_ask_language:
@@ -86,5 +86,5 @@ action_ask_certificate:
   certificate_option_any: egal
 
 validate_coursesearch_form:
-  # unsupported_language_selection parameter 0: the (unsupported) language
+  # unsupported_language_selection parameter {0}: the (unsupported) language
   unsupported_language_selection: "Wir bieten auf dem KI-Campus keine Kurse auf {0} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!"
