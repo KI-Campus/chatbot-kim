@@ -42,9 +42,12 @@ recommender_api:
 ### Start the Action Server
 
 ```sh
-    cd actions/
     rasa run actions
 ```
+
+NOTE the actions **must not** be started from within the `actions/` sub-directory, 
+     but the `rasa` project's root directory (e.g. `rasa/KI-Campus_de/`),
+     otherwise not all actions may be automatically started.
 
 ### Start for Development
 
