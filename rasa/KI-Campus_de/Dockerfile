@@ -2,7 +2,7 @@ FROM rasa/rasa:3.0.4-full
 WORKDIR  '/app'
 COPY . /app
 USER root
-RUN python -m spacy download de_core_news_md --no-cache-dir
+# RUN python -m spacy download de_core_news_md --no-cache-dir
 RUN rasa train
 VOLUME /app/models
 CMD [ "run","-m","/app/models","--enable-api","--cors","*","--debug" ,"--endpoints", "endpoints_docker.yml", "--log-file", "out.log", "--debug"]
