@@ -1,25 +1,25 @@
 version: '3.0'
 
 stories:
-- story: faq only
-  steps:
-    - intent: faq
-    - action: utter_faq
-    - action: utter_anything_else
-    - checkpoint: more_information
+# - story: faq only
+#   steps:
+#     - intent: faq
+#     - action: utter_faq
+#     - action: utter_anything_else
+#     - checkpoint: more_information
 
-- story: faq & more information
-  steps:
-    - checkpoint: more_information
-    - intent: affirm
-    - action: utter_more_info
+# - story: faq & more information
+#   steps:
+#     - checkpoint: more_information
+#     - intent: affirm
+#     - action: utter_more_info
 
-- story: faq & no more information
-  steps:
-    - checkpoint: more_information
-    - intent: deny
-    - action: utter_have_a_nice_day
-    - action: utter_end_of_conversation
+# - story: faq & no more information
+#   steps:
+#     - checkpoint: more_information
+#     - intent: deny
+#     - action: utter_have_a_nice_day
+    # - action: utter_end_of_conversation
 
 - story: get my courses
   steps:
@@ -32,15 +32,31 @@ stories:
   - action: action_get_courses_buttons
   - slot_was_set:
     - courses_available: true
-  - action: utter_ask_which_course
   - action: course_form
   - active_loop: course_form
-  - active_loop: null
+  - action: utter_ask_which_course
+  - intent: inform
+  - action: validate_course_form
   - slot_was_set:
-    - requested_slot: null
+    - current_course_title: "Data2Teach - Wie Daten Schule und Schulen Daten machen"
+  - active_loop: null
   - action: utter_submit
   - action: utter_starting_search_with_parameters
   - checkpoint: get_achievements
+
+# - story: Get achievements and courses available
+#   steps:
+#   - intent: get_achievements
+#   - action: action_get_courses_buttons
+#   - slot_was_set:
+#     - courses_available: true
+#   - action: utter_ask_which_course
+#   - intent: inform
+#   - slot_was_set:
+#     - current_course_title: "Data2Teach - Wie Daten Schule und Schulen Daten machen"
+#   - action: utter_submit
+#   - action: utter_starting_search_with_parameters
+#   - checkpoint: get_achievements
 
 - story: Get achievements and no courses available
   steps:

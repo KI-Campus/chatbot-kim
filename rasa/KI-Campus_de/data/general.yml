@@ -9,15 +9,8 @@ nlu:
       - Wer ist der Präsident von [US]{"entity": "country"}?
       - Wie kann ich nach [US]{"entity": "country"} ziehen?
       - Was ist die Hauptstadt von [Germany]{"entity": "country"}?
-  - intent: inform
-    examples: |
-      - Für den Kurs [Schule macht Daten]{"entity": "Course"}
-      - Für [Schule macht Daten]{"entity": "Course"}
-      - Der Kurs [Schule macht Daten]{"entity": "Course"}
-      - Der Kurs ist [Schule macht Daten]{"entity": "Course"}
-      - [Schule macht Daten]{"entity": "Course"}
 
-  - lookup: Course
+  - intent: inform
     examples: |
       - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
       - Launchpad to Fundamental Questions on AI
@@ -35,6 +28,34 @@ nlu:
       - Schule macht Daten
       - Dr. med. KI
       - Team Peer Assessments
+
+  # - intent: inform
+  #   examples: |
+  #     - Für den Kurs [Schule macht Daten]{"entity": "Course"}
+  #     - Für [Schule macht Daten]{"entity": "Course"}
+  #     - Der Kurs [Schule macht Daten]{"entity": "Course"}
+  #     - Der Kurs ist [Schule macht Daten]{"entity": "Course"}
+  #     - [Schule macht Daten]{"entity": "Course"}
+  #     - Von der Datenanalyse zur Datengeschichte – Datenanalyseergebnisse adressatengerecht kommunizieren
+
+  # - lookup: Course
+  #   examples: |
+  #     - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+  #     - Launchpad to Fundamental Questions on AI
+  #     - Schule macht KI
+  #     - Wegweisende Anwendungen fürs Web
+  #     - Wie das Web technisch funktioniert
+  #     - Programmieregen fürs Web
+  #     - Mensch-Maschine-Interaktion
+  #     - Robot Learning
+  #     - Den Daten auf der Spur - Der Process Mining Podcast
+  #     - Daten- und Algorithmenethik
+  #     - AutoML - Automated Machine Learning
+  #     - Einführung in die KI
+  #     - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+  #     - Schule macht Daten
+  #     - Dr. med. KI
+  #     - Team Peer Assessments
     
   - intent: get_courses
     examples: |

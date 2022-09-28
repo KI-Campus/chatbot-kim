@@ -3,9 +3,21 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet, SessionStarted
 from sanic.request import Request
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.forms import FormValidationAction
 
 import requests
 import json
+
+class ValidateCourseForm(FormValidationAction):
+	def name(self) -> Text:
+		return "validate_course_form"
+
+	async def extract_current_course(
+									self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
+					) -> Dict[Text, Any]:
+		text_of_last_user_message = tracker.latest_message.get("text")
+		print(text_of_last_user_message)
+		return {"current_course_title": text_of_last_user_message}
 
 class CourseSet(Action):
 	def name(self):
@@ -58,7 +70,7 @@ class ActionGetCourses(Action):
 				buttonGroup = []
 				for course in response:
 					title = course['title']
-					buttonGroup.append({"title": title, "payload": '{0}'.format(title)})
+					buttonGroup.append({"title": title, "payload": '/inform{{"Course": "{0}"}}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
 		elif status == 401: # Status-Code 401 None
@@ -132,7 +144,7 @@ class ActionGetAchievements(Action):
 						course_achieved = True
 			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
 		else:
-			dispatcher.utter_message('Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, indem du mir den Kurstitel nennen.')
+			dispatcher.utter_message('Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, in dem du mir den Kurstitel nennen.')
 			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
 
 

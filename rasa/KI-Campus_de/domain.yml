@@ -9,7 +9,7 @@ forms:
     - deny
     - affirm
     required_slots:
-    - current_course_title
+      - current_course_title
 intents:
 - deny
 - affirm
@@ -27,6 +27,7 @@ actions:
 - action_set_current_course
 - action_download_certificate
 - action_all_slots
+- validate_course_form
 entities:
 - certificate_type
 - course_name
@@ -42,10 +43,7 @@ slots:
     type: text
     influence_conversation: false
     mappings:
-    - type: from_text
-      conditions:
-      - active_loop: course_form
-        requested_slot: current_course_title
+    - type: custom
   current_course:
     type: list
     influence_conversation: false
