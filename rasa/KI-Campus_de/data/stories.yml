@@ -1,7 +1,7 @@
 version: '3.0'
 
 stories:
-- story: faq only
+- story: faq
   steps:
     - intent: faq
     - action: utter_faq
@@ -13,13 +13,13 @@ stories:
     - intent: get_courses
     - action: action_get_courses
 
-- story: faq & more information
+- story: more information
   steps:
     - checkpoint: more_information
     - intent: affirm
     - action: utter_more_info
 
-- story: faq & no more information
+- story: no more information
   steps:
     - checkpoint: more_information
     - intent: deny
