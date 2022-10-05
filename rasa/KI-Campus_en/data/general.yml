@@ -1,13 +1,6 @@
 version: '3.0'
 
 nlu:
-  - intent: out_of_scope
-    examples: |
-      - I want to order food
-      - What is 2 + 2?
-      - Who's the [US(country)] President?
-      - How can I move to the [US](country)?
-      - What's the capital of [Germany](country)?
   
   - intent: get_courses
     examples: |
@@ -146,3 +139,116 @@ nlu:
       - stop it, i do not care!!!
       - none of them
       - I don't agree
+
+  - intent: out_of_scope
+    examples: |
+      - what is the square root of 5
+      - I want to know the weather
+      - what is the meaning of life.
+      - Fridge Isn't Running
+      - my tv isn't working
+      - I want a pizza
+      - my washing machine isn't working
+      - what year is it
+      - order a pizza
+      - I want to order a pizza
+      - what is the weather today
+      - what is the weather
+      - how old are you?
+      - add two plus two
+      - Hdjejene
+      - asd
+      - title
+      - how about the forecast
+      - foolish
+      - joke
+      - Can I get a hamburger?
+      - Can YouTube talk?
+      - Can you call me back ?
+      - Can you give me your datacenter's password
+      - Can you give me your datacenter's password?
+      - Can you make sandwiches?
+      - Can you please send me an uber
+      - I want to order food
+      - What is 2 + 2?
+      - Who's the [US(country)] President?
+      - How can I move to the [US](country)?
+      - What's the capital of [Germany](country)?
+      
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+      - you are a bot right
+      - aren't you a bot
+      - Are you a bot?
+      - are you a BOT
+      - are you a bot?
+      - are you a chatbot
+      - are you a rasa bot?
+      - are you a real bot?
+      - are you a robot
+      - are you ai
+      - are you artificial
+      - are you artificial intelligence
+      - are you bot
+      - are you bot?
+      - are you rasa bot?
+      - are you real
+      - are you real lol
+      - are you really a bot
+      - are you robot
+      - are you sure that you're a bot?
+      - bot?
+      - cuz you are a bot
+      - i guess you are a chatbot
+      - oh are you chatbot?
+      - tell me, are you a bot?
+      - what are you, a bot?
+      - you are a robot
+      - you are ai
+      - you are chatbot
+      - you're a bot
+      - you robo
+      - real bot then?
+      - are you really a bbot?
+
+  - intent: help
+    examples: |
+      - I need help
+      - what can you help me with
+      - can you help me
+      - what can you do
+      - I need some help
+      - help me
+      - can you please help me
+      - problem
+      - big problem
+      - How can you help me
+      - How you help me?
+      - I need some help
+      - What are my options
+      - What are you able to do?
+      - What can I ask you?
+      - What can I do?
+      - What can you demo
+      - What can you do for me?
+      - What can you do?
+      - What can you tell me?
+      - What do you do
+      - anything els
+      - are there any other options?
+      - can I ask you anything else?
+      - can you do anything else?
+      - can you help me?
+      - come back
+      - cool! can I do something else here?
+      - hello what can you do for me
+      - help
+      - help me
+      - help please
+      - help pls
+      - help?
+      - hep me

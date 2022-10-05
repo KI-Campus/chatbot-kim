@@ -11,6 +11,9 @@ intents:
 - get_course
 - get_achievements
 - get_courses
+- help
+- out_of_scope
+- bot_challenge
 
 actions:
 - action_get_courses
@@ -88,9 +91,7 @@ responses:
   utter_ask_which_course:
   - text: Please select a course for which you want to receive your achievements.
   utter_out_of_scope:
-  - text: Sorry, I can't handle that request.
-  utter_ask_rephrase:
-  - text: I'm sorry, I didn't quite understand that. Could you rephrase?
+  - text: 'Sorry, I can't answer that. Feel free to use our contact form to ask your question or type "help"'. 
   utter_use_contact_form:
   - text: You can also use our contact form to get help for your technical problem. We will try to answer you as soon as possible.
   utter_end_of_conversation:
@@ -105,7 +106,7 @@ responses:
   utter_faq/ask_payment:
   - text: The use of all learning offers of the AI Campus is free of charge.  In addition, all AI Campus originals are subject to open licensing (usually <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" _blank>CC BY-SA 4.0</a>), which allows free subsequent use of the learning offerings and, for example, integration into your own teaching.  All curated offers are also only selected if they are available free of charge as a basic offer.  Only for exams and the issue of certificates may costs possibly arise for external learning offers recommended on the AI Campus.
   utter_faq/ask_account_creation:
-  - text: Anyone can create a profile on KI Campus.  'Log in' button is located on the top navigation bar, on the far right.  Click on it and choose 'Create new account.'  It's going to open a new page where you will need to fill out your email, first name, last name and a user name.  Once it's done, click on 'Register for KI Campus.'  You will receive a link in your email to confirm your account and to set a password.
+  - text: Anyone can create a profile on KI Campus. 'Log in' button is located on the top navigation bar, on the far right. Click on it and choose 'Create new account.' It's going to open a new page where you will need to fill out your email, first name, last name and a user name.  Once it's done, click on 'Register for KI Campus.'  You will receive a link in your email to confirm your account and to set a password.
   utter_faq/ask_confirmation_email:
   - text: If you have not received a confirmation email, please check your spam folder and move the email to your primary mailbox.  If your problem persists please try resetting your password <a href="https://ki-campus.org/user/password" _blank>here</a>.
   utter_faq/ask_password_reset:
@@ -125,4 +126,10 @@ responses:
   utter_faq/ask_about_certification:
   - text: 'Currently, certificates of participation can be obtained on the KI-Campus for all online courses on the learning platform and certificates of achievement can also be obtained for selected online courses on the learning platform. The following applies to all online courses on the KI-Campus learning platform: A KI-Campus certificate of participation is awarded to everyone who has accessed at least 50 percent of the learning content. A KI Campus certificate of achievement is awarded to anyone who has achieved at least 60 percent of the total points in the sum of all assessed tasks in the course. For more information on the AI Campus certificates, which are being piloted and implemented in stages, see our <a href="https://ki-campus.org/blog/leistungsnachweise" _blank>blog post</a>.'
   utter_faq/ask_whatspossible:
-  - text: I am happy to help you with your technical problems and questions about the courses.  For example, I can explain course structure, types, and time-limits to you as well as answer questions about certificate, resetting the password, or changing your personal information.
+  - text: I am happy to help you with your technical problems and questions about the courses. For example, I can explain course structure, types, and time-limits to you as well as answer questions about certificate, resetting the password, or changing your personal information.
+  utter_help:
+  - text: I'm happy to help you with technical problems and questions about the courses. For example, I can explain the course structure and answer questions about the certificate, resetting the password or changing your personal data. 
+  utter_default:
+  - text: I didn't quite understand that. Can you rephrase that?
+  utter_iamabot:
+  - text: I am the AI Campus Chatbot, your virtual assistant.

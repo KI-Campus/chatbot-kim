@@ -2,11 +2,15 @@ version: '3.0'
 
 rules:
 
-  - rule: out-of-scope
+  - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
     steps:
-    - intent: out_of_scope
-    - action: utter_out_of_scope
-    - action: utter_anything_else
+    - intent: nlu_fallback
+    - action: utter_default
+
+  - rule: answer bot challenge
+    steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
 
   - rule: start achievement get_courses_form
     steps:
