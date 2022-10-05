@@ -3,7 +3,6 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet, SessionStarted
 from sanic.request import Request
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.forms import FormValidationAction
 
 import requests
 import json
@@ -18,14 +17,6 @@ class CourseSet(Action):
 			return [SlotSet('course-set', True)]
 		else:
 			return [SlotSet('course-set', False)]
-
-class PrintAllSlots(Action):
-	def name(self):
-		return "action_all_slots"
-
-	def run(self, dispatcher, tracker, domain):
-		currentCourse = tracker.get_slot('current_course_title')
-		return []
 
 class SetCurrentCourse(Action):
 	def name(self):
@@ -103,7 +94,6 @@ class ActionGetAchievements(Action):
 		return "action_get_achievements"
 
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-		print('in get achievements')
 		course_achieved = False
 		currentCourse = []
 		courseId = 0
@@ -125,7 +115,6 @@ class ActionGetAchievements(Action):
 				"Accept-Language": "de"
 			})
 			status = r.status_code
-			print('status = 200;')
 			if status == 200:
 				response = json.loads(r.content)
 				currentAchievements = response['certificates']

@@ -11,8 +11,7 @@ intents:
 - get_course
 - get_achievements
 - get_courses
-- inform:
-    use_entities: true
+
 actions:
 - action_get_courses
 - action_get_courses_buttons
@@ -20,7 +19,7 @@ actions:
 - action_course_set
 - action_set_current_course
 - action_download_certificate
-- action_all_slots
+
 entities:
 - certificate_type
 - Course
@@ -81,8 +80,6 @@ responses:
   utter_submit:
   - text: Alles klar!
   - text: In Ordnung!
-  utter_starting_search_with_parameters:
-  - text: "Ich suche nun mit folgenden Parametern nach Kursen:\n - Kurs: {current_course_title}"
   utter_finished:
   - text: Die Unterhaltung wurde beendet.
   utter_download_certificate:
