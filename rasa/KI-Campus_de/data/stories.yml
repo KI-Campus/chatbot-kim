@@ -8,335 +8,82 @@ stories:
     - action: utter_anything_else
     - checkpoint: more_information
 
-- story: more information
+- story: get my courses
+  steps:
+    - intent: get_courses
+    - action: action_get_courses
+
+- story: faq & more information
   steps:
     - checkpoint: more_information
     - intent: affirm
     - action: utter_more_info
 
-- story: no more information
+- story: faq & no more information
   steps:
     - checkpoint: more_information
     - intent: deny
     - action: utter_have_a_nice_day
     - action: utter_end_of_conversation
 
-- story: get my courses
+- story: get achievements, no courses available
   steps:
-    - intent: get_courses
-    - action: action_get_courses
+    - intent: get_achievements
+    - action: action_get_courses_buttons
+    - slot_was_set:
+      - courses_available: false
+    - action: utter_anything_else
+    - checkpoint: more_information
 
-# - story: Get achievements and courses available, course achieved, download certificate, more info
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - slot_was_set:
-#     - requested_slot: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: true
-#   - action: utter_download_certificate
-#   - intent: affirm
-#   - action: action_download_certificate
-#   - action: utter_anything_else
-#   - intent: affirm
-#   - action: utter_more_info
-
-- story: Get achievements and courses available, course achieved, download certificate, more info
+- story: get achievements, courses available, course not achieved
   steps:
-  - intent: get_achievements
-  - action: action_get_courses_buttons
-  - slot_was_set:
-    - courses_available: true
-  - action: utter_ask_which_course
-  - action: course_form
-  - active_loop: course_form
-  - intent: inform
-  - action: utter_submit
-  - action: utter_starting_search_with_parameters
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  # - action: action_get_achievements
-  # - slot_was_set:
-  #   - current_course_achieved: false
-  # - action: utter_anything_else
-  # - intent: affirm
-  # - action: utter_more_info
-
-# - story: Get achievements and courses unvailable
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: False
-#   - action: utter_anything_else
-
-# - story: Get achievements and courses available, course not achieved, more info
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: false
-#   - action: utter_anything_else
-#   - intent: affirm
-#   - action: utter_more_info
-
-# - story: Get achievements and courses available, course achieved, download certificate, no more info
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: true
-#   - action: utter_download_certificate
-#   - intent: affirm
-#   - action: utter_anything_else
-#   - intent: deny
-#   - action: utter_more_info
-
-# - story: Get achievements and courses available, course achieved, not download certificate, more info
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: true
-#   - action: utter_download_certificate
-#   - intent: deny
-#   - action: utter_anything_else
-#   - intent: affirm
-#   - action: utter_more_info
-
-# - story: Get achievements and courses available, course achieved, not download certificate, no more info
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: true
-#   - action: utter_download_certificate
-#   - intent: deny
-#   - action: utter_anything_else
-#   - intent: deny
-#   - action: utter_have_a_nice_day
-
-# - story: Get achievements and courses available, course not achieved, no more info
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: True
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: False
-#   - action: utter_anything_else
-#   - intent: deny
-#   - action: utter_have_a_nice_day
-
-# - story: Get achievements and courses available, course not achieved, no more info
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: True
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: False
-#   - checkpoint: get_achievements
-
-# - story: Get achievements and courses available, course not achieved, more info
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: True
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: False
-#   - action: utter_anything_else
-#   - intent: affirm
-#   - action: utter_more_info
-
-
-  # - slot_was_set:
-  #   - current_course_achieved: true
-  # - action: utter_download_certificate
-  # - intent: affirm
-  # - action: action_download_certificate
-
-# - story: Get achievements and courses available
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: true
-#   - action: utter_download_certificate
-#   - intent: deny
-#   - action: utter_anything_else
-
-# - story: Get achievements and courses available
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - action: course_form
-#   - active_loop: course_form
-#   - intent: inform
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - active_loop: null
-#   - action: action_get_achievements
-#   - slot_was_set:
-#     - current_course_achieved: false
-#   - action: utter_anything_else
-
-# - story: Get achievements and courses available
-#   steps:
-#   - intent: get_achievements
-#   - action: course_form
-#   - active_loop: course_form
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - intent: inform
-#   - action: validate_course_form
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - checkpoint: get_achievements
-#   - active_loop: null
-#   - action: action_get_achievements
-
-# - story: Get achievements and courses available
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: true
-#   - action: utter_ask_which_course
-#   - intent: inform
-#   - slot_was_set:
-#     - current_course_title: "Data2Teach - Wie Daten Schule und Schulen Daten machen"
-#   - action: utter_submit
-#   - action: utter_starting_search_with_parameters
-#   - checkpoint: get_achievements
-
-# - story: Get achievements and no courses available
-#   steps:
-#   - intent: get_achievements
-#   - action: action_get_courses_buttons
-#   - slot_was_set:
-#     - courses_available: false
-#   - action: utter_anything_else
-
-# - story: get achievements, achieved course and ask for certificate and affirm
-#   steps:
-#     - checkpoint: get_achievements
-#     - action: action_get_achievements
-#     - slot_was_set:
-#       - current_course_achieved: true
-#     - action: utter_download_certificate
-#     - intent: affirm
-#     - action: action_download_certificate
-#     - action: utter_anything_else
-#     - checkpoint: more_information
-
-# - story: get achievements, achieved course and ask for certificate and deny
-#   steps:
-#     - checkpoint: get_achievements
-#     - action: action_get_achievements
-#     - slot_was_set:
-#       - current_course_achieved: true
-#     - action: utter_download_certificate
-#     - intent: deny
-#     - action: utter_anything_else
-#     - checkpoint: more_information
-
-- story: get achievements, not achieved course and no certificate
-  steps:
-    - checkpoint: get_achievements
+    - intent: get_achievements
+    - action: action_get_courses_buttons
+    - slot_was_set:
+      - courses_available: true
+    - action: utter_ask_which_course
+    - action: course_form
+    - active_loop: course_form
+    - active_loop: null
     - action: action_get_achievements
     - slot_was_set:
       - current_course_achieved: false
     - action: utter_anything_else
-    # - checkpoint: more_information
+    - checkpoint: more_information
+
+- story: get achievements, courses available, course achieved, download certificate
+  steps:
+    - intent: get_achievements
+    - action: action_get_courses_buttons
+    - slot_was_set:
+      - courses_available: true
+    - action: utter_ask_which_course
+    - action: course_form
+    - active_loop: course_form
+    - active_loop: null
+    - action: action_get_achievements
+    - slot_was_set:
+      - current_course_achieved: true
+    - action: utter_download_certificate
+    - intent: affirm
+    - action: action_download_certificate
+    - action: utter_anything_else
+    - checkpoint: more_information
+
+- story: get achievements, courses available, course achieved, not download certificate
+  steps:
+    - intent: get_achievements
+    - action: action_get_courses_buttons
+    - slot_was_set:
+      - courses_available: true
+    - action: utter_ask_which_course
+    - action: course_form
+    - active_loop: course_form
+    - active_loop: null
+    - action: action_get_achievements
+    - slot_was_set:
+      - current_course_achieved: true
+    - action: utter_download_certificate
+    - intent: deny
+    - action: utter_anything_else
+    - checkpoint: more_information
