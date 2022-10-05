@@ -252,3 +252,32 @@ nlu:
       - help pls
       - help?
       - hep me
+
+  - intent: human_handoff
+    examples: |
+      - handoff
+      - operator
+      - human
+      - I want a human
+      - can I speak to an agent
+      - real agent please
+      - real human
+      - chat with a live agent
+      - give me a person please
+      - i want to talk to a human
+      - transfer to a human
+      - Please give me to a human
+      - can I talk to human?
+      - can I talk to human
+      - talk to human
+      - i want human :(
+      - can i talk to human
+      - i want to talk to a human
+      - i want to speak to human
+      - can i talk to a real person?
+      - connect me to a real person
+      - I need a real person
+      - can i took with a real person
+      - let me speak to a real person
+      - let me speak to a real person please
+      - i want to talk to a real person

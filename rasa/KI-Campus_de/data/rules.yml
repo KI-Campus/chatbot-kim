@@ -14,13 +14,13 @@ rules:
 
   - rule: start achievement get_courses_form
     steps:
-      - intent: get_achievements
-      - action: action_get_courses_buttons
-      - slot_was_set:
-        - courses_available: true
-      - action: utter_ask_which_course
-      - action: course_form
-      - active_loop: course_form
+    - intent: get_achievements
+    - action: action_get_courses_buttons
+    - slot_was_set:
+      - courses_available: true
+    - action: utter_ask_which_course
+    - action: course_form
+    - active_loop: course_form
 
   - rule: submit course form, course not achieved
     condition:
