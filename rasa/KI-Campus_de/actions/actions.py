@@ -18,15 +18,6 @@ class CourseSet(Action):
 		else:
 			return [SlotSet('course-set', False)]
 
-class SetCurrentCourse(Action):
-	def name(self):
-		return "action_set_current_course"
-
-	def run(self, dispatcher, tracker, domain):
-		currentCourse = tracker.latest_message['text']
-		return [SlotSet('current_course_title', currentCourse)]
-
-
 class ActionGetCourses(Action):
 	def name(self) -> Text:
 		return "action_get_courses_buttons"

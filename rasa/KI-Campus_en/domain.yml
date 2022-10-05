@@ -1,15 +1,9 @@
 version: '3.0'
 forms:
   course_form:
-    ignored_intents:
-    - faq
-    - greet
-    - goodbye
-    - thank
-    - deny
-    - affirm
+    ignored_intents: []
     required_slots:
-    - current_course_title
+      - current_course_title
 intents:
 - deny
 - affirm
@@ -17,8 +11,7 @@ intents:
 - get_course
 - get_achievements
 - get_courses
-- inform:
-    use_entities: true
+
 actions:
 - action_get_courses
 - action_get_courses_buttons
@@ -26,12 +19,12 @@ actions:
 - action_course_set
 - action_set_current_course
 - action_download_certificate
-- action_all_slots
+
 entities:
 - certificate_type
-- course_name
 - Course
 - country
+
 slots:
   all_courses:
     type: list
@@ -42,10 +35,21 @@ slots:
     type: text
     influence_conversation: false
     mappings:
-    - type: from_text
+    - type: from_entity
+      entity: Course
       conditions:
       - active_loop: course_form
         requested_slot: current_course_title
+    - type: from_text
+      not_intent:
+      - faq
+      - affirm
+      - deny
+      conditions:
+      - active_loop: course_form
+        requested_slot: current_course_title
+    - type: from_entity
+      entity: Course
   current_course:
     type: list
     influence_conversation: false
@@ -66,6 +70,7 @@ slots:
     - type: custom
   courses_available:
     type: bool
+    influence_conversation: true
     mappings:
     - type: custom
 session_config:
