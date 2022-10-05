@@ -18,3 +18,52 @@ rules:
     - intent: out_of_scope
     - action: utter_out_of_scope
     - action: utter_anything_else
+
+  # - rule: start course form courses available
+  #   steps:
+  #   - intent: get_achievements
+  #   - action: action_get_courses_buttons
+  #   - slot_was_set:
+  #     - courses_available: True
+  #   - action: utter_ask_which_course
+  #   - action: course_form
+  #   - active_loop: course_form
+
+  # - rule: start course form courses unavailable
+  #   steps:
+  #   - intent: get_achievements
+  #   - action: action_get_courses_buttons
+  #   - slot_was_set:
+  #     - courses_available: False
+  #   - action: utter_anything_else
+
+  - rule: submit course form
+    condition:
+      - active_loop: course_form
+    steps:
+    - action: course_form
+    - active_loop: null
+    - action: action_get_achievements
+    - slot_was_set:
+      - current_course_achieved: false
+    - action: utter_anything_else
+    - intent: affirm
+    - action: utter_more_info
+
+  # - rule: course achieved, more info
+  #   condition:
+  #   - slot_was_set:
+  #     - current_course_achieved: False
+  #   steps:
+  #   - action: utter_anything_else
+  #   - intent: affirm
+  #   - action: utter_more_info
+
+  # - rule: course achieved, no more info
+  #   condition:
+  #   - slot_was_set:
+  #     - current_course_achieved: False
+  #   steps:
+  #   - action: utter_anything_else
+  #   - intent: deny
+  #   - action: utter_have_a_nice_day

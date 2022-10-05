@@ -12,50 +12,28 @@ nlu:
 
   - intent: inform
     examples: |
-      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
-      - Launchpad to Fundamental Questions on AI
-      - Schule macht KI
-      - Wegweisende Anwendungen fürs Web
-      - Wie das Web technisch funktioniert
-      - Programmieregen fürs Web
-      - Mensch-Maschine-Interaktion
-      - Robot Learning
-      - Den Daten auf der Spur - Der Process Mining Podcast
-      - Daten- und Algorithmenethik
-      - AutoML - Automated Machine Learning
-      - Einführung in die KI
-      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
-      - Schule macht Daten
-      - Dr. med. KI
-      - Team Peer Assessments
-
-  # - intent: inform
-  #   examples: |
-  #     - Für den Kurs [Schule macht Daten]{"entity": "Course"}
-  #     - Für [Schule macht Daten]{"entity": "Course"}
-  #     - Der Kurs [Schule macht Daten]{"entity": "Course"}
-  #     - Der Kurs ist [Schule macht Daten]{"entity": "Course"}
-  #     - [Schule macht Daten]{"entity": "Course"}
-  #     - Von der Datenanalyse zur Datengeschichte – Datenanalyseergebnisse adressatengerecht kommunizieren
-
-  # - lookup: Course
-  #   examples: |
-  #     - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
-  #     - Launchpad to Fundamental Questions on AI
-  #     - Schule macht KI
-  #     - Wegweisende Anwendungen fürs Web
-  #     - Wie das Web technisch funktioniert
-  #     - Programmieregen fürs Web
-  #     - Mensch-Maschine-Interaktion
-  #     - Robot Learning
-  #     - Den Daten auf der Spur - Der Process Mining Podcast
-  #     - Daten- und Algorithmenethik
-  #     - AutoML - Automated Machine Learning
-  #     - Einführung in die KI
-  #     - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
-  #     - Schule macht Daten
-  #     - Dr. med. KI
-  #     - Team Peer Assessments
+      - Für den Kurs [Schule macht Daten](Course)
+      - Für [Schule macht Daten](Course)
+      - Der Kurs [Schule macht Daten](Course)
+      - Der Kurs ist [Schule macht Daten](Course)
+      - [Schule macht Daten](Course)
+      - [Von der Datenanalyse zur Datengeschichte – Datenanalyseergebnisse adressatengerecht kommunizieren](Course)
+      - [Erklärbares Maschinelles Lernen für Ingenieurwissenschaften](Course)
+      - [Launchpad to Fundamental Questions on AI](Course)
+      - [Schule macht KI](Course)
+      - [Wegweisende Anwendungen fürs Web](Course)
+      - [Wie das Web technisch funktioniert](Course)
+      - [Programmieregen fürs Web](Course)
+      - [Mensch-Maschine-Interaktion](Course)
+      - [Robot Learning](Course)
+      - [Den Daten auf der Spur - Der Process Mining Podcast](Course)
+      - [Daten- und Algorithmenethik](Course)
+      - [AutoML - Automated Machine Learning](Course)
+      - [Einführung in die KI](Course)
+      - [Erklärbares Maschinelles Lernen für Ingenieurwissenschaften](Course)
+      - [Schule macht Daten](Course)
+      - [Dr. med. KI](Course)
+      - [Team Peer Assessments](Course)
     
   - intent: get_courses
     examples: |

@@ -114,6 +114,7 @@ class ActionGetAchievements(Action):
 		return "action_get_achievements"
 
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+		print('in get achievements')
 		course_achieved = False
 		currentCourse = []
 		courseId = 0
@@ -135,6 +136,7 @@ class ActionGetAchievements(Action):
 				"Accept-Language": "de"
 			})
 			status = r.status_code
+			print('status = 200;')
 			if status == 200:
 				response = json.loads(r.content)
 				currentAchievements = response['certificates']
