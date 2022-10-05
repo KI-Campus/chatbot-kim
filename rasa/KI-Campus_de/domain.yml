@@ -21,7 +21,6 @@ actions:
 - action_set_current_course
 - action_download_certificate
 - action_all_slots
-- validate_course_form
 entities:
 - certificate_type
 - Course

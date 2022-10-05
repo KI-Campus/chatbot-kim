@@ -8,17 +8,6 @@ from rasa_sdk.forms import FormValidationAction
 import requests
 import json
 
-class ValidateCourseForm(FormValidationAction):
-	def name(self) -> Text:
-		return "validate_course_form"
-
-	async def extract_current_course(
-									self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict
-					) -> Dict[Text, Any]:
-		text_of_last_user_message = tracker.latest_message.get("text")
-		print(text_of_last_user_message)
-		return {"current_course_title": text_of_last_user_message}
-
 class CourseSet(Action):
 	def name(self):
 		return "action_course_set"

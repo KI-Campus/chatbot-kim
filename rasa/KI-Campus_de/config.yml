@@ -13,10 +13,6 @@ pipeline:
     max_ngram: 4
   - name: DIETClassifier
     epochs: 150
-  - name: DucklingEntityExtractor
-    url: http://localhost:8000
-    dimensions:
-    - Course
   - name: EntitySynonymMapper
   - name: ResponseSelector
     epochs: 500
