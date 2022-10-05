@@ -8,32 +8,6 @@ nlu:
       - Who's the [US(country)] President?
       - How can I move to the [US](country)?
       - What's the capital of [Germany](country)?
-  - intent: inform
-    examples: |
-      - For the course [Schule macht Daten]{"entity": "Course"}
-      - For [Schule macht Daten]{"entity": "Course"}
-      - Course [Schule macht Daten]{"entity": "Course"}
-      - The course is [Schule macht Daten]{"entity": "Course"}
-      - [Schule macht Daten]{"entity": "Course"}
-
-  - lookup: Course
-    examples: |
-      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
-      - Launchpad to Fundamental Questions on AI
-      - Schule macht KI
-      - Wegweisende Anwendungen fürs Web
-      - Wie das Web technisch funktioniert
-      - Programmieregen fürs Web
-      - Mensch-Maschine-Interaktion
-      - Robot Learning
-      - Den Daten auf der Spur - Der Process Mining Podcast
-      - Daten- und Algorithmenethik
-      - AutoML - Automated Machine Learning
-      - Einführung in die KI
-      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
-      - Schule macht Daten
-      - Dr. med. KI
-      - Team Peer Assessments
   
   - intent: get_courses
     examples: |
@@ -44,6 +18,7 @@ nlu:
       - List all my courses
       - I want a list of all my courses
       - I want my course list
+
   - intent: get_achievements
     examples: |
       - I want to see my current achievements
@@ -54,6 +29,7 @@ nlu:
       - List my achievements
       - I want my course achievements
       - I want my course progress
+      
   - intent: affirm
     examples: |
       - yes

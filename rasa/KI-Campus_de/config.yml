@@ -7,26 +7,27 @@ pipeline:
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
     analyzer: char_wb
     min_ngram: 1
     max_ngram: 4
   - name: DIETClassifier
-    epochs: 100
+    epochs: 150
   - name: EntitySynonymMapper
-  - name: RegexEntityExtractor
-    case_sensitive: False
-    use_lookup_tables: True
   - name: ResponseSelector
-    epochs: 100
+    epochs: 500
     retrieval_intent: faq
 
 policies:
-  - name: MemoizationPolicy
-  - name: RulePolicy
+  - name: AugmentedMemoizationPolicy
+    max_history: 4
   - name: TEDPolicy
-    max_history: 5
+    max_history: 4
     epochs: 100
-    constrain_similarities: true
+  - name: RulePolicy
+    core_fallback_threshold: 0.4
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: True
 
 importers:
 - name: MultiProjectImporter
