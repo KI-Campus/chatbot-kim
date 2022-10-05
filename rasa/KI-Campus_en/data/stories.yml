@@ -18,6 +18,22 @@ stories:
   - intent: out_of_scope
   - action: utter_out_of_scope
 
+- story: Provide handoff accept
+  steps:
+  - intent: human_handoff
+  - action: utter_ask_handoff
+  - intent: affirm
+  - action: utter_handoff
+  - action: utter_bye
+
+- story: Provide handoff deny
+  steps:
+  - intent: human_handoff
+  - action: utter_ask_handoff
+  - intent: deny
+  - action: utter_anything_else
+  - checkpoint: more_information
+
 - story: get my courses
   steps:
     - intent: get_courses

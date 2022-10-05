@@ -225,3 +225,33 @@ nlu:
       - Bist du ein Roboter?
       - bist du sicher, dass du ein Bot bist?
       - Bot?
+
+  - intent: human_handoff
+    examples: |
+      - Übergabe
+      - Mitarbeiter
+      - Mensch
+      - Mitarbeiterin
+      - Ich möchte einen Menschen sprechen
+      - Kann ich mit einem Menschen sprechen?
+      - einen echten Agenten bitte
+      - echter Mensch
+      - Chat mit einem Live-Agenten
+      - Geben Sie mir bitte einen Menschen
+      - Ich möchte mit einem Menschen sprechen
+      - Transfer zu einem Menschen
+      - Bitte verbinden Sie mich mit einem Menschen
+      - kann ich mit einem Menschen sprechen?
+      - kann ich mit einem Menschen sprechen
+      - mit einem Menschen sprechen
+      - Ich will einen Menschen :(
+      - kann ich mit einem Menschen sprechen
+      - Ich möchte mit einem Menschen sprechen
+      - ich möchte mit einem Menschen sprechen
+      - Kann ich mit einem echten Menschen sprechen?
+      - Verbinde mich mit einem echten Menschen
+      - Ich brauche einen echten Menschen
+      - kann ich mit einer realen Person sprechen
+      - Lassen Sie mich mit einem echten Menschen sprechen
+      - Lassen Sie mich bitte mit einer realen Person sprechen
+      - Ich möchte mit einer realen Person sprechen

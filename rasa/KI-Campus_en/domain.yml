@@ -14,6 +14,7 @@ intents:
 - help
 - out_of_scope
 - bot_challenge
+- human_handoff
 
 actions:
 - action_get_courses
@@ -91,7 +92,7 @@ responses:
   utter_ask_which_course:
   - text: Please select a course for which you want to receive your achievements.
   utter_out_of_scope:
-  - text: 'Sorry, I can't answer that. Feel free to use our contact form to ask your question or type "help"'. 
+  - text: 'Sorry, I cannot answer that. Feel free to use our contact form to ask your question or type "help".'
   utter_use_contact_form:
   - text: You can also use our contact form to get help for your technical problem. We will try to answer you as soon as possible.
   utter_end_of_conversation:
@@ -99,6 +100,8 @@ responses:
       signal: End of Conversation
   utter_have_a_nice_day:
   - text: Okay. Have a nice day! Bye.
+  utter_bye:
+  - text: Bye!
   utter_more_info:
   - text: Okay. What can I help you with?
   utter_anything_else:
@@ -133,3 +136,8 @@ responses:
   - text: I didn't quite understand that. Can you rephrase that?
   utter_iamabot:
   - text: I am the AI Campus Chatbot, your virtual assistant.
+  utter_ask_handoff:
+  - text: Would you rather talk to our helpdesk team?
+  utter_handoff:
+  - text: 'To speak with our helpdesk team, click on the "Contact Form" tab and briefly describe your concern there. The helpdesk team will get back to you as soon as possible.'
+  
