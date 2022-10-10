@@ -118,7 +118,10 @@ class ActionGetAchievements(Action):
 			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
 		else:
 			dispatcher.utter_message('I am very sorry! I could not find the course you are looking for. Please try again by telling me the course title.')
-			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
+			return[SlotSet('current_course_achieved', course_achieved), 
+			SlotSet('current_course', currentCourse), 
+			SlotSet('current_achievements', currentAchievements),
+			SlotSet('current_course_title', None)]
 
 class ActionGetCertificate(Action):
 	def name(self) -> Text:
