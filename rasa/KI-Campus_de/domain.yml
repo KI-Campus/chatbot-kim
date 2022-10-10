@@ -15,6 +15,7 @@ intents:
 - out_of_scope
 - bot_challenge
 - human_handoff
+- insults
 
 actions:
 - action_get_courses
@@ -168,9 +169,11 @@ responses:
   utter_default:
   - text: Das habe ich nicht ganz verstanden. Kannst du das umformulieren?
   utter_iamabot:
-  - text: Ich bin der KI-Campus Chatbot, dein virtueller Assistent. 
+  - text: Ich bin KIM, dein virtueller Assistent. 
   utter_ask_handoff:
   - text: Willst du lieber mit unserem Helpdesk-Team sprechen?
   utter_handoff:
   - text: 'Um mit unserem Helpdesk-Team zu sprechen, klicke auf den Reiter "Kontaktformular" und beschreibe uns dein Anliegen dort kurz. Das Helpdesk-Team wird sich zeitnah bei dir melden.'
+  utter_insults:
+  - text: "Na, na, na, du bist aber ein ganz Schlimmer :) Bitte achte etwas besser auf dein Wording! Ich bin zwar nur eine Maschine, aber auch ich habe auch Gefühle!!"
   
