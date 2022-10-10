@@ -15,6 +15,7 @@ intents:
 - out_of_scope
 - bot_challenge
 - human_handoff
+- insults
 
 actions:
 - action_get_courses
@@ -135,9 +136,10 @@ responses:
   utter_default:
   - text: I didn't quite understand that. Can you rephrase that?
   utter_iamabot:
-  - text: I am the AI Campus Chatbot, your virtual assistant.
+  - text: I am KIM, your virtual assistant.
   utter_ask_handoff:
   - text: Would you rather talk to our helpdesk team?
   utter_handoff:
   - text: 'To speak with our helpdesk team, click on the "Contact Form" tab and briefly describe your concern there. The helpdesk team will get back to you as soon as possible.'
-  
+  utter_insults:
+  - text: "Well, well, well, you are quite a bad one :) Please pay a little better attention to your wording! I'm just a machine, but I also have feelings!!!"

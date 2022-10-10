@@ -1,0 +1,28 @@
+version: '3.1'
+
+nlu:
+  - intent: insults
+    examples: |
+      - asswipe
+      - asshole
+      - ass
+      - cunt
+      - jerk
+      - douche
+      - fool
+      - goofball
+      - lazybones
+      - raghead
+      - Chump
+      - son of a bitch
+      - idiot
+      - turd
+      - nigger
+      - bum
+      - cattle
+      - sack of shit
+      - greaseball
+      - dickhead
+      - cocksucker
+      - pig
+      - pig's cheek
