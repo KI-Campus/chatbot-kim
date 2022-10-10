@@ -136,7 +136,7 @@ responses:
   utter_default:
   - text: I didn't quite understand that. Can you rephrase that?
   utter_iamabot:
-  - text: I am the AI Campus Chatbot, your virtual assistant.
+  - text: I am KIM, your virtual assistant.
   utter_ask_handoff:
   - text: Would you rather talk to our helpdesk team?
   utter_handoff:
