@@ -1,0 +1,37 @@
+version: '3.1'
+
+nlu:
+  - intent: insults
+    examples: |
+      - Armleuchter
+      - Arschgeige
+      - Arschloch
+      - Arsch
+      - Blödian
+      - Blödmann
+      - Depp
+      - Dummkopf
+      - Dussel
+      - Einfaltspinsel
+      - Faulpelz
+      - Fetzenschädel
+      - Hackfresse
+      - Hornochse
+      - Hurenkind
+      - Hurensohn
+      - Idiot
+      - Kackbratze
+      - Mistvieh
+      - Nigger
+      - Penner
+      - Rindvieh
+      - Saftsack
+      - Schmierfink
+      - Schwachkopf
+      - Schwanzlutscher
+      - Schwein
+      - Schweinebacke
+      - Trottel
+      - Vollpfosten
+
+# https://de.wiktionary.org/wiki/Verzeichnis:Deutsch/Schimpfw%C3%B6rter

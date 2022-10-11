@@ -1,20 +1,50 @@
-version: '3.0'
+version: '3.1'
 
 rules:
-  - rule: respond to FAQs
+
+  - rule: Handle insults
     steps:
-    - intent: faq
-    - action: utter_faq
+    - intent: insults
+    - action: utter_insults
+
+  - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+    steps:
+    - intent: nlu_fallback
+    - action: utter_default
+
+  - rule: answer bot challenge
+    steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+  - rule: start achievement get_courses_form
+    steps:
+    - intent: get_achievements
+    - action: action_get_courses_buttons
+    - slot_was_set:
+      - courses_available: true
+    - action: utter_ask_which_course
+    - action: course_form
+    - active_loop: course_form
+
+  - rule: submit course form, course not achieved
+    condition:
+      - active_loop: course_form
+    steps:
+    - action: course_form
+    - active_loop: null
+    - action: action_get_achievements
+    - slot_was_set:
+      - current_course_achieved: false
     - action: utter_anything_else
 
-  # - rule: Implementation of the Two-Stage-Fallback
-  #   steps:
-  #   - intent: nlu_fallback
-  #   - action: action_two_stage_fallback
-  #   - active_loop: action_two_stage_fallback
-
-  - rule: out-of-scope
+  - rule: submit course form, course achieved
+    condition:
+      - active_loop: course_form
     steps:
-    - intent: out_of_scope
-    - action: utter_out_of_scope
-    - action: utter_anything_else
+    - action: course_form
+    - active_loop: null
+    - action: action_get_achievements
+    - slot_was_set:
+      - current_course_achieved: true
+    - action: utter_download_certificate
