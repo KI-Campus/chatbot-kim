@@ -255,3 +255,22 @@ nlu:
       - Lassen Sie mich mit einem echten Menschen sprechen
       - Lassen Sie mich bitte mit einer realen Person sprechen
       - Ich möchte mit einer realen Person sprechen
+
+  - lookup: Course
+    examples: |
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Launchpad to Fundamental Questions on AI
+      - Schule macht KI
+      - Wegweisende Anwendungen fürs Web
+      - Wie das Web technisch funktioniert
+      - Programmieregen fürs Web
+      - Mensch-Maschine-Interaktion
+      - Robot Learning
+      - Den Daten auf der Spur - Der Process Mining Podcast
+      - Daten- und Algorithmenethik
+      - AutoML - Automated Machine Learning
+      - Einführung in die KI
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Schule macht Daten
+      - Dr. med. KI
+      - Team Peer Assessments

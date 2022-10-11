@@ -1,7 +1,6 @@
 version: '3.1'
 
 nlu:
-  
   - intent: get_courses
     examples: |
       - I want my courses
@@ -22,7 +21,47 @@ nlu:
       - List my achievements
       - I want my course achievements
       - I want my course progress
-      
+      - current progress
+
+  - intent: help
+    examples: |
+      - I need help
+      - what can you help me with
+      - can you help me
+      - what can you do
+      - I need some help
+      - help me
+      - can you please help me
+      - problem
+      - big problem
+      - How can you help me
+      - How you help me?
+      - I need some help
+      - What are my options
+      - What are you able to do?
+      - What can I ask you?
+      - What can I do?
+      - What can you demo
+      - What can you do for me?
+      - What can you do?
+      - What can you tell me?
+      - What do you do
+      - anything els
+      - are there any other options?
+      - can I ask you anything else?
+      - can you do anything else?
+      - can you help me?
+      - come back
+      - cool! can I do something else here?
+      - hello what can you do for me
+      - help
+      - help me
+      - help please
+      - help pls
+      - help?
+      - hep me
+
+
   - intent: affirm
     examples: |
       - yes
@@ -174,7 +213,7 @@ nlu:
       - Who's the [US(country)] President?
       - How can I move to the [US](country)?
       - What's the capital of [Germany](country)?
-      
+
   - intent: bot_challenge
     examples: |
       - are you a bot?
@@ -215,44 +254,6 @@ nlu:
       - real bot then?
       - are you really a bbot?
 
-  - intent: help
-    examples: |
-      - I need help
-      - what can you help me with
-      - can you help me
-      - what can you do
-      - I need some help
-      - help me
-      - can you please help me
-      - problem
-      - big problem
-      - How can you help me
-      - How you help me?
-      - I need some help
-      - What are my options
-      - What are you able to do?
-      - What can I ask you?
-      - What can I do?
-      - What can you demo
-      - What can you do for me?
-      - What can you do?
-      - What can you tell me?
-      - What do you do
-      - anything els
-      - are there any other options?
-      - can I ask you anything else?
-      - can you do anything else?
-      - can you help me?
-      - come back
-      - cool! can I do something else here?
-      - hello what can you do for me
-      - help
-      - help me
-      - help please
-      - help pls
-      - help?
-      - hep me
-
   - intent: human_handoff
     examples: |
       - handoff
@@ -281,3 +282,22 @@ nlu:
       - let me speak to a real person
       - let me speak to a real person please
       - i want to talk to a real person
+
+  - lookup: Course
+    examples: |
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Launchpad to Fundamental Questions on AI
+      - Schule macht KI
+      - Wegweisende Anwendungen fürs Web
+      - Wie das Web technisch funktioniert
+      - Programmieregen fürs Web
+      - Mensch-Maschine-Interaktion
+      - Robot Learning
+      - Den Daten auf der Spur - Der Process Mining Podcast
+      - Daten- und Algorithmenethik
+      - AutoML - Automated Machine Learning
+      - Einführung in die KI
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Schule macht Daten
+      - Dr. med. KI
+      - Team Peer Assessments
