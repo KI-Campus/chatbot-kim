@@ -521,12 +521,12 @@ class ValidateCourseSearchForm(FormValidationAction):
 		return ["teilnahmebescheinigung", "leistungsnachweis", "egal"]
 
 	@staticmethod
-	def duration_db() -> List[Text]:
+	def max_duration_db() -> List[Text]:
 		"""Database of durations"""
 		return ["0", "10", "50", "51"]
 
 	@staticmethod
-	def levels_db() -> List[Text]:
+	def level_db() -> List[Text]:
 		"""Database of levels"""
 		return ["einsteiger", "fortgeschritten", "experte"]
 
@@ -563,3 +563,42 @@ class ValidateCourseSearchForm(FormValidationAction):
 		else:
 			dispatcher.utter_message(response = "utter_unavailable_topic")
 			return {"topic": None}
+	
+	def validate_certificate(
+		self,
+		slot_value: Any,
+		dispatcher: CollectingDispatcher,
+		tracker: Tracker,
+		domain: DomainDict,
+	) -> Dict[Text, Any]:
+		"""Validate certificate"""
+		if slot_value.lower() in self.certificate_db():
+			return {"certificate": slot_value.lower()}
+		else:
+			return {"certificate": None}
+
+	def validate_max_duration(
+		self,
+		slot_value: Any,
+		dispatcher: CollectingDispatcher,
+		tracker: Tracker,
+		domain: DomainDict,
+	) -> Dict[Text, Any]:
+		"""Validate max_duration"""
+		if slot_value.lower() in self.max_duration_db():
+			return {"max_duration": slot_value.lower()}
+		else:
+			return {"max_duration": None}
+
+	def validate_level(
+		self,
+		slot_value: Any,
+		dispatcher: CollectingDispatcher,
+		tracker: Tracker,
+		domain: DomainDict,
+	) -> Dict[Text, Any]:
+		"""Validate level"""
+		if slot_value.lower() in self.level_db():
+			return {"level": slot_value.lower()}
+		else:
+			return {"level": None}

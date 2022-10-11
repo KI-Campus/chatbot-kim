@@ -5,6 +5,17 @@ forms:
       - greet
       - goodbye
       - thank
+      - start_coursesearch_form
+      - additional_learning_recommendation
+      - change_language_slot
+      - change_topic_slot
+      - change_level_slot
+      - change_max_duration_slot
+      - change_certificate_slot
+      - get_course
+      - get_achievements
+      - get_courses
+      - out_of_scope
     required_slots:
       - language
       - topic 
@@ -82,15 +93,16 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: language
   topic:
-    type: categorical
-    values:
-      - KI-Einführung
-      - KI-Vertiefung
-      - KI-Berufsfelder
-      - KI-Gesellschaft
-      - Data Science
-      - Maschinelles Lernen
-      - egal
+    # type: categorical
+    # values:
+    #   - KI-Einführung
+    #   - KI-Vertiefung
+    #   - KI-Berufsfelder
+    #   - KI-Gesellschaft
+    #   - Data Science
+    #   - Maschinelles Lernen
+    #   - egal
+    type: text
     mappings:  
     - type: from_entity
       entity: topic
@@ -105,11 +117,12 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: topic
   certificate:
-    type: categorical
-    values:
-      - Teilnahmebescheinigung
-      - Leistungsnachweis
-      - egal
+    # type: categorical
+    # values:
+    #   - Teilnahmebescheinigung
+    #   - Leistungsnachweis
+    #   - egal
+    type: text
     mappings:
     - type: from_entity
       entity: certificate
@@ -123,11 +136,12 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: certificate
   level:
-    type: categorical
-    values:
-      - Einsteiger
-      - Fortgeschritten
-      - Experte 
+    # type: categorical
+    # values:
+    #   - Einsteiger
+    #   - Fortgeschritten
+    #   - Experte 
+    type: text
     mappings:
     - type: from_entity
       entity: level
@@ -141,11 +155,12 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: level
   max_duration:
-    type: categorical
-    values:
-      - '10'
-      - '50'
-      - '51'
+    # type: categorical
+    # values:
+    #   - '10'
+    #   - '50'
+    #   - '51'
+    type: text
     mappings:
     - type: from_entity
       entity: max_duration
