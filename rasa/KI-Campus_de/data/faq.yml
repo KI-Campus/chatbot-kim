@@ -43,6 +43,7 @@ nlu:
       - Welche Zielgruppe hat der KI Campus?
       - Wer kann den KI Campus nutzen?
       - An wen richtet sich diese Seite?
+      - Zielgruppe
 
   - intent: faq/ask_about_goals
     examples: |
@@ -52,6 +53,8 @@ nlu:
       - Was ist die Vision des KI Campus?
       - Was ist eure Vision?
       - Was sind eure Ziele?
+      - Ziele
+      - Vision
 
   - intent: faq/ask_about_developers
     examples: |
@@ -61,6 +64,7 @@ nlu:
       - Wer hat den KI Campus gebaut?
       - Welches Unternehmen hat den KI Campus entwickelt?
       - Wer hat den KI Campus entwickelt?
+      - wer hat's gebaut?
 
   - intent: faq/ask_about_learningoffer
     examples: |
@@ -68,6 +72,9 @@ nlu:
       - Welche Arten von Lernangebote finde ich auf dem KI-Campus?
       - Welche Art von Lernangebot finde ich hier?
       - Welches Art von Kursen gibt es?
+      - Zeig mir mein Lernangebot
+      - Welches Lernangebot
+      - Lernangebot
 
   - intent: faq/ask_about_topics
     examples: |
@@ -77,13 +84,19 @@ nlu:
       - Welche Themen kann ich hier lernen?
       - Über was kann ich lernen?
       - Was kann ich lernen?
+      - Zeig mir Themen zum Lernen
+      - Zeig mir Themen
+      - Welche Themen
 
   - intent: faq/ask_about_prior_knowledge
     examples: |
       - Sind Vorkenntnisse für die Teilnahme am KI-Campus notwendig?
       - Welche Vorkenntnisse sind benötigt
       - Was muss ich können damit ich die Kurse belegen kann?
-      - Sind Vorkentnisse für die Teilnahme verpflichtend?
+      - Sind Vorkenntnisse für die Teilnahme verpflichtend?
+      - Vorkenntnisse
+      - Welche Vorkenntnisse
+      - was muss ich können
 
   - intent: faq/ask_about_student
     examples: |

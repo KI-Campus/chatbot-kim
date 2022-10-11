@@ -33,7 +33,6 @@ class ActionGetCourses(Action):
 		status = r.status_code
 		if status == 200:
 			response = json.loads(r.content)
-			print(response)
 			if len(response) < 1:
 				dispatcher.utter_message('You are currently not enrolled in any courses.')
 				return [SlotSet('courses_available', False)]
@@ -86,7 +85,6 @@ class ActionGetAchievements(Action):
 		return "action_get_achievements"
 
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-		print("action get achievements")
 		course_achieved = False
 		currentCourse = []
 		courseId = 0
@@ -115,13 +113,14 @@ class ActionGetAchievements(Action):
 					dispatcher.utter_message('{0}'.format(achievement['description']))
 					if achievement['achieved'] and not course_achieved:
 						course_achieved = True
-			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
-		else:
-			dispatcher.utter_message('I am very sorry! I could not find the course you are looking for. Please try again by telling me the course title.')
 			return[SlotSet('current_course_achieved', course_achieved), 
 			SlotSet('current_course', currentCourse), 
 			SlotSet('current_achievements', currentAchievements),
 			SlotSet('current_course_title', None)]
+		else:
+			dispatcher.utter_message('I am very sorry! I could not find the course you are looking for. Please try again by telling me the course title.')
+			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
+
 
 class ActionGetCertificate(Action):
 	def name(self) -> Text:

@@ -1,73 +1,123 @@
 version: '3.1'
 
 nlu:
-  - intent: faq/ask_payment
+  - intent: faq/ask_about_moocs
     examples: |
-      - Do I have to pay for AI campus courses? 
-      - How much does AI Campus cost
-      - What is the price of AI campus
-      - Do the courses cost money?
-      - Is AI campus free?
-      - I don't want to pay money for the courses
-  - intent: faq/ask_account_creation
+      - What are Massive Open Online Courses?
+      - Tell me about Massive Open Online Courses
+      - What are Moocs?
+      - What is a Mooc?
+      - What does Mooc mean?
+      - What does Mooc stand for?
+      - I do not understand what Mooc means
+      - Explain to me Moocs
+      - I want to know what Mooc means
+      - I want to know what a mooc is
+      - Can you tell me what a mooc is?
+
+  - intent: faq/ask_about_ki
     examples: |
-      - How do I create a profile? 
-      - How do I create an account?
-      - Where do I register?
-      - I need a new account
-      - How can I start using AI Campus?
-  - intent: faq/ask_confirmation_email
+      - I want to know what is AI
+      - What is AI
+      - Can you tell me what is AI?
+      - What is AI?
+      - I would like to know about ai
+      - What is AI
+      - What is Artificial Intelligence
+      - I want to inform myself about AI
+
+  - intent: faq/ask_about_ki_campus
     examples: |
-      - What to do in case I did not receive a confirmation email? 
-      - I did not recieve the confirmation email
-      - I did not get the confirmation email
-      - I do not find the confirmation mail 
-      - I can not see the email for confirmation
-      - Where do I find the confirmation mail?
-  - intent: faq/ask_password_reset
+      - What is the AI Campus?
+      - What is this site?
+      - What is the idea of the AI Campus?
+      - Why does the AI Campus exist?
+      - Where can I learn more about the AI Campus?
+
+  - intent: faq/ask_about_target_group
     examples: |
-      - I forgot my password, what can I do? 
-      - I lost my password
-      - I forgot my password
-      - How can I retrieve my password
-      - I need to reset my password
-      - Where can I reset my password
-      - Where can I retrieve my password
-  - intent: faq/ask_whats_aicampus
+      - Who is the AI Campus aimed at?
+      - What is the target group of the AI Campus?
+      - Who can use the AI Campus?
+      - Who is this site aimed at?
+      - Target group
+
+  - intent: faq/ask_about_goals
     examples: |
-      - What is AI Campus?
-      - Please explain AI Campus.
-      - What exactly is ai campus? 
-      - What is this website? 
-      - What can I do here? 
-      - What is the purpose of AI Campus? 
-  - intent: faq/ask_access_aicampus
+      - What are the goals of the AI Campus?
+      - What is the goal of the AI Campus?
+      - What is the vision?
+      - What is the vision of the AI Campus?
+      - What is your vision?
+      - What are your goals?
+
+  - intent: faq/ask_about_developers
     examples: |
-      - Who can access AI Campus courses?
-      - Are there access restrictions for AI Campus courses?
-      - Who is allowed to join AI Campus? 
-      - Can anyone use AI Campus? 
-      - Can everybody join AI Campus? 
-      - Can anybody use AI Campus? 
-      - Can everybody use AI Campus? 
-      - Can anyone join AI Campus? 
-  - intent: faq/ask_course_types
+      - Who develops the AI Campus?
+      - Who developed this site?
+      - Who built this site?
+      - Who built the AI Campus?
+      - Which company developed the AI Campus?
+      - Who developed the AI Campus?
+
+  - intent: faq/ask_about_learningoffer
     examples: |
-      - What type of courses does AI Campus offer?
-      - What are the different course types? 
-      - What does AI Campus offer? 
-      - Are there different course levels? 
-      - Are all courses the same? 
-      - What are the right courses for me? 
-      - What are course differences? 
-  - intent: faq/ask_course_structure
+      - What learning opportunities are available?
+      - What types of learning opportunities can I find on the AI Campus?
+      - What kind of learning opportunities can I find here?
+      - What type of courses are available?
+      - tell me my learning opportunities
+      - learning opportunities
+
+  - intent: faq/ask_about_topics
     examples: |
-      - How are courses structured?
-      - What materials are used in a course?
-      - What does a course contain? 
-      - How does a course work? 
-      - What can I expect from a course?
-  - intent: faq/ask_course_timelimit
+      - What topics does the AI Campus cover?
+      - Which topics are offered here?
+      - Which topics does the AI Campus cover?
+      - What topics can I learn about here?
+      - What can I learn about?
+      - What can I learn?
+      - show me topics
+      - what topics
+      - topics 
+
+  - intent: faq/ask_about_prior_knowledge
+    examples: |
+      - Is prior knowledge required to participate in the AI Campus?
+      - What previous knowledge is required
+      - What do I need to know in order to take the courses?
+      - Is prior knowledge mandatory for participation?
+      - which prior knowledge
+      - what prior knowledge do I need
+
+  - intent: faq/ask_about_student
+    examples: |
+      - Do I have to be enrolled at a university to use the AI Campus?
+      - Do I have to be a student?
+      - Do I have to be a student to use the AI Campus?
+      - Can I take the short course even though I am not a student?
+
+  - intent: faq/ask_about_recognition
+    examples: |
+      - Are the learning opportunities recognized by universities?
+      - Can I get credit for courses at the university?
+      - Are there courses that I can have credited to me at the university?
+      - Are the courses recognized by universities?
+      - course recognition 
+
+  - intent: faq/ask_about_certification
+    examples: |
+      - Can I acquire a certificate?
+      - Can I earn certificates?
+      - Can certificates be acquired on the AI Campus? 
+      - Can certificates be earned on the AI campus?
+      - Which certificates can I acquire?
+      - What certificates can I earn?
+      - Will I get a certificate after completing the course?
+      - Do I get a certificate after completing the course?
+      - Do I get a certificate?
+
+  - intent: faq/ask_about_course_timelimit
     examples: |
       - Do these courses have any time limit? 
       - How long can I do the courses? 
@@ -78,143 +128,170 @@ nlu:
       - What is the enddate of my course?
       - What is the startdate of my course?
       - How much time do I have to finish this course?
-  - intent: faq/ask_how_change_info
+
+  - intent: faq/ask_about_course_costs
     examples: |
-      - I want to change my [picture](profile-info)
-      - I want to change my [name](profile-info)
-      - I want to change my [name](profile-info) on the certificate
-      - Correct my [name](profile-info) on the certificate
-      - How do i change my [name](profile-info)?
-      - I misspelled my [name](profile-info)
-      - [name](profile-info) issue
-      - I want Dr in my [name](profile-info)
-      - How to correct [name](profile-info)?
-      - I want to correct my [name](profile-info)
-      - I want to correct my [picture](profile-info)
-      - How can I change my [email](profile-info)?
-      - Where can i change my [email address](profile-info)?
-      - I want to change [e-mail](profile-info)
-      - I want to use a different [mail](profile-info)
-      - How can I use a different [mail](profile-info)?
-      - Where can I set my [email address](profile-info)?
-  - intent: faq/ask_about_certification
+      - Do I have to pay for AI campus courses? 
+      - How much does AI Campus cost
+      - What is the price of AI campus
+      - Do the courses cost money?
+      - Is AI campus free?
+      - I don't want to pay money for the courses
+      - is it free?
+      - What does it cost to use?
+      - Is the AI Campus free of charge?
+      - Does it cost money to take courses?
+      - Do Moocs cost money?
+      - How much does AI Campus cost me?
+      - Do I have to pay for AI Campus? 
+      - What are the payment options? 
+      - How can I pay? 
+      - I do not have any money. 
+
+  - intent: faq/ask_become_editor
     examples: |
-        - Can I acquire a certificate?
-        - Can I earn certificates?
-        - Can certificates be acquired on the KI Campus? 
-        - Can certificates be earned on the KI campus?
-        - Which certificates can I acquire?
-        - What certificates can I earn?
-        - Will I get a certificate after completing the course?
-        - Do I get a certificate after completing the course?
-        - Do I get a certificate?
-  - intent: faq/ask_whatspossible
+      - How can I create a learning offer for the AI Campus myself?
+      - Where can I send my idea for a course offering?
+      - I have an idea for a learning offer
+      - I would like to have my own course on the AI Campus
+
+  - intent: faq/ask_about_partners_cooperations
     examples: |
-      - Can you explain me in one sentence what you are doing?
-      - Can you help me?
-      - Could you please show me what you can
-      - Great, is there anything else you can do, bot?
-      - How can you help me
-      - How you help me?
-      - I need help
-      - I need some help
-      - What are my options
-      - What are you able to do?
-      - What can I ask you?
-      - What can I do?
-      - What can you demo
-      - What can you do
-      - What can you do for me?
-      - What can you do?
-      - What can you tell me?
-      - What do you do
-      - anything els
-      - are there any other options?
-      - can I ask you anything else?
-      - can you do anything else?
-      - can you help me
-      - can you help me?
-      - come back
-      - cool! can I do something else here?
-      - hello what can you do for me
-      - help
-      - help me
-      - help please
-      - help pls
-      - help?
-      - hep me
-      - hi. Sara what do you do?
-      - hm that doesnt quite help me is there anything else you can do?
-      - how can i use you
-      - how can you help me
-      - how can you help me?
-      - how can you help?
-      - how does this work?
-      - how u can help me
-      - how you help me
-      - i asked you if you can do anything else
-      - i don't know what i want
-      - i need help
-      - more info
-      - now what?
-      - options
-      - show me the menu
-      - show me what's possible
-      - so now what
-      - so what can you do
-      - so what can you do?
-      - so what can you help me with?
-      - so what next?
-      - talk to me
-      - talk to me!
-      - tell me something you can do
-      - tell me what's your skill
-      - um what now
-      - what are all the things you understand?
-      - what are the options?
-      - what are you ding
-      - what are you doing
-      - what are you good at?
-      - what can I ask ?
-      - what can I ask you?
-      - what can I do here
-      - what can I do with Sara?
-      - what can I do with this bot
-      - what can i do here
-      - what can i do now
-      - what can u do
-      - what can we talk about?
-      - what can you answer
-      - what can you do
-      - what can you do for me
-      - what can you do, sara?
-      - what can you do?
-      - what can you offer me?
-      - what can you tell me
-      - what can you?
-      - what cn u do for me ?
-      - what do you do
-      - what do you do?
-      - what do you know except this?
-      - what else can I do here?
-      - what else can i do
-      - what else can i do?
-      - what else can you do?
-      - what else can you help with?
-      - what i have to do
-      - what is this bot for
-      - what u can do
-      - what u can do?
-      - what you can do
-      - what you can do for me?
-      - what you can do?
-      - what you do
-      - what you doing?
-      - what you talk about?
-      - you can hep me
-      - what can you teache me?
-      - Can rasa do calculations?
-      - what you can
+      - Is there the possibility of a partnership or cooperation with the AI Campus?
+      - Can I become a partner of the AI Campus?
+      - How can I become a partner of the AI Campus?
+      - Is there a cooperation with the AI Campus?
+      - Is a cooperation with the AI Campus possible?
+      - How is a cooperation with the AI Campus possible?
+      - How is a cooperation possible?
+
+  - intent: faq/ask_password_reset
+    examples: |
+      - I forgot my password, what can I do? 
+      - I lost my password
+      - I forgot my password
+      - How can I retrieve my password
+      - I need to reset my password
+      - Where can I reset my password
+      - Where can I retrieve my password
+
+  - intent: faq/ask_go_to_profile
+    examples: |
+      - How do I get to my profile?
+      - Where is my profile?
+      - How do I get to my profile?
+      - I want to go to my profile
+      - I want to go to my profile
+      - How do I get to my profile
+      - My profile
+      - To my profile
+      - To my account
+      - How do I get to my account?
+      - Where is my account?
+
+  - intent: faq/ask_change_name
+    examples: |
+      - How do I change my name?
+      - Where can I change my name?
+      - I want to change my name
+      - I want to change my name in my profile
+      - Change name
+      - name is not correct
+      - Change my name
+      - My name is not correct
+
+  - intent: faq/ask_change_username
+    examples: |
+      - How do I change my username?
+      - Where can I change my username?
+      - I want to change my username
+      - Change my username
+      - I don't like my username anymore
+      - Where do I change my username?
+
+  - intent: faq/ask_delete_account
+    examples: |
+      - How do I delete my account?
+      - Where do I delete my account?
+      - I want to delete my account
+      - Delete account
+      - Delete my account
+      - I don't need my account anymore
+      - I do not want my account anymore
+
+  - intent: faq/ask_report_error
+    examples: |
+      - I found an error in a course, who can I report it to? 
+      - How can I report an error in the course?
+      - I would like to report an error in the course
+      - the course has an error
+      - [school makes data]{"entity": "Course"} has an error
+      - The course [School Makes Data]{"entity": "Course"} has errors
+      - In the course [School Makes Data]{"entity": "Course"} something was not correct
+      - I want to report an error in the course [School Makes Data]{"entity": "Course"} Report
+      - Report an error
+      - I want to report an error
+
+  - intent: faq/ask_technical_error
+    examples: |
+      - I have a technical problem on AI-Campus
+      - I have a technical problem
+      - Something is not working for me
+      - technical problems
+      - I get an error
+      - I have a bug
+      - I get a bug
+      - Something does not work here
+
+  - intent: faq/ask_video_problem
+    examples: |
+      - The video does not start!
+      - I have problems with the video
+      - The video does not play
+      - There are problems with the video
+      - My video does not start
+      - The video does not work
+      - Why is the video not playing?
+
+  - intent: faq/ask_finish_course
+    examples: |
+      - How do I complete a course?
+      - How do I finish a course?
+      - I want to finish the course
+      - How do I finish the course [school makes data]{"entity": "Course"}
+      - Finish course
+      - Complete course
+      - I want to finish the course
+
+  - intent: faq/ask_learning_offer
+    examples: |
+      - Where can I find application-specific learning opportunities?
+      - Where can I find the learning offering?
+      - Where is the application-specific learning offering?
+      - Application specific learning offer
+      - Where can I find the specific offering for ...
+      - Where can I find subject specific learning offers
+      - Where can I find learning offers for my subject area
+
+  - intent: faq/ask_expert_labs
+    examples: |
+      - What are AI ExpertLabs?
+      - What is the AI ExpertLabs?
+      - How can I work with the AI Expert Labs?
+      - Can I work with the AI ExpertLabs?
+      - Where can I learn more about the ExpertLabs?
+      - I would like to learn more about the AI ExpertLabs
+      - AI ExpertLabs
+
+  - intent: faq/ask_fellowship
+    examples: |
+      - What is the AI Fellowship?
+      - I would like to learn more about the AI Fellowship
+      - AI Fellowship
+      - I would like to become a AI Fellow
+      - I would like to become a Fellow
+      - I would like to become a Fellowship
+      - Fellow
 
   - synonym: AI
     examples: |
@@ -227,4 +304,16 @@ nlu:
       - Ai
       - ki
       - ai
-      
+
+  - synonym: Campus
+    examples: |
+      - Kampus
+
+  - synonym: AI Campus
+    examples: |
+      - ai campus
+      - Ai campus
+      - KI Kampus
+      - ki kampus
+      - AI Kampus
+      - KI Campus
