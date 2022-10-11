@@ -117,7 +117,7 @@ responses:
   utter_faq/ask_about_goals:
   - text: Die Vision des KI-Campus ist eine KI-kompetente Gesellschaft. Die Lernplattform möchte KI-Kompetenzen vermitteln und mehr Menschen für das Thema begeistern.  Lernende sollen befähigt werden, KI-Entwicklungen zu verstehen, zu hinterfragen und mitzugestalten.  Damit begegnet der KI-Campus dem akuten Fachkräftemangel und stärkt zugleich in der Breite einen mündigen Umgang mit KI.
   utter_faq/ask_about_developers:
-  - text: Der KI-Campus wird als Pilotprojekt gemeinsam vom Stifterverband, dem Deutschen Forschungszentrum für Künstliche Intelligenz (DFKI), dem Hasso-Plattner-Institut (HPI), NEOCOSMO und dem mmb Institut entwickelt.  Zahlreiche Hochschulen und Institutionen bringen sich als Partner ein, sowohl bei der Erstellung von Lernangeboten als auch bei der Nutzung des Angebots des KI-Campus für ihre  Zielgruppen.
+  - text: Der KI-Campus wird als Pilotprojekt gemeinsam vom Stifterverband, dem Deutschen Forschungszentrum für Künstliche Intelligenz (DFKI), dem Hasso-Plattner-Institut (HPI), NEOCOSMO und dem mmb Institut entwickelt.  Zahlreiche Hochschulen und Institutionen bringen sich als Partner ein, sowohl bei der Erstellung von Lernangeboten als auch bei der Nutzung des Angebots des KI-Campus für ihre Zielgruppen.
   utter_faq/ask_about_learningoffer:
   - text: Von Online-Kursen über Videos und Podcasts bis hin zu interaktiven Übungen – der KI-Campus stellt Lernenden eine vielfältige Auswahl hochwertiger kostenloser Lernangebote zu unterschiedlichen Themenfeldern der KI gebündelt auf einer Lernplattform zur Verfügung.
   utter_faq/ask_about_topics:
