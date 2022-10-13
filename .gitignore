@@ -6,8 +6,6 @@ chatbot-env
 ## exclude models folder ##
 rasa/models/*
 
-rasa/KI-Campus_old
-
 ## exclude rasa cache
 
 .rasa
