@@ -63,6 +63,13 @@ then (within the respective directory) start the chatbot shell with
     rasa shell
 ```
 
+for testing logged-in user, get your `access-token` from the ki-campus website and start shell with
+
+```sh
+    rasa shell --conversation-id <access-token>
+```
+
+
 ## Docker
 
 In the outer project structure run:

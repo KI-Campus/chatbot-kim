@@ -1,5 +1,5 @@
 from enum import auto
-from typing import Text, Dict, Any, List
+from typing import Text, Dict, Any, List, Optional
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
@@ -42,9 +42,31 @@ class ActionCheckLogin(Action):
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-		user_login = random.choice([True, False]) # to do: implement login check
+		current_state = tracker.current_state()
+		is_logged_in = tracker.get_slot('user_login')
+		if is_logged_in:
+			print('ActionCheckLogin[sender_id="{0}"]: ALREADY LOGGED IN, User ID {1}'.format(current_state['sender_id'], tracker.get_slot('user_id')))  # FIXME DEBUG
+			return []
 
-		return [SlotSet("user_login", user_login)]
+		token = current_state['sender_id']
+		r = requests.get('https://learn.ki-campus.org/bridges/chatbot/user',
+						 headers={
+							 "content-type": "application/json",
+							 "Authorization": 'Bearer {0}'.format(token)
+						 })
+		status = r.status_code
+
+		print('ActionCheckLogin[sender_id="{0}"]: status_code '.format(token), r.status_code, ', headers: ', r.headers, ', content: ', json.loads(r.content))  # FIXME DEBUG
+
+		if status == 200:
+			response = json.loads(r.content)
+			user_id: Optional[str] = None
+			if 'id' in response:  # FIXME use SAML ID when available
+				user_id = response['id']
+			return [SlotSet("user_login", True), SlotSet("user_id", user_id)]
+		# elif status == 401:  # Status-Code 401 not authorized
+
+		return [SlotSet("user_login", False), SlotSet("user_id", None)]
 
 
 class ActionFetchProfile(Action):
@@ -56,15 +78,35 @@ class ActionFetchProfile(Action):
 			tracker: Tracker,
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-		user_id = "22218451-41f0-23dd-c50f-cdd8096610c1"
-		# if re.search(".*", user_id): SlotSet("user_id", user_id) # create regex
-		# else: return [SlotSet("user_id", None), dispatcher.utter_message("User ist nicht eingeloggt.")]
-		enrollments = ["Einführung in die KI", "Mensch-Maschine-Interaktion"]
+		enrollments: Optional[List[any]] = None
+		current_state = tracker.current_state()
+		token = current_state['sender_id']
+		r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses',
+						 headers={
+							 "content-type": "application/json",
+							 "Authorization": 'Bearer {0}'.format(token)
+						 })
+		status = r.status_code
+		if status == 200:
+			response = json.loads(r.content)
+			if len(response) < 1:
+				enrollments = []
+			else:
+				# for course in response:
+				# 	enrollments.append(course)
+				enrollments = response  # TODO [russa] only store part of data? e.g. only the ID or course_code?
+		# elif status == 401:  # Status-Code 401 not authorized
+		# 	enrollments = None
+		# else:  # Other Stati
+		# 	enrollments = None
+
+		# FIXME TEST values:
+		# TODO for these, would need to query KIC endpoint https://ki-campus.org/kic_api/users/<kic user id>
 		course_visits = ["Big Data Analytics"]
 		search_terms = ["KI", "Machine Learning"]
-		#to do: implement profile checkup
+		print('ActionFetchProfile: enrollments ', enrollments, ' | course_visits ', course_visits, ' | search_terms ', search_terms)  # FIXME DEBUG
 
-		return [SlotSet("user_id", user_id), SlotSet("enrollments", enrollments), SlotSet("course_visits", course_visits), SlotSet("search_terms", search_terms)]
+		return [SlotSet("enrollments", enrollments), SlotSet("course_visits", course_visits), SlotSet("search_terms", search_terms)]
 
 ######################################################################################
 # RECOMMENDER
@@ -152,6 +194,9 @@ class ActionGetLearningRecommendation(Action):
 		course_visits = tracker.get_slot("course_visits")
 		search_terms = tracker.get_slot("search_terms")
 
+		if enrollments:
+			enrollments = [course['id'] for course in enrollments]  # TODO use course_code instead of id when available?
+
 		# to do: maybe option 2 implement after delete slot value
 
 		# FIXME DEBUG: show search/filter parameters
@@ -199,6 +244,7 @@ class ActionGetLearningRecommendation(Action):
 					rest = size - limit
 					msg_type = self.Responses.found_recommendations_more_single if rest == 1 else self.Responses.found_recommendations_more_multiple
 					dispatcher.utter_message(get_response(self.responses, msg_type).format(rest))
+
 		elif status == 401:  # Status-Code 401 Unauthorized: wrong access token setting in kic_recommender.yml!
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
 			# FIXME DEBUG:
