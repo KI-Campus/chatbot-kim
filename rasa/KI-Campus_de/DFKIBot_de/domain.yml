@@ -4,13 +4,6 @@ forms:
     ignored_intents:
       - greet
       - goodbye
-      - start_coursesearch_form
-      - additional_learning_recommendation
-      - change_language_slot
-      - change_topic_slot
-      - change_level_slot
-      - change_max_duration_slot
-      - change_certificate_slot
       - get_course
       - get_achievements
       - get_courses
