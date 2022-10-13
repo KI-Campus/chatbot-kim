@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.1'
 
 nlu:
   - intent: faq/ask_about_moocs
@@ -43,6 +43,7 @@ nlu:
       - Welche Zielgruppe hat der KI Campus?
       - Wer kann den KI Campus nutzen?
       - An wen richtet sich diese Seite?
+      - Zielgruppe
 
   - intent: faq/ask_about_goals
     examples: |
@@ -52,6 +53,8 @@ nlu:
       - Was ist die Vision des KI Campus?
       - Was ist eure Vision?
       - Was sind eure Ziele?
+      - Ziele
+      - Vision
 
   - intent: faq/ask_about_developers
     examples: |
@@ -61,6 +64,7 @@ nlu:
       - Wer hat den KI Campus gebaut?
       - Welches Unternehmen hat den KI Campus entwickelt?
       - Wer hat den KI Campus entwickelt?
+      - wer hat's gebaut?
 
   - intent: faq/ask_about_learningoffer
     examples: |
@@ -68,6 +72,9 @@ nlu:
       - Welche Arten von Lernangebote finde ich auf dem KI-Campus?
       - Welche Art von Lernangebot finde ich hier?
       - Welches Art von Kursen gibt es?
+      - Zeig mir mein Lernangebot
+      - Welches Lernangebot
+      - Lernangebot
 
   - intent: faq/ask_about_topics
     examples: |
@@ -77,13 +84,19 @@ nlu:
       - Welche Themen kann ich hier lernen?
       - Über was kann ich lernen?
       - Was kann ich lernen?
+      - Zeig mir Themen zum Lernen
+      - Zeig mir Themen
+      - Welche Themen
 
   - intent: faq/ask_about_prior_knowledge
     examples: |
       - Sind Vorkenntnisse für die Teilnahme am KI-Campus notwendig?
       - Welche Vorkenntnisse sind benötigt
       - Was muss ich können damit ich die Kurse belegen kann?
-      - Sind Vorkentnisse für die Teilnahme verpflichtend?
+      - Sind Vorkenntnisse für die Teilnahme verpflichtend?
+      - Vorkenntnisse
+      - Welche Vorkenntnisse
+      - was muss ich können
 
   - intent: faq/ask_about_student
     examples: |
@@ -240,6 +253,11 @@ nlu:
       - Ich habe ein technisches Problem auf KI-Campus
       - Ich hab ein technisches Problem
       - Bei mir funktioniert etwas nicht
+      - technische Probleme
+      - Ich kriege einen error
+      - Ich habe einen Bug
+      - ich kriege einen bug
+      - Hier klappt was nicht
   
   - intent: faq/ask_video_problem
     examples: |
@@ -268,6 +286,10 @@ nlu:
       - Wo finde ich anwendungsspezifische Lernangebote?
       - Wo finde ich das Lernangebot?
       - Wo ist das anwendungsspezifische Lernangebot?
+      - Anwendungsspeifisches Lernangebot
+      - Wo finde ich das spezielle Angebote für ..
+      - Wo finde ich themenspezifische Lernanbote
+      - Wo finde ich Lernangebot für mich Fachgebiet
 
   - intent: faq/ask_expert_labs
     examples: |
@@ -284,6 +306,10 @@ nlu:
       - Was ist das KI-Fellowship?
       - Ich möchte mehr über das KI-Fellowship erfahren
       - KI Fellowship
+      - Ich möchte KI-Fellow werden
+      - Ich möchte Fellow werden
+      - Ich möchte ein Fellowship
+      - Fellow
 
   - synonym: KI
     examples: |

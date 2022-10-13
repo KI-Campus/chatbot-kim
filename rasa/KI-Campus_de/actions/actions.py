@@ -32,23 +32,6 @@ class CourseSet(Action):
 		else:
 			return [SlotSet('course-set', False)]
 
-class PrintAllSlots(Action):
-	def name(self):
-		return "action_all_slots"
-
-	def run(self, dispatcher, tracker, domain):
-		currentCourse = tracker.get_slot('current_course_title')
-		return []
-
-class SetCurrentCourse(Action):
-	def name(self):
-		return "action_set_current_course"
-
-	def run(self, dispatcher, tracker, domain):
-		currentCourse = tracker.latest_message['text']
-		return [SlotSet('current_course_title', currentCourse)]
-
-
 class ActionGetCourses(Action):
 	def name(self) -> Text:
 		return "action_get_courses_buttons"
@@ -72,7 +55,7 @@ class ActionGetCourses(Action):
 				buttonGroup = []
 				for course in response:
 					title = course['title']
-					buttonGroup.append({"title": title, "payload": '{0}'.format(title)})
+					buttonGroup.append({"title": title, "payload": '/inform{{"Course": "{0}"}}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
 		elif status == 401: # Status-Code 401 None
@@ -144,9 +127,12 @@ class ActionGetAchievements(Action):
 					dispatcher.utter_message('{0}'.format(achievement['description']))
 					if achievement['achieved'] and not course_achieved:
 						course_achieved = True
-			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
+			return[SlotSet('current_course_achieved', course_achieved), 
+			SlotSet('current_course', currentCourse), 
+			SlotSet('current_achievements', currentAchievements),
+			SlotSet('current_course_title', None)]
 		else:
-			dispatcher.utter_message('Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, indem du mir den Kurstitel nennen.')
+			dispatcher.utter_message('Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, in dem du mir den Kurstitel nennst.')
 			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
 
 
@@ -324,7 +310,7 @@ class ActionAdditionalLearningRecommendation(Action):
 
 		recommendations = tracker.get_slot("recommendations")
 		if len(recommendations) <= 3:
-			dispatcher.utter_message('Leider konnte ich keine weitere Empfehlungen zu deinen Suchparametern finden.')
+			dispatcher.utter_message('Leider konnte ich keine weiteren Empfehlungen zu deinen Suchparametern finden.')
 		else:
 			recommendations = recommendations[3:]
 			size = len(recommendations)
@@ -482,14 +468,14 @@ class ActionAskCertificate(Action):
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_certificate_slot':
 			text = "Wie ich verstanden habe, möchtest du einen neuen Nachweis wählen, den du in deinem Wunschkurs erhalten kannst. Wir haben zwei Optionen:"
-			buttons = [{'title': 'Teilnahmebescheinigung (unbenotet)', 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
+			buttons = [{'title': 'Teilnahmebescheinigung', 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
 			{'title': 'Leistungsnachweis (benotet)', 'payload': '/inform{"certificate":"Leistungsnachweis"}'},
 			{'title': 'egal', 'payload': '/undecided'}]
 
 			dispatcher.utter_message(text = text, buttons = buttons)
 		else:
 			text = "Welcher Nachweis ist dir wichtig?"
-			buttons = [{'title': 'Teilnahmebescheinigung (unbenotet)', 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
+			buttons = [{'title': 'Teilnahmebescheinigung', 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
 			{'title': 'Leistungsnachweis (benotet)', 'payload': '/inform{"certificate":"Leistungsnachweis"}'},
 			{'title': 'egal', 'payload': '/undecided'}]
 
@@ -528,7 +514,7 @@ class ValidateCourseSearchForm(FormValidationAction):
 	@staticmethod
 	def level_db() -> List[Text]:
 		"""Database of levels"""
-		return ["einsteiger", "fortgeschritten", "experte"]
+		return ["anfänger", "fortgeschritten", "experte"]
 
 	def validate_language(
 		self,

@@ -1,7 +1,12 @@
 # Created by https://www.gitignore.io/api/linux,macos,windows,visualstudio
 
+## exclude virtual env
+chatbot-env
+
 ## exclude models folder ##
 rasa/models/*
+
+rasa/KI-Campus_old
 
 ## exclude rasa cache
 

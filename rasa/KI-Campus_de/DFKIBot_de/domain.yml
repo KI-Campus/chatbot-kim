@@ -1,10 +1,9 @@
-version: '3.0'
+version: '3.1'
 forms:
   coursesearch_form:
     ignored_intents:
       - greet
       - goodbye
-      - thank
       - start_coursesearch_form
       - additional_learning_recommendation
       - change_language_slot
@@ -15,7 +14,6 @@ forms:
       - get_course
       - get_achievements
       - get_courses
-      - out_of_scope
     required_slots:
       - language
       - topic 
@@ -231,5 +229,5 @@ responses:
   #          - Zertifikat: {certificate}\n\n
   #          - Dauer: {max_duration}"
 session_config:
-  session_expiration_time: 60  # value in minutes, 0 means infinitely long
-  carry_over_slots_to_new_session: true  # set to false to forget slots between sessions
+  session_expiration_time: 60  
+  carry_over_slots_to_new_session: true  
