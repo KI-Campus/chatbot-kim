@@ -85,8 +85,6 @@ responses:
   utter_submit:
   - text: Alles klar!
   - text: In Ordnung!
-  utter_finished:
-  - text: Die Unterhaltung wurde beendet.
   utter_download_certificate:
   - text: Möchtest du deinen Leistungsnachweis oder deine Teilnahmebestätigung herunterladen?
   utter_ask_which_course:
@@ -95,9 +93,6 @@ responses:
   - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". ' 
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
-  utter_end_of_conversation:
-  - custom:
-      signal: End of Conversation
   utter_have_a_nice_day:
   - text: Alles klar. Hab einen schönen Tag und bis bald!
   utter_bye:
@@ -169,11 +164,11 @@ responses:
   utter_default:
   - text: Das habe ich nicht ganz verstanden. Kannst du das umformulieren?
   utter_iamabot:
-  - text: Ich bin KIM, dein virtueller Assistent. 
+  - text: Ich bin KIm, dein virtueller Assistent. 
   utter_ask_handoff:
   - text: Willst du lieber mit unserem Helpdesk-Team sprechen?
   utter_handoff:
   - text: 'Um mit unserem Helpdesk-Team zu sprechen, klicke auf den Reiter "Kontaktformular" und beschreibe uns dein Anliegen dort kurz. Das Helpdesk-Team wird sich zeitnah bei dir melden.'
   utter_insults:
-  - text: "Na, na, na, du bist aber ein ganz Schlimmer :) Bitte achte etwas besser auf dein Wording! Ich bin zwar nur eine Maschine, aber auch ich habe auch Gefühle!!"
+  - text: "Na, na, na, du bist aber ein ganz Schlimmer :) Bitte achte etwas besser auf dein Wording! Ich bin zwar nur eine Maschine, aber ich habe auch Gefühle!!"
   
