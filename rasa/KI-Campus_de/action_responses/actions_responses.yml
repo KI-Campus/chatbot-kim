@@ -28,7 +28,7 @@ action_get_courses:
 action_get_achievements:
   # achievement_description parameter {0}: (textual) description of field "description" in data-object for achievement
   achievement_description: "{0}"
-  course_not_found: Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, indem du mir den Kurstitel nennen.
+  course_not_found: Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, in dem du mir den Kurstitel nennst.
 
 action_download_certificate:
   # download_achievement parameter {0}: field "name" in data-object for achievement

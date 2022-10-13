@@ -35,7 +35,7 @@ action_get_learning_recommendation:
   debug_recommendation_parameters: "Suche Lernangebote für folgende Parameter: {0}"
 
 action_additional_learning_recommendation:
-  no_more_recommendations: Leider konnte ich keine weitere Empfehlungen zu deinen Suchparametern finden.
+  no_more_recommendations: Leider konnte ich keine weiteren Empfehlungen zu deinen Suchparametern finden.
   # additional_recommendations parameter {0}: total number (int) of additional (not yet displayed) course recommendations
   additional_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): "
   # additional_course_item parameter {0}: the title of the course
@@ -81,7 +81,7 @@ action_ask_max_duration:
 action_ask_certificate:
   confirm_and_show_change_certificate: "Wie ich verstanden habe, möchtest du einen neuen Nachweis wählen, den du in deinem Wunschkurs erhalten kannst. Wir haben zwei Optionen:"
   ask_select_certificate: Welcher Nachweis ist dir wichtig?
-  certificate_option_unqualified: Teilnahmebescheinigung (unbenotet)
+  certificate_option_unqualified: Teilnahmebescheinigung
   certificate_option_qualified: Leistungsnachweis (benotet)
   certificate_option_any: egal
 

@@ -1,10 +1,12 @@
-version: '3.0'
+version: '3.1'
 forms:
   coursesearch_form:
     ignored_intents:
       - greet
       - goodbye
-      - thank
+      - get_course
+      - get_achievements
+      - get_courses
     required_slots:
       - language
       - topic 
@@ -82,15 +84,16 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: language
   topic:
-    type: categorical
-    values:
-      - KI-Einführung
-      - KI-Vertiefung
-      - KI-Berufsfelder
-      - KI-Gesellschaft
-      - Data Science
-      - Maschinelles Lernen
-      - egal
+    # type: categorical
+    # values:
+    #   - KI-Einführung
+    #   - KI-Vertiefung
+    #   - KI-Berufsfelder
+    #   - KI-Gesellschaft
+    #   - Data Science
+    #   - Maschinelles Lernen
+    #   - egal
+    type: text
     mappings:  
     - type: from_entity
       entity: topic
@@ -105,11 +108,12 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: topic
   certificate:
-    type: categorical
-    values:
-      - Teilnahmebescheinigung
-      - Leistungsnachweis
-      - egal
+    # type: categorical
+    # values:
+    #   - Teilnahmebescheinigung
+    #   - Leistungsnachweis
+    #   - egal
+    type: text
     mappings:
     - type: from_entity
       entity: certificate
@@ -123,11 +127,12 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: certificate
   level:
-    type: categorical
-    values:
-      - Einsteiger
-      - Fortgeschritten
-      - Experte 
+    # type: categorical
+    # values:
+    #   - Einsteiger
+    #   - Fortgeschritten
+    #   - Experte 
+    type: text
     mappings:
     - type: from_entity
       entity: level
@@ -141,11 +146,12 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: level
   max_duration:
-    type: categorical
-    values:
-      - '10'
-      - '50'
-      - '51'
+    # type: categorical
+    # values:
+    #   - '10'
+    #   - '50'
+    #   - '51'
+    type: text
     mappings:
     - type: from_entity
       entity: max_duration
@@ -216,5 +222,5 @@ responses:
   #          - Zertifikat: {certificate}\n\n
   #          - Dauer: {max_duration}"
 session_config:
-  session_expiration_time: 60  # value in minutes, 0 means infinitely long
-  carry_over_slots_to_new_session: true  # set to false to forget slots between sessions
+  session_expiration_time: 60  
+  carry_over_slots_to_new_session: true  

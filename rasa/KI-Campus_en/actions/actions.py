@@ -23,22 +23,6 @@ class CourseSet(Action):
 			return [SlotSet('course-set', False)]
 
 
-class PrintAllSlots(Action):
-	def name(self):
-		return "action_all_slots"
-
-	def run(self, dispatcher, tracker, domain):
-		currentCourse = tracker.get_slot('current_course_title')
-		return []
-
-
-class SetCurrentCourse(Action):
-	def name(self):
-		return "action_set_current_course"
-
-	def run(self, dispatcher, tracker, domain):
-		currentCourse = tracker.latest_message['text']
-		return [SlotSet('current_course_title', currentCourse)]
 
 
 class ActionGetCoursesButtons(Action):
@@ -81,7 +65,7 @@ class ActionGetCoursesButtons(Action):
 				buttonGroup = []
 				for course in response:
 					title = course['title']
-					buttonGroup.append({"title": courseTitle.format(title), "payload": '{0}'.format(title)})
+					buttonGroup.append({"title": courseTitle.format(title), "payload": '/inform{{"Course": "{0}"}}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
 		elif status == 401: # Status-Code 401 None
@@ -158,7 +142,6 @@ class ActionGetAchievements(Action):
 		return "action_get_achievements"
 
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-		print("action get achievements")
 		course_achieved = False
 		currentCourse = []
 		courseId = 0
@@ -187,10 +170,14 @@ class ActionGetAchievements(Action):
 					dispatcher.utter_message(get_response(self.responses, self.Responses.achievement_description).format(achievement['description']))
 					if achievement['achieved'] and not course_achieved:
 						course_achieved = True
-			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
+			return [SlotSet('current_course_achieved', course_achieved),
+				SlotSet('current_course', currentCourse),
+				SlotSet('current_achievements', currentAchievements),
+				SlotSet('current_course_title', None)]
 		else:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.course_not_found))
-			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
+			return [SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
+
 
 
 class ActionGetCertificate(Action):
