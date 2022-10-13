@@ -84,10 +84,6 @@ session_config:
 responses:
   utter_submit:
   - text: Thanks for providing me with the course title!
-  utter_starting_search_with_parameters:
-  - text: "I am doing a course search now with the following paramenters:\n - course: {current_course_title}"
-  utter_finished:
-  - text: Conversation ends.
   utter_download_certificate:
   - text: Do you want to download the certificate?
   utter_ask_which_course:
@@ -96,9 +92,6 @@ responses:
   - text: 'Sorry, I cannot answer that. Feel free to use our contact form to ask your question or type "help".'
   utter_use_contact_form:
   - text: You can also use our contact form to get help for your technical problem. We will try to answer you as soon as possible.
-  utter_end_of_conversation:
-  - custom:
-      signal: End of Conversation
   utter_have_a_nice_day:
   - text: Okay. Have a nice day! Bye.
   utter_bye:
@@ -139,7 +132,7 @@ responses:
   - text: We are always open to new learning opportunities and welcome your ideas. <a href="https://ki-campus.org/contact" _blank>Feel free to contact us!</a>!
   utter_faq/ask_about_partners_cooperations:
   - text: Cooperation with other platforms and initiatives is an important concern for us in the implementation of the AI Campus. We are very happy to exchange ideas on ways to collaborate in order to jointly develop innovative learning opportunities and reach as many learners as possible. <a href="https://ki-campus.org/contact" _blank>Feel free to contact us!</a>!
-  utter_faq/ask_reset_password:
+  utter_faq/ask_password_reset:
   - text: You can change your password at any time in your profile. To access your profile, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name. 
   utter_faq/ask_go_to_profile:
   - text: To access your profile, go to the <a href="https://ki-campus.org" _blank>AI Campus main page</a>, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name. 
@@ -168,7 +161,7 @@ responses:
   utter_default:
   - text: I didn't quite understand that. Can you rephrase that?
   utter_iamabot:
-  - text: I am KIM, your virtual assistant.
+  - text: I am KIm, your virtual assistant.
   utter_ask_handoff:
   - text: Would you rather talk to our helpdesk team?
   utter_handoff:

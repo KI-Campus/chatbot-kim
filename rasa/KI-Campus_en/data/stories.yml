@@ -50,7 +50,6 @@ stories:
   - checkpoint: more_information
   - intent: deny
   - action: utter_have_a_nice_day
-  - action: utter_end_of_conversation
 
 - story: get achievements, no courses available
   steps:
