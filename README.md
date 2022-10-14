@@ -42,9 +42,12 @@ recommender_api:
 ### Start the Action Server
 
 ```sh
-    cd actions/
     rasa run actions
 ```
+
+NOTE the actions **must not** be started from within the `actions/` sub-directory, 
+     but the `rasa` project's root directory (e.g. `rasa/KI-Campus_de/`),
+     otherwise not all actions may be automatically started.
 
 ### Start for Development
 
@@ -59,6 +62,13 @@ then (within the respective directory) start the chatbot shell with
 ```sh
     rasa shell
 ```
+
+for testing logged-in user, get your `access-token` from the ki-campus website and start shell with
+
+```sh
+    rasa shell --conversation-id <access-token>
+```
+
 
 ## Docker
 
