@@ -79,8 +79,8 @@ slots:
     mappings:
     - type: custom
 session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  session_expiration_time: 5
+  carry_over_slots_to_new_session: false
 responses:
   utter_submit:
   - text: Alles klar!
@@ -94,13 +94,18 @@ responses:
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
   utter_have_a_nice_day:
-  - text: Alles klar. Hab einen schönen Tag und bis bald!
+  - text: Hab einen schönen Tag und bis bald!
   utter_bye:
   - text: Tschüss!
   utter_more_info:
   - text: Okay. Wie kann ich dir weiterhelfen?
   utter_anything_else:
   - text: Kann ich dir noch bei etwas anderem helfen?
+    buttons:
+    - title: "Ja"
+      payload: "/affirm"
+    - title: "Nö, danke für deine Hilfe!"
+      payload: "/deny"
   utter_faq/ask_about_moocs:
   - text: Ein paar grundlegende Informationen zu Online-Kursen haben wir <a href="https://open.hpi.de/pages/mooc">hier</a> zusammengetragen.
   utter_faq/ask_about_ki:
@@ -167,8 +172,22 @@ responses:
   - text: Ich bin KIm, dein virtueller Assistent. 
   utter_ask_handoff:
   - text: Willst du lieber mit unserem Helpdesk-Team sprechen?
+    buttons:
+    - title: "Ja, bitte"
+      payload: "/affirm"
+    - title: "Nö"
+      payload: "/deny"
   utter_handoff:
   - text: 'Um mit unserem Helpdesk-Team zu sprechen, klicke auf den Reiter "Kontaktformular" und beschreibe uns dein Anliegen dort kurz. Das Helpdesk-Team wird sich zeitnah bei dir melden.'
   utter_insults:
   - text: "Na, na, na, du bist aber ein ganz Schlimmer :) Bitte achte etwas besser auf dein Wording! Ich bin zwar nur eine Maschine, aber ich habe auch Gefühle!!"
+  utter_feedback:
+  - text: "Hab ich dir bei deinem Anliegen helfen können?"
+    buttons:
+      - title: "Ja!"
+        payload: "/affirm"
+      - title: "Nicht wirklich ..."
+        payload: "/deny"
+  utter_thankyou_feedback:
+  - text: "Vielen Dank für dein Feedback!"
   
