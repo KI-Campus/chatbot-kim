@@ -184,10 +184,9 @@ responses:
   utter_feedback:
   - text: "Hab ich dir bei deinem Anliegen helfen können?"
     buttons:
-      - title: "Ja!"
-        payload: "/affirm"
-      - title: "Nicht wirklich ..."
-        payload: "/deny"
+    - title: "Ja!"
+      payload: "/affirm"
+    - title: "Nicht wirklich ..."
+      payload: "/deny"
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
-  
