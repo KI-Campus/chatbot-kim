@@ -119,7 +119,10 @@ class ActionGetAchievements(Action):
 			SlotSet('current_course_title', None)]
 		else:
 			dispatcher.utter_message('Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, in dem du mir den Kurstitel nennst.')
-			return[SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
+			return[SlotSet('current_course_achieved', course_achieved), 
+			SlotSet('current_course', currentCourse), 
+			SlotSet('current_achievements', currentAchievements), 
+			SlotSet('current_course_title', None)]
 
 
 class ActionGetCertificate(Action):
