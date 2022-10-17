@@ -70,6 +70,8 @@ stories:
   - action: course_form
   - active_loop: course_form
   - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
   - action: action_get_achievements
   - slot_was_set:
     - current_course_achieved: false
@@ -86,6 +88,8 @@ stories:
   - action: course_form
   - active_loop: course_form
   - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
   - action: action_get_achievements
   - slot_was_set:
     - current_course_achieved: true
@@ -105,6 +109,8 @@ stories:
   - action: course_form
   - active_loop: course_form
   - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
   - action: action_get_achievements
   - slot_was_set:
     - current_course_achieved: true
