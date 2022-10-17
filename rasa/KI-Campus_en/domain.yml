@@ -100,11 +100,11 @@ responses:
   - text: Okay. What can I help you with?
   utter_anything_else:
   - text: Is there anything else I can help you with?
-    buttons:
-    - title: "Yes"
-      payload: "/affirm"
-    - title: "No"
-      payload: "/deny"
+    # buttons:
+    # - title: "Yes"
+    #   payload: "/affirm"
+    # - title: "No"
+    #   payload: "/deny"
   utter_faq/ask_about_moocs:
   - text: We've compiled some basic information about online courses <a href="https://open.hpi.de/pages/mooc">here</a>.
   utter_faq/ask_about_ki:
@@ -169,22 +169,22 @@ responses:
   - text: I am KIm, your virtual assistant.
   utter_ask_handoff:
   - text: Would you rather talk to our helpdesk team?
-    buttons:
-    - title: "Yes"
-      payload: "/affirm"
-    - title: "No"
-      payload: "/deny"
+    # buttons:
+    # - title: "Yes"
+    #   payload: "/affirm"
+    # - title: "No"
+    #   payload: "/deny"
   utter_handoff:
   - text: 'To speak with our helpdesk team, click on the "Contact Form" tab and briefly describe your concern there. The helpdesk team will get back to you as soon as possible.'
   utter_insults:
   - text: "Well, well, well, you are quite a bad one :) Please pay a little better attention to your wording! I'm just a machine, but I also have feelings!!!"
   utter_feedback:
   - text: "Was I able to help you with your request?"
-    buttons:
-    - title: "Yes"
-      payload: "/affirm"
-    - title: "Not really ..."
-      payload: "/deny"
+    # buttons:
+    # - title: "Yes"
+    #   payload: "/affirm"
+    # - title: "Not really ..."
+    #   payload: "/deny"
   utter_thankyou_feedback:
   - text: "Thanks for your feedback!"
   
