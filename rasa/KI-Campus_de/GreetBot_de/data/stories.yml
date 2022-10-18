@@ -10,7 +10,6 @@ stories:
   steps:
    - intent: goodbye
    - action: utter_goodbye
-   - action: utter_end_of_conversation
 
 - story: User thanks + bye
   steps:

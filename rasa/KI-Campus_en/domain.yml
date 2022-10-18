@@ -16,6 +16,7 @@ intents:
 - bot_challenge
 - human_handoff
 - insults
+- inform
 
 actions:
 - action_get_courses
@@ -41,11 +42,13 @@ slots:
     influence_conversation: false
     mappings:
     - type: from_entity
+      intent: inform
       entity: Course
       conditions:
       - active_loop: course_form
         requested_slot: current_course_title
     - type: from_text
+      intent: inform
       not_intent:
       - faq
       - affirm
