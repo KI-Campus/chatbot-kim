@@ -3,16 +3,8 @@ intents:
 - greet
 - goodbye
 - thank
-actions:
-- utter_anything_else
-- utter_greet
-- utter_goodbye
-- utter_you_are_welcome
-- utter_end_of_conversation
+
 responses:
-  utter_end_of_conversation:
-  - custom:
-      signal: End of Conversation
   utter_anything_else:
   - text: Kann ich dir noch mit etwas anderem behilflich sein?
   utter_greet:
@@ -24,5 +16,5 @@ responses:
   - text: Bitte sehr.
   - text: Es ist immer schön, hilfreich zu sein.
 session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  session_expiration_time: 5
+  carry_over_slots_to_new_session: false
