@@ -34,7 +34,7 @@ class ActionGetCourses(Action):
 		if status == 200:
 			response = json.loads(r.content)
 			if len(response) < 1:
-				dispatcher.utter_message('Du bist derzeit in keinen Kursen eingeschrieben.')
+				dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben.')
 				return [SlotSet('courses_available', False)]
 			else:
 				dispatcher.utter_message('Du bist derzeit in diesen Kursen eingeschrieben:')
@@ -45,7 +45,7 @@ class ActionGetCourses(Action):
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
 		elif status == 401: # Status-Code 401 None
-			dispatcher.utter_message('Du bist derzeit in keinen Kursen eingeschrieben.')
+			dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben.')
 			return [SlotSet('courses_available', False)]
 		else:
 			return []
