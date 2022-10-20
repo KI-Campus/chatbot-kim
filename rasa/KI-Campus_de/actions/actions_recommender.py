@@ -45,7 +45,7 @@ class ActionCheckLogin(Action):
 		current_state = tracker.current_state()
 		is_logged_in = tracker.get_slot('user_login')
 		if is_logged_in:
-			print('ActionCheckLogin[sender_id="{0}"]: ALREADY LOGGED IN, User ID {1}'.format(current_state['sender_id'], tracker.get_slot('user_id')))  # FIXME DEBUG
+			print('ActionCheckLogin[sender_id="{0}"]: ALREADY LOGGED IN, User ID {1}'.format(current_state['sender_id'], tracker.get_slot('user_id')), '\n')  # FIXME DEBUG
 			return []
 
 		token = current_state['sender_id']
@@ -56,7 +56,7 @@ class ActionCheckLogin(Action):
 						 })
 		status = r.status_code
 
-		print('ActionCheckLogin[sender_id="{0}"]: status_code '.format(token), r.status_code, ', headers: ', r.headers, ', content: ', json.loads(r.content))  # FIXME DEBUG
+		print('ActionCheckLogin[sender_id="{0}"]: status_code '.format(token), r.status_code, ', headers: ', r.headers, ', content: ', json.loads(r.content), '\n')  # FIXME DEBUG
 
 		if status == 200:
 			response = json.loads(r.content)
@@ -104,7 +104,7 @@ class ActionFetchProfile(Action):
 		# TODO for these, would need to query KIC endpoint https://ki-campus.org/kic_api/users/<kic user id>
 		course_visits = ["Big Data Analytics"]
 		search_terms = ["KI", "Machine Learning"]
-		print('ActionFetchProfile: enrollments ', enrollments, ' | course_visits ', course_visits, ' | search_terms ', search_terms)  # FIXME DEBUG
+		print('ActionFetchProfile: enrollments ', enrollments, ' | course_visits ', course_visits, ' | search_terms ', search_terms, '\n')  # FIXME DEBUG
 
 		return [SlotSet("enrollments", enrollments), SlotSet("course_visits", course_visits), SlotSet("search_terms", search_terms)]
 
@@ -172,7 +172,7 @@ class ActionGetLearningRecommendation(Action):
 		self.service_url = recommender_config['url']
 		self.service_token = recommender_config['token']
 
-		# DEBUG output TODO remove after testing
+		# FIXME DEBUG output TODO remove after testing
 		if recommender_config and recommender_config['url'] and recommender_config['token']:
 			print("\n  endpoint config: {0}\n".format(recommender_config))
 		else:
@@ -342,7 +342,7 @@ class ActionDeleteSlotValue(Action):
 
 		# check intent then delete slot	value
 		intent = str(tracker.get_intent_of_latest_message())
-		print(f"{intent}") # to do: delete - checking function
+		print(f"{intent}")  # FIXME DEBUG to do: delete - checking function
 		if  intent == 'change_language_slot': return [SlotSet("language", None)]
 		elif  intent == 'change_topic_slot': return [SlotSet("topic", None)]
 		elif  intent == 'change_level_slot': return [SlotSet("level", None)]
@@ -393,7 +393,7 @@ class ActionAskLanguage(Action):
 class ActionAskTopic(Action):
 	class Responses(ResponseEnum):
 		confirm_and_show_change_topic = auto()
-		ask_select_topic  = auto()
+		ask_select_topic = auto()
 		topic_option_introduction_ai = auto()
 		topic_option_specialized_ai = auto()
 		topic_option_professions_and_ai = auto()
