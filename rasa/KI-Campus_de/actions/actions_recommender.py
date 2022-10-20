@@ -223,6 +223,7 @@ class ActionGetLearningRecommendation(Action):
 				"search_terms": search_terms,
 			})
 		status = r.status_code
+		response: Optional[List] = None
 		if status == 200:
 			response = json.loads(r.content)
 			if len(response) < 1:
