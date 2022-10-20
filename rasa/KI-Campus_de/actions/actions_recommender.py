@@ -7,8 +7,6 @@ from rasa_sdk.events import SlotSet
 import requests
 import json
 
-import random
-
 from rasa_sdk import FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import Restarted
