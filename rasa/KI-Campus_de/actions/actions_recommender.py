@@ -188,7 +188,7 @@ class ActionGetLearningRecommendation(Action):
 		language = str(tracker.get_slot("language"))
 		topic = str(tracker.get_slot("topic"))
 		level = str(tracker.get_slot("level"))
-		max_duration = int(tracker.get_slot("max_duration"))
+		max_duration_str = tracker.get_slot("max_duration")  # int(tracker.get_slot("max_duration"))
 		certificate = str(tracker.get_slot("certificate"))
 		enrollments = tracker.get_slot("enrollments")
 		course_visits = tracker.get_slot("course_visits")
@@ -202,7 +202,7 @@ class ActionGetLearningRecommendation(Action):
 		# FIXME DEBUG: show search/filter parameters
 		debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
 						 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
-							language, topic, level, max_duration, certificate, enrollments, course_visits, search_terms
+							language, topic, level, max_duration_str, certificate, enrollments, course_visits, search_terms
 						 )
 		debug_params = get_response(self.responses, self.Responses.debug_recommendation_parameters).format(debug_info_msg)
 		dispatcher.utter_message(text=debug_params)
@@ -216,7 +216,7 @@ class ActionGetLearningRecommendation(Action):
 				"language": language,
 				"topic": topic,
 				"level": level,
-				"max_duration": str(max_duration),
+				"max_duration": max_duration_str,  # str(max_duration),
 				"certificate": certificate,
 				"enrollments": enrollments,
 				"course_visits": course_visits,
@@ -305,7 +305,7 @@ class ActionAdditionalLearningRecommendation(Action):
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
 		recommendations = tracker.get_slot("recommendations")
-		if len(recommendations) <= 3:
+		if not recommendations or len(recommendations) <= 3:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.no_more_recommendations))
 		else:
 			recommendations = recommendations[3:]
