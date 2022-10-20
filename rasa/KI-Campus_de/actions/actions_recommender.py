@@ -598,16 +598,17 @@ class ValidateCourseSearchForm(FormValidationAction):
 	) -> Dict[Text, Any]:
 		"""Validate language"""
 
-		if slot_value.lower() in self.language_db():
-			return {"language": slot_value.lower()}
-		elif slot_value.lower() in self.language_no_support_db():
-			lang = str(slot_value).capitalize()
-			# test for variable
-			dispatcher.utter_message(text=get_response(self.responses, self.Responses.unsupported_language_selection).format(lang))
-			return {"language": None}
-		else:
-			dispatcher.utter_message(response="utter_interjection_languages")
-			return {"language": None}
+		if slot_value:
+			if slot_value.lower() in self.language_db():
+				return {"language": slot_value.lower()}
+			elif slot_value.lower() in self.language_no_support_db():
+				lang = str(slot_value).capitalize()
+				# test for variable
+				dispatcher.utter_message(text=get_response(self.responses, self.Responses.unsupported_language_selection).format(lang))
+				return {"language": None}
+
+		dispatcher.utter_message(response="utter_interjection_languages")
+		return {"language": None}
 
 	def validate_topic(
 		self,
@@ -617,7 +618,8 @@ class ValidateCourseSearchForm(FormValidationAction):
 		domain: DomainDict,
 	) -> Dict[Text, Any]:
 		"""Validate topic"""
-		if slot_value.lower() in self.topic_db():
+
+		if slot_value and slot_value.lower() in self.topic_db():
 			return {"topic": slot_value.lower()}
 		else:
 			dispatcher.utter_message(response = "utter_unavailable_topic")
@@ -631,7 +633,8 @@ class ValidateCourseSearchForm(FormValidationAction):
 		domain: DomainDict,
 	) -> Dict[Text, Any]:
 		"""Validate certificate"""
-		if slot_value.lower() in self.certificate_db():
+
+		if slot_value and slot_value.lower() in self.certificate_db():
 			return {"certificate": slot_value.lower()}
 		else:
 			return {"certificate": None}
@@ -644,7 +647,8 @@ class ValidateCourseSearchForm(FormValidationAction):
 		domain: DomainDict,
 	) -> Dict[Text, Any]:
 		"""Validate max_duration"""
-		if slot_value.lower() in self.max_duration_db():
+
+		if slot_value and slot_value.lower() in self.max_duration_db():
 			return {"max_duration": slot_value.lower()}
 		else:
 			return {"max_duration": None}
@@ -657,7 +661,8 @@ class ValidateCourseSearchForm(FormValidationAction):
 		domain: DomainDict,
 	) -> Dict[Text, Any]:
 		"""Validate level"""
-		if slot_value.lower() in self.level_db():
+
+		if slot_value and slot_value.lower() in self.level_db():
 			return {"level": slot_value.lower()}
 		else:
 			return {"level": None}
