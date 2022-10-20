@@ -11,9 +11,9 @@ stories:
     - intent: affirm
     - slot_was_set:
       - user_login: true
+      - user_id: "22218451-41f0-23dd-c50f-cdd8096610c1"
     - action: action_fetch_profile
     - slot_was_set:
-      - user_id: "22218451-41f0-23dd-c50f-cdd8096610c1"
       - enrollments: "Einführung in die KI"
       - course_visits: "Big Data Analytics"
       - search_terms: "KI"
@@ -28,9 +28,9 @@ stories:
     - intent: deny
     - slot_was_set:
       - user_login: true
+      - user_id: "22218451-41f0-23dd-c50f-cdd8096610c1"
     - action: action_fetch_profile
     - slot_was_set:
-      - user_id: "22218451-41f0-23dd-c50f-cdd8096610c1"
       - enrollments: "Einführung in die KI"
       - course_visits: "Big Data Analytics"
       - search_terms: "KI"
@@ -45,6 +45,7 @@ stories:
     - intent: affirm
     - slot_was_set:
       - user_login: false
+      - user_id: None
     - checkpoint: start_coursesearch_form
 
   - story: check login unhappy + no courseseach
@@ -56,16 +57,17 @@ stories:
     - intent: deny
     - slot_was_set:
       - user_login: false
+      - user_id: None
     - action: utter_anything_else
 
-# course search
+# coursesearch form
   - story: activate course form
     steps:
     - checkpoint: start_coursesearch_form
     - action: coursesearch_form      
     - active_loop: coursesearch_form 
 
-# course search variations
+# coursesearch form variations
   - story: languages interjection
     steps:
     - checkpoint: start_coursesearch_form
@@ -102,7 +104,16 @@ stories:
     - action: utter_interjection_topic
     - action: coursesearch_form
 
-  - story: stop course form happy
+  - story: faq interjection
+    steps:
+    - checkpoint: start_coursesearch_form
+    - action: coursesearch_form
+    - active_loop: coursesearch_form
+    - intent: faq
+    - action: utter_faq
+    - action: coursesearch_form
+
+  - story: stop coursesearch form happy
     steps:
     - checkpoint: start_coursesearch_form 
     - action: coursesearch_form    
@@ -118,7 +129,7 @@ stories:
     - intent: goodbye
     - action: utter_goodbye
 
-  - story: stop course form happy2
+  - story: stop coursesearch form happy 2
     steps:
     - checkpoint: start_coursesearch_form 
     - action: coursesearch_form    
@@ -135,7 +146,7 @@ stories:
     - action: utter_faq
     - action: utter_anything_else
 
-  - story: stop course form unhappy
+  - story: stop coursesearch form unhappy
     steps:
     - checkpoint: start_coursesearch_form 
     - action: coursesearch_form    
@@ -145,15 +156,15 @@ stories:
     - intent: deny
     - action: coursesearch_form
 
-# negative feedback / theresa implementiert was 09092022
-  - story: negative feedback reaction
-    steps:
-    - intent: negative_feedback 
-    - action: utter_bot_apology
-    - action: utter_bot_apology_feedback # implement feedback form?
-    - action: utter_anything_else_v2
+# # negative feedback / theresa implementiert was 09092022
+#   - story: negative feedback reaction
+#     steps:
+#     - intent: negative_feedback 
+#     - action: utter_bot_apology
+#     - action: utter_bot_apology_feedback # implement feedback form?
+#     - action: utter_anything_else_v2
 
-# change single course search parameters
+# change course search parameter
   - story: get more learning recommendation
     steps:
     - intent: additional_learning_recommendation
@@ -165,28 +176,33 @@ stories:
     steps:
     - intent: change_language_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: coursesearch_form      
+    - active_loop: coursesearch_form 
 
   - story: change topic learning recommendation
     steps:
     - intent: change_topic_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: coursesearch_form      
+    - active_loop: coursesearch_form 
 
   - story: change level learning recommendation
     steps:
     - intent: change_level_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: coursesearch_form      
+    - active_loop: coursesearch_form 
 
   - story: change max_duration learning recommendation
     steps:
     - intent: change_max_duration_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: coursesearch_form      
+    - active_loop: coursesearch_form 
 
   - story: change certificate learning recommendation
     steps:
     - intent: change_certificate_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: coursesearch_form      
+    - active_loop: coursesearch_form 
