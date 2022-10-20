@@ -7,8 +7,6 @@ from rasa_sdk.events import SlotSet
 import requests
 import json
 
-import random
-
 from rasa_sdk import FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import Restarted
@@ -45,7 +43,7 @@ class ActionCheckLogin(Action):
 		current_state = tracker.current_state()
 		is_logged_in = tracker.get_slot('user_login')
 		if is_logged_in:
-			print('ActionCheckLogin[sender_id="{0}"]: ALREADY LOGGED IN, User ID {1}'.format(current_state['sender_id'], tracker.get_slot('user_id')))  # FIXME DEBUG
+			print('ActionCheckLogin[sender_id="{0}"]: ALREADY LOGGED IN, User ID {1}'.format(current_state['sender_id'], tracker.get_slot('user_id')), '\n')  # FIXME DEBUG
 			return []
 
 		token = current_state['sender_id']
@@ -56,7 +54,7 @@ class ActionCheckLogin(Action):
 						 })
 		status = r.status_code
 
-		print('ActionCheckLogin[sender_id="{0}"]: status_code '.format(token), r.status_code, ', headers: ', r.headers, ', content: ', json.loads(r.content))  # FIXME DEBUG
+		print('ActionCheckLogin[sender_id="{0}"]: status_code '.format(token), r.status_code, ', headers: ', r.headers, ', content: ', json.loads(r.content), '\n')  # FIXME DEBUG
 
 		if status == 200:
 			response = json.loads(r.content)
@@ -104,7 +102,7 @@ class ActionFetchProfile(Action):
 		# TODO for these, would need to query KIC endpoint https://ki-campus.org/kic_api/users/<kic user id>
 		course_visits = ["Big Data Analytics"]
 		search_terms = ["KI", "Machine Learning"]
-		print('ActionFetchProfile: enrollments ', enrollments, ' | course_visits ', course_visits, ' | search_terms ', search_terms)  # FIXME DEBUG
+		print('ActionFetchProfile: enrollments ', enrollments, ' | course_visits ', course_visits, ' | search_terms ', search_terms, '\n')  # FIXME DEBUG
 
 		return [SlotSet("enrollments", enrollments), SlotSet("course_visits", course_visits), SlotSet("search_terms", search_terms)]
 
@@ -172,7 +170,7 @@ class ActionGetLearningRecommendation(Action):
 		self.service_url = recommender_config['url']
 		self.service_token = recommender_config['token']
 
-		# DEBUG output TODO remove after testing
+		# FIXME DEBUG output TODO remove after testing
 		if recommender_config and recommender_config['url'] and recommender_config['token']:
 			print("\n  endpoint config: {0}\n".format(recommender_config))
 		else:
@@ -188,7 +186,7 @@ class ActionGetLearningRecommendation(Action):
 		language = str(tracker.get_slot("language"))
 		topic = str(tracker.get_slot("topic"))
 		level = str(tracker.get_slot("level"))
-		max_duration = int(tracker.get_slot("max_duration"))
+		max_duration_str = tracker.get_slot("max_duration")  # int(tracker.get_slot("max_duration"))
 		certificate = str(tracker.get_slot("certificate"))
 		enrollments = tracker.get_slot("enrollments")
 		course_visits = tracker.get_slot("course_visits")
@@ -202,7 +200,7 @@ class ActionGetLearningRecommendation(Action):
 		# FIXME DEBUG: show search/filter parameters
 		debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
 						 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
-							language, topic, level, max_duration, certificate, enrollments, course_visits, search_terms
+							language, topic, level, max_duration_str, certificate, enrollments, course_visits, search_terms
 						 )
 		debug_params = get_response(self.responses, self.Responses.debug_recommendation_parameters).format(debug_info_msg)
 		dispatcher.utter_message(text=debug_params)
@@ -216,13 +214,14 @@ class ActionGetLearningRecommendation(Action):
 				"language": language,
 				"topic": topic,
 				"level": level,
-				"max_duration": str(max_duration),
+				"max_duration": max_duration_str,  # str(max_duration),
 				"certificate": certificate,
 				"enrollments": enrollments,
 				"course_visits": course_visits,
 				"search_terms": search_terms,
 			})
 		status = r.status_code
+		response: Optional[List] = None
 		if status == 200:
 			response = json.loads(r.content)
 			if len(response) < 1:
@@ -230,6 +229,7 @@ class ActionGetLearningRecommendation(Action):
 			else:
 				size = len(response)
 				limit = min(size, 3)
+				dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations).format(size))
 				course_label = get_response(self.responses, self.Responses.found_course_item)
 				button_group = []
 				for course in response[0:limit]:
@@ -237,8 +237,7 @@ class ActionGetLearningRecommendation(Action):
 					url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
 					# dispatcher.utter_message(text="* [{0}](https://ki-campus.org/course/{1})".format(title, url_param))
 					button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-				message = get_response(self.responses, self.Responses.found_recommendations).format(size)
-				dispatcher.utter_message(text=message, buttons=button_group)
+				dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 				if limit < size:
 					rest = size - limit
@@ -304,20 +303,20 @@ class ActionAdditionalLearningRecommendation(Action):
 			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
 		recommendations = tracker.get_slot("recommendations")
-		if len(recommendations) <= 3:
+		if not recommendations or len(recommendations) <= 3:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.no_more_recommendations))
 		else:
 			recommendations = recommendations[3:]
 			size = len(recommendations)
 			limit = min(size, 3)
+			dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations).format(size))
 			course_label = get_response(self.responses, self.Responses.additional_course_item)
 			button_group = []
 			for course in recommendations[0:limit]:
 				title = course['name']
 				url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
 				button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-			message = get_response(self.responses, self.Responses.additional_recommendations).format(size)
-			dispatcher.utter_message(text=message, buttons=button_group)
+			dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 			if limit < size:
 				rest = size - limit
@@ -341,7 +340,7 @@ class ActionDeleteSlotValue(Action):
 
 		# check intent then delete slot	value
 		intent = str(tracker.get_intent_of_latest_message())
-		print(f"{intent}") # to do: delete - checking function
+		print(f"{intent}")  # FIXME DEBUG to do: delete - checking function
 		if  intent == 'change_language_slot': return [SlotSet("language", None)]
 		elif  intent == 'change_topic_slot': return [SlotSet("topic", None)]
 		elif  intent == 'change_level_slot': return [SlotSet("level", None)]
@@ -392,7 +391,7 @@ class ActionAskLanguage(Action):
 class ActionAskTopic(Action):
 	class Responses(ResponseEnum):
 		confirm_and_show_change_topic = auto()
-		ask_select_topic  = auto()
+		ask_select_topic = auto()
 		topic_option_introduction_ai = auto()
 		topic_option_specialized_ai = auto()
 		topic_option_professions_and_ai = auto()
@@ -597,16 +596,17 @@ class ValidateCourseSearchForm(FormValidationAction):
 	) -> Dict[Text, Any]:
 		"""Validate language"""
 
-		if str(slot_value).lower() in self.language_db():
-			return {"language": slot_value.lower()}
-		elif slot_value.lower() in self.language_no_support_db():
-			lang = str(slot_value).capitalize()
-			# test for variable
-			dispatcher.utter_message(text=get_response(self.responses, self.Responses.unsupported_language_selection).format(lang))
-			return {"language": None}
-		else:
-			dispatcher.utter_message(response="utter_interjection_languages")
-			return {"language": None}
+		if slot_value:
+			if slot_value.lower() in self.language_db():
+				return {"language": slot_value.lower()}
+			elif slot_value.lower() in self.language_no_support_db():
+				lang = str(slot_value).capitalize()
+				# test for variable
+				dispatcher.utter_message(text=get_response(self.responses, self.Responses.unsupported_language_selection).format(lang))
+				return {"language": None}
+
+		dispatcher.utter_message(response="utter_interjection_languages")
+		return {"language": None}
 
 	def validate_topic(
 		self,
@@ -616,7 +616,8 @@ class ValidateCourseSearchForm(FormValidationAction):
 		domain: DomainDict,
 	) -> Dict[Text, Any]:
 		"""Validate topic"""
-		if str(slot_value).lower() in self.topic_db():
+
+		if slot_value and slot_value.lower() in self.topic_db():
 			return {"topic": slot_value.lower()}
 		else:
 			dispatcher.utter_message(response = "utter_unavailable_topic")
@@ -630,7 +631,8 @@ class ValidateCourseSearchForm(FormValidationAction):
 		domain: DomainDict,
 	) -> Dict[Text, Any]:
 		"""Validate certificate"""
-		if str(slot_value).lower() in self.certificate_db():
+
+		if slot_value and slot_value.lower() in self.certificate_db():
 			return {"certificate": slot_value.lower()}
 		else:
 			return {"certificate": None}
@@ -643,7 +645,8 @@ class ValidateCourseSearchForm(FormValidationAction):
 		domain: DomainDict,
 	) -> Dict[Text, Any]:
 		"""Validate max_duration"""
-		if str(slot_value).lower() in self.max_duration_db():
+
+		if slot_value and slot_value.lower() in self.max_duration_db():
 			return {"max_duration": slot_value.lower()}
 		else:
 			return {"max_duration": None}
@@ -656,7 +659,8 @@ class ValidateCourseSearchForm(FormValidationAction):
 		domain: DomainDict,
 	) -> Dict[Text, Any]:
 		"""Validate level"""
-		if str(slot_value).lower() in self.level_db():
+
+		if slot_value and slot_value.lower() in self.level_db():
 			return {"level": slot_value.lower()}
 		else:
 			return {"level": None}
