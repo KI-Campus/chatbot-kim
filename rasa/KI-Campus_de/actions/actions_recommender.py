@@ -229,6 +229,7 @@ class ActionGetLearningRecommendation(Action):
 			else:
 				size = len(response)
 				limit = min(size, 3)
+				dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations).format(size))
 				course_label = get_response(self.responses, self.Responses.found_course_item)
 				button_group = []
 				for course in response[0:limit]:
@@ -236,8 +237,7 @@ class ActionGetLearningRecommendation(Action):
 					url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
 					# dispatcher.utter_message(text="* [{0}](https://ki-campus.org/course/{1})".format(title, url_param))
 					button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-				message = get_response(self.responses, self.Responses.found_recommendations).format(size)
-				dispatcher.utter_message(text=message, buttons=button_group)
+				dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 				if limit < size:
 					rest = size - limit
@@ -309,14 +309,14 @@ class ActionAdditionalLearningRecommendation(Action):
 			recommendations = recommendations[3:]
 			size = len(recommendations)
 			limit = min(size, 3)
+			dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations).format(size))
 			course_label = get_response(self.responses, self.Responses.additional_course_item)
 			button_group = []
 			for course in recommendations[0:limit]:
 				title = course['name']
 				url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
 				button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-			message = get_response(self.responses, self.Responses.additional_recommendations).format(size)
-			dispatcher.utter_message(text=message, buttons=button_group)
+			dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 			if limit < size:
 				rest = size - limit
