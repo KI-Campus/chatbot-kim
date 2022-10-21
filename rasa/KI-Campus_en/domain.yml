@@ -190,4 +190,3 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Thanks for your feedback!"
-  
