@@ -125,6 +125,7 @@ class ActionGetCourses(Action):
 
 class ActionGetAchievements(Action):
 	class Responses(ResponseEnum):
+		request_language_code = auto()
 		achievement_description = auto()
 		"""
 		text achievement_description has 1 parameter:
@@ -155,12 +156,13 @@ class ActionGetAchievements(Action):
 				courseId = course['id']
 				currentCourse = course
 				break
-		if courseId != 0:	
+		if courseId != 0:
+			req_lang = get_response(self.responses, self.Responses.request_language_code)
 			r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses/{0}/achievements'.format(courseId), 
 			headers={
 				"content-type": "application/json",
 				"Authorization": 'Bearer {0}'.format(token), 
-				"Accept-Language": "en"
+				"Accept-Language": "{0}".format(req_lang)
 			})
 			status = r.status_code
 			if status == 200:

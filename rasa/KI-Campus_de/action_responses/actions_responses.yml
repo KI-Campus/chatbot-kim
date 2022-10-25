@@ -26,6 +26,7 @@ action_get_courses:
   error_401: Du bist derzeit in keinem Kurs eingeschrieben.
 
 action_get_achievements:
+  request_language_code: de
   # achievement_description parameter {0}: (textual) description of field "description" in data-object for achievement
   achievement_description: "{0}"
   course_not_found: Es tut mir sehr leid! Ich konnte den Kurs, den du suchst, nicht finden. Bitte versuche es erneut, in dem du mir den Kurstitel nennst.

@@ -26,6 +26,7 @@ action_get_courses:
   error_401: You are currently not enrolled in any courses.
 
 action_get_achievements:
+  request_language_code: en
   # achievement_description parameter {0}: (textual) description of field "description" in data-object for achievement
   achievement_description: "{0}"
   course_not_found: I am very sorry! I could not find the course you are looking for. Please try again by telling me the course title.
