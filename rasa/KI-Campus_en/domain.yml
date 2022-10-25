@@ -16,6 +16,7 @@ intents:
 - bot_challenge
 - human_handoff
 - insults
+- inform
 
 actions:
 - action_get_courses
@@ -41,11 +42,13 @@ slots:
     influence_conversation: false
     mappings:
     - type: from_entity
+      intent: inform
       entity: Course
       conditions:
       - active_loop: course_form
         requested_slot: current_course_title
     - type: from_text
+      intent: inform
       not_intent:
       - faq
       - affirm
@@ -79,8 +82,8 @@ slots:
     mappings:
     - type: custom
 session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  session_expiration_time: 5
+  carry_over_slots_to_new_session: false
 responses:
   utter_submit:
   - text: Thanks for providing me with the course title!
@@ -93,13 +96,18 @@ responses:
   utter_use_contact_form:
   - text: You can also use our contact form to get help for your technical problem. We will try to answer you as soon as possible.
   utter_have_a_nice_day:
-  - text: Okay. Have a nice day! Bye.
+  - text: Have a nice day! Bye.
   utter_bye:
   - text: Bye!
   utter_more_info:
   - text: Okay. What can I help you with?
   utter_anything_else:
   - text: Is there anything else I can help you with?
+    buttons:
+    - title: "Yes"
+      payload: "/affirm"
+    - title: "No"
+      payload: "/deny"
   utter_faq/ask_about_moocs:
   - text: We've compiled some basic information about online courses <a href="https://open.hpi.de/pages/mooc">here</a>.
   utter_faq/ask_about_ki:
@@ -164,7 +172,21 @@ responses:
   - text: I am KIm, your virtual assistant.
   utter_ask_handoff:
   - text: Would you rather talk to our helpdesk team?
+    buttons:
+    - title: "Yes"
+      payload: "/affirm"
+    - title: "No"
+      payload: "/deny"
   utter_handoff:
   - text: 'To speak with our helpdesk team, click on the "Contact Form" tab and briefly describe your concern there. The helpdesk team will get back to you as soon as possible.'
   utter_insults:
   - text: "Well, well, well, you are quite a bad one :) Please pay a little better attention to your wording! I'm just a machine, but I also have feelings!!!"
+  utter_feedback:
+  - text: "Was I able to help you with your request?"
+    buttons:
+    - title: "Yes"
+      payload: "/affirm"
+    - title: "Not really ..."
+      payload: "/deny"
+  utter_thankyou_feedback:
+  - text: "Thanks for your feedback!"

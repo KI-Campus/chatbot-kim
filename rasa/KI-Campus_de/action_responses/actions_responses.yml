@@ -12,18 +12,18 @@
 
 
 action_get_courses_buttons:
-  no_courses: Du bist derzeit in keinem Kursen eingeschrieben.
+  no_courses: Du bist derzeit in keinem Kurs eingeschrieben.
   list_courses: "Du bist derzeit in diesen Kursen eingeschrieben:"
   # course_label parameter {0}: the title of the course
   course_label: "{0}"
-  error_401: Du bist derzeit in keinem Kursen eingeschrieben.
+  error_401: Du bist derzeit in keinem Kurs eingeschrieben.
 
 action_get_courses:
-  no_courses: Du bist derzeit in keinem Kursen eingeschrieben.
+  no_courses: Du bist derzeit in keinem Kurs eingeschrieben.
   list_courses: "Du bist derzeit in diesen Kursen eingeschrieben:"
   # course_title parameter {0}: the title of the course
   course_title: "{0}"
-  error_401: Du bist derzeit in keinem Kursen eingeschrieben.
+  error_401: Du bist derzeit in keinem Kurs eingeschrieben.
 
 action_get_achievements:
   # achievement_description parameter {0}: (textual) description of field "description" in data-object for achievement

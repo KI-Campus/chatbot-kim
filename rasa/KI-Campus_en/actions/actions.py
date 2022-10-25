@@ -176,7 +176,10 @@ class ActionGetAchievements(Action):
 				SlotSet('current_course_title', None)]
 		else:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.course_not_found))
-			return [SlotSet('current_course_achieved', course_achieved), SlotSet('current_course', currentCourse), SlotSet('current_achievements', currentAchievements)]
+			return[SlotSet('current_course_achieved', course_achieved), 
+			SlotSet('current_course', currentCourse), 
+			SlotSet('current_achievements', currentAchievements), 
+			SlotSet('current_course_title', None)]
 
 
 
