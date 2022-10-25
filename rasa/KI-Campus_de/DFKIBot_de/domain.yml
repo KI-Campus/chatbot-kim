@@ -54,6 +54,10 @@ actions:
   - action_delete_slot_value
   - utter_bot_apology_feedback
   - utter_bot_apology
+  # FIXME [russa] utter_end_of_conversation was removed in upstream parent-project
+  # HACK  [russa] copied old definition from ../domain.yml to here
+  # TODO  [russa] remove usage of utter_end_of_conversation in DFKIBot_de
+  - utter_end_of_conversation
 entities:
   - language
   - topic
@@ -221,6 +225,15 @@ responses:
   #          - Level: {level}\n\n
   #          - Zertifikat: {certificate}\n\n
   #          - Dauer: {max_duration}"
+  # FIXME [russa] utter_end_of_conversation was removed in upstream parent-project
+  # HACK  [russa] copied old definition from ../domain.yml to here
+  # TODO  [russa] remove usage of utter_end_of_conversation in DFKIBot_de
+  utter_end_of_conversation:
+  - custom:
+      signal: End of Conversation
+  utter_anything_else:
+  - text: Kann ich dir noch mit etwas anderem behilflich sein?
+
 session_config:
   session_expiration_time: 60  
   carry_over_slots_to_new_session: true  
