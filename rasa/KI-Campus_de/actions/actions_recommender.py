@@ -346,7 +346,7 @@ class ActionDeleteSlotValue(Action):
 		elif  intent == 'change_level_slot': return [SlotSet("level", None)]
 		elif  intent == 'change_max_duration_slot': return [SlotSet("max_duration", None)]
 		elif  intent == 'change_certificate_slot': return [SlotSet("certificate", None)]
-		elif  intent == 'start_coursesearch_form': return [SlotSet("language", None), SlotSet("topic", None), SlotSet("level", None), SlotSet("max_duration", None), SlotSet("certificate", None)]
+		elif  intent == 'start_recommender_form': return [SlotSet("language", None), SlotSet("topic", None), SlotSet("level", None), SlotSet("max_duration", None), SlotSet("certificate", None)]
 		else:  return []
 
 
@@ -540,7 +540,7 @@ class ActionAskCertificate(Action):
 		return []
 
 
-class ValidateCourseSearchForm(FormValidationAction):
+class ValidateRecommenderForm(FormValidationAction):
 	class Responses(ResponseEnum):
 		unsupported_language_selection = auto()
 		"""
@@ -555,7 +555,7 @@ class ValidateCourseSearchForm(FormValidationAction):
 		assert_responses_exist(self.responses, self.Responses)
 
 	def name(self) -> Text:
-		return "validate_coursesearch_form"
+		return "validate_recommender_form"
 
 	@staticmethod
 	def language_db() -> List[Text]:

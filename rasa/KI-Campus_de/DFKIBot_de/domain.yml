@@ -1,12 +1,16 @@
 version: '3.1'
 forms:
-  coursesearch_form:
+  recommender_form:
     ignored_intents:
       - greet
       - goodbye
       - get_course
       - get_achievements
       - get_courses
+      - change_topic_slot
+      - change_language_slot
+      - change_level_slot
+      - change_max_duration_slot
     required_slots:
       - language
       - topic 
@@ -14,7 +18,7 @@ forms:
       - max_duration
       - level
 intents:
-  - start_coursesearch_form
+  - start_recommender_form
   - inform
   - undecided
   - restart
@@ -38,22 +42,26 @@ actions:
   - utter_interjection_costs
   - utter_interjection_time
   - utter_interjection_topic
-  - utter_ask_continue_coursesearch_form
-  - validate_coursesearch_form
+  - utter_ask_continue_recommender_form
+  - validate_recommender_form
   - action_fetch_profile
   - utter_anything_else_v2
   - utter_tip_login
-  - utter_affirm_start_coursesearch_form
+  - utter_affirm_start_recommender_form
+  - utter_affirm_start_recommender_form_login 
   - action_additional_learning_recommendation
-  - utter_course_form_slots 
   - action_ask_language
   - action_ask_topic
   - action_ask_level
   - action_ask_max_duration
   - action_ask_certificate
   - action_delete_slot_value
-  - utter_bot_apology_feedback
   - utter_bot_apology
+
+  ## BUG?
+  - utter_course_form_slots
+  - utter_how_can_i_help
+  - utter_bot_introduction
 entities:
   - language
   - topic
@@ -75,13 +83,13 @@ slots:
     - type: from_entity
       entity: language
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: language
     - type: from_intent
       intent: undecided
       value: 'egal'
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: language
   topic:
     type: text
@@ -90,13 +98,13 @@ slots:
       entity: topic
       not_intent: FAQ_topic
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: topic
     - type: from_intent
       intent: undecided
       value: egal
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: topic
   certificate:
     type: text
@@ -104,13 +112,13 @@ slots:
     - type: from_entity
       entity: certificate
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: certificate
     - type: from_intent
       intent: undecided
       value: egal
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: certificate
   level:
     type: text
@@ -118,13 +126,13 @@ slots:
     - type: from_entity
       entity: level
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: level
     - type: from_intent
       intent: undecided
       value: egal
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: level
   max_duration:
     type: text
@@ -132,7 +140,7 @@ slots:
     - type: from_entity
       entity: max_duration
       conditions:
-      - active_loop: coursesearch_form
+      - active_loop: recommender_form
         requested_slot: max_duration
   user_login:
     type: bool
@@ -142,8 +150,10 @@ slots:
       action: action_check_login
   user_id:
     type: text
+    influence_conversation: false
     mappings:
     - type: custom
+      action: action_check_login
   enrollments:
     type: list
     mappings:
@@ -159,8 +169,15 @@ slots:
 responses:
   utter_tip_login:
   - text: "💡 Tipp: Für eine möglichst gute Kursempfehlung helfen mir die Informationen aus deinem Profil. Melde dich bitte hier an." 
-  utter_affirm_start_coursesearch_form:
+  utter_affirm_start_recommender_form_login:
   - text: "Super! Hast du dich eingeloggt? Falls du dich nicht einloggen möchtest oder noch kein Profil bei uns hast, ist das auch kein Problem! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
+    buttons: 
+      - title: Ja, los geht's!
+        payload: /affirm   
+      - title: Nein, ich habe ein anderes Anliegen!
+        payload: /deny
+  utter_affirm_start_recommender_form:
+  - text: "Super! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
     buttons: 
       - title: Ja, los geht's!
         payload: /affirm   
@@ -169,12 +186,12 @@ responses:
   utter_anything_else_v2:
   - text: Womit kann ich dir noch behilflich sein?
   - text: Wie kann ich dir sonst noch helfen?
-  utter_ask_continue_coursesearch_form:
+  utter_ask_continue_recommender_form:
   - text: Alles klar, dann beenden wir die Kurssuche und wechseln das Thema! Einverstanden?
   utter_bot_apology:
   - text: Das tut mir leid! Ich muss noch vieles dazu lernen und werde mich immer weiter verbessern!
-  utter_bot_apology_feedback:
-  - text: Ich freue mich über dein Feedback! Um mir Feedback zu hinterlassen, klicke hier. 
+  # utter_bot_apology_feedback:
+  # - text: Ich freue mich über dein Feedback! Um mir Feedback zu hinterlassen, klicke hier. 
   utter_bot_information:
   - text: Ich helfe dir bei Fragen rund um den KI-Campus oder unterstütze dich bei der Suche nach einem passenden Kurs! Was kann ich für dich tun?
   utter_interjection_languages:
@@ -187,7 +204,7 @@ responses:
   - text: Du findest auf dem KI-Campus sowohl Kurse über Grundlagenwissen zu KI als auch interdisziplinäre Fragestellungen und vertiefende Lernangebote.
   utter_restart:
   - text: Wir starten die Konversation jetzt noch mal neu!
-  utter_submit_coursesearch_form:
+  utter_submit_recommender_form:
   - text: "Einen kleinen Moment bitte, ich suche passende Kurse für dich raus."
   utter_anything_else:
   - text: Kann ich dir noch mit etwas anderem behilflich sein?

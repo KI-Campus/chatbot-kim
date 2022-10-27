@@ -26,10 +26,6 @@ actions:
 - action_set_current_course
 - action_download_certificate
 
-# bug? policies? 
-- utter_how_can_i_help
-- utter_bot_introduction
-
 entities:
 - certificate_type
 - Course

@@ -7,13 +7,13 @@ rules:
     - intent: restart
     - action: action_restart
 
-  - rule: submit course form
+  - rule: submit recommender form
     condition:
-    - active_loop: coursesearch_form 
+    - active_loop: recommender_form 
     steps:
-    - action: coursesearch_form      
+    - action: recommender_form      
     - active_loop: null           
-    - action: utter_submit_coursesearch_form
+    - action: utter_submit_recommender_form
     - action: action_get_learning_recommendation  
     - action: utter_anything_else_v2
 

@@ -1,7 +1,5 @@
 version: "3.1"
-
 nlu:
-
 - intent: greet
   examples: |
     - hi
@@ -9,7 +7,7 @@ nlu:
     - hi kim
     - hallöchen
     - heyho
-- intent: start_coursesearch_form
+- intent: start_recommender_form
   examples: |
     - kannst du mir einen kurs suchen
     - ich suche einen kurs
@@ -30,6 +28,7 @@ nlu:
     - Kann ich die Sprache ändern?
     - ändere die Sprache auf [Englisch]{"entity": "language", "value": "englisch"}
     - kannst du die sprache auf [deutsch](language) ändern?
+    - mach mit der kurssuche weiter
 - intent: additional_learning_recommendation
   examples: |
     - gib mir weitere empfehlungen
@@ -40,6 +39,7 @@ nlu:
     - danke das wars
     - das wars
     - Danke das war alles
+    - danke
 - intent: deny
   examples: |
     - nein
@@ -75,6 +75,7 @@ nlu:
 - intent: stop_form
   examples: |
     - abbrechen
+    - bitte abbrechen
 - intent: change_max_duration_slot
   examples: |
     - Ändere die Dauer der Kurse
@@ -90,6 +91,12 @@ nlu:
 - intent: goodbye
   examples: |
     - Tschüss
+- intent: inform
+  examples: |
+    - hast du auch [russisch](language)
+- intent: help
+  examples: |
+    - hilfe
 - synonym: KI
   examples: |
     - ki
@@ -99,3 +106,9 @@ nlu:
 - synonym: Maschinelles Lernen
   examples: |
     - ML
+- synonym: Experte
+  examples: |
+    - experten
+- synonym: Leistungsnachweis
+  examples: |
+    - zertifikat

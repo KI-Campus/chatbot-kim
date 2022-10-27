@@ -85,6 +85,6 @@ action_ask_certificate:
   certificate_option_qualified: Leistungsnachweis (benotet)
   certificate_option_any: egal
 
-validate_coursesearch_form:
+validate_recommender_form:
   # unsupported_language_selection parameter {0}: the (unsupported) language
   unsupported_language_selection: "Wir bieten auf dem KI-Campus keine Kurse auf {0} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!"
