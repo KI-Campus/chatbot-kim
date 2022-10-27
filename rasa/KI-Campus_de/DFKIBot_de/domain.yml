@@ -54,10 +54,6 @@ actions:
   - action_delete_slot_value
   - utter_bot_apology_feedback
   - utter_bot_apology
-  # FIXME [russa] utter_end_of_conversation was removed in upstream parent-project
-  # HACK  [russa] copied old definition from ../domain.yml to here
-  # TODO  [russa] remove usage of utter_end_of_conversation in DFKIBot_de
-  - utter_end_of_conversation
 entities:
   - language
   - topic
@@ -88,15 +84,6 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: language
   topic:
-    # type: categorical
-    # values:
-    #   - KI-Einführung
-    #   - KI-Vertiefung
-    #   - KI-Berufsfelder
-    #   - KI-Gesellschaft
-    #   - Data Science
-    #   - Maschinelles Lernen
-    #   - egal
     type: text
     mappings:  
     - type: from_entity
@@ -112,11 +99,6 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: topic
   certificate:
-    # type: categorical
-    # values:
-    #   - Teilnahmebescheinigung
-    #   - Leistungsnachweis
-    #   - egal
     type: text
     mappings:
     - type: from_entity
@@ -131,11 +113,6 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: certificate
   level:
-    # type: categorical
-    # values:
-    #   - Einsteiger
-    #   - Fortgeschritten
-    #   - Experte 
     type: text
     mappings:
     - type: from_entity
@@ -150,11 +127,6 @@ slots:
       - active_loop: coursesearch_form
         requested_slot: level
   max_duration:
-    # type: categorical
-    # values:
-    #   - '10'
-    #   - '50'
-    #   - '51'
     type: text
     mappings:
     - type: from_entity
@@ -217,20 +189,6 @@ responses:
   - text: Wir starten die Konversation jetzt noch mal neu!
   utter_submit_coursesearch_form:
   - text: "Einen kleinen Moment bitte, ich suche passende Kurse für dich raus."
-  # #debug
-  # utter_course_form_slots:
-  # - text: "Du hast eine Kurssuche mit folgenden Angaben gemacht:\n\n 
-  #          - Sprache: {language}\n\n
-  #          - Thema: {topic}\n\n
-  #          - Level: {level}\n\n
-  #          - Zertifikat: {certificate}\n\n
-  #          - Dauer: {max_duration}"
-  # FIXME [russa] utter_end_of_conversation was removed in upstream parent-project
-  # HACK  [russa] copied old definition from ../domain.yml to here
-  # TODO  [russa] remove usage of utter_end_of_conversation in DFKIBot_de
-  utter_end_of_conversation:
-  - custom:
-      signal: End of Conversation
   utter_anything_else:
   - text: Kann ich dir noch mit etwas anderem behilflich sein?
 
