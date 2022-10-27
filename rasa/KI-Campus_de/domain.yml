@@ -16,7 +16,7 @@ intents:
 - bot_challenge
 - human_handoff
 - insults
-- inform
+- courses
 
 actions:
 - action_get_courses

@@ -64,7 +64,7 @@ class ActionGetCoursesButtons(Action):
 				buttonGroup = []
 				for course in response:
 					title = course['title']
-					buttonGroup.append({"title": courseTitle.format(title), "payload": '/inform{{"Course": "{0}"}}'.format(title)})
+					buttonGroup.append({"title": courseTitle.format(title), "payload": '/courses{{"Course": "{0}"}}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
 		elif status == 401:  # Status-Code 401 None
