@@ -600,5 +600,3 @@ nlu:
       - Einführung R
       - statistische Methoden
       - R Programmierung
-  # - regex: max_duration
-  #   - \b[a-zA-Z*] \d{2}|[a-zA-Z*]\b

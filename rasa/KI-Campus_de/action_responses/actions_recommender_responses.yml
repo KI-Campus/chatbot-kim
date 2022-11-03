@@ -14,12 +14,14 @@
 action_get_learning_recommendation:
   no_recommendations_found: Leider konnte ich keinen Kurs für diese Parameter finden.
   # found_recommendations parameter {0}: total number (int) of found course recommendations
-  found_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): "
+  found_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): " ## DELETE number
+  ## ADD found_recommendations_single: "Also, ich empfehle dir folgenden Kurs: "
   # found_course_item parameter {0}: the title of the course
   # found_course_item parameter {1}: the URL-parameter /-ID for the course
   found_course_item: "{0}"
   # found_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   found_recommendations_more_single: "... und {0} weiterer Kurs"
+  ## CHANGE found_recommendations_more_single: "... und einen weiteren Kurs"
   # found_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   found_recommendations_more_multiple: "... und {0} weitere Kurse"
   error_401: Leider gab es einen Fehler beim Zugriff auf die Kurse, bitte wende dich an den Administrator (Status 401).
@@ -37,12 +39,14 @@ action_get_learning_recommendation:
 action_additional_learning_recommendation:
   no_more_recommendations: Leider konnte ich keine weiteren Empfehlungen zu deinen Suchparametern finden.
   # additional_recommendations parameter {0}: total number (int) of additional (not yet displayed) course recommendations
-  additional_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): "
+  additional_recommendations: "Also, ich empfehle dir folgende Kurse ({0}): " ## DELETE number
+  ## ADD additional_recommendations_single: "Also, ich empfehle dir folgenden Kurs:"
   # additional_course_item parameter {0}: the title of the course
   # additional_course_item parameter {1}: the URL-parameter /-ID for the course
   additional_course_item: "{0}"
   # additional_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   additional_recommendations_more_single: "... und {0} weiterer Kurs"
+  ## CHANGE additional_recommendations_more_single: "... und einen weiteren Kurs"
   # additional_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   additional_recommendations_more_multiple: "... und {0} weitere Kurse"
 
@@ -67,8 +71,8 @@ action_ask_topic:
 action_ask_level:
   confirm_and_show_change_level: "Du möchtest also das Level von deinem Wunschkurs ändern. Die Kurse auf dem KI-Campus haben die folgenden Level zur Auswahl:"
   ask_select_level: Wie schätzt du deine Vorkenntnisse im Bereich KI ein?
-  level_option_beginner: Anfänger*in
-  level_option_advanced: Fortgeschrittene*r
+  level_option_beginner: Anfänger:in
+  level_option_advanced: Fortgeschrittene:r
   level_option_expert: Experte
 
 action_ask_max_duration:

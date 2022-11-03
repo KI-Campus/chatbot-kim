@@ -58,10 +58,6 @@ actions:
   - action_delete_slot_value
   - utter_bot_apology
 
-  ## BUG?
-  - utter_course_form_slots
-  - utter_how_can_i_help
-  - utter_bot_introduction
 entities:
   - language
   - topic
