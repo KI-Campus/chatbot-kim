@@ -73,7 +73,7 @@ action_ask_level:
   ask_select_level: Wie schätzt du deine Vorkenntnisse im Bereich KI ein?
   level_option_beginner: Anfänger:in
   level_option_advanced: Fortgeschrittene:r
-  level_option_expert: Experte
+  level_option_expert: Expert:in
 
 action_ask_max_duration:
   confirm_and_show_change_duration: Wir haben unsere Kurse nach ihrer gesamten Stundenzahl unterteilt, wähle die für dich passende Kursdauer!
