@@ -1,32 +1,71 @@
-version: '3.0'
+version: '3.1'
 
 stories:
-- story: faq only
+- story: faq
   steps:
-    - intent: faq
-    - action: utter_faq
-    - action: utter_anything_else
-    - checkpoint: more_information
+  - intent: faq
+  - action: utter_faq
+  - action: utter_anything_else
+  - checkpoint: more_information
 
-- story: faq & more information
+- story: give help
   steps:
-    - checkpoint: more_information
-    - intent: affirm
-    - action: utter_more_info
+  - intent: help
+  - action: utter_help
 
-- story: faq & no more information
+- story: answer out of scope
   steps:
-    - checkpoint: more_information
-    - intent: deny
-    - action: utter_have_a_nice_day
-    - action: utter_end_of_conversation
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- story: Provide handoff accept
+  steps:
+  - intent: human_handoff
+  - action: utter_ask_handoff
+  - intent: affirm
+  - action: utter_handoff
+  - action: utter_bye
+
+- story: Provide handoff deny
+  steps:
+  - intent: human_handoff
+  - action: utter_ask_handoff
+  - intent: deny
+  - action: utter_anything_else
+  - checkpoint: more_information
 
 - story: get my courses
   steps:
-    - intent: get_courses
-    - action: action_get_courses
+  - intent: get_courses
+  - action: action_get_courses
 
-- story: Get achievements and courses available
+- story: more information
+  steps:
+  - checkpoint: more_information
+  - intent: affirm
+  - action: utter_more_info
+
+- story: no more information
+  steps:
+  - checkpoint: more_information
+  - intent: deny
+  - action: utter_feedback
+  - or:
+    - intent: affirm
+    - intent: deny
+  - action: utter_thankyou_feedback
+  - action: utter_have_a_nice_day
+
+- story: get achievements, no courses available
+  steps:
+  - intent: get_achievements
+  - action: action_get_courses_buttons
+  - slot_was_set:
+    - courses_available: false
+  - action: utter_anything_else
+  - checkpoint: more_information
+
+- story: get achievements, courses available, course not achieved
   steps:
   - intent: get_achievements
   - action: action_get_courses_buttons
@@ -38,46 +77,49 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_submit
-  - action: utter_starting_search_with_parameters
-  - checkpoint: get_achievements
+  - action: action_get_achievements
+  - slot_was_set:
+    - current_course_achieved: false
+  - action: utter_anything_else
+  - checkpoint: more_information
 
-- story: Get achievements and no courses available
+- story: get achievements, courses available, course achieved, download certificate
   steps:
   - intent: get_achievements
   - action: action_get_courses_buttons
   - slot_was_set:
-    - courses_available: false
+    - courses_available: true
+  - action: utter_ask_which_course
+  - action: course_form
+  - active_loop: course_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_get_achievements
+  - slot_was_set:
+    - current_course_achieved: true
+  - action: utter_download_certificate
+  - intent: affirm
+  - action: action_download_certificate
   - action: utter_anything_else
+  - checkpoint: more_information
 
-- story: get achievements, achieved course and ask for certificate and affirm
+- story: get achievements, courses available, course achieved, not download certificate
   steps:
-    - checkpoint: get_achievements
-    - action: action_get_achievements
-    - slot_was_set:
-      - current_course_achieved: true
-    - action: utter_download_certificate
-    - intent: affirm
-    - action: action_download_certificate
-    - action: utter_anything_else
-    - checkpoint: more_information
-
-- story: get achievements, achieved course and ask for certificate and deny
-  steps:
-    - checkpoint: get_achievements
-    - action: action_get_achievements
-    - slot_was_set:
-      - current_course_achieved: true
-    - action: utter_download_certificate
-    - intent: deny
-    - action: utter_anything_else
-    - checkpoint: more_information
-
-- story: get achievements, not achieved course and no certificate
-  steps:
-    - checkpoint: get_achievements
-    - action: action_get_achievements
-    - slot_was_set:
-      - current_course_achieved: false
-    - action: utter_anything_else
-    - checkpoint: more_information
+  - intent: get_achievements
+  - action: action_get_courses_buttons
+  - slot_was_set:
+    - courses_available: true
+  - action: utter_ask_which_course
+  - action: course_form
+  - active_loop: course_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_get_achievements
+  - slot_was_set:
+    - current_course_achieved: true
+  - action: utter_download_certificate
+  - intent: deny
+  - action: utter_anything_else
+  - checkpoint: more_information

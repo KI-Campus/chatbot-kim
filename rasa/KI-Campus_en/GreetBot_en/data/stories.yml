@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.1'
 
 stories:
 - story: User greets
@@ -10,7 +10,6 @@ stories:
   steps:
    - intent: goodbye
    - action: utter_goodbye
-   - action: utter_end_of_conversation
 
 - story: User thanks + bye
   steps:

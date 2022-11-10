@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.1'
 
 nlu:
 
@@ -46,6 +46,7 @@ nlu:
       - Hast du zusätzliche Vorschläge?
       - Hast du extra Empfehlungen
       - Nenne mir mehr Kursempfehlungen
+      - kannst du mir weitere kurse empfehlen? 
 
   - intent: change_language_slot
     examples: |
@@ -105,7 +106,6 @@ nlu:
       - Andere Themenkategorie
       - Ändere das Themenfeld
 
-
   - intent: change_level_slot
     examples: |
       - Suche auch für [Experten]{"entity": "level", "value": "Experte"}
@@ -134,7 +134,6 @@ nlu:
       - Kannst du mir anspruchsvollere Kurse empfehlen
       - Empfehle mir anspruchsvollere Kurse
 
-
   - intent: change_max_duration_slot
     examples: |
       - Suche auch nach längeren Kursen
@@ -160,7 +159,6 @@ nlu:
       - Kursdauer anpassen auf 
       - Gib mir Empfehlungen für umfangreichere Kurse
       - ich will doch auch empfehlungen bekommen, die über [50]{"entity": "max_duration", "value": "50"} h gehen   
-
 
   - intent: change_certificate_slot
     examples: |
@@ -230,11 +228,11 @@ nlu:
       - Bitte die Konversation neu machen .
       - Konversation neu beginnen .
       - Konversation neu anfangen .
-      - Konversation neu starten .
+      - Konversation neustarten .
       - Konversation neu machen .
     
-# coursesearch
-  - intent: start_coursesearch_form
+# recommender
+  - intent: start_recommender_form
     examples: |
       - Ich will eine Kursempfehlung erhalten
       - Ich will eine Kursempfehlung bekommen
@@ -338,8 +336,13 @@ nlu:
       - starte die suche
       - beginne die kurssuche
       - starte kurssuche
+      - Gib mir eine Empfehlung
+      - Kannst du mir eine Empfehlung geben
+      - neue Empfehlung
+      - empfehle mir einen kurs
+      - empfehle mir was
 
-  - intent: inform_coursesearch
+  - intent: inform
     examples: |
       - gerne in [Englisch]{"entity": "language", "value": "englisch"}
       - gerne in [Deutsch]{"entity": "language", "value": "deutsch"}
@@ -403,7 +406,6 @@ nlu:
       - in [französisch]{"entity": "language", "value": "französisch"}
       - auf [spanisch]{"entity": "language", "value": "spanisch"}
       - auf [französisch]{"entity": "language", "value": "französisch"}
-
 
       - ich schätze mich als [Einsteiger]{"entity": "level", "value": "Einsteiger"}
       - ich schätze mich als [Einsteigerin]{"entity": "level", "value": "Einsteiger"}
@@ -475,40 +477,39 @@ nlu:
       - [mit Note]{"entity": "certificate", "value": "Leistungsnachweis"}
       - [benotete Teilnahme]{"entity": "certificate", "value": "Leistungsnachweis"}
       - [benotet]{"entity": "certificate", "value": "Leistungsnachweis"}
-      - [Teilnahmebescheinigung]{"entity": "certificate", "value": "Teilnahmeschein"}
-      - [nur teilnehmen]{"entity": "certificate", "value": "Teilnahmeschein"}
-      - [nur Teilnhame]{"entity": "certificate", "value": "Teilnahmeschein"}
-      - [Teilnahme]{"entity": "certificate", "value": "Teilnahmeschein"}
-      - [Anwesenheit]{"entity": "certificate", "value": "Teilnahmeschein"}
+      - [Teilnahmebescheinigung]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [nur teilnehmen]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [nur Teilnhame]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [Teilnahme]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
+      - [Anwesenheit]{"entity": "certificate", "value": "Teilnahmebescheinigung"}
 
   - intent: stop_form
     examples: |
-      - stop
-      - anhalten
-      - halt
       - ich möchte die kurssuche beenden
       - ich will die Suche stoppen
       - ich will die Suche anhalten
       - ich will die Suche beenden
+      - ich will die Suche abbrechen
       - ich will die Befragung stoppen
       - ich will die Befragung anhalten
       - ich will die Befragung beenden
       - ich will die kurssuche stoppen
       - ich will die kurssuche anhalten
       - ich will die kurssuche beenden
+      - ich will die kurssuche abbrechen
       - ich möchte die Suche stoppen
       - ich möchte die Suche anhalten
       - ich möchte die Suche beenden
       - ich möchte die Befragung stoppen
       - ich möchte die Befragung anhalten
       - ich möchte die Befragung beenden
+      - ich möchte die Befragung abbrechen
       - ich möchte die kurssuche stoppen
       - ich möchte die kurssuche anhalten
       - ich möchte die kurssuche beenden
       - ich möchte die kurssuche abbrechen
-      - bitte beenden
-      - bitte stoppen
       - befragnung anhalten
+      - befragung abbrechen
       - kurssuche beenden
       - suche abbrechen
       - abbruch
@@ -516,8 +517,8 @@ nlu:
       - sofort abbrechen
       - ich will abbrechen
 
-# synonyme course_form  
-  - synonym: Teilnahmeschein
+# synonyme recommender_form  
+  - synonym: Teilnahmebescheinigung
     examples: |
       - Teilnahme
       - Bescheinigung
@@ -599,7 +600,3 @@ nlu:
       - Einführung R
       - statistische Methoden
       - R Programmierung
-  # - regex: max_duration
-  #   - \b[a-zA-Z*] \d{2}|[a-zA-Z*]\b
-
-

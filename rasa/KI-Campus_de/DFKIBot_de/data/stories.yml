@@ -1,169 +1,159 @@
-version: '3.0'
+version: '3.1'
 
 stories:
-
 # check user login utter_anything_else_v2 vs rule utter_anything_else ändern
-
-
-  - story: check login happy + start coursesearch
+  - story: check login happy + start recommender
     steps:
-    - intent: start_coursesearch_form
-    - action: utter_tip_login
-    - action: utter_affirm_start_coursesearch_form
-    - intent: affirm
+    - intent: start_recommender_form
+    - action: action_delete_slot_value
     - slot_was_set:
       - user_login: true
+    - action: utter_affirm_start_recommender_form #v2 erstellen: Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?
+    - intent: affirm
     - action: action_fetch_profile
     - slot_was_set:
-      - user_id: "22218451-41f0-23dd-c50f-cdd8096610c1"
       - enrollments: "Einführung in die KI"
       - course_visits: "Big Data Analytics"
       - search_terms: "KI"
-    - checkpoint: start_coursesearch_form
+    - checkpoint: start_recommender_form
 
-  - story: check login happy + no coursesearch
+  - story: check login happy + no recommender
     steps:
-    - intent: start_coursesearch_form
-    - action: utter_tip_login
-    - action: utter_affirm_start_coursesearch_form
+    - intent: start_recommender_form
+    - action: action_delete_slot_value
+    - slot_was_set:
+      - user_login: true
+    - action: utter_affirm_start_recommender_form # v2 erstellen
     - intent: deny
-    - slot_was_set:
-      - user_login: true
-    - action: action_fetch_profile
-    - slot_was_set:
-      - user_id: "22218451-41f0-23dd-c50f-cdd8096610c1"
-      - enrollments: "Einführung in die KI"
-      - course_visits: "Big Data Analytics"
-      - search_terms: "KI"
-    - action: utter_anything_else
+    - action: utter_anything_else_v2
 
-  - story: check login unhappy + start courseseach
+  - story: check login unhappy + start recommender
     steps:
-    - intent: start_coursesearch_form
-    - action: utter_tip_login
-    - action: utter_affirm_start_coursesearch_form
-    - intent: affirm
+    - intent: start_recommender_form
+    - action: action_delete_slot_value
     - slot_was_set:
       - user_login: false
-    - checkpoint: start_coursesearch_form
+    - action: utter_tip_login
+    - action: utter_affirm_start_recommender_form_login # v1
+    - intent: affirm
+    - checkpoint: start_recommender_form
 
   - story: check login unhappy + no courseseach
     steps:
-    - intent: start_coursesearch_form
-    - action: utter_tip_login
-    - action: utter_affirm_start_coursesearch_form
-    - intent: deny
+    - intent: start_recommender_form
+    - action: action_delete_slot_value
     - slot_was_set:
       - user_login: false
-    - action: utter_anything_else
+    - action: utter_tip_login
+    - action: utter_affirm_start_recommender_form_login #v1
+    - intent: deny
+    - action: utter_anything_else_v2
 
-# course search
+# recommender form
   - story: activate course form
     steps:
-    - checkpoint: start_coursesearch_form
-    - action: coursesearch_form      # run the form
-    - active_loop: coursesearch_form # this form is active
+    - checkpoint: start_recommender_form
+    - action: recommender_form      
+    - active_loop: recommender_form 
 
-# course search variations
+# recommender form variations
   - story: languages interjection
     steps:
-    - checkpoint: start_coursesearch_form
-    - action: coursesearch_form
-    - active_loop: coursesearch_form
+    - checkpoint: start_recommender_form
+    - action: recommender_form
+    - active_loop: recommender_form
     - intent: interjection_languages
     - action: utter_interjection_languages
-    - action: coursesearch_form
+    - action: recommender_form
 
   - story: time interjection
     steps:
-    - checkpoint: start_coursesearch_form
-    - action: coursesearch_form
-    - active_loop: coursesearch_form
+    - checkpoint: start_recommender_form
+    - action: recommender_form
+    - active_loop: recommender_form
     - intent: interjection_time
     - action: utter_interjection_time
-    - action: coursesearch_form
+    - action: recommender_form
 
   - story: costs interjection
     steps:
-    - checkpoint: start_coursesearch_form
-    - action: coursesearch_form
-    - active_loop: coursesearch_form
+    - checkpoint: start_recommender_form
+    - action: recommender_form
+    - active_loop: recommender_form
     - intent: interjection_costs
     - action: utter_interjection_costs
-    - action: coursesearch_form
+    - action: recommender_form
 
   - story: topic interjection
     steps:
-    - checkpoint: start_coursesearch_form
-    - action: coursesearch_form
-    - active_loop: coursesearch_form
+    - checkpoint: start_recommender_form
+    - action: recommender_form
+    - active_loop: recommender_form
     - intent: interjection_topic
     - action: utter_interjection_topic
-    - action: coursesearch_form
+    - action: recommender_form
 
-  - story: stop course form happy
+## KONFLIKT MIT KIC FAQ?
+  - story: faq interjection
     steps:
-    - checkpoint: start_coursesearch_form 
-    - action: coursesearch_form    
-    - active_loop: coursesearch_form
+    - checkpoint: start_recommender_form
+    - action: recommender_form
+    - active_loop: recommender_form
+    - intent: faq
+    - action: utter_faq
+    - action: recommender_form
+
+  - story: stop recommender form happy
+    steps:
+    - checkpoint: start_recommender_form 
+    - action: recommender_form    
+    - active_loop: recommender_form
     - intent: stop_form
-    - action: utter_ask_continue_coursesearch_form
-    - or:
-      - intent: stop_form
-      - intent: affirm
+    - action: utter_ask_continue_recommender_form
+    - intent: affirm
     - action: action_deactivate_loop
     - active_loop: null
     - slot_was_set:
       - requested_slot: null
-    - action: utter_bot_introduction
+    - action: utter_bot_information
     - intent: goodbye
     - action: utter_goodbye
 
-  - story: stop course form happy2
+  - story: stop recommender form happy 2
     steps:
-    - checkpoint: start_coursesearch_form 
-    - action: coursesearch_form    
-    - active_loop: coursesearch_form
+    - checkpoint: start_recommender_form 
+    - action: recommender_form    
+    - active_loop: recommender_form
     - intent: stop_form
-    - action: utter_ask_continue_coursesearch_form
-    - or:
-      - intent: stop_form
-      - intent: affirm
+    - action: utter_ask_continue_recommender_form
+    - intent: affirm
     - action: action_deactivate_loop
     - active_loop: null
     - slot_was_set:
       - requested_slot: null
-    - action: utter_bot_introduction
+    - action: utter_bot_information
     - intent: faq
     - action: utter_faq
     - action: utter_anything_else
 
-  - story: stop course form unhappy
+  - story: stop recommender form unhappy
     steps:
-    - checkpoint: start_coursesearch_form 
-    - action: coursesearch_form    
-    - active_loop: coursesearch_form
+    - checkpoint: start_recommender_form 
+    - action: recommender_form    
+    - active_loop: recommender_form
     - intent: stop_form
-    - action: utter_ask_continue_coursesearch_form
-    - or:
-      - intent: deny
-    - action: coursesearch_form
+    - action: utter_ask_continue_recommender_form
+    - intent: deny
+    - action: recommender_form
 
-#  utter_more_info:
-#   - text: Okay. Wie kann ich dir weiterhelfen?
-#   utter_anything_else:
-#   - text: Kann ich dir noch mit etwas anderem behilflich sein?
-# - checkpoint: more_information
-
-# negative feedback
   - story: negative feedback reaction
     steps:
     - intent: negative_feedback 
     - action: utter_bot_apology
-    - action: utter_bot_apology_feedback # implement feedback form?
-    - action: utter_anything_else_v2
+    - action: utter_anything_else
+    - checkpoint: more_information
 
-# change single course search parameters
+# change course search parameter
   - story: get more learning recommendation
     steps:
     - intent: additional_learning_recommendation
@@ -171,33 +161,37 @@ stories:
     - action: action_additional_learning_recommendation
     - action: utter_anything_else_v2
 
-# option 2 problem: start only after form 
   - story: change language learning recommendation
     steps:
     - intent: change_language_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: recommender_form      
+    - active_loop: recommender_form 
 
   - story: change topic learning recommendation
     steps:
     - intent: change_topic_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: recommender_form      
+    - active_loop: recommender_form 
 
   - story: change level learning recommendation
     steps:
     - intent: change_level_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: recommender_form      
+    - active_loop: recommender_form 
 
   - story: change max_duration learning recommendation
     steps:
     - intent: change_max_duration_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: recommender_form      
+    - active_loop: recommender_form 
 
   - story: change certificate learning recommendation
     steps:
     - intent: change_certificate_slot
     - action: action_delete_slot_value
-    - active_loop: coursesearch_form
+    - action: recommender_form      
+    - active_loop: recommender_form 

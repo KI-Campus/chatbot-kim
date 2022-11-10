@@ -1,15 +1,9 @@
-version: '3.0'
+version: '3.1'
 forms:
   course_form:
-    ignored_intents:
-    - faq
-    - greet
-    - goodbye
-    - thank
-    - deny
-    - affirm
+    ignored_intents: []
     required_slots:
-    - current_course_title
+      - current_course_title
 intents:
 - deny
 - affirm
@@ -17,8 +11,13 @@ intents:
 - get_course
 - get_achievements
 - get_courses
-- inform:
-    use_entities: true
+- help
+- out_of_scope
+- bot_challenge
+- human_handoff
+- insults
+- courses
+
 actions:
 - action_get_courses
 - action_get_courses_buttons
@@ -26,12 +25,12 @@ actions:
 - action_course_set
 - action_set_current_course
 - action_download_certificate
-- action_all_slots
+
 entities:
 - certificate_type
-- course_name
 - Course
 - country
+
 slots:
   all_courses:
     type: list
@@ -42,10 +41,23 @@ slots:
     type: text
     influence_conversation: false
     mappings:
-    - type: from_text
+    - type: from_entity
+      intent: inform
+      entity: Course
       conditions:
       - active_loop: course_form
         requested_slot: current_course_title
+    - type: from_text
+      intent: inform
+      not_intent:
+      - faq
+      - affirm
+      - deny
+      conditions:
+      - active_loop: course_form
+        requested_slot: current_course_title
+    - type: from_entity
+      entity: Course
   current_course:
     type: list
     influence_conversation: false
@@ -66,38 +78,37 @@ slots:
     - type: custom
   courses_available:
     type: bool
+    influence_conversation: true
     mappings:
     - type: custom
 session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  session_expiration_time: 5
+  carry_over_slots_to_new_session: false
 responses:
   utter_submit:
   - text: Alles klar!
   - text: In Ordnung!
-  utter_starting_search_with_parameters:
-  - text: "Ich suche nun mit folgenden Parametern nach Kursen:\n - Kurs: {current_course_title}"
-  utter_finished:
-  - text: Die Unterhaltung wurde beendet.
   utter_download_certificate:
   - text: Möchtest du deinen Leistungsnachweis oder deine Teilnahmebestätigung herunterladen?
   utter_ask_which_course:
   - text: Bitte wähle einen Kurs aus, für den du deinen Fortschritt oder deine Bescheinigungen sehen möchtest.
   utter_out_of_scope:
-  - text: Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen. 
-  utter_ask_rephrase:
-  - text: Es tut mir leid, das habe ich nicht ganz verstanden. Könntest du das anders formulieren?
+  - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". ' 
   utter_use_contact_form:
-  - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe  zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
-  utter_end_of_conversation:
-  - custom:
-      signal: End of Conversation
+  - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
   utter_have_a_nice_day:
-  - text: Alles klar. Hab einen schönen Tag und bis bald!
+  - text: Hab einen schönen Tag und bis bald!
+  utter_bye:
+  - text: Tschüss!
   utter_more_info:
   - text: Okay. Wie kann ich dir weiterhelfen?
   utter_anything_else:
   - text: Kann ich dir noch bei etwas anderem helfen?
+    buttons:
+    - title: "Ja"
+      payload: "/affirm"
+    - title: "Nö, danke für deine Hilfe!"
+      payload: "/deny"
   utter_faq/ask_about_moocs:
   - text: Ein paar grundlegende Informationen zu Online-Kursen haben wir <a href="https://open.hpi.de/pages/mooc">hier</a> zusammengetragen.
   utter_faq/ask_about_ki:
@@ -109,7 +120,7 @@ responses:
   utter_faq/ask_about_goals:
   - text: Die Vision des KI-Campus ist eine KI-kompetente Gesellschaft. Die Lernplattform möchte KI-Kompetenzen vermitteln und mehr Menschen für das Thema begeistern.  Lernende sollen befähigt werden, KI-Entwicklungen zu verstehen, zu hinterfragen und mitzugestalten.  Damit begegnet der KI-Campus dem akuten Fachkräftemangel und stärkt zugleich in der Breite einen mündigen Umgang mit KI.
   utter_faq/ask_about_developers:
-  - text: Der KI-Campus wird als Pilotprojekt gemeinsam vom Stifterverband, dem Deutschen Forschungszentrum für Künstliche Intelligenz (DFKI), dem Hasso-Plattner-Institut (HPI), NEOCOSMO und dem mmb Institut entwickelt.  Zahlreiche Hochschulen und Institutionen bringen sich als Partner ein, sowohl bei der Erstellung von Lernangeboten als auch bei der Nutzung des Angebots des KI-Campus für ihre  Zielgruppen.
+  - text: Der KI-Campus wird als Pilotprojekt gemeinsam vom Stifterverband, dem Deutschen Forschungszentrum für Künstliche Intelligenz (DFKI), dem Hasso-Plattner-Institut (HPI), NEOCOSMO und dem mmb Institut entwickelt.  Zahlreiche Hochschulen und Institutionen bringen sich als Partner ein, sowohl bei der Erstellung von Lernangeboten als auch bei der Nutzung des Angebots des KI-Campus für ihre Zielgruppen.
   utter_faq/ask_about_learningoffer:
   - text: Von Online-Kursen über Videos und Podcasts bis hin zu interaktiven Übungen – der KI-Campus stellt Lernenden eine vielfältige Auswahl hochwertiger kostenloser Lernangebote zu unterschiedlichen Themenfeldern der KI gebündelt auf einer Lernplattform zur Verfügung.
   utter_faq/ask_about_topics:
@@ -156,3 +167,29 @@ responses:
   - text: 'Die KI-ExpertLabs sind die Think- & Do-Tanks des KI-Campus und dienen als zentrale inhaltliche und methodische Innovationshubs, die in besonders relevanten Anwendungsbereichen die Vernetzung von Erfahrungsträger:innen ermöglichen. Möchtest du mehr wissen über die KI-ExpertLabs in den jeweiligen Themenbereichen der Medizin, Hochschullehre oder Schule? Dann schaue dir <a href="https://ki-campus.org/expertlabs" _blank>diese Seite</a> an.'
   utter_faq/ask_fellowship:
   - text: 'Das Fellowship-Programm des KI-Campus richtet sich an Hochschullehrende aller Fachbereiche, die das Zukunftsthema KI in ihre Lehre tragen wollen und dafür die Integration von KI-Campus-Lernangeboten erproben. Möchtest du mehr erfahren? Dann schaue dir <a href="https://ki-campus.org/fellowships" _blank>diese Seite</a> zum KI-Fellowship an.'
+  utter_help:
+  - text: Ich helfe dir gerne bei technischen Problemen und Fragen zu den Kursen. Ich erkläre dir zum Beispiel den Kursaufbau und beantworte Fragen zum Zertifikat, zum Zurücksetzen des Passworts oder zum Ändern deiner persönlichen Daten. 
+  utter_default:
+  - text: Das habe ich nicht ganz verstanden. Kannst du das umformulieren?
+  utter_iamabot:
+  - text: Ich bin KIm, dein virtueller Assistent. 
+  utter_ask_handoff:
+  - text: Willst du lieber mit unserem Helpdesk-Team sprechen?
+    buttons:
+    - title: "Ja, bitte"
+      payload: "/affirm"
+    - title: "Nö"
+      payload: "/deny"
+  utter_handoff:
+  - text: 'Um mit unserem Helpdesk-Team zu sprechen, klicke auf den Reiter "Kontaktformular" und beschreibe uns dein Anliegen dort kurz. Das Helpdesk-Team wird sich zeitnah bei dir melden.'
+  utter_insults:
+  - text: "Na, na, na, du bist aber ein ganz Schlimmer :) Bitte achte etwas besser auf dein Wording! Ich bin zwar nur eine Maschine, aber ich habe auch Gefühle!!"
+  utter_feedback:
+  - text: "Hab ich dir bei deinem Anliegen helfen können?"
+    buttons:
+    - title: "Ja!"
+      payload: "/affirm"
+    - title: "Nicht wirklich ..."
+      payload: "/deny"
+  utter_thankyou_feedback:
+  - text: "Vielen Dank für dein Feedback!"

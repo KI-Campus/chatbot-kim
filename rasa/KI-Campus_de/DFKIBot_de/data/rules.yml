@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.1'
 
 rules:
 
@@ -7,16 +7,14 @@ rules:
     - intent: restart
     - action: action_restart
 
-# course search
-
-  - rule: submit course form
+  - rule: submit recommender form
     condition:
-    - active_loop: coursesearch_form   # this form must be active
+    - active_loop: recommender_form 
     steps:
-    - action: coursesearch_form      # run the form
-    - active_loop: null            # the form is no longer active because it has been filled
-    - action: utter_submit_coursesearch_form
-    - action: action_get_learning_recommendation  # action to take after the form is complete
+    - action: recommender_form      
+    - active_loop: null           
+    - action: utter_submit_recommender_form
+    - action: action_get_learning_recommendation  
     - action: utter_anything_else_v2
 
 

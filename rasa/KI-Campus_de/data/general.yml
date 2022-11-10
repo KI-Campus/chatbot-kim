@@ -1,41 +1,6 @@
-version: '3.0'
+version: '3.1'
 
 nlu:
-  - intent: out_of_scope
-    examples: |
-      - Ich will Essen bestellen
-      - Ich will Pizza
-      - Was ist 2 + 2?
-      - Wer ist der Präsident von [US]{"entity": "country"}?
-      - Wie kann ich nach [US]{"entity": "country"} ziehen?
-      - Was ist die Hauptstadt von [Germany]{"entity": "country"}?
-  - intent: inform
-    examples: |
-      - Für den Kurs [Schule macht Daten]{"entity": "Course"}
-      - Für [Schule macht Daten]{"entity": "Course"}
-      - Der Kurs [Schule macht Daten]{"entity": "Course"}
-      - Der Kurs ist [Schule macht Daten]{"entity": "Course"}
-      - [Schule macht Daten]{"entity": "Course"}
-
-  - lookup: Course
-    examples: |
-      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
-      - Launchpad to Fundamental Questions on AI
-      - Schule macht KI
-      - Wegweisende Anwendungen fürs Web
-      - Wie das Web technisch funktioniert
-      - Programmieregen fürs Web
-      - Mensch-Maschine-Interaktion
-      - Robot Learning
-      - Den Daten auf der Spur - Der Process Mining Podcast
-      - Daten- und Algorithmenethik
-      - AutoML - Automated Machine Learning
-      - Einführung in die KI
-      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
-      - Schule macht Daten
-      - Dr. med. KI
-      - Team Peer Assessments
-    
   - intent: get_courses
     examples: |
       - Ich möchte meine Kurse
@@ -51,6 +16,12 @@ nlu:
       - Bei welchem Kurs bin ich eingeschrieben?
       - Bei welchen Kursen bin ich zur Zeit eingeschrieben?
       - In welchen Kursen bin ich drin?
+      - Wie sind meine Kurse?
+      - Was sind meine Kurse?
+      - Welche sind meine Kurse?
+      - Was sind die Kurse in die ich eingeschrieben bin?
+      - Eingeschriebene Kurse
+      - Meine Kurse
 
   - intent: get_achievements
     examples: |
@@ -62,6 +33,58 @@ nlu:
       - Zeige mir meinen Fortschritt
       - Meine Leistungen auflisten
       - Ich möchte meinen Kursfortschritt
+
+  - intent: help
+    examples: |
+      - Ich brauche Hilfe
+      - Womit können Sie mir helfen?
+      - Womit kannst du mir helfen?
+      - können Sie mir helfen
+      - kannst du mir helfen
+      - Was können Sie tun?
+      - Was kannst du?
+      - Ich brauche etwas Hilfe
+      - helfen Sie mir
+      - hilf mir
+      - können Sie mir bitte helfen
+      - kannst du mir bitte helfen
+      - Problem
+      - großes Problem
+      - Wie können Sie mir helfen?
+      - Wie kannst du mir helfen?
+      - Ich brauche Hilfe
+      - Was sind meine Möglichkeiten?
+      - Was können Sie tun?
+      - was kannst du tun?
+      - Worum kann ich Sie bitten?
+      - Worum kann ich dich bitten?
+      - Was kann ich tun?
+      - Was können Sie vorführen?
+      - Was können Sie für mich tun?
+      - Was können Sie tun?
+      - Was können Sie mir sagen?
+      - Was können Sie tun
+      - Was kannst du vorführen?
+      - Was kannst du für mich tun?
+      - Was kannst du tun?
+      - Was kannst du mir sagen?
+      - Was kannst du tun
+      - irgendetwas anderes
+      - Gibt es noch andere Möglichkeiten?
+      - Kann ich Sie noch etwas fragen?
+      - Können Sie sonst noch etwas tun?
+      - Kannst du sonst noch etwas machen>
+      - Kommen Sie zurück
+      - Cool! Kann ich hier noch etwas tun?
+      - Hallo, was können Sie für mich tun?
+      - Hallo, was kannst du für mich machen?
+      - helfen
+      - hilf mir
+      - bitte helfen
+      - helfen Sie bitte
+      - hilf mir bitte
+      - helfen?
+      - Helfen Sie mir
 
   - intent: affirm
     examples: |
@@ -113,3 +136,147 @@ nlu:
       - bitte nicht
       - nein
       - nö
+
+  - intent: out_of_scope
+    examples: |
+      - Was ist die Quadratwurzel von 5
+      - Ich möchte das Wetter wissen
+      - was ist der Sinn des Lebens.
+      - Der Kühlschrank läuft nicht
+      - mein Fernseher funktioniert nicht
+      - Ich möchte eine Pizza
+      - meine Waschmaschine funktioniert nicht
+      - Welches Jahr ist es?
+      - bestelle eine pizza
+      - Ich möchte eine Pizza bestellen
+      - Wie ist das Wetter heute?
+      - Wie ist das Wetter?
+      - Wie alt bist du?
+      - Addiere zwei plus zwei
+      - Hdjejene
+      - asd
+      - titel
+      - Wie sieht es mit der Vorhersage aus?
+      - dumm
+      - witz
+      - Kann ich einen Hamburger bekommen?
+      - Kann YouTube reden?
+      - Können Sie mich zurückrufen?
+      - Kannst du mir das Passwort deines Rechenzentrums geben?
+      - Kannst du mir das Passwort deines Rechenzentrums geben?
+      - Kannst du Sandwiches machen?
+      - Kannst du mir bitte einen Uber schicken?
+      - Ich will Essen bestellen
+      - Ich will Pizza
+      - Was ist 2 + 2?
+      - Wer ist der Präsident von [US]{"entity": "country"}?
+      - Wie kann ich nach [US]{"entity": "country"} ziehen?
+      - Was ist die Hauptstadt von [Germany]{"entity": "country"}?
+
+  - intent: bot_challenge
+    examples: |
+      - Sind Sie ein Bot?
+      - Sind Sie ein Mensch?
+      - Spreche ich mit einem Bot?
+      - Spreche ich mit einem Menschen?
+      - Du bist ein Bot, richtig?
+      - bist du nicht ein Bot
+      - Bist du ein Bot?
+      - bist du ein BOT
+      - Bist du ein Bot?
+      - Sind Sie ein Chatbot?
+      - Bist du ein Rasa-Bot?
+      - Sind Sie ein echter Bot?
+      - Sind Sie ein Roboter?
+      - Sind Sie eine KI?
+      - bist du künstlich
+      - Bist du künstliche Intelligenz?
+      - bist du bot
+      - Bist du Bot?
+      - bist du rasa bot?
+      - bist du echt
+      - bist du echt lol
+      - Bist du wirklich ein Bot
+      - Bist du ein Roboter?
+      - bist du sicher, dass du ein bot bist?
+      - Bot?
+      - denn du bist ein Bot
+      - ich schätze, du bist ein chatbot
+      - Oh, bist du ein Chatbot?
+      - Sag mir, bist du ein Bot?
+      - Was bist du, ein Bot?
+      - Du bist ein Roboter
+      - du bist eine KI
+      - du bist chatbot
+      - du bist ein bot
+      - du robo
+      - Ein echter Bot also?
+      - bist du wirklich ein bbot?
+      - bist du ein bot?
+      - Spreche ich mit einer KI?
+      - Sind Sie ein Mensch oder ein Bot?
+      - Sind Sie echt? 
+      - Sind Sie virtuell? 
+      - Sind Sie eine KI?
+      - Sind Sie kein Bot?
+      - Sind Sie ein Chatbot?
+      - Sind Sie ein Rasa-Bot?
+      - Sind Sie ein echter Bot?
+      - Sind Sie ein Roboter?
+      - Bist du eine KI?
+      - bist du künstlich
+      - Bist du eine künstliche Intelligenz?
+      - bist du echt
+      - bist du wirklich ein Bot
+      - Bist du ein Roboter?
+      - bist du sicher, dass du ein Bot bist?
+      - Bot?
+
+  - intent: human_handoff
+    examples: |
+      - Übergabe
+      - Mitarbeiter
+      - Mensch
+      - Mitarbeiterin
+      - Ich möchte einen Menschen sprechen
+      - Kann ich mit einem Menschen sprechen?
+      - einen echten Agenten bitte
+      - echter Mensch
+      - Chat mit einem Live-Agenten
+      - Geben Sie mir bitte einen Menschen
+      - Ich möchte mit einem Menschen sprechen
+      - Transfer zu einem Menschen
+      - Bitte verbinden Sie mich mit einem Menschen
+      - kann ich mit einem Menschen sprechen?
+      - kann ich mit einem Menschen sprechen
+      - mit einem Menschen sprechen
+      - Ich will einen Menschen :(
+      - kann ich mit einem Menschen sprechen
+      - Ich möchte mit einem Menschen sprechen
+      - ich möchte mit einem Menschen sprechen
+      - Kann ich mit einem echten Menschen sprechen?
+      - Verbinde mich mit einem echten Menschen
+      - Ich brauche einen echten Menschen
+      - kann ich mit einer realen Person sprechen
+      - Lassen Sie mich mit einem echten Menschen sprechen
+      - Lassen Sie mich bitte mit einer realen Person sprechen
+      - Ich möchte mit einer realen Person sprechen
+
+  - intent: courses
+    examples: |
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Launchpad to Fundamental Questions on AI
+      - Schule macht KI
+      - Wegweisende Anwendungen fürs Web
+      - Wie das Web technisch funktioniert
+      - Programmieregen fürs Web
+      - Mensch-Maschine-Interaktion
+      - Robot Learning
+      - Den Daten auf der Spur - Der Process Mining Podcast
+      - Daten- und Algorithmenethik
+      - AutoML - Automated Machine Learning
+      - Einführung in die KI
+      - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+      - Schule macht Daten
+      - Dr. med. KI
+      - Team Peer Assessments
