@@ -43,7 +43,7 @@ class ActionCheckLogin(Action):
 		current_state = tracker.current_state()
 		is_logged_in = tracker.get_slot('user_login')
 		if is_logged_in:
-			print('ActionCheckLogin[sender_id="{0}"]: ALREADY LOGGED IN, User ID {1}'.format(current_state['sender_id'], tracker.get_slot('user_id')), '\n')  # FIXME DEBUG
+			# print('ActionCheckLogin[sender_id="{0}"]: ALREADY LOGGED IN, User ID {1}'.format(current_state['sender_id'], tracker.get_slot('user_id')), '\n')  # DEBUG
 			return []
 
 		token = current_state['sender_id']
@@ -54,7 +54,7 @@ class ActionCheckLogin(Action):
 						 })
 		status = r.status_code
 
-		print('ActionCheckLogin[sender_id="{0}"]: status_code '.format(token), r.status_code, ', headers: ', r.headers, ', content: ', json.loads(r.content), '\n')  # FIXME DEBUG
+		# print('ActionCheckLogin[sender_id="{0}"]: status_code '.format(token), r.status_code, ', headers: ', r.headers, ', content: ', json.loads(r.content), '\n')  # DEBUG
 
 		if status == 200:
 			response = json.loads(r.content)
@@ -98,11 +98,13 @@ class ActionFetchProfile(Action):
 		# else:  # Other Stati
 		# 	enrollments = None
 
-		# FIXME TEST values:
-		# TODO for these, would need to query KIC endpoint https://ki-campus.org/kic_api/users/<kic user id>
-		course_visits = ["Big Data Analytics"]
-		search_terms = ["KI", "Machine Learning"]
-		print('ActionFetchProfile: enrollments ', enrollments, ' | course_visits ', course_visits, ' | search_terms ', search_terms, '\n')  # FIXME DEBUG
+		# # TEST values:
+		# # TODO for these, would need to query KIC endpoint https://ki-campus.org/kic_api/users/<kic user id>
+		# course_visits = ["Big Data Analytics"]
+		# search_terms = ["KI", "Machine Learning"]
+		course_visits = []
+		search_terms = []
+		# print('ActionFetchProfile: enrollments ', enrollments, ' | course_visits ', course_visits, ' | search_terms ', search_terms, '\n')  # DEBUG
 
 		return [SlotSet("enrollments", enrollments), SlotSet("course_visits", course_visits), SlotSet("search_terms", search_terms)]
 
@@ -175,11 +177,11 @@ class ActionGetLearningRecommendation(Action):
 		self.service_url = recommender_config['url']
 		self.service_token = recommender_config['token']
 
-		# FIXME DEBUG output TODO remove after testing
-		if recommender_config and recommender_config['url'] and recommender_config['token']:
-			print("\n  endpoint config: {0}\n".format(recommender_config))
-		else:
-			print("\n  endpoint config: NO CONFIGURATION FOR RECOMMENDER (recommender_api)\n")
+		# DEBUG output
+		# if recommender_config and recommender_config['url'] and recommender_config['token']:
+		# 	print("\n  endpoint config: {0}\n".format(recommender_config))
+		# else:
+		# 	print("\n  endpoint config: NO CONFIGURATION FOR RECOMMENDER (recommender_api)\n")
 
 	def name(self) -> Text:
 		return "action_get_learning_recommendation"
@@ -202,13 +204,13 @@ class ActionGetLearningRecommendation(Action):
 
 		# to do: maybe option 2 implement after delete slot value
 
-		# FIXME DEBUG: show search/filter parameters
-		debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
-						 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
-							language, topic, level, max_duration_str, certificate, enrollments, course_visits, search_terms
-						 )
-		debug_params = get_response(self.responses, self.Responses.debug_recommendation_parameters).format(debug_info_msg)
-		dispatcher.utter_message(text=debug_params)
+		# DEBUG: show search/filter parameters
+		# debug_info_msg = "\n  language {0} | topic {1} | level {2} | max_duration {3} | certificate {4} | " \
+		# 				 "enrollments {5} | course_visits {6} | search_terms {7}\n".format(
+		# 					language, topic, level, max_duration_str, certificate, enrollments, course_visits, search_terms
+		# 				 )
+		# debug_params = get_response(self.responses, self.Responses.debug_recommendation_parameters).format(debug_info_msg)
+		# dispatcher.utter_message(text=debug_params)
 
 		r = requests.get('{0}filtered_recommendation_learnings/'.format(self.service_url),
 			headers={
@@ -251,20 +253,20 @@ class ActionGetLearningRecommendation(Action):
 
 		elif status == 401:  # Status-Code 401 Unauthorized: wrong access token setting in kic_recommender.yml!
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
-			# FIXME DEBUG:
-			dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
+			# DEBUG:
+			# dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
 		elif status == 404:  # Status-Code 404 None
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_404))
-			# FIXME DEBUG:
-			dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
+			# DEBUG:
+			# dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
 		elif status == 500:  # Status-Code 500 Invalid Parameter
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_500))
-			# FIXME DEBUG:
-			dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
+			# DEBUG:
+			# dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
 		else:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_unknown).format(str(r.content)))
-			# FIXME DEBUG:
-			dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
+			# DEBUG:
+			# dispatcher.utter_message(get_response(self.responses, self.Responses.debug_error).format(str(r.status_code), str(r.headers), str(r.content)))
 
 		return [SlotSet("recommendations", response)]
 
@@ -350,7 +352,7 @@ class ActionDeleteSlotValue(Action):
 
 		# check intent then delete slot	value
 		intent = str(tracker.get_intent_of_latest_message())
-		print(f"{intent}")  # FIXME DEBUG to do: delete - checking function
+		# print(f"{intent}")  # DEBUG to do: delete - checking function
 		if  intent == 'change_language_slot': return [SlotSet("language", None)]
 		elif  intent == 'change_topic_slot': return [SlotSet("topic", None)]
 		elif  intent == 'change_level_slot': return [SlotSet("level", None)]
