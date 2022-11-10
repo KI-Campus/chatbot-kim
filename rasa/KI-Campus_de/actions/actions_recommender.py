@@ -119,6 +119,11 @@ class ActionGetLearningRecommendation(Action):
 		text found_recommendations has 1 parameter: 
         * parameter {0}: total number (int) of found course recommendations
 		"""
+		found_recommendations_single = auto()
+		"""
+		text found_recommendations_single has 1 parameter: 
+        * parameter {0}: total number (int) of found course recommendations
+		"""
 		found_course_item = auto()
 		"""
 		text found_course_item has 2 parameters:
@@ -229,7 +234,7 @@ class ActionGetLearningRecommendation(Action):
 			else:
 				size = len(response)
 				limit = min(size, 3)
-				dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations).format(size))
+				dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations_single).format(size)) if size == 1 else dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations).format(size))
 				course_label = get_response(self.responses, self.Responses.found_course_item)
 				button_group = []
 				for course in response[0:limit]:
@@ -272,6 +277,11 @@ class ActionAdditionalLearningRecommendation(Action):
 		text additional_recommendations has 1 parameter:
         * parameter {0}: total number (int) of additional (not yet displayed) course recommendations
 		"""
+		additional_recommendations_single = auto()
+		"""
+		text additional_recommendations_single has 1 parameter:
+        * parameter {0}: total number (int) of additional (not yet displayed) course recommendations
+		"""
 		additional_course_item = auto()
 		"""
 		text additional_course_item has 2 parameters:
@@ -309,7 +319,7 @@ class ActionAdditionalLearningRecommendation(Action):
 			recommendations = recommendations[3:]
 			size = len(recommendations)
 			limit = min(size, 3)
-			dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations).format(size))
+			dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations_single).format(size)) if size == 1 else dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations).format(size))
 			course_label = get_response(self.responses, self.Responses.additional_course_item)
 			button_group = []
 			for course in recommendations[0:limit]:
