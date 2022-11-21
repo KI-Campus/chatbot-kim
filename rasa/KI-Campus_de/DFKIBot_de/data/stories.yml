@@ -157,7 +157,6 @@ stories:
   - story: get more learning recommendation
     steps:
     - intent: additional_learning_recommendation
-    - action: utter_course_form_slots 
     - action: action_additional_learning_recommendation
     - action: utter_anything_else_v2
 
