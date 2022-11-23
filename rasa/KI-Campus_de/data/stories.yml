@@ -123,3 +123,13 @@ stories:
   - intent: deny
   - action: utter_anything_else
   - checkpoint: more_information
+
+- story: answer external search
+  steps:
+  - intent: search_external
+  - action: action_answer_external_search
+
+- story: answer internal search
+  steps:
+  - intent: search_internal
+  - action: action_answer_internal_search

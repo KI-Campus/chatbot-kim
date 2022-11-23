@@ -17,6 +17,8 @@ intents:
 - human_handoff
 - insults
 - inform
+- search_internal
+- search_external
 
 actions:
 - action_get_courses
@@ -25,11 +27,14 @@ actions:
 - action_course_set
 - action_set_current_course
 - action_download_certificate
+- action_answer_external_search
+- action_answer_internal_search
 
 entities:
 - certificate_type
 - Course
 - country
+- search_topic
 
 slots:
   all_courses:
@@ -81,6 +86,16 @@ slots:
     influence_conversation: true
     mappings:
     - type: custom
+  given_search_topic_external:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: search_topic
+  given_search_topic_internal:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: search_topic
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false

@@ -1,0 +1,16 @@
+version: '3.1'
+
+nlu:
+  - intent: search_external
+    examples: |
+      - Gibt es einen Kurs zum Thema [KI]{"entity": "search_topic"}?
+      - Kannst du mir einen Kurs zum Thema [Daten]{"entity": "search_topic"} empfehlen?
+      - Gibt es etwas über [Gesundheit]{"entity": "search_topic"} in einem Kurs?
+      - Wo kann ich einen Kurs mit [AI]{"entity": "search_topic"} auf der Seite finden?
+
+  - intent: search_internal
+    examples: |
+      - Zeig mir etwas über [Machine Learning]{"entity": "search_topic"}.
+      - Zeig mir etwas zum Thema [Wirtschaft]{"entity": "search_topic"}.
+      - Gibt es in meinem aktuellen Kurs etwas zu [Listen]{"entity": "search_topic"}?
+      - Gibt es in meinem Kurs etwas zum Thema [Daten]{"entity": "search_topic"}?

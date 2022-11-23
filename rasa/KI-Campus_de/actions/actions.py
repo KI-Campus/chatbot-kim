@@ -138,3 +138,21 @@ class ActionGetCertificate(Action):
 				else:
 					dispatcher.utter_message('Es tut mir sehr leid! Das {0} ist nicht mehr verfügbar und kann leider nicht mehr heruntergeladen werden!'.format(achievement['name']))
 		return []
+
+
+class ActionAnswerExternalSearch(Action):
+	def name(self) -> Text:
+		return "action_answer_external_search"
+	
+	def run(self, dispatcher, tracker, domain):
+		dispatcher.utter_message('Danke für deine externe Suchanfrage zum Thema {0}!'.format(tracker.get_slot('given_search_topic_external')))
+		return []
+
+
+class ActionAnswerInternalSearch(Action):
+	def name(self) -> Text:
+		return "action_answer_internal_search"
+	
+	def run(self, dispatcher, tracker, domain):
+		dispatcher.utter_message('Danke für deine interne Suchanfrage zum Thema {0}!'.format(tracker.get_slot('given_search_topic_internal')))
+		return []
