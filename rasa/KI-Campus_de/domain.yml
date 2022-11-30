@@ -19,6 +19,9 @@ intents:
 - inform
 - search_internal
 - search_external
+- search_video
+- search_text
+- search_quiz
 
 actions:
 - action_get_courses
@@ -208,3 +211,12 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
+  utter_ask_content_type:
+  - text: "Suchst du nach einem bestimmten der folgenden Elemente?"
+    buttons:
+    - title: "Video"
+      payload: "/search_video"
+    - title: "Textseite"
+      payload: "/search_text"
+    - title: "Quiz"
+      payload: "/search_quiz"

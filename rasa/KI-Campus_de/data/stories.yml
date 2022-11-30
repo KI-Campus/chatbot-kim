@@ -132,4 +132,9 @@ stories:
 - story: answer internal search
   steps:
   - intent: search_internal
+  - action: utter_ask_content_type
+  - or:
+    - intent: search_video
+    - intent: search_text
+    - intent: search_quiz
   - action: action_answer_internal_search
