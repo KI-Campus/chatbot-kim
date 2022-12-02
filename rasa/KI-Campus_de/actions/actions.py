@@ -154,5 +154,8 @@ class ActionAnswerInternalSearch(Action):
 		return "action_answer_internal_search"
 	
 	def run(self, dispatcher, tracker, domain):
-		dispatcher.utter_message('Danke für deine interne Suchanfrage zum Thema {0}!'.format(tracker.get_slot('given_search_topic_internal')))
+		content_type = tracker.get_slot('given_search_content_type')
+		search_topic = tracker.get_slot('given_search_topic_internal')
+
+		dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
 		return []

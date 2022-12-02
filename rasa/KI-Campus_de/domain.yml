@@ -4,6 +4,7 @@ forms:
     ignored_intents: []
     required_slots:
       - current_course_title
+
 intents:
 - deny
 - affirm
@@ -19,9 +20,7 @@ intents:
 - inform
 - search_internal
 - search_external
-- search_video
-- search_text
-- search_quiz
+- specify_search_content_type
 
 actions:
 - action_get_courses
@@ -38,6 +37,7 @@ entities:
 - Course
 - country
 - search_topic
+- search_content_type
 
 slots:
   all_courses:
@@ -99,6 +99,11 @@ slots:
     mappings:
     - type: from_entity
       entity: search_topic
+  given_search_content_type:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: search_content_type
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false
@@ -212,11 +217,11 @@ responses:
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
   utter_ask_content_type:
-  - text: "Suchst du nach einem bestimmten der folgenden Elemente?"
-    buttons:
-    - title: "Video"
-      payload: "/search_video"
-    - title: "Textseite"
-      payload: "/search_text"
-    - title: "Quiz"
-      payload: "/search_quiz"
+  - text: "Nach welcher Art von Inhalten suchst du"
+    # buttons:
+    # - title: "Video"
+    #   payload: "/specify_search_content_type{given_search_content_type:Video}" # ich glaub nicht, dass das schon so funktioniert
+    # - title: "Textseite"
+    #   payload: "/specify_search_content_type{given_search_content_type:Text}"
+    # - title: "Quiz"
+    #   payload: "/specify_search_content_type{given_search_content_type:Quiz}"

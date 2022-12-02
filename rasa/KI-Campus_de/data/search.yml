@@ -14,3 +14,22 @@ nlu:
       - Zeig mir etwas zum Thema [Wirtschaft]{"entity": "search_topic"}.
       - Gibt es in meinem aktuellen Kurs etwas zu [Listen]{"entity": "search_topic"}?
       - Gibt es in meinem Kurs etwas zum Thema [Daten]{"entity": "search_topic"}?
+
+  - intent: specify_search_content_type
+    examples: |
+      - Ich würde gerne eine [Textseite]{"entity": "search_content_type"} finden
+      - [Textseite]{"entity": "search_content_type"}
+      - [Text]{"entity": "search_content_type"}
+      - da gab es nen [Text]{"entity": "search_content_type"} zu
+      - ich suche einen [Text]{"entity": "search_content_type"}
+      - Ich würde gerne in einem [Quiz]{"entity": "search_content_type"} suchen
+      - [Quiz]{"entity": "search_content_type"}
+      - [Selbsttest]{"entity": "search_content_type"}
+      - ne [Quizfrage]{"entity": "search_content_type"}
+      - in einem [Quiz]{"entity": "search_content_type"}
+      - in einem [Selbsttest]{"entity": "search_content_type"}
+      - [Video]{"entity": "search_content_type"}
+      - ich würde gerne in einem [Video]{"entity": "search_content_type"} suchen
+      - in einem [Video]{"entity": "search_content_type"}
+      - das war in einem [Video]{"entity": "search_content_type"}
+      - gibt es dazu [Viedos]{"entity": "search_content_type"}?

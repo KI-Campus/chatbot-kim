@@ -52,3 +52,19 @@ rules:
     - slot_was_set:
       - current_course_achieved: true
     - action: utter_download_certificate
+
+  # - rule: activate search form
+  #   steps:
+  #     - intent: search_internal
+  #     - action: search_form
+  #     - active_loop: search_form
+
+  # - rule: submit search form
+  #   condition:
+  #     - active_loop: search_form
+  #   steps:
+  #     - action: search_form
+  #     - active_loop: null
+  #     - slot_was_set:
+  #       - requested_slot: null
+  #     - action: action_answer_internal_search_video

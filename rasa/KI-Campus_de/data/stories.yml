@@ -133,8 +133,6 @@ stories:
   steps:
   - intent: search_internal
   - action: utter_ask_content_type
-  - or:
-    - intent: search_video
-    - intent: search_text
-    - intent: search_quiz
+  - intent: specify_search_content_type
   - action: action_answer_internal_search
+  
