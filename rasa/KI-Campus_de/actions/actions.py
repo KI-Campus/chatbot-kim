@@ -158,4 +158,4 @@ class ActionAnswerInternalSearch(Action):
 		search_topic = tracker.get_slot('given_search_topic_internal')
 
 		dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
-		return []
+		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic_internal', None)]

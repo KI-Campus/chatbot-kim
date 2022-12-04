@@ -1,9 +1,4 @@
 version: '3.1'
-forms:
-  course_form:
-    ignored_intents: []
-    required_slots:
-      - current_course_title
 
 intents:
 - deny
@@ -96,6 +91,7 @@ slots:
       entity: search_topic
   given_search_topic_internal:
     type: text
+    influence_conversation: false
     mappings:
     - type: from_entity
       entity: search_topic
@@ -107,7 +103,24 @@ slots:
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false
+
+forms:
+  course_form:
+    ignored_intents: []
+    required_slots:
+      - current_course_title
+  search_form:
+    required_slots:
+      - given_search_topic_internal
+      - given_search_content_type
+
 responses:
+  utter_ask_search_form_given_search_topic_internal:
+  - text: Nach welchem Thema suchst du?
+  utter_ask_search_form_given_search_content_type:
+  - text: Nach welcher Art von Inhalten suchst du?
+  utter_search_form_submit:
+  - text: Danke für das Absenden des Formulars (temp Nachricht)
   utter_submit:
   - text: Alles klar!
   - text: In Ordnung!
@@ -216,8 +229,8 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
-  utter_ask_content_type:
-  - text: "Nach welcher Art von Inhalten suchst du"
+  # utter_ask_content_type:
+  # - text: "Nach welcher Art von Inhalten suchst du"
     # buttons:
     # - title: "Video"
     #   payload: "/specify_search_content_type{given_search_content_type:Video}" # ich glaub nicht, dass das schon so funktioniert

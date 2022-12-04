@@ -129,10 +129,9 @@ stories:
   - intent: search_external
   - action: action_answer_external_search
 
-- story: answer internal search
-  steps:
-  - intent: search_internal
-  - action: utter_ask_content_type
-  - intent: specify_search_content_type
-  - action: action_answer_internal_search
-  
+# - story: answer internal search
+#   steps:
+#   - intent: search_internal
+#   - action: utter_ask_content_type
+#   - intent: specify_search_content_type
+#   - action: action_answer_internal_search
