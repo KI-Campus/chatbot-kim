@@ -549,6 +549,28 @@ class ActionAskCertificate(Action):
 		dispatcher.utter_message(text=text, buttons=buttons)
 		return []
 
+###################################
+# CONDITIONAL RESPONSES (VIA SLOTS)
+################################### 
+class ActionCheckRecommenderFormActive(Action):
+
+	def name(self) -> Text:
+		return "action_check_recommender_form_active"
+
+	def run(self, dispatcher: CollectingDispatcher,
+			tracker: Tracker,
+			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+		active_loop = str(tracker.active_loop.get('name'))
+
+		if active_loop == 'recommender_form':
+			return [SlotSet("recommender_form_active", True)]
+
+		else: return [SlotSet("recommender_form_active", False)]
+
+###################################
+# VALIDATONS
+###################################
 
 class ValidateRecommenderForm(FormValidationAction):
 	class Responses(ResponseEnum):
