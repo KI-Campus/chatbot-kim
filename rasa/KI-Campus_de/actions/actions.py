@@ -176,7 +176,7 @@ class ActionDefaultFallback(Action):
 
         if ('search_internal' in top_intents) and ('search_external' in top_intents):
             dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents[0]}, {top_intents[1]}, {top_intents[2]}')
-            return [] #return [SlotSet('run_default', False)] weiß nicht, ob man darüber vielleicht sagen kann, was als nächstes passieren soll, bisher tut es noch nichts
+            return [SlotSet('run_default', None)]
         else:
             dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents[0]}, {top_intents[1]}, {top_intents[2]}')
-            return [] #return [SlotSet('run_default', True)]
+            return [SlotSet('run_default', True)]

@@ -7,10 +7,21 @@ rules:
     - intent: insults
     - action: utter_insults
 
+  - rule: Ask the user to rephrase whenever they send a message with low NLU confidence ex/int
+    steps:
+    - intent: nlu_fallback
+    - action: action_default_fallback
+    - slot_was_set:
+      - run_default: false
+    - action: utter_ask_internal_or_external_search
+
   - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
     steps:
     - intent: nlu_fallback
     - action: action_default_fallback
+    - slot_was_set:
+      - run_default: true
+    - action: utter_default
 
   - rule: answer bot challenge
     steps:
