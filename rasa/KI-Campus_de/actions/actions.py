@@ -145,8 +145,8 @@ class ActionAnswerExternalSearch(Action):
 		return "action_answer_external_search"
 	
 	def run(self, dispatcher, tracker, domain):
-		dispatcher.utter_message('Danke für deine externe Suchanfrage zum Thema {0}!'.format(tracker.get_slot('given_search_topic_external')))
-		return []
+		dispatcher.utter_message('Danke für deine externe Suchanfrage zum Thema {0}!'.format(tracker.get_slot('given_search_topic')))
+		return [SlotSet('given_search_topic', None)]
 
 
 class ActionAnswerInternalSearch(Action):
@@ -155,10 +155,10 @@ class ActionAnswerInternalSearch(Action):
 	
 	def run(self, dispatcher, tracker, domain):
 		content_type = tracker.get_slot('given_search_content_type')
-		search_topic = tracker.get_slot('given_search_topic_internal')
+		search_topic = tracker.get_slot('given_search_topic')
 
 		dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
-		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic_internal', None)]
+		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 
 class ActionDefaultFallback(Action):
 

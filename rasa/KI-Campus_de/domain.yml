@@ -85,12 +85,7 @@ slots:
     influence_conversation: true
     mappings:
     - type: custom
-  given_search_topic_external:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: search_topic
-  given_search_topic_internal:
+  given_search_topic:
     type: text
     influence_conversation: false
     mappings:
@@ -117,11 +112,11 @@ forms:
       - current_course_title
   search_form:
     required_slots:
-      - given_search_topic_internal
+      - given_search_topic
       - given_search_content_type
 
 responses:
-  utter_ask_search_form_given_search_topic_internal:
+  utter_ask_search_form_given_search_topic:
   - text: Nach welchem Thema suchst du?
   utter_ask_search_form_given_search_content_type:
   - text: Nach welcher Art von Inhalten suchst du?
@@ -132,6 +127,8 @@ responses:
       payload: '/specify_search_content_type{"search_content_type":"Text"}'
     - title: "Quiz"
       payload: '/specify_search_content_type{"search_content_type":"Quiz"}'
+    - title: "Alles"
+      payload: '/specify_search_content_type{"search_content_type":"Alles"}'
   utter_search_form_submit:
   - text: Danke für das Absenden des Formulars (temp Nachricht)
   utter_submit:
