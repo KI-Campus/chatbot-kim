@@ -14,6 +14,13 @@ nlu:
       - Zeig mir etwas zum Thema [Wirtschaft]{"entity": "search_topic"}.
       - Gibt es in meinem aktuellen Kurs etwas zu [Listen]{"entity": "search_topic"}?
       - Gibt es in meinem Kurs etwas zum Thema [Daten]{"entity": "search_topic"}?
+      - Gibt es in einem Kurs ein [Video]{"entity": "search_content_type"}  zum Thema [Ethik]{"entity": "search_topic"}?
+      - Gibt es in einem Kurs einen [Text]{"entity": "search_content_type"}  zum Thema [Ethik]{"entity": "search_topic"}?
+      - Gibt es in einem Kurs ein [Quiz]{"entity": "search_content_type"}  zum Thema [Ethik]{"entity": "search_topic"}?
+      - Gibt es in einem Kurs eine [Quizfrage]{"entity": "search_content_type"}  zum Thema [Ethik]{"entity": "search_topic"}?
+      - Zeig mir ein [Video]{"entity": "search_content_type"} über [KI]{"entity": "search_topic"}.
+      - Zeig mir eine [Textseite]{"entity": "search_content_type"} über [KI]{"entity": "search_topic"}.
+      - Zeig mir ein [Quiz]{"entity": "search_content_type"} zum Thema [Wirtschaft]{"entity": "search_topic"}.
 
   - intent: specify_search_content_type
     examples: |
