@@ -241,9 +241,9 @@ nlu:
       - Wie kann ich einen Fehler im Kurs melden?
       - Ich möchte einen Fehler im Kurs melden
       - der Kurs hat einen Fehler
-      - [Schule macht Daten]{"entity": "Course"} hat einen Fehler
-      - Der Kurs [Schule macht Daten]{"entity": "Course"} hat Fehler
-      - Im Kurs [Schule macht Daten]{"entity": "Course"} war etwas nicht korrekt
+      - [Dr. med. KI - Basics]{"entity": "Course"} hat einen Fehler
+      - Der Kurs [Einführung in die KI]{"entity": "Course"} hat Fehler
+      - Im Kurs [Robot Learning]{"entity": "Course"} war etwas nicht korrekt
       - Ich will einen Fehler im Kurs [Schule macht Daten]{"entity": "Course"} melden
       - Fehler melden
       - Ich will einen Fehler melden
@@ -276,7 +276,7 @@ nlu:
       - Wie schließe ich einen Kurs ab?
       - Wie beende ich einen Kurs?
       - Ich möchte den Kurs beenden
-      - Wie beende ich den Kurs [Schule macht Daten]{"entity": "Course"}
+      - Wie beende ich den Kurs [Schule macht KI]{"entity": "Course"}
       - Kurs beenden
       - Kurs abschließen
       - Ich will den Kurs abschließen

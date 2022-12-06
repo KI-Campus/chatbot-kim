@@ -64,9 +64,15 @@ rules:
       - current_course_achieved: true
     - action: utter_download_certificate
     
-  - rule: activate search form
+  - rule: activate search form from search
     steps:
     - intent: search_internal
+    - action: search_form
+    - active_loop: search_form
+
+  - rule: activate search form from content type
+    steps:
+    - intent: specify_search_content_type
     - action: search_form
     - active_loop: search_form
 

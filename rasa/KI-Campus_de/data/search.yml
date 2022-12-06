@@ -7,6 +7,10 @@ nlu:
       - Kannst du mir einen Kurs zum Thema [Daten]{"entity": "search_topic"} empfehlen?
       - Gibt es etwas über [Gesundheit]{"entity": "search_topic"} in einem Kurs?
       - Wo kann ich einen Kurs mit [AI]{"entity": "search_topic"} auf der Seite finden?
+      - Zeige mir Kurse zu [machinellem Lernen]{"entity": "search_topic"}.
+      - Gibt es Kurse über [k-Means]{"entity": "search_topic"}?
+      - Wo kann ich etwas über [Data Science]{"entity": "search_topic"} lernen?
+      - Welche Kurse behandeln [machinellem Lernen]{"entity": "search_topic"}?
 
   - intent: search_internal
     examples: |
@@ -21,6 +25,16 @@ nlu:
       - Zeig mir ein [Video]{"entity": "search_content_type"} über [KI]{"entity": "search_topic"}.
       - Zeig mir eine [Textseite]{"entity": "search_content_type"} über [KI]{"entity": "search_topic"}.
       - Zeig mir ein [Quiz]{"entity": "search_content_type"} zum Thema [Wirtschaft]{"entity": "search_topic"}.
+      - Wo finde ich etwas über [Jupyter Notebooks]{"entity": "search_topic"} in diesem Kurs?
+      - Suche [Matplotlib]{"entity": "search_topic"} in diesem Kurs?
+      - Zeig mir [Texte]{"entity": "search_content_type"} zu [überwachtes Lernen]{"entity": "search_topic"} in dem Kurs?
+      - [Klassifizierung]{"entity": "search_topic"}? Wo finde ich dazu was in diesem Kurs?
+      - Zeige mir alle Informationen zu [überwachtem Lernen]{"entity": "search_topic"}, die es hier gibt.
+      - Zeig mir etwas zu [Jupyter Notebooks]{"entity": "search_topic"} hier?
+      - Zeig mir [Videos]{"entity": "search_content_type"} zu [überwachtes Lernen]{"entity": "search_topic"} in dem Kurs?
+      - Zeig mir [Texte]{"entity": "search_content_type"} über [überwachtes Lernen]{"entity": "search_topic"} in dem Kurs?
+      - Ich würde gerne das [Quiz]{"entity": "search_content_type"} zu [überwachtem Lernen]{"entity": "search_topic"} in dem Kurs sehen?
+      - Zeig mir alle [Videos]{"entity": "search_content_type"} zu [machinellem Lernen]{"entity": "search_topic"} in dem Kurs?
 
   - intent: specify_search_content_type
     examples: |
@@ -40,3 +54,33 @@ nlu:
       - in einem [Video]{"entity": "search_content_type"}
       - das war in einem [Video]{"entity": "search_content_type"}
       - gibt es dazu [Viedos]{"entity": "search_content_type"}?
+
+  - intent: specify_search_topic
+    examples: |
+      - Ich suche nach [Klassifizierung]{"entity": "search_topic"}.
+      - [Python]{"entity": "search_topic"}
+      - Ich will etwas über [Daten]{"entity": "search_topic"} wissen
+      - [Gesundheit]{"entity": "search_topic"}
+
+  - synonym: Text
+    examples: |
+      - Textseite
+      - Texte
+      - Textseiten
+      - text
+
+  - synonym: Video
+    examples: |
+      - Videos
+      - video
+      - Videoausschnitt
+      - Film
+      - Videoclip
+
+  - synonym: Quiz
+    examples: |
+      - Quizfrage
+      - Selbsttest
+      - Test
+      - quiz
+      - Selbsttests
