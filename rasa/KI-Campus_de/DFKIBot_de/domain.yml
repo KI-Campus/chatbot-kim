@@ -22,11 +22,7 @@ intents:
   - inform
   - undecided
   - restart
-  - interjection_time
-  - interjection_languages
-  - interjection_costs
   - stop_form
-  - interjection_topic
   - negative_feedback
   - additional_learning_recommendation
   - change_language_slot
@@ -38,10 +34,6 @@ actions:
   - action_get_learning_recommendation
   - action_restart
   - utter_restart
-  - utter_interjection_languages
-  - utter_interjection_costs
-  - utter_interjection_time
-  - utter_interjection_topic
   - utter_ask_continue_recommender_form
   - validate_recommender_form
   - action_fetch_profile
@@ -57,6 +49,8 @@ actions:
   - action_ask_certificate
   - action_delete_slot_value
   - utter_bot_apology
+  - action_check_recommender_form_active
+  - utter_bot_information
 
 entities:
   - language
@@ -65,12 +59,18 @@ entities:
   - certificate
   - max_duration
 slots:
+  recommender_form_active:
+    type: bool
+    mappings:
+    - type: custom
+      action: action_check_recommender_form_active
   recommendations:
     type: any
     mappings:
     - type: custom
   language:
     type: categorical
+    influence_conversation: true
     values:
       - englisch
       - deutsch
@@ -78,6 +78,7 @@ slots:
     mappings:
     - type: from_entity
       entity: language
+      not_intent: faq
       conditions:
       - active_loop: recommender_form
         requested_slot: language
@@ -89,10 +90,11 @@ slots:
         requested_slot: language
   topic:
     type: text
+    influence_conversation: true
     mappings:  
     - type: from_entity
       entity: topic
-      not_intent: FAQ_topic
+      not_intent: faq
       conditions:
       - active_loop: recommender_form
         requested_slot: topic
@@ -104,9 +106,11 @@ slots:
         requested_slot: topic
   certificate:
     type: text
+    influence_conversation: true
     mappings:
     - type: from_entity
       entity: certificate
+      not_intent: faq
       conditions:
       - active_loop: recommender_form
         requested_slot: certificate
@@ -118,9 +122,11 @@ slots:
         requested_slot: certificate
   level:
     type: text
+    influence_conversation: true
     mappings:
     - type: from_entity
       entity: level
+      not_intent: faq
       conditions:
       - active_loop: recommender_form
         requested_slot: level
@@ -132,8 +138,10 @@ slots:
         requested_slot: level
   max_duration:
     type: text
+    influence_conversation: true
     mappings:
     - type: from_entity
+      not_intent: faq
       entity: max_duration
       conditions:
       - active_loop: recommender_form
@@ -190,14 +198,6 @@ responses:
   # - text: Ich freue mich über dein Feedback! Um mir Feedback zu hinterlassen, klicke hier. 
   utter_bot_information:
   - text: Ich helfe dir bei Fragen rund um den KI-Campus oder unterstütze dich bei der Suche nach einem passenden Kurs! Was kann ich für dich tun?
-  utter_interjection_languages:
-  - text: Wir bieten auf dem KI-Campus nur Kurse auf Deutsch und Englisch an. Bestimmt ist für dich etwas Passendes dabei!
-  utter_interjection_costs:
-  - text: Alle Kurse des KI-Campus sind kostenlos und du kannst jederzeit loslegen.
-  utter_interjection_time:
-  - text: Damit du den Arbeitsaufwand eines Kurses gut einschätzen kannst, habe ich unsere Kurse nach ihrer gesamten Stundenanzahl unterteilt.
-  utter_interjection_topic:
-  - text: Du findest auf dem KI-Campus sowohl Kurse über Grundlagenwissen zu KI als auch interdisziplinäre Fragestellungen und vertiefende Lernangebote.
   utter_restart:
   - text: Wir starten die Konversation jetzt noch mal neu!
   utter_submit_recommender_form:
