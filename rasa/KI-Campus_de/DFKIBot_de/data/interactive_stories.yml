@@ -90,8 +90,8 @@ stories:
     - search_terms: "KI"
   - action: recommender_form      
   - active_loop: recommender_form 
-  - intent: interjection_languages
-  - action: utter_interjection_languages
+  - intent: faq
+  - action: utter_faq
   - action: recommender_form    
   - active_loop: null           
   - action: utter_submit_recommender_form
@@ -150,7 +150,7 @@ stories:
   - action: utter_you_are_welcome
   - action: utter_anything_else
 
-- story: interactive_story_4
+- story: interactive_story_2
   steps:
   - intent: greet
   - slot_was_set:
@@ -223,6 +223,11 @@ stories:
     - max_duration: '51'
   - slot_was_set:
     - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: level
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
   - slot_was_set:
     - requested_slot: level
   - slot_was_set:
@@ -492,3 +497,1033 @@ stories:
   - action: utter_anything_else_v2
   - intent: deny
   - action: utter_goodbye
+
+- story: interactive_story_3
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: utter_tip_login
+  - action: utter_affirm_start_recommender_form_login
+  - intent: affirm
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - requested_slot: language
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - level: experte
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations: null
+  - action: utter_anything_else_v2
+  - intent: faq
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_feedback
+  - intent: affirm
+  - action: utter_thankyou_feedback
+  - action: utter_have_a_nice_day
+
+- story: interactive_story_4
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: faq
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: utter_tip_login
+  - action: utter_affirm_start_recommender_form_login
+  - intent: affirm
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: help
+  - action: utter_help
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - requested_slot: max_duration
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - level: fortgeschritten
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: b5d8ed2f-2b6c-406f-ae86-39bbb34399d3
+        id_neo: 128cf729-bf7c-496a-8057-632d091f4876
+        id_hpi: 3da90387-473c-47f1-bd65-041ecab34755
+        name: AMALEA – Angewandte Machine-Learning-Algorithmen
+        language: german
+        level: '2'
+        duration: '80'
+        achievement_record: roa
+      - id: eee270fb-b19c-411e-b66e-6956e6c1c3db
+        id_neo: c900c0c9-bc1e-48d9-8035-1bcadcabccb9
+        id_hpi: 2023fe1e-5f5e-42af-bdf8-ae137daebfd3
+        name: Design and Implementation of Cognition-Enabled Robotic Systems
+        language: english
+        level: '2'
+        duration: '72'
+        achievement_record: roa
+      - id: c1686f70-e63c-4152-9883-3ad2551ece24
+        id_neo: e4b9e01b-7d74-472e-8d5f-e8d23d455b5a
+        id_hpi: 5f24c8a0-5893-498b-9942-7af89a1ae960
+        name: Dr. med. KI - Clinics
+        language: german
+        level: '2'
+        duration: None
+        achievement_record: cop
+      - id: b020636d-3520-4054-9f63-788e97bb037a
+        id_neo: 1189df15-40fd-4c3a-900c-021456946393
+        id_hpi: None
+        name: Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+        language: german
+        level: '2'
+        duration: '24'
+        achievement_record: qc
+      - id: d91dd3c9-9f80-4eca-9ab3-424e45207639
+        id_neo: c57d1ed4-3c57-43d5-9878-bfd626afa783
+        id_hpi: None
+        name: Machine Learning
+        language: english
+        level: '2'
+        duration: '66'
+        achievement_record: ''
+      - id: 0cb3ab51-d256-45fd-8370-7ace0dde6b57
+        id_neo: a45dc1f6-d4dc-4a49-84d4-501c35cb1cba
+        id_hpi: None
+        name: Artificial Intelligence (AI)
+        language: english
+        level: '2'
+        duration: '120'
+        achievement_record: ''
+      - id: 13fefcca-1a80-414c-ae10-a2752670a1ab
+        id_neo: c029ba50-08b1-4ba2-8496-f5094292707b
+        id_hpi: None
+        name: CS50's Introduction to Artificial Intelligence with Python
+        language: english
+        level: '2'
+        duration: '140'
+        achievement_record: roa
+      - id: b8889e57-6269-4a69-a028-50df01c0d7ea
+        id_neo: 1044ce26-4b02-45f0-b7c8-df3f19b1077b
+        id_hpi: None
+        name: Knowledge Graphs
+        language: english
+        level: '2'
+        duration: None
+        achievement_record: qc
+      - id: ff5e0450-b4bb-40db-bf62-b922a21051ad
+        id_neo: 6ecc8b25-f6d4-48d8-972e-d8afed986a36
+        id_hpi: None
+        name: 'Process Mining: Data Science in Action'
+        language: english
+        level: '2'
+        duration: '22'
+        achievement_record: ''
+      - id: 03338409-06f1-4c37-baf4-707ab9270a84
+        id_neo: eb1d58f9-c099-4efe-a25b-ec2961f2f945
+        id_hpi: None
+        name: Praktische Einführung in Deep Learning für Computer Vision
+        language: german
+        level: '2'
+        duration: '30'
+        achievement_record: roa
+      - id: 7c412f62-5a40-4b42-8445-20186015f118
+        id_neo: 812c674a-6b65-40c5-a18f-dd3269422be1
+        id_hpi: None
+        name: Robot Learning
+        language: english
+        level: '2'
+        duration: '180'
+        achievement_record: ECTS-possible
+      - id: 7d83118b-b9b7-42d6-b7f5-47eb0ab4debf
+        id_neo: b151895e-5cc4-4c0e-9e96-e6a7ba99021c
+        id_hpi: a23369c8-7848-4a8d-bef1-e6341332bbe8
+        name: Künstliche Intelligenz in der Medizin – mit Datenkompetenz und intelligenten Systemen zu klinischen Entscheidungen​
+        language: german
+        level: '2'
+        duration: None
+        achievement_record: ECTS-possible
+      - id: 120dcea8-6684-40bb-bedd-43ee2a95a6a2
+        id_neo: ebcb49ef-2c65-467a-b561-d3c881fcb364
+        id_hpi: None
+        name: AutoML - Automated Machine Learning
+        language: english
+        level: '2'
+        duration: '112'
+        achievement_record: ECTS-possible
+      - id: 4e47c9fb-aaf2-476f-8a6a-e1d0d91f516a
+        id_neo: 4368868c-62a4-454b-a473-2b3908fac519
+        id_hpi: 8ca3704c-eaf9-49b8-b79f-5dbe5ca3f000
+        name: Ganzheitliche angewandte KI im Ingenieurbereich - Maschinelles Lernen in der Produktion
+        language: german
+        level: '2'
+        duration: '24'
+        achievement_record: roa
+      - id: 846e55b0-78ea-4a5a-aff2-d1e5566c54d0
+        id_neo: 9ba41b49-125e-40b4-9493-c9ea1a9fe8e7
+        id_hpi: None
+        name: Quantum Machine Learning with Qiskit
+        language: english
+        level: '2'
+        duration: '10'
+        achievement_record: ''
+      - id: d59afd83-d853-452a-80d1-7effbdab3dcb
+        id_neo: 726da82f-dd0e-451a-8008-bf300583e1bd
+        id_hpi: None
+        name: 'Data Literacy – Daten interpretieren durch Data Mining '
+        language: german
+        level: '2'
+        duration: None
+        achievement_record: cop
+      - id: 31d58ddc-25a0-4be9-8273-86e0d24b5ee7
+        id_neo: 136ea807-fea8-4c98-8c41-08884856be16
+        id_hpi: None
+        name: Von der Datenanalyse zur Datengeschichte
+        language: german
+        level: '2'
+        duration: '36'
+        achievement_record: roa
+  - action: utter_anything_else_v2
+  - intent: change_max_duration_slot
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - max_duration: null
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - level: fortgeschritten
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: 846e55b0-78ea-4a5a-aff2-d1e5566c54d0
+        id_neo: 9ba41b49-125e-40b4-9493-c9ea1a9fe8e7
+        id_hpi: None
+        name: Quantum Machine Learning with Qiskit
+        language: english
+        level: '2'
+        duration: '10'
+        achievement_record: ''
+  - action: utter_anything_else_v2
+  - intent: deny
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: utter_goodbye
+
+- story: interactive_story_5
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: faq
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: utter_tip_login
+  - action: utter_affirm_start_recommender_form_login
+  - intent: deny
+  - action: utter_anything_else_v2
+  - intent: get_courses
+  - action: action_get_courses
+  - slot_was_set:
+    - courses_available: false
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: utter_tip_login
+  - action: utter_affirm_start_recommender_form_login
+  - intent: affirm
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - certificate: teilnahmebescheinigung
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - level: fortgeschritten
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations: null
+  - action: utter_anything_else_v2
+  - intent: change_language_slot
+    entities:
+    - language: englisch
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - certificate: teilnahmebescheinigung
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - level: fortgeschritten
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: Englisch
+  - slot_was_set:
+    - language: englisch
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations: null
+  - action: utter_anything_else_v2
+  - intent: goodbye
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: utter_goodbye
+
+- story: interactive_story_6
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: faq
+    entities:
+    - language: englisch
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: utter_tip_login
+  - action: utter_affirm_start_recommender_form_login
+  - intent: affirm
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: englisch
+  - slot_was_set:
+    - language: englisch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - level: experte
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: cc421f33-1244-4cb7-b49a-e672cedfb697
+        id_neo: 85bcb982-fd35-4ba6-846e-86a22f6a337c
+        id_hpi: None
+        name: Computational Learning Theory and Beyond
+        language: english
+        level: '3'
+        duration: None
+        achievement_record: roa
+  - action: utter_anything_else_v2
+  - intent: deny
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: utter_goodbye
+
+- story: interactive_story_7
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: faq
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: utter_tip_login
+  - action: utter_affirm_start_recommender_form_login
+  - intent: affirm
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: nlu_fallback
+  - action: utter_default
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - level: fortgeschritten
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: b5d8ed2f-2b6c-406f-ae86-39bbb34399d3
+        id_neo: 128cf729-bf7c-496a-8057-632d091f4876
+        id_hpi: 3da90387-473c-47f1-bd65-041ecab34755
+        name: AMALEA – Angewandte Machine-Learning-Algorithmen
+        language: german
+        level: '2'
+        duration: '80'
+        achievement_record: roa
+      - id: eee270fb-b19c-411e-b66e-6956e6c1c3db
+        id_neo: c900c0c9-bc1e-48d9-8035-1bcadcabccb9
+        id_hpi: 2023fe1e-5f5e-42af-bdf8-ae137daebfd3
+        name: Design and Implementation of Cognition-Enabled Robotic Systems
+        language: english
+        level: '2'
+        duration: '72'
+        achievement_record: roa
+      - id: c1686f70-e63c-4152-9883-3ad2551ece24
+        id_neo: e4b9e01b-7d74-472e-8d5f-e8d23d455b5a
+        id_hpi: 5f24c8a0-5893-498b-9942-7af89a1ae960
+        name: Dr. med. KI - Clinics
+        language: german
+        level: '2'
+        duration: None
+        achievement_record: cop
+      - id: b020636d-3520-4054-9f63-788e97bb037a
+        id_neo: 1189df15-40fd-4c3a-900c-021456946393
+        id_hpi: None
+        name: Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+        language: german
+        level: '2'
+        duration: '24'
+        achievement_record: qc
+      - id: d91dd3c9-9f80-4eca-9ab3-424e45207639
+        id_neo: c57d1ed4-3c57-43d5-9878-bfd626afa783
+        id_hpi: None
+        name: Machine Learning
+        language: english
+        level: '2'
+        duration: '66'
+        achievement_record: ''
+      - id: 0cb3ab51-d256-45fd-8370-7ace0dde6b57
+        id_neo: a45dc1f6-d4dc-4a49-84d4-501c35cb1cba
+        id_hpi: None
+        name: Artificial Intelligence (AI)
+        language: english
+        level: '2'
+        duration: '120'
+        achievement_record: ''
+      - id: 13fefcca-1a80-414c-ae10-a2752670a1ab
+        id_neo: c029ba50-08b1-4ba2-8496-f5094292707b
+        id_hpi: None
+        name: CS50's Introduction to Artificial Intelligence with Python
+        language: english
+        level: '2'
+        duration: '140'
+        achievement_record: roa
+      - id: b8889e57-6269-4a69-a028-50df01c0d7ea
+        id_neo: 1044ce26-4b02-45f0-b7c8-df3f19b1077b
+        id_hpi: None
+        name: Knowledge Graphs
+        language: english
+        level: '2'
+        duration: None
+        achievement_record: qc
+      - id: ff5e0450-b4bb-40db-bf62-b922a21051ad
+        id_neo: 6ecc8b25-f6d4-48d8-972e-d8afed986a36
+        id_hpi: None
+        name: 'Process Mining: Data Science in Action'
+        language: english
+        level: '2'
+        duration: '22'
+        achievement_record: ''
+      - id: 03338409-06f1-4c37-baf4-707ab9270a84
+        id_neo: eb1d58f9-c099-4efe-a25b-ec2961f2f945
+        id_hpi: None
+        name: Praktische Einführung in Deep Learning für Computer Vision
+        language: german
+        level: '2'
+        duration: '30'
+        achievement_record: roa
+      - id: 7c412f62-5a40-4b42-8445-20186015f118
+        id_neo: 812c674a-6b65-40c5-a18f-dd3269422be1
+        id_hpi: None
+        name: Robot Learning
+        language: english
+        level: '2'
+        duration: '180'
+        achievement_record: ECTS-possible
+      - id: 7d83118b-b9b7-42d6-b7f5-47eb0ab4debf
+        id_neo: b151895e-5cc4-4c0e-9e96-e6a7ba99021c
+        id_hpi: a23369c8-7848-4a8d-bef1-e6341332bbe8
+        name: Künstliche Intelligenz in der Medizin – mit Datenkompetenz und intelligenten Systemen zu klinischen Entscheidungen​
+        language: german
+        level: '2'
+        duration: None
+        achievement_record: ECTS-possible
+      - id: 120dcea8-6684-40bb-bedd-43ee2a95a6a2
+        id_neo: ebcb49ef-2c65-467a-b561-d3c881fcb364
+        id_hpi: None
+        name: AutoML - Automated Machine Learning
+        language: english
+        level: '2'
+        duration: '112'
+        achievement_record: ECTS-possible
+      - id: 4e47c9fb-aaf2-476f-8a6a-e1d0d91f516a
+        id_neo: 4368868c-62a4-454b-a473-2b3908fac519
+        id_hpi: 8ca3704c-eaf9-49b8-b79f-5dbe5ca3f000
+        name: Ganzheitliche angewandte KI im Ingenieurbereich - Maschinelles Lernen in der Produktion
+        language: german
+        level: '2'
+        duration: '24'
+        achievement_record: roa
+      - id: 846e55b0-78ea-4a5a-aff2-d1e5566c54d0
+        id_neo: 9ba41b49-125e-40b4-9493-c9ea1a9fe8e7
+        id_hpi: None
+        name: Quantum Machine Learning with Qiskit
+        language: english
+        level: '2'
+        duration: '10'
+        achievement_record: ''
+      - id: d59afd83-d853-452a-80d1-7effbdab3dcb
+        id_neo: 726da82f-dd0e-451a-8008-bf300583e1bd
+        id_hpi: None
+        name: 'Data Literacy – Daten interpretieren durch Data Mining '
+        language: german
+        level: '2'
+        duration: None
+        achievement_record: cop
+      - id: 31d58ddc-25a0-4be9-8273-86e0d24b5ee7
+        id_neo: 136ea807-fea8-4c98-8c41-08884856be16
+        id_hpi: None
+        name: Von der Datenanalyse zur Datengeschichte
+        language: german
+        level: '2'
+        duration: '36'
+        achievement_record: roa
+  - action: utter_anything_else_v2
+  - intent: faq
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_feedback
+  - intent: affirm
+  - action: utter_thankyou_feedback
+  - action: utter_have_a_nice_day
+
+- story: interactive_story_8
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - user_id: 5bbc35c4-5041-4239-83e6-238b9e0d7860
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: get_courses
+  - action: action_get_courses
+  - slot_was_set:
+    - all_courses:
+      - id: 5b57917a-64e2-4a47-9252-b1c8e468df20
+        title: Natural Language Processing
+        course_code: nlp-dfki2021
+        start_date: '2021-10-01T09:00:00Z'
+        language: en
+        self_paced: false
+        certificates:
+          roa:
+            enabled: true
+            requirement: 60
+          cop:
+            enabled: true
+            requirement: 50
+  - slot_was_set:
+    - courses_available: true
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: utter_affirm_start_recommender_form
+  - intent: affirm
+  - action: action_fetch_profile
+  - slot_was_set:
+    - enrollments:
+      - id: 5b57917a-64e2-4a47-9252-b1c8e468df20
+        title: Natural Language Processing
+        course_code: nlp-dfki2021
+        start_date: '2021-10-01T09:00:00Z'
+        language: en
+        self_paced: false
+        certificates:
+          roa:
+            enabled: true
+            requirement: 60
+          cop:
+            enabled: true
+            requirement: 50
+  - slot_was_set:
+    - course_visits:
+      - Big Data Analytics
+  - slot_was_set:
+    - search_terms:
+      - KI
+      - Machine Learning
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - requested_slot: language
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - requested_slot: topic
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - certificate: leistungsnachweis
+  - slot_was_set:
+    - requested_slot: max_duration
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: level
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - level: experte
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: cc421f33-1244-4cb7-b49a-e672cedfb697
+        id_neo: 85bcb982-fd35-4ba6-846e-86a22f6a337c
+        id_hpi: None
+        name: Computational Learning Theory and Beyond
+        language: english
+        level: '3'
+        duration: None
+        achievement_record: roa
+  - action: utter_anything_else_v2
+  - intent: change_language_slot
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - certificate: leistungsnachweis
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - level: experte
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: cc421f33-1244-4cb7-b49a-e672cedfb697
+        id_neo: 85bcb982-fd35-4ba6-846e-86a22f6a337c
+        id_hpi: None
+        name: Computational Learning Theory and Beyond
+        language: english
+        level: '3'
+        duration: None
+        achievement_record: roa
+  - action: utter_anything_else_v2
+  - intent: faq
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: utter_faq
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_feedback
+  - intent: affirm
+  - action: utter_thankyou_feedback
+  - action: utter_have_a_nice_day

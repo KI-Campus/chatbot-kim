@@ -16,6 +16,12 @@ nlu:
     - dann gib mir eine empfehlung
     - starte die kurssuche
     - gib mir mal ne empfehlung
+    - ich möchte eine kursempfehlung haben
+    - kurssuche starten
+    - ich möchte eine empfehlung
+    - gib mir eine empfehlung
+    - ich möchte eine kursempfehlung bekommen
+    - empfehle mir einen kurs
 - intent: affirm
   examples: |
     - ja
@@ -29,6 +35,7 @@ nlu:
     - ändere die Sprache auf [Englisch]{"entity": "language", "value": "englisch"}
     - kannst du die sprache auf [deutsch](language) ändern?
     - mach mit der kurssuche weiter
+    - kannst du die sprache auf [englisch](language) ändern?
 - intent: additional_learning_recommendation
   examples: |
     - gib mir weitere empfehlungen
@@ -45,17 +52,7 @@ nlu:
     - nein
     - nein danke
     - gar nicht
-- intent: interjection_languages
-  examples: |
-    - welche sprachen habt ihr noch
-    - welche sprachen habt ir?
-- intent: interjection_costs
-  examples: |
-    - Kosten die Kurse was?
-- intent: interjection_topic
-  examples: |
-    - was für themen habt ihr überhaupt?
-    - was für themen habt ihr sonst noch?
+    - nichts
 - intent: change_topic_slot
   examples: |
     - hast du mehr empfehlungen zum thema [ki]{"entity": "topic", "value": "KI"}?
@@ -68,10 +65,27 @@ nlu:
     - an wen richtet sich der KI Campus
     - Was ist ein MOOC
     - kannst du mir erklären was ki ist
+    - welche themen bietet ihr an?
+    - welche themen habt ihr?
+    - welche kosten kommen auf mich zu?
+    - Erkläre mir den Kursumfang
+    - wie meinst du die kursdauer
+    - was ist mit kursumfang gemeint
+    - erkläre was mit umfang gemeint ist
+    - welche themen habt ihr
+    - bietet ihr auch kurse auf [englisch](language) an?
+    - wie kann man einen kurs beenden
+    - wie kann man kurse abschließen?
+    - kann ich meinen account löschen?
+    - Kannst du den Kursumfang erklären?
+    - welche themen werden auf dem ki campus angeboten
+    - wie ist die kursdauer gemeint
+    - was kosten die kurse
 - intent: get_courses
   examples: |
     - zeige mir meine Kurse
     - in welche kurse bin ich eingeschrieben?
+    - in welchen kursen bin ich eingeschrieben
 - intent: stop_form
   examples: |
     - abbrechen
@@ -79,9 +93,12 @@ nlu:
 - intent: change_max_duration_slot
   examples: |
     - Ändere die Dauer der Kurse
+    - ich möchte die kursdauer ändern
+    - ändere die kursdauer bitte
 - intent: get_achievements
   examples: |
     - Welche Leistungen habe ich bereits?
+    - ich möchte meine erfolge sehen
 - intent: change_level_slot
   examples: |
     - ich möchte doch auch empfehlungen für [experten]{"entity": "level", "value": "Experte"} bekommen
@@ -91,12 +108,25 @@ nlu:
 - intent: goodbye
   examples: |
     - Tschüss
+    - danke, tschüss
 - intent: inform
   examples: |
     - hast du auch [russisch](language)
 - intent: help
   examples: |
     - hilfe
+- intent: out_of_scope
+  examples: |
+    - wie alt bist du?
+- intent: nlu_fallback
+  examples: |
+    - was ist heute für ein tag
+- intent: courses
+  examples: |
+    - natural language processing
+- intent: bot_challenge
+  examples: |
+    - bist du ein bot
 - synonym: KI
   examples: |
     - ki
