@@ -10,7 +10,7 @@ rules:
   - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
     steps:
     - intent: nlu_fallback
-    - action: utter_default
+    - action: action_default_fallback
 
   - rule: answer bot challenge
     steps:

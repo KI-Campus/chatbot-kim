@@ -26,6 +26,7 @@ actions:
 - action_download_certificate
 - action_answer_external_search
 - action_answer_internal_search
+- action_default_fallback
 
 entities:
 - certificate_type

@@ -159,3 +159,24 @@ class ActionAnswerInternalSearch(Action):
 
 		dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
 		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic_internal', None)]
+
+class ActionDefaultFallback(Action):
+
+    def name(self) -> Text:
+        return "action_default_fallback"
+
+    def run(self, dispatcher, tracker, domain):
+
+        top_intents = []
+
+        for i in range(3):
+            top_intents.append(tracker.latest_message['intent_ranking'][i]['name'])
+        
+        print(tracker.latest_message['intent_ranking'])
+
+        if ('search_internal' in top_intents) and ('search_external' in top_intents):
+            dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents[0]}, {top_intents[1]}, {top_intents[2]}')
+            return [] #return [SlotSet('run_default', False)] weiß nicht, ob man darüber vielleicht sagen kann, was als nächstes passieren soll, bisher tut es noch nichts
+        else:
+            dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents[0]}, {top_intents[1]}, {top_intents[2]}')
+            return [] #return [SlotSet('run_default', True)]
