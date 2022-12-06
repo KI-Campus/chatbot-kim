@@ -171,15 +171,14 @@ class ActionDefaultFallback(Action):
 
     def run(self, dispatcher, tracker, domain):
 
+        print(tracker.latest_message)
         top_intents = []
 		
         if "intent_ranking"  in tracker.latest_message.keys():
             for i in range(min(len(tracker.latest_message['intent_ranking']), 3)):
                 top_intents.append(tracker.latest_message['intent_ranking'][i]['name'])	
-        else:
+        elif "intent" in tracker.latest_message.keys():
             top_intents.append(tracker.latest_message['intent']['name'])
-			
-        print(tracker.latest_message)
 
         if ('search_internal' in top_intents) and ('search_external' in top_intents):
             #dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents}')

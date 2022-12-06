@@ -96,11 +96,6 @@ slots:
     mappings:
     - type: from_entity
       entity: search_content_type
-  run_default:
-    type: bool
-    influence_conversation: true
-    mappings:
-    - type: custom
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false
@@ -241,3 +236,8 @@ responses:
   - text: "Vielen Dank für dein Feedback!"
   utter_ask_internal_or_external_search:
   - text: "Willst du in diesem Kurs suchen, oder einen neuen Kurs finden?"
+    buttons:
+    - title: "in diesem Kurs"
+      payload: "/search_internal"
+    - title: "neuer Kurs"
+      payload: "/search_external"
