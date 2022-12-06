@@ -168,15 +168,18 @@ class ActionDefaultFallback(Action):
     def run(self, dispatcher, tracker, domain):
 
         top_intents = []
-
-        for i in range(3):
-            top_intents.append(tracker.latest_message['intent_ranking'][i]['name'])
-        
-        print(tracker.latest_message['intent_ranking'])
+		
+        if "intent_ranking"  in tracker.latest_message.keys():
+            for i in range(min(len(tracker.latest_message['intent_ranking']), 3)):
+                top_intents.append(tracker.latest_message['intent_ranking'][i]['name'])	
+        else:
+            top_intents.append(tracker.latest_message['intent']['name'])
+			
+        print(tracker.latest_message)
 
         if ('search_internal' in top_intents) and ('search_external' in top_intents):
-            dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents[0]}, {top_intents[1]}, {top_intents[2]}')
+            dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents}')
             return [SlotSet('run_default', None)]
         else:
-            dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents[0]}, {top_intents[1]}, {top_intents[2]}')
+            dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents}')
             return [SlotSet('run_default', True)]
