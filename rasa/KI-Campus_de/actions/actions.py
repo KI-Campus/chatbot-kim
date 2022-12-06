@@ -157,7 +157,11 @@ class ActionAnswerInternalSearch(Action):
 		content_type = tracker.get_slot('given_search_content_type')
 		search_topic = tracker.get_slot('given_search_topic')
 
-		dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
+		if content_type not in ['Video', 'Text', 'Quiz']:
+			content_type = 'All'
+			dispatcher.utter_message(f'Danke für deine interne Suchanfrage zum Thema {search_topic}!')
+		else:
+			dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
 		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 
 class ActionDefaultFallback(Action):
@@ -178,8 +182,10 @@ class ActionDefaultFallback(Action):
         print(tracker.latest_message)
 
         if ('search_internal' in top_intents) and ('search_external' in top_intents):
-            dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents}')
-            return [SlotSet('run_default', None)]
+            #dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents}')
+            dispatcher.utter_message(response = "utter_ask_internal_or_external_search")
+            return []
         else:
-            dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents}')
-            return [SlotSet('run_default', True)]
+            #dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents}')
+            dispatcher.utter_message(response = "utter_default")
+            return []
