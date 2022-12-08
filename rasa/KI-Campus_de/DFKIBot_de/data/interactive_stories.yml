@@ -1,6 +1,7 @@
-
 version: "3.1"
+
 stories:
+
 - story: interactive_story_1
   steps:
   - intent: greet
@@ -579,11 +580,11 @@ stories:
   - slot_was_set:
     - recommendations: null
   - action: utter_anything_else_v2
-  - intent: faq
-  - slot_was_set:
-    - recommender_form_active: false
-  - action: utter_faq
-  - action: utter_anything_else
+  # - intent: faq
+  # - slot_was_set:
+  #   - recommender_form_active: false
+  # - action: utter_faq
+  # - action: utter_anything_else
   - intent: deny
   - action: utter_feedback
   - intent: affirm
@@ -599,11 +600,11 @@ stories:
     - user_login: false
   - action: utter_greet
   - action: utter_tip_formulation
-  - intent: faq
-  - action: utter_faq
-  - action: utter_anything_else
-  - intent: affirm
-  - action: utter_more_info
+  # - intent: faq
+  # - action: utter_faq
+  # - action: utter_anything_else
+  # - intent: affirm
+  # - action: utter_more_info
   - intent: start_recommender_form
   - action: action_delete_slot_value
   - slot_was_set:
@@ -868,11 +869,11 @@ stories:
     - user_login: false
   - action: utter_greet
   - action: utter_tip_formulation
-  - intent: faq
-  - action: utter_faq
-  - action: utter_anything_else
-  - intent: affirm
-  - action: utter_more_info
+  # - intent: faq
+  # - action: utter_faq
+  # - action: utter_anything_else
+  # - intent: affirm
+  # - action: utter_more_info
   - intent: start_recommender_form
   - action: action_delete_slot_value
   - slot_was_set:
@@ -1015,13 +1016,13 @@ stories:
     - user_login: false
   - action: utter_greet
   - action: utter_tip_formulation
-  - intent: faq
-    entities:
-    - language: englisch
-  - action: utter_faq
-  - action: utter_anything_else
-  - intent: affirm
-  - action: utter_more_info
+  # - intent: faq
+  #   entities:
+  #   - language: englisch
+  # - action: utter_faq
+  # - action: utter_anything_else
+  # - intent: affirm
+  # - action: utter_more_info
   - intent: start_recommender_form
   - action: action_delete_slot_value
   - slot_was_set:
@@ -1101,11 +1102,11 @@ stories:
     - user_login: false
   - action: utter_greet
   - action: utter_tip_formulation
-  - intent: faq
-  - action: utter_faq
-  - action: utter_anything_else
-  - intent: affirm
-  - action: utter_more_info
+  # - intent: faq
+  # - action: utter_faq
+  # - action: utter_anything_else
+  # - intent: affirm
+  # - action: utter_more_info
   - intent: start_recommender_form
   - action: action_delete_slot_value
   - slot_was_set:
@@ -1314,11 +1315,11 @@ stories:
         duration: '36'
         achievement_record: roa
   - action: utter_anything_else_v2
-  - intent: faq
-  - slot_was_set:
-    - recommender_form_active: false
-  - action: utter_faq
-  - action: utter_anything_else
+  # - intent: faq
+  # - slot_was_set:
+  #   - recommender_form_active: false
+  # - action: utter_faq
+  # - action: utter_anything_else
   - intent: deny
   - action: utter_feedback
   - intent: affirm
@@ -1517,13 +1518,147 @@ stories:
         duration: None
         achievement_record: roa
   - action: utter_anything_else_v2
-  - intent: faq
+  # - intent: faq
+  # - slot_was_set:
+  #   - recommender_form_active: false
+  # - action: utter_faq
+  # - action: utter_anything_else
+  # - intent: deny
+  # - action: utter_feedback
+  # - intent: affirm
+  # - action: utter_thankyou_feedback
+  # - action: utter_have_a_nice_day
+
+- story: interactive_story_9
+  steps:
+  - intent: greet
   - slot_was_set:
     - recommender_form_active: false
-  - action: utter_faq
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - user_id: 5bbc35c4-5041-4239-83e6-238b9e0d7860
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: get_achievements
+  - action: action_get_courses_buttons
+  - slot_was_set:
+    - all_courses:
+      - id: 5b57917a-64e2-4a47-9252-b1c8e468df20
+        title: Natural Language Processing
+        course_code: nlp-dfki2021
+        start_date: '2021-10-01T09:00:00Z'
+        language: en
+        self_paced: false
+        certificates:
+          roa:
+            enabled: true
+            requirement: 60
+          cop:
+            enabled: true
+            requirement: 50
+  - slot_was_set:
+    - courses_available: true
+  - action: utter_ask_which_course
+  - action: course_form
+  - active_loop: course_form
+  - slot_was_set:
+    - requested_slot: current_course_title
+  - intent: courses
+  - action: action_get_achievements
   - action: utter_anything_else
-  - intent: deny
-  - action: utter_feedback
   - intent: affirm
-  - action: utter_thankyou_feedback
-  - action: utter_have_a_nice_day
+  - action: utter_more_info
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: utter_affirm_start_recommender_form
+  - intent: affirm
+  - action: action_fetch_profile
+  - slot_was_set:
+    - enrollments:
+      - id: 5b57917a-64e2-4a47-9252-b1c8e468df20
+        title: Natural Language Processing
+        course_code: nlp-dfki2021
+        start_date: '2021-10-01T09:00:00Z'
+        language: en
+        self_paced: false
+        certificates:
+          roa:
+            enabled: true
+            requirement: 60
+          cop:
+            enabled: true
+            requirement: 50
+  - slot_was_set:
+    - course_visits:
+      - Big Data Analytics
+  - slot_was_set:
+    - search_terms:
+      - KI
+      - Machine Learning
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - requested_slot: language
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Englisch
+  - slot_was_set:
+    - language: englisch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-vertiefung
+  - slot_was_set:
+    - topic: ki-vertiefung
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: faq
+  - action: utter_faq
+  - action: recommender_form
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - certificate: leistungsnachweis
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Experte
+  - slot_was_set:
+    - level: experte
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations: null
+  - action: utter_anything_else_v2
+  - intent: deny
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: utter_goodbye

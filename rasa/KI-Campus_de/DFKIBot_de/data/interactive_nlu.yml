@@ -22,6 +22,7 @@ nlu:
     - gib mir eine empfehlung
     - ich möchte eine kursempfehlung bekommen
     - empfehle mir einen kurs
+    - welche empfehlung kannst du mir geben
 - intent: affirm
   examples: |
     - ja
@@ -53,6 +54,7 @@ nlu:
     - nein danke
     - gar nicht
     - nichts
+    - nichts, danke
 - intent: change_topic_slot
   examples: |
     - hast du mehr empfehlungen zum thema [ki]{"entity": "topic", "value": "KI"}?
@@ -81,6 +83,8 @@ nlu:
     - welche themen werden auf dem ki campus angeboten
     - wie ist die kursdauer gemeint
     - was kosten die kurse
+    - welche sprachen habt ihr
+    - welche themen bietet dr ki campus an
 - intent: get_courses
   examples: |
     - zeige mir meine Kurse
@@ -99,6 +103,7 @@ nlu:
   examples: |
     - Welche Leistungen habe ich bereits?
     - ich möchte meine erfolge sehen
+    - ich möchte meinen fortschritt sehen
 - intent: change_level_slot
   examples: |
     - ich möchte doch auch empfehlungen für [experten]{"entity": "level", "value": "Experte"} bekommen
@@ -112,6 +117,7 @@ nlu:
 - intent: inform
   examples: |
     - hast du auch [russisch](language)
+    - [benotet]{"entity": "certificate", "value": "Leistungsnachweis"}
 - intent: help
   examples: |
     - hilfe

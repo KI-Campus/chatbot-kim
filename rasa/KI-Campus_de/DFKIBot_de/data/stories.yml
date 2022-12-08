@@ -63,6 +63,8 @@ stories:
     - checkpoint: start_recommender_form
     - action: recommender_form
     - active_loop: recommender_form
+    - slot_was_set:
+      - recommender_form_active: true
     - intent: faq
     - action: utter_faq
     - action: recommender_form
