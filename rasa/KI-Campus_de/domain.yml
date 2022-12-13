@@ -117,15 +117,13 @@ responses:
   - text: Nach welcher Art von Inhalten suchst du?
     buttons:
     - title: "Video"
-      payload: '/specify_search_content_type{"search_content_type":"Video"}'
+      payload: '/specify_search_content_type{{"search_content_type":"Video"}}'
     - title: "Textseite"
-      payload: '/specify_search_content_type{"search_content_type":"Text"}'
+      payload: '/specify_search_content_type{{"search_content_type":"Text"}}'
     - title: "Quiz"
-      payload: '/specify_search_content_type{"search_content_type":"Quiz"}'
+      payload: '/specify_search_content_type{{"search_content_type":"Quiz"}}'
     - title: "Alles"
-      payload: '/specify_search_content_type{"search_content_type":"Alles"}'
-  utter_search_form_submit:
-  - text: Danke für das Absenden des Formulars (temp Nachricht)
+      payload: '/specify_search_content_type{{"search_content_type":"Alles"}}'
   utter_submit:
   - text: Alles klar!
   - text: In Ordnung!

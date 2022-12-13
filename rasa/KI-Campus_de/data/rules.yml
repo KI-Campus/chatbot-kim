@@ -76,5 +76,4 @@ rules:
     - slot_was_set:
       - requested_slot: null
     # The actions we want to run when the form is submitted.
-    - action: utter_search_form_submit
     - action: action_answer_internal_search
