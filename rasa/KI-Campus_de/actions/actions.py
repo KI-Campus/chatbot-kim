@@ -146,6 +146,15 @@ class ActionAnswerExternalSearch(Action):
 	
 	def run(self, dispatcher, tracker, domain):
 		dispatcher.utter_message('Danke für deine externe Suchanfrage zum Thema {0}!'.format(tracker.get_slot('given_search_topic')))
+		r = requests.get(f'http://127.0.0.1:5000/api/external_search\?keyword\={tracker.get_slot("given_search_topic")}')
+		status = r.status_code
+		if status == 200:
+			response = json.loads(r.content)
+			print(response)
+		elif status == 404:
+			print('Not found')
+		else:
+			print(status)
 		return [SlotSet('given_search_topic', None)]
 
 

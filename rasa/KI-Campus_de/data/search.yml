@@ -8,6 +8,7 @@ nlu:
       - Gibt es etwas über [Gesundheit]{"entity": "search_topic"} in einem Kurs?
       - Wo kann ich einen Kurs mit [AI]{"entity": "search_topic"} auf der Seite finden?
       - Zeige mir Kurse zu [machinellem Lernen]{"entity": "search_topic"}.
+      - Zeige mir Kurse zum Thema [KI]{"entity": "search_topic"}.
       - Gibt es Kurse über [k-Means]{"entity": "search_topic"}?
       - Wo kann ich etwas über [Data Science]{"entity": "search_topic"} lernen?
       - Welche Kurse behandeln [machinellem Lernen]{"entity": "search_topic"}?
