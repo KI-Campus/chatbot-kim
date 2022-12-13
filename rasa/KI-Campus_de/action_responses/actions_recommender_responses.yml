@@ -1,0 +1,92 @@
+# This file contains utterances etc. used as responses by
+#   actions/actions_recommender.py
+#
+# each Action class has an entry (corresponding to Action.name()) with the
+# response texts that are used by the action as utterances by the action,
+# for example:
+#
+# <action name>:
+#   <response 1>: some text
+#   <response 2>: some other text
+#   ...
+
+
+action_get_learning_recommendation:
+  no_recommendations_found: Leider konnte ich keinen Kurs für diese Parameter finden.
+  # found_recommendations parameter {0}: total number (int) of found course recommendations
+  found_recommendations: "Also, ich empfehle dir folgende Kurse: "
+  found_recommendations_single: "Also, ich empfehle dir folgenden Kurs: "
+  # found_course_item parameter {0}: the title of the course
+  # found_course_item parameter {1}: the URL-parameter /-ID for the course
+  found_course_item: "{0}"
+  # found_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
+  found_recommendations_more_single: "... und einen weiteren Kurs"
+  # found_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
+  found_recommendations_more_multiple: "... und {0} weitere Kurse"
+  error_401: Leider gab es einen Fehler beim Zugriff auf die Kurse, bitte wende dich an den Administrator (Status 401).
+  error_404: Leider wurde kein Kurs für diese Parameter gefunden.
+  error_500: Es gab einen Fehler bei der Abfrage.
+  # error_unknown parameter {0}: the (text) content of the error message
+  error_unknown: "Es gab einen Fehler bei der Abfrage, bitte wende dich an den Administrator. Fehler: {0}"
+  # debug_error parameter {0}: the (HTTP) status code of the error message
+  # debug_error parameter {1}: the (HTTP) headers of the error message
+  # debug_error parameter {2}: the body/content of (HTTP) error message
+  debug_error: "Fehlerantwort (Status {0}):\n  Headers: {1}\n  Body: {2}'"
+  # debug_recommendation_parameters parameter {0}: string/description for the course recommendation/filter parameters
+  debug_recommendation_parameters: "Suche Lernangebote für folgende Parameter: {0}"
+
+action_additional_learning_recommendation:
+  no_more_recommendations: Leider konnte ich keine weiteren Empfehlungen zu deinen Suchparametern finden.
+  # additional_recommendations parameter {0}: total number (int) of additional (not yet displayed) course recommendations
+  additional_recommendations: "Also, ich empfehle dir folgende Kurse: "
+  additional_recommendations_single: "Also, ich empfehle dir folgenden Kurs: "
+  # additional_course_item parameter {0}: the title of the course
+  # additional_course_item parameter {1}: the URL-parameter /-ID for the course
+  additional_course_item: "{0}"
+  # additional_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
+  additional_recommendations_more_single: "... und einen weiteren Kurs"
+  # additional_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
+  additional_recommendations_more_multiple: "... und {0} weitere Kurse"
+
+action_ask_language:
+  confirm_and_show_change_language: Wie ich verstanden habe, möchtest du die Sprache für deine Kursempfehlungen ändern. Wähle eine der Sprachoptionen aus!
+  ask_select_language: Soll der Kurs auf Deutsch oder auf Englisch sein?
+  language_option_german: Deutsch
+  language_option_english: Englisch
+  language_option_any: Beide Sprachen
+
+action_ask_topic:
+  confirm_and_show_change_topic: "Du möchtest also das Thema für deine Kursempfehlungen ändern. Hier ist eine Auswahl unserer Themen:"
+  ask_select_topic: Worum soll es in deinem Wunschkurs gehen? Wähle eins der folgenden Themenfelder!
+  topic_option_introduction_ai: Einführung in die KI
+  topic_option_specialized_ai: Vertiefung einzelner Themenfelder der KI
+  topic_option_professions_and_ai: KI in Berufsfeldern
+  topic_option_society_and_ai: KI und Gesellschaft
+  topic_option_data_science: Data Science
+  topic_option_machine_learning: Maschinelles Lernen
+  topic_option_any: egal
+
+action_ask_level:
+  confirm_and_show_change_level: "Du möchtest also das Level von deinem Wunschkurs ändern. Die Kurse auf dem KI-Campus haben die folgenden Level zur Auswahl:"
+  ask_select_level: Wie schätzt du deine Vorkenntnisse im Bereich KI ein?
+  level_option_beginner: Anfänger:in
+  level_option_advanced: Fortgeschrittene:r
+  level_option_expert: Expert:in
+
+action_ask_max_duration:
+  confirm_and_show_change_duration: Wir haben unsere Kurse nach ihrer gesamten Stundenzahl unterteilt, wähle die für dich passende Kursdauer!
+  ask_select_duration: Wie umfangreich darf der Kurs insgesamt sein?
+  duration_option_max_10h: bis zu 10 Stunden
+  duration_option_max_50h: maximal 50 Stunden
+  duration_option_any: auch über 50 Stunden
+
+action_ask_certificate:
+  confirm_and_show_change_certificate: "Wie ich verstanden habe, möchtest du einen neuen Nachweis wählen, den du in deinem Wunschkurs erhalten kannst. Wir haben zwei Optionen:"
+  ask_select_certificate: Welcher Nachweis ist dir wichtig?
+  certificate_option_unqualified: Teilnahmebescheinigung
+  certificate_option_qualified: Leistungsnachweis (benotet)
+  certificate_option_any: egal
+
+validate_recommender_form:
+  # unsupported_language_selection parameter {0}: the (unsupported) language
+  unsupported_language_selection: "Wir bieten auf dem KI-Campus keine Kurse auf {0} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!"

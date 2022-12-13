@@ -1,10 +1,13 @@
 version: '3.1'
 
 stories:
-- story: User greets
+
+- story: User greets login
   steps:
-   - intent: greet
-   - action: utter_greet
+  - intent: greet
+  - action: utter_greet
+#  # added by DFKI TODO enable when recommender is enabled
+#  - action: utter_tip_formulation
 
 - story: User goodbye
   steps:
@@ -16,4 +19,4 @@ stories:
    - intent: thank
    - action: utter_you_are_welcome
    - action: utter_anything_else
-   
+

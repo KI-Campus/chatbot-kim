@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/linux,macos,windows,visualstudio
 
+## exclude virtual env
+chatbot-env
+
 ## exclude models folder ##
 rasa/models/*
 
@@ -373,3 +376,4 @@ graph.html
 keras.json
 global.yml
 .bash_history
+/rasa/KI-Campus_de/kic_recommender.yml

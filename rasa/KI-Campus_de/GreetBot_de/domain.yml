@@ -3,18 +3,32 @@ intents:
 - greet
 - goodbye
 - thank
+## added DFKI TODO enable when recommender is enabled
+#- utter_tip_formulation
 
 responses:
   utter_anything_else:
   - text: Kann ich dir noch mit etwas anderem behilflich sein?
+
   utter_greet:
-  - text: Hey, wie kann ich dir helfen?
-  - text: Hey, was kann ich für dich tun?
+   - text: Hey, wie kann ich dir helfen?
+   - text: Hey, was kann ich für dich tun?
+#  # modified by DFKI TODO replace above greetings with following text, when recommender is enabled
+#  - text: Hallo! 👋 Ich bin KIm, dein virtueller Assistent! Ich beantworte deine Fragen rund um den KI-Campus und helfe dir dabei, deinen Wunschkurs zu finden. Ich muss noch einiges dazulernen, deine Fragen werden mir dabei helfen. Frag mich also alles, was du zum KI-Campus wissen möchtest!
+
+#  # added by DFKI TODO enable when recommender is enabled
+#  utter_tip_formulation:
+#  - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
+
   utter_goodbye:
-  - text: Auf Wiedersehen!
+   - text: Auf Wiedersehen!
+#  # modified by DFKI TODO replace above goodbye with following texts, when recommender is enabled
+#  - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Bis bald 👋
+#  - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Auf Wiedersehen 👋
   utter_you_are_welcome:
   - text: Bitte sehr.
   - text: Es ist immer schön, hilfreich zu sein.
+
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false

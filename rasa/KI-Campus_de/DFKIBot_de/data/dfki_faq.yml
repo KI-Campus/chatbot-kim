@@ -1,0 +1,71 @@
+version: '3.1'
+
+nlu:
+
+  - intent: interjection_time
+    examples: |
+      - Meinst du wöchentlich ?
+      - Meinst du monatlich ?
+      - Meinst du stündlich ?
+      - Den Monat ?
+      - In einem Monat ?
+      - Die Woche ?
+      - In einer Woche ?
+      - Wie ist die Dauer gemeint?
+      - Wie ist die Zeitangabe gemeint?
+      - Wie ist die Stundenzahl gemeint?
+      - Wie ist die Zeitraum gemeint?
+      - pro Woche?
+      - pro Monat?
+      - Erkläre die Dauer
+      - Erkläre die Zeitangabe
+      - Erkläre die Stundenzahl
+      - Erkläre die Zeitraum
+      
+  - intent: interjection_costs
+    examples: |
+      - Wie teuer ist das ?
+      - Wie teuer sind die Kurse ?
+      - Wie teuer ?
+      - Kostet die Kurse was?
+      - Kostet das was?
+      - Wie sind die Kosten für die Kurse ?
+      - Wie sind die Kosten ?
+      - Wie sind die Preise für die Kurse ?
+      - Wie sind die Preise ?
+      - Was sind die Kosten für die Kurse ?
+      - Was sind die Kosten ?
+      - Was sind die Preise für die Kurse ?
+      - Was sind die Preise ?
+      - Muss man die Kurse bezahlen?
+      - Muss man Geld bezahlen?
+      - Sind die Kurse frei ?
+      - Sind die Kurse kostenlos ?
+
+  - intent: interjection_languages
+    examples: |
+      - Welche Sprachen verwendet ihr?
+      - Welche Sprachen habt ihr?
+      - Gibt es auch alternative ?
+      - Gibt es auch mehr ?
+      - Gibt es auch andere Sprachen ?
+      - Bitte Sprachoptionen?
+      - Mehr Sprachoptionen?
+      - Weitere Sprachoptionen?
+      - Sprachoptionen?
+      - Habt ihr nur [Deutsch](language)?
+      - Habt ihr nur [Englisch](language)?
+      - andere Sprachen
+
+  - intent: interjection_topic
+    examples: |
+      - Habt ihr auch andere Themen?
+      - Weitere Themenfelder
+      - Mehr Themen
+      - Habt ihr auch Kurse zu [Statistik]{"entity": "topic", "value": "Einführung R"}
+      - Gibt es auch was über [Statistik]{"entity": "topic", "value": "Einführung R"}
+      - Andere Themen
+      - Kannst du mir mehr Themen nennen?
+      - Ich suche ein anderes Thema
+      - Anderes Thema
+      - Anderes Themenfeld

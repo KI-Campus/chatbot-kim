@@ -34,3 +34,4 @@ importers:
 
 imports:
   - ./GreetBot_de
+#  - ./DFKIBot_de

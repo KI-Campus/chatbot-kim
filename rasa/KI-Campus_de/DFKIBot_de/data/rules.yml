@@ -1,0 +1,20 @@
+version: '3.1'
+
+rules:
+
+  - rule: restart conversation
+    steps:
+    - intent: restart
+    - action: action_restart
+
+  - rule: submit recommender form
+    condition:
+    - active_loop: recommender_form 
+    steps:
+    - action: recommender_form      
+    - active_loop: null           
+    - action: utter_submit_recommender_form
+    - action: action_get_learning_recommendation  
+    - action: utter_anything_else_v2
+
+

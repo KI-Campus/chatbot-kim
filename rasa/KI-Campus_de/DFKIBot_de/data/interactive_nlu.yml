@@ -1,0 +1,114 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hallo kim
+    - hi kim
+    - hallöchen
+    - heyho
+- intent: start_recommender_form
+  examples: |
+    - kannst du mir einen kurs suchen
+    - ich suche einen kurs
+    - ich suche nen kurs zum thema [ki]{"entity": "topic", "value": "KI"}
+    - empfehle mir einen kurs!
+    - dann gib mir eine empfehlung
+    - starte die kurssuche
+    - gib mir mal ne empfehlung
+- intent: affirm
+  examples: |
+    - ja
+- intent: negative_feedback
+  examples: |
+    - das waren schlechte Empfehlungen
+- intent: change_language_slot
+  examples: |
+    - kannst du die sprache der empfehlung ändern?
+    - Kann ich die Sprache ändern?
+    - ändere die Sprache auf [Englisch]{"entity": "language", "value": "englisch"}
+    - kannst du die sprache auf [deutsch](language) ändern?
+    - mach mit der kurssuche weiter
+- intent: additional_learning_recommendation
+  examples: |
+    - gib mir weitere empfehlungen
+    - hast du noch mehr empfehlungen für mich?
+    - gib mir zusätzliche empfehlungen
+- intent: thank
+  examples: |
+    - danke das wars
+    - das wars
+    - Danke das war alles
+    - danke
+- intent: deny
+  examples: |
+    - nein
+    - nein danke
+    - gar nicht
+- intent: interjection_languages
+  examples: |
+    - welche sprachen habt ihr noch
+    - welche sprachen habt ir?
+- intent: interjection_costs
+  examples: |
+    - Kosten die Kurse was?
+- intent: interjection_topic
+  examples: |
+    - was für themen habt ihr überhaupt?
+    - was für themen habt ihr sonst noch?
+- intent: change_topic_slot
+  examples: |
+    - hast du mehr empfehlungen zum thema [ki]{"entity": "topic", "value": "KI"}?
+    - Kannst du das Thema bitte ändern für die Empfehlung
+    - Kannst du das thema auf [ML]{"entity": "topic", "value": "Maschinelles Lernen"} ändern?
+    - ändere das Thema der Empfehlung
+- intent: faq
+  examples: |
+    - Was ist KI?
+    - an wen richtet sich der KI Campus
+    - Was ist ein MOOC
+    - kannst du mir erklären was ki ist
+- intent: get_courses
+  examples: |
+    - zeige mir meine Kurse
+    - in welche kurse bin ich eingeschrieben?
+- intent: stop_form
+  examples: |
+    - abbrechen
+    - bitte abbrechen
+- intent: change_max_duration_slot
+  examples: |
+    - Ändere die Dauer der Kurse
+- intent: get_achievements
+  examples: |
+    - Welche Leistungen habe ich bereits?
+- intent: change_level_slot
+  examples: |
+    - ich möchte doch auch empfehlungen für [experten]{"entity": "level", "value": "Experte"} bekommen
+- intent: change_certificate_slot
+  examples: |
+    - kannst du mir auch kurse ohne [zertifikat]{"entity": "certificate", "value": "Leistungsnachweis"} empfehlen
+- intent: goodbye
+  examples: |
+    - Tschüss
+- intent: inform
+  examples: |
+    - hast du auch [russisch](language)
+- intent: help
+  examples: |
+    - hilfe
+- synonym: KI
+  examples: |
+    - ki
+- synonym: englisch
+  examples: |
+    - Englisch
+- synonym: Maschinelles Lernen
+  examples: |
+    - ML
+- synonym: Experte
+  examples: |
+    - experten
+- synonym: Leistungsnachweis
+  examples: |
+    - zertifikat

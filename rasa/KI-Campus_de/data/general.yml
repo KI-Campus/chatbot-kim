@@ -16,6 +16,12 @@ nlu:
       - Bei welchem Kurs bin ich eingeschrieben?
       - Bei welchen Kursen bin ich zur Zeit eingeschrieben?
       - In welchen Kursen bin ich drin?
+      - Wie sind meine Kurse?
+      - Was sind meine Kurse?
+      - Welche sind meine Kurse?
+      - Was sind die Kurse in die ich eingeschrieben bin?
+      - Eingeschriebene Kurse
+      - Meine Kurse
 
   - intent: get_achievements
     examples: |
@@ -256,7 +262,7 @@ nlu:
       - Lassen Sie mich bitte mit einer realen Person sprechen
       - Ich möchte mit einer realen Person sprechen
 
-  - intent: inform
+  - intent: courses
     examples: |
       - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
       - Launchpad to Fundamental Questions on AI

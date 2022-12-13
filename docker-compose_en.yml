@@ -6,7 +6,7 @@ services:
       build: 
         context: ./rasa/KI-Campus_en
       volumes:
-      - "./rasa/KI-Campus_en:/app"
+        - "./rasa/KI-Campus_en:/app"
       ports: 
         - "54321:5005"
         # Server Port: 54321:5005
@@ -18,5 +18,6 @@ services:
       volumes:
         - ./rasa/KI-Campus_en/actions:/app/actions
         - ./rasa/KI-Campus_en/data:/app/data
+        - ./rasa/KI-Campus_en/action_responses:/app/action_responses
       ports:
         - 5055:5055
