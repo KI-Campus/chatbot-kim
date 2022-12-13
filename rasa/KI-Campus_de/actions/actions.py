@@ -215,3 +215,26 @@ class ActionGetCertificate(Action):
 				else:
 					dispatcher.utter_message(get_response(self.responses, self.Responses.download_not_available).format(achievement['name']))
 		return []
+
+class ActionSearchTopic(Action):
+	def name(self) -> Text:
+		return "action_search_topic"
+	
+	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+		searchTopic = tracker.get_slot('search_topic')
+
+		print(searchTopic)
+
+		if searchTopic == 'Medizin':
+			dispatcher.utter_message('Du suchst Kurse zum Thema Medizin? Dann schau direkt auf der <a href="https://ki-campus.org/themen/medizin" _blank>Themenseite Medizin</a> vorbei.')
+		elif searchTopic == 'Schule':
+			dispatcher.utter_message('Du suchst Kurse zum Thema Schule? Dann schau direkt auf der <a href="https://ki-campus.org/themen/schule" _blank>Themenseite Schule</a> vorbei.')
+		elif searchTopic == 'Daten':
+			dispatcher.utter_message('Du suchst Kurse zum Thema Daten? Dann schau direkt auf der <a href="https://ki-campus.org/themen/daten" _blank>Themenseite Daten</a> vorbei.')
+		elif searchTopic == 'Machine Learning':
+			dispatcher.utter_message('Du suchst Kurse zum Thema Machine Learning? Dann schau direkt auf der <a href="hhttps://ki-campus.org/themen/machine-learning" _blank>Themenseite Machine Learning</a> vorbei.')
+		elif searchTopic == 'Entrepreneurship':
+			dispatcher.utter_message('Du suchst Kurse zum Thema Entrepreneurship? Dann schau direkt auf der <a href="https://ki-campus.org/themen/entrepreneurship" _blank>Themenseite Entrepreneurship</a> vorbei.')
+		else:
+			dispatcher.utter_message('Du suchst einen Kurs zum Thema {0}? Am oberen Bildschirmrand findest du eine Lupe. Dort kannst du nach Kursen und Themen suchen.'.format(searchTopic))
+		return[]

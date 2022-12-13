@@ -1,0 +1,13 @@
+# This file contains the recommender endpoints your bot can use.
+
+# recommender service (DFKI) configuration
+recommender_api:
+  #  # local:
+  #  url: "http://localhost:8000/"
+  #  token: "<local token>"
+  # staging:
+  url: "https://lnv-90209.sb.dfki.de:8443/"
+  token: "a2646b3404023d8cad498d4737480b73a3cff016"
+  #  # production:
+  #  url: "https://lnv-90209.sb.dfki.de/"
+  #  token: "96ed11721325825627547dc18f9ed54f5a254a9e"
