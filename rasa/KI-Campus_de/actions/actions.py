@@ -166,25 +166,25 @@ class ActionAnswerInternalSearch(Action):
 
 class ActionDefaultFallback(Action):
 
-    def name(self) -> Text:
-        return "action_default_fallback"
+	def name(self) -> Text:
+		return "action_default_fallback"
 
-    def run(self, dispatcher, tracker, domain):
+	def run(self, dispatcher, tracker, domain):
 
-        print(tracker.latest_message)
-        top_intents = []
-		
-        if "intent_ranking"  in tracker.latest_message.keys():
-            for i in range(min(len(tracker.latest_message['intent_ranking']), 3)):
-                top_intents.append(tracker.latest_message['intent_ranking'][i]['name'])	
-        elif "intent" in tracker.latest_message.keys():
-            top_intents.append(tracker.latest_message['intent']['name'])
+		print(tracker.latest_message)
+		top_intents = []
 
-        if ('search_internal' in top_intents) and ('search_external' in top_intents):
-            #dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents}')
-            dispatcher.utter_message(response = "utter_ask_internal_or_external_search")
-            return []
-        else:
-            #dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents}')
-            dispatcher.utter_message(response = "utter_default")
-            return []
+		if "intent_ranking"  in tracker.latest_message.keys():
+			for i in range(min(len(tracker.latest_message['intent_ranking']), 3)):
+				top_intents.append(tracker.latest_message['intent_ranking'][i]['name'])	
+		elif "intent" in tracker.latest_message.keys():
+			top_intents.append(tracker.latest_message['intent']['name'])
+
+		if ('search_internal' in top_intents) or ('search_external' in top_intents):
+			#dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents}')
+			dispatcher.utter_message(response = "utter_ask_internal_or_external_search")
+			return []
+		else:
+			#dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents}')
+			dispatcher.utter_message(response = "utter_default")
+			return []
