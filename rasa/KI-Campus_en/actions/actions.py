@@ -217,3 +217,42 @@ class ActionGetCertificate(Action):
 				else:
 					dispatcher.utter_message(get_response(self.responses, self.Responses.download_not_available).format(achievement['name']))
 		return []
+
+class ActionSearchTopic(Action):
+	class Responses(ResponseEnum):
+		topicpage_present = auto()
+		"""
+		text topicpage_present has 2 parameter:
+        * parameter {0}: (textual) search topic
+								* parameter {0}: (textual) link to search topic
+		"""
+		topicpage_not_present = auto()
+		"""
+		text topicpage_present has 1 parameter:
+        * parameter {0}: (textual) search topic
+		"""
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name())
+		assert_responses_exist(self.responses, self.Responses)
+	def name(self) -> Text:
+		return "action_search_topic"
+	
+	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+		searchTopic = tracker.latest_message['entities'][0]['value']
+
+		if searchTopic.lower() == 'medicine':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("AI in Medicine", "https://ki-campus.org/themen/medizin?locale=en"))
+		elif searchTopic.lower() == 'school':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("AI in Education", "https://ki-campus.org/themen/schule?locale=en"))
+		elif searchTopic.lower() == 'data':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Data Literacy", "https://ki-campus.org/themen/daten?locale=en"))
+		elif searchTopic.lower() == 'machine learning':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Machine Learning", "https://ki-campus.org/themen/machine-learning?locale=en"))
+		elif searchTopic.lower() == 'entrepreneurship':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("AI and Entrepreneurship", "https://ki-campus.org/themen/entrepreneurship?locale=en"))
+		else:
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_not_present).format(searchTopic))
+		return[]

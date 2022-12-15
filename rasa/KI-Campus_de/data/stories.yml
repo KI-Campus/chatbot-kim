@@ -126,7 +126,7 @@ stories:
 
 - story: search for topics
   steps:
-  - intent: search
+  - intent: search_topics
   - action: action_search_topic
   - action: utter_anything_else
   - checkpoint: more_information
