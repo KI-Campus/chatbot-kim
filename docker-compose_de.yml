@@ -19,6 +19,6 @@ services:
         - ./rasa/KI-Campus_de/actions:/app/actions
         - ./rasa/KI-Campus_de/data:/app/data
         - ./rasa/KI-Campus_de/action_responses:/app/action_responses
-        # - ./rasa/KI-Campus_de/kic_recommender.yml:/app/kic_recommender.yml
+        - ./rasa/KI-Campus_de/kic_recommender.yml:/app/kic_recommender.yml
       ports:
         - 5045:5055
