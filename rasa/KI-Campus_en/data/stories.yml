@@ -123,3 +123,10 @@ stories:
   - intent: deny
   - action: utter_anything_else
   - checkpoint: more_information
+
+- story: search for topics
+  steps:
+  - intent: search_topics
+  - action: action_search_topic
+  - action: utter_anything_else
+  - checkpoint: more_information

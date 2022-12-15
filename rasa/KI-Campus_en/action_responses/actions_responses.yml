@@ -37,3 +37,7 @@ action_download_certificate:
   download_achievement: "You can download your {0} here: {1}!"
   # download_not_available parameter {0}: field "name" in data-object for achievement
   download_not_available: "I am very sorry! The {0} is no longer available and unfortunately can no longer be downloaded!"
+
+action_search_topic:
+  topicpage_present: "You are looking for courses on {0}?Then take a look at the <a href='{1}' _blank>topic page {0}</a>!"
+  topicpage_not_present: "You are looking for courses on {0}? At the top of the screen you will find a magnifying glass. There you can search for courses and topics."

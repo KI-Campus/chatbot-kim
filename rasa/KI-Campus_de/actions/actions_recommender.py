@@ -351,6 +351,7 @@ class ActionDeleteSlotValue(Action):
 		# check intent then delete slot	value
 		intent = str(tracker.get_intent_of_latest_message())
 		print(f"{intent}")  # FIXME DEBUG to do: delete - checking function
+
 		if  intent == 'change_language_slot': return [SlotSet("language", None)]
 		elif  intent == 'change_topic_slot': return [SlotSet("topic", None)]
 		elif  intent == 'change_level_slot': return [SlotSet("level", None)]
