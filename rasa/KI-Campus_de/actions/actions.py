@@ -217,24 +217,40 @@ class ActionGetCertificate(Action):
 		return []
 
 class ActionSearchTopic(Action):
+	class Responses(ResponseEnum):
+		topicpage_present = auto()
+		"""
+		text topicpage_present has 2 parameter:
+        * parameter {0}: (textual) search topic
+								* parameter {0}: (textual) link to search topic
+		"""
+		topicpage_not_present = auto()
+		"""
+		text topicpage_present has 1 parameter:
+        * parameter {0}: (textual) search topic
+		"""
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name())
+		assert_responses_exist(self.responses, self.Responses)
 	def name(self) -> Text:
 		return "action_search_topic"
 	
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-		searchTopic = tracker.get_slot('search_topic')
+		searchTopic = tracker.latest_message['entities'][0]['value']
 
-		print(searchTopic)
-
-		if searchTopic == 'Medizin':
-			dispatcher.utter_message('Du suchst Kurse zum Thema Medizin? Dann schau direkt auf der <a href="https://ki-campus.org/themen/medizin" _blank>Themenseite Medizin</a> vorbei.')
-		elif searchTopic == 'Schule':
-			dispatcher.utter_message('Du suchst Kurse zum Thema Schule? Dann schau direkt auf der <a href="https://ki-campus.org/themen/schule" _blank>Themenseite Schule</a> vorbei.')
-		elif searchTopic == 'Daten':
-			dispatcher.utter_message('Du suchst Kurse zum Thema Daten? Dann schau direkt auf der <a href="https://ki-campus.org/themen/daten" _blank>Themenseite Daten</a> vorbei.')
-		elif searchTopic == 'Machine Learning':
-			dispatcher.utter_message('Du suchst Kurse zum Thema Machine Learning? Dann schau direkt auf der <a href="hhttps://ki-campus.org/themen/machine-learning" _blank>Themenseite Machine Learning</a> vorbei.')
-		elif searchTopic == 'Entrepreneurship':
-			dispatcher.utter_message('Du suchst Kurse zum Thema Entrepreneurship? Dann schau direkt auf der <a href="https://ki-campus.org/themen/entrepreneurship" _blank>Themenseite Entrepreneurship</a> vorbei.')
+		if searchTopic.lower() == 'medizin':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Medizin", "https://ki-campus.org/themen/medizin"))
+		elif searchTopic.lower() == 'schule':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Schule", "https://ki-campus.org/themen/schule"))
+		elif searchTopic.lower() == 'daten':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Daten", "https://ki-campus.org/themen/daten"))
+		elif searchTopic.lower() == 'machine learning':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Machine Learning", "https://ki-campus.org/themen/machine-learning"))
+		elif searchTopic.lower() == 'entrepreneurship':
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Entrepreneurship", "https://ki-campus.org/themen/entrepreneurship"))
 		else:
-			dispatcher.utter_message('Du suchst einen Kurs zum Thema {0}? Am oberen Bildschirmrand findest du eine Lupe. Dort kannst du nach Kursen und Themen suchen.'.format(searchTopic))
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_not_present).format(searchTopic))
 		return[]

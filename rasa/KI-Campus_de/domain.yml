@@ -18,7 +18,7 @@ intents:
 - insults
 - courses
 - inform
-- search
+- search_topics
 
 actions:
 - action_get_courses
@@ -36,12 +36,6 @@ entities:
 - search_topic
 
 slots:
-  search_topic:
-    type: text
-    mappings:
-    - type: from_entity
-      entity: search_topic
-      intent: search
   all_courses:
     type: list
     influence_conversation: false
@@ -203,5 +197,3 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
-  utter_search:
-  - text: "Suchst du nach diesem Thema {search_topic}"

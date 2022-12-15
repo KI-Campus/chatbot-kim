@@ -281,7 +281,7 @@ nlu:
       - Dr. med. KI
       - Team Peer Assessments
 
-  - intent: search
+  - intent: search_topics
     examples: |
       - Ich suche Angebot zum Thema [Medizin](search_topic)
       - Ich suche Kurse zum Thema [Schule](search_topic)
@@ -296,3 +296,9 @@ nlu:
       - [Ernährung](search_topic) Kurse
       - Kurse im Bereich [Krebs](search_topic)
       - Lernangebot zu [Wirtschaft](search_topic)
+      - Ich suche einen Kurs
+      - Lernangebot
+      - Kurse zum Thema
+      - Ich brauche das Kursangebot
+      - Ich suche einen Kurs zum Thema
+      - Ich möchte das Lernangebot haben
