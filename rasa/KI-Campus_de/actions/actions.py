@@ -145,17 +145,35 @@ class ActionAnswerExternalSearch(Action):
 		return "action_answer_external_search"
 	
 	def run(self, dispatcher, tracker, domain):
-		dispatcher.utter_message('Danke für deine externe Suchanfrage zum Thema {0}!'.format(tracker.get_slot('given_search_topic')))
-		r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={tracker.get_slot("given_search_topic")}')
-		status = r.status_code
-		if status == 200:
-			response = json.loads(r.content)
-			print(response)
-		elif status == 404:
-			print('Not found')
+		search_topic = tracker.get_slot("given_search_topic")
+		print(search_topic)
+		if not search_topic:
+			dispatcher.utter_message('Du möchstes nach einem neuen Kurs suchen? Ich hab leider nicht verstanden, worum es in diesem Kurs gehen soll.')
+			return []
 		else:
-			print(status)
-		return [SlotSet('given_search_topic', None)]
+			r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={search_topic}')
+			status = r.status_code
+			if status == 200:
+				response = json.loads(r.content)
+				print(response)
+				matches = response['long_matches']
+				dispatcher.utter_message(f'Kurse auf Deutsch zum Thema {search_topic}:')
+				for match in matches:
+					if match['language'] == 'DE':
+						m = match['name']
+						print(m)
+						dispatcher.utter_message(f'- {m}: {match["description"]}')
+				dispatcher.utter_message(f'Kurse auf Englisch zum Thema {search_topic}:')
+				for match in matches:
+					if match['language'] == 'EN':
+						m = match['name']
+						print(m)
+						dispatcher.utter_message(f'- {m}: {match["description"]}')
+			else:
+				print(status)
+				dispatcher.utter_message(f'Ich konnte leider keinen Kurs zu {search_topic} finden. Probiere es nochmal mit einem anderen Suchbegriff.')
+			
+			return [SlotSet('given_search_topic', None)]
 
 
 class ActionAnswerInternalSearch(Action):
@@ -171,6 +189,18 @@ class ActionAnswerInternalSearch(Action):
 			dispatcher.utter_message(f'Danke für deine interne Suchanfrage zum Thema {search_topic}!')
 		else:
 			dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
+		
+		req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type}&course=Daten-%20und%20Algorithmenethik'
+		r = requests.get(req)
+		status = r.status_code
+		if status == 200:
+			response = json.loads(r.content)
+			print(response)
+		elif status == 404:
+			print('Not found')
+		else:
+			print(status)
+
 		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 
 class ActionDefaultFallback(Action):
