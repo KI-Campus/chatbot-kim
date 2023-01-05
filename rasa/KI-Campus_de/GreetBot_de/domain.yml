@@ -28,6 +28,7 @@ responses:
   - text: Bitte sehr.
   - text: Es ist immer schön, hilfreich zu sein.
 
+
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false

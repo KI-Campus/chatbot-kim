@@ -77,4 +77,4 @@ def assert_responses_exist(responses: Dict[str, str], response_fields: Type[Enum
 		if label.value not in responses:
 			raise Exception('missing response text for {}: the text is specified in enumeration {}, but is missing in the response definitions (YAML file)'.format(label.value, response_fields))
 
-		print('  [{}] -> {}'.format(label, responses[label.value]))  # FIXME DEBUG
+		# print('  [{}] -> {}'.format(label, responses[label.value]))  # DEBUG

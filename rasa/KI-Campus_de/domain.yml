@@ -17,6 +17,8 @@ intents:
 - human_handoff
 - insults
 - courses
+- search_topics
+# - inform
 
 actions:
 - action_get_courses
@@ -25,11 +27,13 @@ actions:
 - action_course_set
 - action_set_current_course
 - action_download_certificate
+- action_search_topic
 
 entities:
 - certificate_type
 - Course
 - country
+- search_topic
 
 slots:
   all_courses:
