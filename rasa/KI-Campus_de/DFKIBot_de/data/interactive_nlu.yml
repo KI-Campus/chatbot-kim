@@ -124,9 +124,6 @@ nlu:
 - intent: out_of_scope
   examples: |
     - wie alt bist du?
-- intent: nlu_fallback
-  examples: |
-    - was ist heute für ein tag
 - intent: courses
   examples: |
     - natural language processing
