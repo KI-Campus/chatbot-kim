@@ -283,7 +283,7 @@ nlu:
       - let me speak to a real person please
       - i want to talk to a real person
 
-  - intent: inform
+  - intent: courses
     examples: |
       - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
       - Launchpad to Fundamental Questions on AI

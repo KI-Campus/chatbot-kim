@@ -65,10 +65,10 @@ class ActionGetCoursesButtons(Action):
 				buttonGroup = []
 				for course in response:
 					title = course['title']
-					buttonGroup.append({"title": courseTitle.format(title), "payload": '/inform{{"Course": "{0}"}}'.format(title)})
+					buttonGroup.append({"title": courseTitle.format(title), "payload": '/courses{{"Course": "{0}"}}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
-		elif status == 401: # Status-Code 401 None
+		elif status == 401:  # Status-Code 401 None
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
 			return [SlotSet('courses_available', False)]
 		else:
@@ -116,7 +116,7 @@ class ActionGetCourses(Action):
 					title = courseTitle.format(course['title'])
 					dispatcher.utter_message(title)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
-		elif status == 401: # Status-Code 401 None
+		elif status == 401:  # Status-Code 401 None
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
 			return [SlotSet('courses_available', False)]
 		else:
@@ -158,10 +158,10 @@ class ActionGetAchievements(Action):
 				break
 		if courseId != 0:
 			req_lang = get_response(self.responses, self.Responses.request_language_code)
-			r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses/{0}/achievements'.format(courseId), 
+			r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses/{0}/achievements'.format(courseId),
 			headers={
 				"content-type": "application/json",
-				"Authorization": 'Bearer {0}'.format(token), 
+				"Authorization": 'Bearer {0}'.format(token),
 				"Accept-Language": "{0}".format(req_lang)
 			})
 			status = r.status_code
