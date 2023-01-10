@@ -164,7 +164,8 @@ class ActionAnswerExternalSearch(Action):
 					if match['language'] == 'DE':
 						m = match['name']
 						print(m)
-						dispatcher.utter_message(f'- {m}')
+						# TODO: Show link in a nicer way. Hidden behind the course name.
+						dispatcher.utter_message(f'- {m}: {match["link"]}')
 					else:
 						course_in_other_language = True
 			else:
@@ -195,7 +196,7 @@ class ActionAnswerExternalSearch(Action):
 					if match['language'] != 'DE':
 						m = match['name']
 						print(m)
-						dispatcher.utter_message(f'- {m}')
+						dispatcher.utter_message(f'- {m}: {match["link"]}')
 			
 			return [SlotSet('given_search_topic', None)]
 
@@ -222,18 +223,47 @@ class ActionAnswerInternalSearch(Action):
 		else:
 			dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
 		
-		req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type}&course=Daten-%20und%20Algorithmenethik'
-		r = requests.get(req)
+		# Get courses where the user is enrolled
+		current_state = tracker.current_state()
+		token = current_state['sender_id']
+		r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses',
+		headers={
+			"content-type": "application/json",
+			"Authorization": 'Bearer {0}'.format(token)
+		})
 		status = r.status_code
+		print(status)
 		if status == 200:
 			response = json.loads(r.content)
+			print("Ich bin noch da")
 			print(response)
-		elif status == 404:
-			print('Not found')
-		else:
-			print(status)
+			if len(response) < 1:
+				dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben. Hier sind passende Kurse zu dem Thema:')
+				ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
+				return []
+			else:
+				for course in response:
+					title = course['title']
+					dispatcher.utter_message(title)
+					
+					req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type}&course={course["course_code"]}'
+					r = requests.get(req)
+					status = r.status_code
+					if status == 200:
+						response = json.loads(r.content)
+						print(response)
+					elif status == 404:
+						print('Not found')
+					else:
+						print(status)
+					
+				return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 
-		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+		elif status == 401: # Status-Code 401 None
+			dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben.')
+			return []
+		else:
+			return []
 
 class ActionDefaultFallback(Action):
 
