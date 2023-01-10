@@ -172,8 +172,16 @@ class ActionAnswerExternalSearch(Action):
 			else:
 				print(status)
 				dispatcher.utter_message(f'Ich konnte leider keinen Kurs zu {search_topic} finden. Probiere es nochmal mit einem anderen Suchbegriff.')
-			
+			dispatcher.utter_message(response = "utter_ask_courses_other_language")
+
 			return [SlotSet('given_search_topic', None)]
+	
+	class ActionAnswerExternalSearchOtherLanguages(Action):
+		def name(self) -> Text:
+			return "action_answer_external_search_other_languages"
+		def run(self, dispatcher, tracker, domain):
+			print("Other language")
+		
 
 
 class ActionAnswerInternalSearch(Action):

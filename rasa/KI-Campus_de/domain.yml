@@ -27,6 +27,7 @@ actions:
 - action_answer_external_search
 - action_answer_internal_search
 - action_default_fallback
+- action_answer_external_search_other_languages
 
 entities:
 - certificate_type
@@ -239,3 +240,10 @@ responses:
       payload: "/search_internal"
     - title: "neuer Kurs"
       payload: "/search_external"
+  utter_ask_courses_other_language:
+  - text: "Willst du weitere Kurse zu diesem Thema in anderen Sprachen sehen?"
+    buttons:
+    - title: "Ja!"
+      payload: "/affirm"
+    - title: "Nicht wirklich ..."
+      payload: "/deny"

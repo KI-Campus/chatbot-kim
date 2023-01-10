@@ -124,7 +124,17 @@ stories:
   - action: utter_anything_else
   - checkpoint: more_information
 
-- story: answer external search
+- story: answer external search other language deny
   steps:
   - intent: search_external
   - action: action_answer_external_search
+  - intent: deny
+  - action: utter_anything_else
+  - checkpoint: more_information
+
+- story: answer external search other language accept
+  steps:
+  - intent: search_external
+  - action: action_answer_external_search
+  - intent: affirm
+  - action: action_answer_external_search_other_languages
