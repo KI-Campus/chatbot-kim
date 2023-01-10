@@ -153,6 +153,8 @@ class ActionAnswerExternalSearch(Action):
 		else:
 			r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={search_topic}')
 			status = r.status_code
+
+			course_in_other_language = False
 			if status == 200:
 				response = json.loads(r.content)
 				print(response)
@@ -162,25 +164,47 @@ class ActionAnswerExternalSearch(Action):
 					if match['language'] == 'DE':
 						m = match['name']
 						print(m)
-						dispatcher.utter_message(f'- {m}: {match["description"]}')
-				dispatcher.utter_message(f'Kurse auf Englisch zum Thema {search_topic}:')
-				for match in matches:
-					if match['language'] == 'EN':
-						m = match['name']
-						print(m)
-						dispatcher.utter_message(f'- {m}: {match["description"]}')
+						dispatcher.utter_message(f'- {m}')
+					else:
+						course_in_other_language = True
 			else:
 				print(status)
 				dispatcher.utter_message(f'Ich konnte leider keinen Kurs zu {search_topic} finden. Probiere es nochmal mit einem anderen Suchbegriff.')
-			dispatcher.utter_message(response = "utter_ask_courses_other_language")
+
+			if course_in_other_language:
+				dispatcher.utter_message(response = "utter_ask_courses_other_language")
+				return []
 
 			return [SlotSet('given_search_topic', None)]
 	
 	class ActionAnswerExternalSearchOtherLanguages(Action):
 		def name(self) -> Text:
 			return "action_answer_external_search_other_languages"
+
 		def run(self, dispatcher, tracker, domain):
-			print("Other language")
+			search_topic = tracker.get_slot("given_search_topic")
+
+			r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={search_topic}')
+			status = r.status_code
+			if status == 200:
+				response = json.loads(r.content)
+				print(response)
+				matches = response['long_matches']
+				dispatcher.utter_message(f'Kurse in anderen Sprachen zum Thema {search_topic}:')
+				for match in matches:
+					if match['language'] != 'DE':
+						m = match['name']
+						print(m)
+						dispatcher.utter_message(f'- {m}')
+			
+			return [SlotSet('given_search_topic', None)]
+
+	class ActionDeleteGivenSearchTopic(Action):
+		def name(self) -> Text:
+			return "action_delete_given_search_topic"
+		
+		def run(self, dispatcher, tracker, domain):
+			return [SlotSet('given_search_topic', None)]
 		
 
 

@@ -28,6 +28,7 @@ actions:
 - action_answer_internal_search
 - action_default_fallback
 - action_answer_external_search_other_languages
+- action_delete_given_search_topic
 
 entities:
 - certificate_type

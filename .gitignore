@@ -1,4 +1,5 @@
 # Created by https://www.gitignore.io/api/linux,macos,windows,visualstudio
+venv
 
 ## exclude models folder ##
 rasa/models/*
