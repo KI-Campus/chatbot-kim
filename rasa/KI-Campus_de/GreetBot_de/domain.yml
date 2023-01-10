@@ -4,7 +4,7 @@ intents:
 - goodbye
 - thank
 
-# added dfki
+# added by DFKI
 actions: 
 - utter_tip_formulation
 - utter_greet
@@ -14,16 +14,18 @@ actions:
 responses:
 
   utter_greet:
-  # - text: Hey, wie kann ich dir helfen?
-  # - text: Hey, was kann ich für dich tun?
-  - text: Hallo! 👋 Ich bin KIm, dein virtueller Assistent! Ich beantworte deine Fragen rund um den KI-Campus und helfe dir dabei, deinen Wunschkurs zu finden. Ich muss noch einiges dazulernen, deine Fragen werden mir dabei helfen. Frag mich also alles, was du zum KI-Campus wissen möchtest! 
-  
-  # added dfki
+#  - text: Hey, wie kann ich dir helfen?
+#  - text: Hey, was kann ich für dich tun?
+#  # modified by DFKI
+  - text: Hallo! 👋 Ich bin KIm, dein virtueller Assistent! Ich beantworte deine Fragen rund um den KI-Campus und helfe dir dabei, deinen Wunschkurs zu finden. Ich muss noch einiges dazulernen, deine Fragen werden mir dabei helfen. Frag mich also alles, was du zum KI-Campus wissen möchtest!
+
+  # added by DFKI
   utter_tip_formulation:
   - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
 
   utter_goodbye:
-  # - text: Auf Wiedersehen!
+#  - text: Auf Wiedersehen!
+  # modified by DFKI
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Bis bald 👋
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Auf Wiedersehen 👋
   

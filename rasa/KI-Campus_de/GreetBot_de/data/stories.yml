@@ -13,7 +13,7 @@ stories:
    - action: utter_you_are_welcome
    - action: utter_anything_else
 
-# added dfki
+# added by DFKI
 - story: User greets login
   steps:
   - intent: greet
