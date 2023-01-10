@@ -16,9 +16,8 @@ intents:
 - bot_challenge
 - human_handoff
 - insults
-- courses
+- courses # inform -> courses
 - search_topics
-# - inform
 
 actions:
 - action_get_courses
@@ -85,9 +84,6 @@ slots:
     influence_conversation: true
     mappings:
     - type: custom
-session_config:
-  session_expiration_time: 5
-  carry_over_slots_to_new_session: false
 responses:
   utter_submit:
   - text: Alles klar!
@@ -100,10 +96,10 @@ responses:
   - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". ' 
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
-  utter_have_a_nice_day:
-  - text: Hab einen schönen Tag und bis bald!
-  utter_bye:
-  - text: Tschüss!
+  # utter_have_a_nice_day: # verschoben in greetbot
+  # - text: Hab einen schönen Tag und bis bald!
+  # utter_bye:
+  # - text: Tschüss!
   utter_more_info:
   - text: Okay. Wie kann ich dir weiterhelfen?
   utter_anything_else:
@@ -218,3 +214,6 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
+session_config:
+  session_expiration_time: 5
+  carry_over_slots_to_new_session: false

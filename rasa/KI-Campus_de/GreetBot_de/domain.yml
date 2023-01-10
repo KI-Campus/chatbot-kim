@@ -4,12 +4,14 @@ intents:
 - goodbye
 - thank
 
-# added dfki 
+# added dfki
+actions: 
 - utter_tip_formulation
+- utter_greet
+- utter_goodbye
+- utter_your_are_welcome
 
 responses:
-  utter_anything_else:
-  - text: Kann ich dir noch mit etwas anderem behilflich sein?
 
   utter_greet:
   # - text: Hey, wie kann ich dir helfen?
@@ -24,6 +26,7 @@ responses:
   # - text: Auf Wiedersehen!
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Bis bald 👋
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Auf Wiedersehen 👋
+  
   utter_you_are_welcome:
   - text: Bitte sehr.
   - text: Es ist immer schön, hilfreich zu sein.

@@ -176,14 +176,14 @@ responses:
   utter_tip_login:
   - text: "💡 Tipp: Für eine möglichst gute Kursempfehlung helfen mir die Informationen aus deinem Profil. Melde dich bitte hier an." 
   utter_affirm_start_recommender_form_login:
-  - text: "Super! Hast du dich eingeloggt? Falls du dich nicht einloggen möchtest oder noch kein Profil bei uns hast, ist das auch kein Problem! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
+  - text: "Cool! Hast du dich eingeloggt? Falls du dich nicht einloggen möchtest oder noch kein Profil bei uns hast, ist das auch kein Problem! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
     buttons: 
       - title: Ja, los geht's!
         payload: /affirm   
       - title: Nein, ich habe ein anderes Anliegen!
         payload: /deny
   utter_affirm_start_recommender_form:
-  - text: "Super! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
+  - text: "Cool! Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?"
     buttons: 
       - title: Ja, los geht's!
         payload: /affirm   

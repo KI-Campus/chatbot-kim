@@ -108,10 +108,9 @@ class ActionFetchProfile(Action):
 
 		return [SlotSet("enrollments", enrollments), SlotSet("course_visits", course_visits), SlotSet("search_terms", search_terms)]
 
-######################################################################################
+###################################
 # RECOMMENDER
-######################################################################################
-
+###################################
 
 class ActionGetLearningRecommendation(Action):
 	class Responses(ResponseEnum):
@@ -337,10 +336,9 @@ class ActionAdditionalLearningRecommendation(Action):
 
 		return [SlotSet("recommendations", recommendations)]
 
-##########################################################################################
+###################################
 # FORMS & SLOTS
-##########################################################################################
-
+###################################
 
 class ActionDeleteSlotValue(Action):
 	def name(self):
@@ -554,6 +552,7 @@ class ActionAskCertificate(Action):
 ###################################
 # CONDITIONAL RESPONSES (VIA SLOTS)
 ################################### 
+
 class ActionCheckRecommenderFormActive(Action):
 
 	def name(self) -> Text:
