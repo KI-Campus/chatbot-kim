@@ -15,7 +15,7 @@ intents:
 - out_of_scope
 - bot_challenge
 - human_handoff
-- insult
+- insults
 - courses # modified by DFKI: inform -> courses
 # # modified by DFKI: conflict
 # - search_topics

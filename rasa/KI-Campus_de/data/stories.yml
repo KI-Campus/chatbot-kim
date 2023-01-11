@@ -5,7 +5,7 @@ stories:
   steps:
   - intent: faq
   - action: utter_faq
-  - slot_was_set: # dfki
+  - slot_was_set: # modified by DFKI
     - recommender_form_active: false
   - action: utter_anything_else
   - checkpoint: more_information
@@ -126,9 +126,10 @@ stories:
   - action: utter_anything_else
   - checkpoint: more_information
 
-- story: search for topics
-  steps:
-  - intent: search_topics
-  - action: action_search_topic
-  - action: utter_anything_else
-  - checkpoint: more_information
+## FIXME: conflict with DFKI
+# - story: search for topics
+#   steps:
+#   - intent: search_topics
+#   - action: action_search_topic
+#   - action: utter_anything_else
+#   - checkpoint: more_information

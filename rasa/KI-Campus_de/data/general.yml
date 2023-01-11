@@ -281,24 +281,25 @@ nlu:
       - Dr. med. KI
       - Team Peer Assessments
 
-  - intent: search_topics
-    examples: |
-      - Ich suche Angebot zum Thema [Medizin](search_topic)
-      - Ich suche Kurse zum Thema [Schule](search_topic)
-      - Zeige mir alle Kurse zu [Machine Learning](search_topic)
-      - Zeig mir das Kursangebot zu [Entrepreneurship](search_topic)
-      - Ich möchte Kurse zum Thema [Daten](search_topic)
-      - Ich brauch das Angebot zu [Lehre](search_topic)
-      - Angebot zu [Internet of Things](search_topic)
-      - Kurse zum Thema [Bildung](search_topic)
-      - Ich will das Angebot zu [KI](search_topic) haben
-      - [Universität](search_topic) Angebot
-      - [Ernährung](search_topic) Kurse
-      - Kurse im Bereich [Krebs](search_topic)
-      - Lernangebot zu [Wirtschaft](search_topic)
-      - Ich suche einen Kurs
-      - Lernangebot
-      - Kurse zum Thema
-      - Ich brauche das Kursangebot
-      - Ich suche einen Kurs zum Thema
-      - Ich möchte das Lernangebot haben
+# # FIXME: conflict with DFKI
+  # - intent: search_topics
+  #   examples: |
+  #     - Ich suche Angebot zum Thema [Medizin](search_topic)
+  #     - Ich suche Kurse zum Thema [Schule](search_topic)
+  #     - Zeige mir alle Kurse zu [Machine Learning](search_topic)
+  #     - Zeig mir das Kursangebot zu [Entrepreneurship](search_topic)
+  #     - Ich möchte Kurse zum Thema [Daten](search_topic)
+  #     - Ich brauch das Angebot zu [Lehre](search_topic)
+  #     - Angebot zu [Internet of Things](search_topic)
+  #     - Kurse zum Thema [Bildung](search_topic)
+  #     - Ich will das Angebot zu [KI](search_topic) haben
+  #     - [Universität](search_topic) Angebot
+  #     - [Ernährung](search_topic) Kurse
+  #     - Kurse im Bereich [Krebs](search_topic)
+  #     - Lernangebot zu [Wirtschaft](search_topic)
+  #     - Ich suche einen Kurs
+  #     - Lernangebot
+  #     - Kurse zum Thema
+  #     - Ich brauche das Kursangebot
+  #     - Ich suche einen Kurs zum Thema
+  #     - Ich möchte das Lernangebot haben
