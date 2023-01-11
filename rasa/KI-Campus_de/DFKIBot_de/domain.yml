@@ -51,7 +51,7 @@ actions:
   - utter_bot_apology
   - action_check_recommender_form_active
   - utter_bot_information
-  ## BUG?
+  # # BUG
   - utter_how_can_i_help
   - utter_bot_introduction
 entities:

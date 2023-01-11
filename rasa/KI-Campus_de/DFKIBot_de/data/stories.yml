@@ -2,7 +2,7 @@ version: '3.1'
 
 stories:
 
-# start recommender form + login check 
+# # start recommender form + login check 
   - story: check login happy + start recommender
     steps:
     - intent: start_recommender_form
@@ -50,14 +50,14 @@ stories:
     - intent: deny
     - action: utter_anything_else_v2
 
-# recommender form basic
+# # recommender form basic
   - story: activate recommender form
     steps:
     - checkpoint: start_recommender_form
     - action: recommender_form      
     - active_loop: recommender_form 
 
-# recommender form variations
+# # recommender form variations
   - story: faq interjection
     steps:
     - checkpoint: start_recommender_form
@@ -87,7 +87,7 @@ stories:
     - action: utter_out_of_scope
     - action: recommender_form
 
-# stop form
+# # stop form
   - story: stop recommender form happy
     steps:
     - checkpoint: start_recommender_form 
@@ -131,7 +131,7 @@ stories:
     - intent: deny
     - action: recommender_form
 
-# feedback
+# # feedback
   - story: negative feedback reaction
     steps:
     - intent: negative_feedback 
@@ -139,7 +139,7 @@ stories:
     - action: utter_anything_else
     - checkpoint: more_information
 
-# change course search parameter
+# # change course search parameter
   - story: get more learning recommendation
     steps:
     - intent: additional_learning_recommendation

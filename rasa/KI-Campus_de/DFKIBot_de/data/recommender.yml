@@ -231,7 +231,7 @@ nlu:
       - Konversation neustarten .
       - Konversation neu machen .
     
-# recommender
+# # Recommender_form
   - intent: start_recommender_form
     examples: |
       - Ich will eine Kursempfehlung erhalten
@@ -517,7 +517,7 @@ nlu:
       - sofort abbrechen
       - ich will abbrechen
 
-# synonyme recommender_form  
+# # Synonyms recommender_form  
   - synonym: Teilnahmebescheinigung
     examples: |
       - Teilnahme

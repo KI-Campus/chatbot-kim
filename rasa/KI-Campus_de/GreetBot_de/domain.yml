@@ -4,12 +4,13 @@ intents:
 - goodbye
 - thank
 
-# added by DFKI
+# # added by DFKI
 actions: 
 - utter_tip_formulation
 - utter_greet
 - utter_goodbye
-- utter_your_are_welcome
+- utter_you_are_welcome
+- utter_have_a_nice_day
 
 responses:
 
@@ -25,10 +26,14 @@ responses:
 
   utter_goodbye:
 #  - text: Auf Wiedersehen!
-  # modified by DFKI
+# # modified by DFKI
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Bis bald 👋
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Auf Wiedersehen 👋
   
+# # modified by DFKI: moved to greetbot
+  utter_have_a_nice_day:
+  - text: Hab einen schönen Tag und bis bald!
+
   utter_you_are_welcome:
   - text: Bitte sehr.
   - text: Es ist immer schön, hilfreich zu sein.

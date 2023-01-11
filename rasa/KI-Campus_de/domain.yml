@@ -15,9 +15,10 @@ intents:
 - out_of_scope
 - bot_challenge
 - human_handoff
-- insults
-- courses # - inform -> courses
-- search_topics
+- insult
+- courses # modified by DFKI: inform -> courses
+# # modified by DFKI: conflict
+# - search_topics
 
 actions:
 - action_get_courses
@@ -96,7 +97,8 @@ responses:
   - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". ' 
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
-  # utter_have_a_nice_day: # verschoben in greetbot
+  # # modified by DFKI: move to greetbot
+  # utter_have_a_nice_day: 
   # - text: Hab einen schönen Tag und bis bald!
   # utter_bye:
   # - text: Tschüss!
@@ -124,7 +126,7 @@ responses:
   utter_faq/ask_about_learningoffer:
   - text: Von Online-Kursen über Videos und Podcasts bis hin zu interaktiven Übungen – der KI-Campus stellt Lernenden eine vielfältige Auswahl hochwertiger kostenloser Lernangebote zu unterschiedlichen Themenfeldern der KI gebündelt auf einer Lernplattform zur Verfügung.
   utter_faq/ask_about_topics:
-  # dfki
+  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
@@ -138,7 +140,7 @@ responses:
   utter_faq/ask_about_recognition:
   - text: Ausgewählte Kurse können mit ECTS-Punkten ausgewiesen und in Abstimmung mit der jeweiligen Hochschule anerkannt bzw. angerechnet werden. Eine generelle Zusage für eine Anerkennung kann der KI-Campus  nicht geben. Bitte wende dich mit diesem Anliegen an deine Hochschule.
   utter_faq/ask_about_lang_english:
-  # dfki
+  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
@@ -150,14 +152,14 @@ responses:
   utter_faq/ask_about_course_timelimit:
   - text: Die meisten unserer Lernangebote können nach eigener Zeiteinteilung absolviert werden, für einzelne gibt es Zeitvorgaben. Du findest diese Information in der Beschreibung des jeweiligen Lernangebots.
   utter_faq/ask_about_course_costs:
-  # dfki
+  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
       value: True 
     text: Alle Kurse des KI-Campus sind kostenlos und du kannst jederzeit loslegen.
   - text: Die Nutzung aller Lernangebote des KI-Campus ist kostenlos.
-  # dfki
+  # # added by DFKI
   utter_faq/ask_duration_parameter:
   - text: Damit du den Arbeitsaufwand eines Kurses gut einschätzen kannst, wurden unsere Kurse nach ihrer gesamten Stundenanzahl unterteilt.
   utter_faq/ask_become_editor:
