@@ -1,0 +1,80 @@
+version: '3.1'
+
+nlu:
+  - intent: search
+    examples: |
+      - Is there a course about [AI]{"entity": "search_topic"}?
+      - Can you recommend a course about the topic [data]{"entity": "search_topic"}?
+      - Can I learn something about [health]{"entity": "search_topic"} in one of the courses?
+      - Where can I find a course about [AI]{"entity": "search_topic"} on this page?
+      - Show me courses about [machine learning]{"entity": "search_topic"}.
+      - Show me a course about [AI]{"entity": "search_topic"}.
+      - Are there courses about [data science]{"entity": "search_topic"}?
+      - Where can I learn something about [data science]{"entity": "search_topic"}?
+      - Which courses address [machine learning]{"entity": "search_topic"}?
+      - Show me something about [machine learning]{"entity": "search_topic"}.
+      - Sow me something about the topic [business]{"entity": "search_topic"}.
+      - Is there something about [lists]{"entity": "search_topic"} in my courses?
+      - Can I find something about the topic [data]{"entity": "search_topic"} in my courses?
+
+  - intent: specify_search_content_type
+    examples: |
+      - I would like to see a [text]{"entity": "search_content_type"}.
+      - [text side]{"entity": "search_content_type"}
+      - [text]{"entity": "search_content_type"}
+      - I think there was a [text]{"entity": "search_content_type"} somewhere
+      - I am looking for a [quiz]{"entity": "search_content_type"}
+      - I want to find a [self test]{"entity": "search_content_type"}
+      - [quiz]{"entity": "search_content_type"}
+      - [self test]{"entity": "search_content_type"}
+      - a [quiz question]{"entity": "search_content_type"}
+      - in a [self test]{"entity": "search_content_type"}
+      - in a [test]{"entity": "search_content_type"}
+      - [video]{"entity": "search_content_type"}
+      - I want to search for a [video]{"entity": "search_content_type"} suchen
+      - in a [video clpi]{"entity": "search_content_type"}
+      - It was mentioned in a [video]{"entity": "search_content_type"}
+      - Is there a [video]{"entity": "search_content_type"} about [ethics]{"entity": "search_topic"} in my courses?
+      - Is there a [text]{"entity": "search_content_type"} about [ethics]{"entity": "search_topic"} in my courses?
+      - Is there a [quiz]{"entity": "search_content_type"} about [ethics]{"entity": "search_topic"} in my courses?
+      - Is there a [quiz question]{"entity": "search_content_type"} about [ethics]{"entity": "search_topic"} in my courses?
+      - Show me a [video]{"entity": "search_content_type"} about [AI]{"entity": "search_topic"}.
+      - Show me a [text]{"entity": "search_content_type"} about [AI]{"entity": "search_topic"}.
+      - Show me a [quiz]{"entity": "search_content_type"} about [AI]{"entity": "search_topic"}.
+      - Where can I find something about [neural networks]{"entity": "search_topic"} in my courses?
+      - I am looking for information about [Matplotlib]{"entity": "search_topic"} in my courses?
+      - Show me all information about [neural networks]{"entity": "search_topic"} on this page.
+      - I want to see the [quiz]{"entity": "search_content_type"} about [AI]{"entity": "search_topic"}.
+      - Show me all [videos]{"entity": "search_content_type"} about [AI]{"entity": "search_topic"} in my courses.
+
+  - intent: specify_search_topic
+    examples: |
+      - I want to search for [classification]{"entity": "search_topic"}.
+      - [python]{"entity": "search_topic"}
+      - I want to know something about [data]{"entity": "search_topic"}
+      - [health]{"entity": "search_topic"}
+
+  - synonym: text
+    examples: |
+      - Text
+      - text page
+      - textpage
+      - texts
+
+  - synonym: video
+    examples: |
+      - videos
+      - Video
+      - Videos
+      - video clip
+      - videoclip
+      - film
+      - film clip
+
+  - synonym: quiz
+    examples: |
+      - Quiz
+      - quiz question
+      - test
+      - selftest
+      - self test

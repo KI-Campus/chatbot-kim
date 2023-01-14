@@ -52,3 +52,22 @@ rules:
     - slot_was_set:
       - current_course_achieved: true
     - action: utter_download_certificate
+
+  - rule: activate search form from content type
+    steps:
+    - intent: specify_search_content_type
+    - action: search_form
+    - active_loop: search_form
+
+  - rule: submit search form
+    condition:
+    # Condition that form is active.
+    - active_loop: search_form
+    steps:
+    # Form is deactivated
+    - action: search_form
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    # The actions we want to run when the form is submitted.
+    - action: action_answer_internal_search

@@ -1,9 +1,5 @@
 version: '3.1'
-forms:
-  course_form:
-    ignored_intents: []
-    required_slots:
-      - current_course_title
+
 intents:
 - deny
 - affirm
@@ -17,6 +13,10 @@ intents:
 - human_handoff
 - insults
 - inform
+- search
+- search_internal
+- search_external
+- specify_search_content_type
 
 actions:
 - action_get_courses
@@ -25,11 +25,17 @@ actions:
 - action_course_set
 - action_set_current_course
 - action_download_certificate
+- action_answer_external_search
+- action_answer_internal_search
+- action_answer_external_search_other_languages
+- action_delete_given_search_topic
 
 entities:
 - certificate_type
 - Course
 - country
+- search_topic
+- search_content_type
 
 slots:
   all_courses:
@@ -81,10 +87,59 @@ slots:
     influence_conversation: true
     mappings:
     - type: custom
+  given_search_topic:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: search_topic
+  given_search_content_type:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: search_content_type
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false
+
+forms:
+  course_form:
+    ignored_intents: []
+    required_slots:
+      - current_course_title
+  search_form:
+    required_slots:
+      - given_search_topic
+      - given_search_content_type
+
 responses:
+  utter_ask_search_form_given_search_topic:
+  - text: About which topic would you like to know something?
+  utter_ask_search_form_given_search_content_type:
+  - text: For which kind of content are you looking?
+    buttons:
+    - title: "video"
+      payload: '/specify_search_content_type{{"search_content_type":"Video"}}'
+    - title: "text"
+      payload: '/specify_search_content_type{{"search_content_type":"Text"}}'
+    - title: "quiz"
+      payload: '/specify_search_content_type{{"search_content_type":"Quiz"}}'
+    - title: "everything/ I don't know"
+      payload: '/specify_search_content_type{{"search_content_type":"Alles"}}'
+  utter_ask_internal_or_external_search:
+  - text: "Do you want to search in the courses you are enroled in or find a new course?"
+    buttons:
+    - title: "my courses"
+      payload: "/search_internal"
+    - title: "new course"
+      payload: "/search_external"
+  utter_ask_courses_other_language:
+  - text: "Would you like to see other courses about the topic in other languages?"
+    buttons:
+    - title: "Yes"
+      payload: "/affirm"
+    - title: "No"
+      payload: "/deny"
   utter_submit:
   - text: Thanks for providing me with the course title!
   utter_download_certificate:

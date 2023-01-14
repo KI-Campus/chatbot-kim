@@ -138,3 +138,128 @@ class ActionGetCertificate(Action):
 				else:
 					dispatcher.utter_message('I am very sorry! The {0} is no longer available and unfortunately can no longer be downloaded!'.format(achievement['name']))
 		return []
+
+class ActionAnswerExternalSearch(Action):
+	def name(self) -> Text:
+		return "action_answer_external_search"
+	
+	def run(self, dispatcher, tracker, domain):
+		search_topic = tracker.get_slot("given_search_topic")
+		print(search_topic)
+		if not search_topic:
+			dispatcher.utter_message("You want to search for a course? I dind't understand the topic you were searching for.")
+			return []
+		else:
+			r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={search_topic}')
+			status = r.status_code
+
+			course_in_other_language = False
+			if status == 200:
+				response = json.loads(r.content)
+				print(response)
+				matches = response['long_matches']
+				dispatcher.utter_message(f'Corses in english about {search_topic}:')
+				for match in matches:
+					if match['language'] == 'en':
+						m = match['name']
+						print(m)
+						# TODO: Show link in a nicer way. Hidden behind the course name.
+						dispatcher.utter_message(f'- {m}: {match["link"]}')
+					else:
+						course_in_other_language = True
+			else:
+				print(status)
+				dispatcher.utter_message(f"I couldn't find a course about {search_topic}. Try using another search word.")
+
+			if course_in_other_language:
+				dispatcher.utter_message(response = "utter_ask_courses_other_language")
+				return []
+
+			return [SlotSet('given_search_topic', None)]
+	
+	class ActionAnswerExternalSearchOtherLanguages(Action):
+		def name(self) -> Text:
+			return "action_answer_external_search_other_languages"
+
+		def run(self, dispatcher, tracker, domain):
+			search_topic = tracker.get_slot("given_search_topic")
+
+			r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={search_topic}')
+			status = r.status_code
+			if status == 200:
+				response = json.loads(r.content)
+				print(response)
+				matches = response['long_matches']
+				dispatcher.utter_message(f'Courses in other languages about {search_topic}:')
+				for match in matches:
+					if match['language'] != 'en':
+						m = match['name']
+						print(m)
+						dispatcher.utter_message(f'- {m}: {match["link"]}')
+			
+			return [SlotSet('given_search_topic', None)]
+
+	class ActionDeleteGivenSearchTopic(Action):
+		def name(self) -> Text:
+			return "action_delete_given_search_topic"
+		
+		def run(self, dispatcher, tracker, domain):
+			return [SlotSet('given_search_topic', None)]
+		
+
+
+class ActionAnswerInternalSearch(Action):
+	def name(self) -> Text:
+		return "action_answer_internal_search"
+	
+	def run(self, dispatcher, tracker, domain):
+		content_type = tracker.get_slot('given_search_content_type')
+		search_topic = tracker.get_slot('given_search_topic')
+
+		if content_type not in ['video', 'text', 'quiz']:
+			content_type = 'all'
+			dispatcher.utter_message(f'Thanks for your internal search for {search_topic}!')
+		else:
+			dispatcher.utter_message(f'Thanks for your internal search for a {content_type} about {search_topic}!')
+		
+		# Get courses where the user is enrolled
+		current_state = tracker.current_state()
+		token = current_state['sender_id']
+		r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses',
+		headers={
+			"content-type": "application/json",
+			"Authorization": 'Bearer {0}'.format(token)
+		})
+		status = r.status_code
+		print(status)
+		if status == 200:
+			response = json.loads(r.content)
+			print("Ich bin noch da")
+			print(response)
+			if len(response) < 1:
+				dispatcher.utter_message("You aren't enroled in any cources. Here you can find courses about the topic:")
+				ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
+				return []
+			else:
+				for course in response:
+					title = course['title']
+					dispatcher.utter_message(title)
+					
+					req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type}&course={course["course_code"]}'
+					r = requests.get(req)
+					status = r.status_code
+					if status == 200:
+						response = json.loads(r.content)
+						print(response)
+					elif status == 404:
+						print('Not found')
+					else:
+						print(status)
+					
+				return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+
+		elif status == 401: # Status-Code 401 None
+			dispatcher.utter_message('error')
+			return []
+		else:
+			return []
