@@ -248,7 +248,7 @@ class ActionAnswerInternalSearch(Action):
 		# 	if len(response) < 1:
 		# 		dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben. Hier sind passende Kurse zu dem Thema:')
 		# 		ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
-		# 		return []
+		# 		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 		# 	else:
 		# 		for course in response:
 		# 			title = course['title']
