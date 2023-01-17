@@ -189,13 +189,11 @@ class ActionAnswerExternalSearch(Action):
 			status = r.status_code
 			if status == 200:
 				response = json.loads(r.content)
-				print(response)
 				matches = response['long_matches']
 				dispatcher.utter_message(f'Kurse in anderen Sprachen zum Thema {search_topic}:')
 				for match in matches:
 					if match['language'] != 'de':
 						m = match['title']
-						print(m)
 						dispatcher.utter_message(f'- {m}: {match["url"]}')
 			
 			return [SlotSet('given_search_topic', None)]
@@ -217,53 +215,90 @@ class ActionAnswerInternalSearch(Action):
 		content_type = tracker.get_slot('given_search_content_type')
 		search_topic = tracker.get_slot('given_search_topic')
 
-		if content_type not in ['Video', 'Text', 'Quiz']:
+		content_type_mapping = {
+				"Video": "video",
+				"Text": "rich_text",
+				"Quiz": "quiz",
+				"Übung": "lti_exercise"
+			}
+			
+		if content_type not in ['Video', 'Text', 'Quiz', 'Übung']:
 			content_type = 'All'
 			dispatcher.utter_message(f'Danke für deine interne Suchanfrage zum Thema {search_topic}!')
+			req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}'
 		else:
 			dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
+			req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type_mapping[content_type]}'
 		
+		# TODO: Not working with lernen.cloud
 		# Get courses where the user is enrolled
-		current_state = tracker.current_state()
-		token = current_state['sender_id']
-		r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses',
-		headers={
-			"content-type": "application/json",
-			"Authorization": 'Bearer {0}'.format(token)
-		})
+		# current_state = tracker.current_state()
+		# token = current_state['sender_id']
+		# r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses',
+		# headers={
+		# 	"content-type": "application/json",
+		# 	"Authorization": 'Bearer {0}'.format(token)
+		# })
+		# status = r.status_code
+		# print(status)
+		# if status == 200:
+		# 	response = json.loads(r.content)
+		# 	print("Ich bin noch da")
+		# 	print(response)
+		# 	if len(response) < 1:
+		# 		dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben. Hier sind passende Kurse zu dem Thema:')
+		# 		ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
+		# 		return []
+		# 	else:
+		# 		for course in response:
+		# 			title = course['title']
+		# 			dispatcher.utter_message(title)
+					
+		# 			req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type}&course={course["course_code"]}'
+		# 			r = requests.get(req)
+		# 			status = r.status_code
+		# 			if status == 200:
+		# 				response = json.loads(r.content)
+		# 				print(response)
+		# 			elif status == 404:
+		# 				print('Not found')
+		# 			else:
+		# 				print(status)
+					
+		# 		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+
+		# elif status == 401: # Status-Code 401 None
+		# 	dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben.')
+		# 	return []
+		# else:
+		# 	return []
+
+	
+		r = requests.get(req)
+
+		inv_content_type_mapping = {v: k for k, v in content_type_mapping.items()}
+
 		status = r.status_code
-		print(status)
 		if status == 200:
 			response = json.loads(r.content)
-			print("Ich bin noch da")
-			print(response)
-			if len(response) < 1:
-				dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben. Hier sind passende Kurse zu dem Thema:')
-				ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
-				return []
-			else:
-				for course in response:
-					title = course['title']
-					dispatcher.utter_message(title)
-					
-					req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type}&course={course["course_code"]}'
-					r = requests.get(req)
-					status = r.status_code
-					if status == 200:
-						response = json.loads(r.content)
-						print(response)
-					elif status == 404:
-						print('Not found')
-					else:
-						print(status)
-					
-				return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+			for current_content_type in response.keys():
+				if(content_type == "All"):
+					dispatcher.utter_message(f'{inv_content_type_mapping[current_content_type]}:')
+				for item in response[current_content_type]:
+					dispatcher.utter_message(f'- {item["title"]}: lernen.cloud{item["href"]}')
+					print(response)
 
-		elif status == 401: # Status-Code 401 None
-			dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben.')
-			return []
+			if(response == {}):
+				dispatcher.utter_message(f'Innerhalb der Kurse konnte nichts gefunden werden. Ich suche jetzt nach Kursen zum Thema {search_topic}.')
+				ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
+				return [SlotSet('given_search_content_type', None)]
+
+		elif status == 404:
+			print('Not found')
 		else:
-			return []
+			print(status)
+		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+
 
 class ActionDefaultFallback(Action):
 
