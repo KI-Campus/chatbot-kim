@@ -36,6 +36,9 @@ nlu:
       - Zeig mir [Texte]{"entity": "search_content_type"} über [überwachtes Lernen]{"entity": "search_topic"} in dem Kurs?
       - Ich würde gerne das [Quiz]{"entity": "search_content_type"} zu [überwachtem Lernen]{"entity": "search_topic"} in dem Kurs sehen?
       - Zeig mir alle [Videos]{"entity": "search_content_type"} zu [machinellem Lernen]{"entity": "search_topic"} in dem Kurs?
+      - Gib mir eine [Übung]{"entity": "search_content_type"} mit [Python]{"entity": "search_topic"}.
+      - Gibt es [Programmieraufgaben]{"entity": "search_content_type"} zum Thema [Dictionaries]{"entity": "search_topic"}?
+      - Zeige mir alle [Aufgaben]{"entity": "search_content_type"} zu [Listen]{"entity": "search_topic"} in dem Kurs.
 
   - intent: specify_search_content_type
     examples: |
@@ -55,6 +58,9 @@ nlu:
       - in einem [Video]{"entity": "search_content_type"}
       - das war in einem [Video]{"entity": "search_content_type"}
       - gibt es dazu [Viedos]{"entity": "search_content_type"}?
+      - Gibt es eine [Übung]{"entity": "search_content_type"}?
+      - Ich möchte nach einer [Programmieraufgabe]{"entity": "search_content_type"} suchen.
+      - Gib mir eine [Aufgabe]{"entity": "search_content_type"}.
 
   - intent: specify_search_topic
     examples: |
@@ -85,3 +91,15 @@ nlu:
       - Test
       - quiz
       - Selbsttests
+  
+  - synonym: Übung
+    examples: |
+      - Übungsaufgabe
+      - Aufgabe
+      - Programmieraufgabe
+      - Programmierübung
+      - Übungen
+      - Übungsaufgaben
+      - Aufgaben
+      - Programmieraufgaben
+      - Programmierübungen

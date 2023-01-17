@@ -124,6 +124,8 @@ responses:
       payload: '/specify_search_content_type{{"search_content_type":"Text"}}'
     - title: "Quiz"
       payload: '/specify_search_content_type{{"search_content_type":"Quiz"}}'
+    - title: "Übung"
+      payload: '/specify_search_content_type{{"search_content_type":"Übung"}}'
     - title: "Alles"
       payload: '/specify_search_content_type{{"search_content_type":"Alles"}}'
   utter_submit:
