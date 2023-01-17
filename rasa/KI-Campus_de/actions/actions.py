@@ -159,18 +159,24 @@ class ActionAnswerExternalSearch(Action):
 				response = json.loads(r.content)
 				print(response)
 				matches = response['long_matches']
-				dispatcher.utter_message(f'Kurse auf Deutsch zum Thema {search_topic}:')
-				for match in matches:
-					if match['language'] == 'de':
-						m = match['title']
-						print(m)
-						# TODO: Show link in a nicer way. Hidden behind the course name.
-						dispatcher.utter_message(f'- {m}: {match["url"]}')
-					else:
-						course_in_other_language = True
+
+				if matches == []:
+					dispatcher.utter_message(f'Ich konnte leider keine Kurse zum Thema {search_topic} finden. Versuche es doch mit einem anderen Begriff.')
+				else:
+					first_found_match = False
+					for match in matches:
+						if match['language'] == 'de':
+							if not first_found_match:
+								dispatcher.utter_message(f'Kurse auf Deutsch zum Thema {search_topic}:')
+								first_found_match = True
+							m = match['title']
+							# TODO: Show link in a nicer way. Hidden behind the course name.
+							dispatcher.utter_message(f'- {m}: {match["url"]}')
+						else:
+							course_in_other_language = True
 			else:
 				print(status)
-				dispatcher.utter_message(f'Ich konnte leider keinen Kurs zu {search_topic} finden. Probiere es nochmal mit einem anderen Suchbegriff.')
+				dispatcher.utter_message(f'Leider ist ein Fehler bei der Suche aufgetreten.')
 
 			if course_in_other_language:
 				dispatcher.utter_message(response = "utter_ask_courses_other_language")
