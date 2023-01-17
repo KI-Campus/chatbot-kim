@@ -161,11 +161,11 @@ class ActionAnswerExternalSearch(Action):
 				matches = response['long_matches']
 				dispatcher.utter_message(f'Kurse auf Deutsch zum Thema {search_topic}:')
 				for match in matches:
-					if match['language'] == 'DE':
-						m = match['name']
+					if match['language'] == 'de':
+						m = match['title']
 						print(m)
 						# TODO: Show link in a nicer way. Hidden behind the course name.
-						dispatcher.utter_message(f'- {m}: {match["link"]}')
+						dispatcher.utter_message(f'- {m}: {match["url"]}')
 					else:
 						course_in_other_language = True
 			else:
@@ -193,10 +193,10 @@ class ActionAnswerExternalSearch(Action):
 				matches = response['long_matches']
 				dispatcher.utter_message(f'Kurse in anderen Sprachen zum Thema {search_topic}:')
 				for match in matches:
-					if match['language'] != 'DE':
-						m = match['name']
+					if match['language'] != 'de':
+						m = match['title']
 						print(m)
-						dispatcher.utter_message(f'- {m}: {match["link"]}')
+						dispatcher.utter_message(f'- {m}: {match["url"]}')
 			
 			return [SlotSet('given_search_topic', None)]
 
