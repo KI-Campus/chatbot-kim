@@ -217,89 +217,76 @@ class ActionAnswerInternalSearch(Action):
 		content_type = tracker.get_slot('given_search_content_type')
 		search_topic = tracker.get_slot('given_search_topic')
 
+		got_response = False
+
 		content_type_mapping = {
-				"Video": "video",
-				"Text": "rich_text",
-				"Quiz": "quiz",
-				"Übung": "lti_exercise"
-			}
-			
-		if content_type not in ['Video', 'Text', 'Quiz', 'Übung']:
-			content_type = 'All'
-			req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}'
-		else:
-			req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type_mapping[content_type]}'
-		
-		# TODO: Not working with lernen.cloud
-		# Get courses where the user is enrolled
-		# current_state = tracker.current_state()
-		# token = current_state['sender_id']
-		# r = requests.get('https://lernen.cloud/bridges/chatbot/my_courses',
-		# headers={
-		# 	"content-type": "application/json",
-		# 	"Authorization": 'Bearer {0}'.format(token)
-		# })
-		# status = r.status_code
-		# print(status)
-		# if status == 200:
-		# 	response = json.loads(r.content)
-		# 	print("Ich bin noch da")
-		# 	print(response)
-		# 	if len(response) < 1:
-		# 		dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben. Hier sind passende Kurse zu dem Thema:')
-		# 		ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
-		# 		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
-		# 	else:
-		# 		for course in response:
-		# 			title = course['title']
-		# 			dispatcher.utter_message(title)
-					
-		# 			req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type}&course={course["course_code"]}'
-		# 			r = requests.get(req)
-		# 			status = r.status_code
-		# 			if status == 200:
-		# 				response = json.loads(r.content)
-		# 				print(response)
-		# 			elif status == 404:
-		# 				print('Not found')
-		# 			else:
-		# 				print(status)
-					
-		# 		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
-
-		# elif status == 401: # Status-Code 401 None
-		# 	dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben.')
-		# 	return []
-		# else:
-		# 	return []
-
-	
-		r = requests.get(req)
+		"Video": "video",
+		"Text": "rich_text",
+		"Quiz": "quiz",
+		"Übung": "lti_exercise"
+		}
 
 		inv_content_type_mapping = {v: k for k, v in content_type_mapping.items()}
 
-		status = r.status_code
-		if status == 200:
-			response = json.loads(r.content)
 
-			if(response == {}):
-				dispatcher.utter_message(f'Innerhalb deiner Kurse konnte ich nichts finden. Ich suche jetzt nach anderen Kursen zum Thema {search_topic}.')
+		# TODO: Not working with lernen.cloud
+		# Get courses where the user is enrolled
+		current_state = tracker.current_state()
+		token = current_state['sender_id']
+		r_courses = requests.get('https://lernen.cloud/bridges/chatbot/my_courses',
+		headers={
+			"content-type": "application/json",
+			"Authorization": 'Bearer {0}'.format(token)
+		})
+		status_courses = r_courses.status_code
+		if status_courses == 200:
+			response = json.loads(r_courses.content)
+			# TODO: Check what is returned when not enrolled in a course 200 and empty list or 401
+			if len(response) < 1:
+				dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben. Hier sind passende Kurse zu dem Thema:')
 				ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
-				return [SlotSet('given_search_content_type', None)]
-
+				return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 			else:
-				dispatcher.utter_message(f'Ich habe folgende Inhalte zu {search_topic} in deinen Kursen gefunden:')
-				for current_content_type in response.keys():
-					if(content_type == "All"):
-						dispatcher.utter_message(f'Inhalte vom Typ {inv_content_type_mapping[current_content_type]}:')
-					for item in response[current_content_type]:
-						dispatcher.utter_message(f'- {item["title"]}: lernen.cloud{item["href"]}')
+				for course in response:
+					# If the content type is given use it in the API request
+					if content_type not in ['Video', 'Text', 'Quiz', 'Übung']:
+						content_type = 'All'
+						req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&course={course["course_id"]}'
+					else:
+						req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type_mapping["content_type"]}&course={course["course_id"]}'
+					
+					r = requests.get(req)
+					status = r.status_code
+					if status == 200:
+						response = json.loads(r.content)
 
-			
+						if(response != {}):
+							dispatcher.utter_message(f'Ich habe folgende Inhalte zu {search_topic} in dem Kurs {course["title"]} gefunden:')
+							for current_content_type in response.keys():
+								if(content_type == "All"):
+									dispatcher.utter_message(f'Inhalte vom Typ {inv_content_type_mapping[current_content_type]}:')
+								for item in response[current_content_type]:
+									dispatcher.utter_message(f'- {item["title"]}: lernen.cloud{item["href"]}')
+							got_response = True			
+					
+					# If status code for get internal items is != 200
+					else:
+						dispatcher.utter_message('Leider ist ein Fehler aufgetreten. Probiere es später noch ein Mal.')
+					return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+				
+				# Nothing with the search topic was found in none of the courses where the user is enrolled
+				if(not got_response):
+					dispatcher.utter_message(f'Innerhalb deiner Kurse konnte ich nichts finden. Ich suche jetzt nach anderen Kursen zum Thema {search_topic}.')
+					ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
+				
+				return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 
+		# Got an error code while requesting the courses where a user is enrolled
 		else:
-			dispatcher.utter_message('Es ist leider ein Fehler aufgetreten. Probiere es später noch ein Mal.')
-		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+			dispatcher.utter_message('Leider ist ein Fehler aufgetreten. Probiere es später noch ein Mal.')
+			return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+			
+		
 
 
 class ActionDefaultFallback(Action):
