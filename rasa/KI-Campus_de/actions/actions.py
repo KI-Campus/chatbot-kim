@@ -25,7 +25,7 @@ class ActionGetCourses(Action):
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 		current_state = tracker.current_state()
 		token = current_state['sender_id']
-		r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses',
+		r = requests.get('https://lernen.cloud/bridges/chatbot/my_courses',
 		headers={
 			"content-type": "application/json",
 			"Authorization": 'Bearer {0}'.format(token)
@@ -57,7 +57,7 @@ class ActionGetCourses(Action):
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 		current_state = tracker.current_state()
 		token = current_state['sender_id']
-		r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses',
+		r = requests.get('https://lernen.cloud/bridges/chatbot/my_courses',
 		headers={
 			"content-type": "application/json",
 			"Authorization": 'Bearer {0}'.format(token)
@@ -99,7 +99,7 @@ class ActionGetAchievements(Action):
 				currentCourse = course
 				break
 		if courseId != 0:	
-			r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses/{0}/achievements'.format(courseId), 
+			r = requests.get('https://lernen.cloud/bridges/chatbot/my_courses/{0}/achievements'.format(courseId), 
 			headers={
 				"content-type": "application/json",
 				"Authorization": 'Bearer {0}'.format(token), 
@@ -146,9 +146,8 @@ class ActionAnswerExternalSearch(Action):
 	
 	def run(self, dispatcher, tracker, domain):
 		search_topic = tracker.get_slot("given_search_topic")
-		print(search_topic)
 		if not search_topic:
-			dispatcher.utter_message('Du möchstes nach einem neuen Kurs suchen? Ich hab leider nicht verstanden, worum es in diesem Kurs gehen soll.')
+			dispatcher.utter_message('Ich hab leider nicht verstanden nach welchem Thema du suchst.')
 			return []
 		else:
 			r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={search_topic}')
@@ -157,7 +156,6 @@ class ActionAnswerExternalSearch(Action):
 			course_in_other_language = False
 			if status == 200:
 				response = json.loads(r.content)
-				print(response)
 				matches = response['long_matches']
 
 				if matches == []:
@@ -167,15 +165,13 @@ class ActionAnswerExternalSearch(Action):
 					for match in matches:
 						if match['language'] == 'de':
 							if not first_found_match:
-								dispatcher.utter_message(f'Kurse auf Deutsch zum Thema {search_topic}:')
+								dispatcher.utter_message(f'Ich habe folgende Kurse zum Thema {search_topic} gefunden:')
 								first_found_match = True
 							m = match['title']
-							# TODO: Show link in a nicer way. Hidden behind the course name.
 							dispatcher.utter_message(f'- {m}: {match["url"]}')
 						else:
 							course_in_other_language = True
 			else:
-				print(status)
 				dispatcher.utter_message(f'Leider ist ein Fehler bei der Suche aufgetreten.')
 
 			if course_in_other_language:
@@ -196,7 +192,7 @@ class ActionAnswerExternalSearch(Action):
 			if status == 200:
 				response = json.loads(r.content)
 				matches = response['long_matches']
-				dispatcher.utter_message(f'Kurse in anderen Sprachen zum Thema {search_topic}:')
+				dispatcher.utter_message(f'Ich habe folgende Kurse zum Thema {search_topic} in anderen Sprachen gefunden:')
 				for match in matches:
 					if match['language'] != 'de':
 						m = match['title']
@@ -230,17 +226,15 @@ class ActionAnswerInternalSearch(Action):
 			
 		if content_type not in ['Video', 'Text', 'Quiz', 'Übung']:
 			content_type = 'All'
-			dispatcher.utter_message(f'Danke für deine interne Suchanfrage zum Thema {search_topic}!')
 			req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}'
 		else:
-			dispatcher.utter_message(f'Danke für deine interne Suchanfrage nach einem {content_type} zum Thema {search_topic}!')
 			req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type_mapping[content_type]}'
 		
 		# TODO: Not working with lernen.cloud
 		# Get courses where the user is enrolled
 		# current_state = tracker.current_state()
 		# token = current_state['sender_id']
-		# r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses',
+		# r = requests.get('https://lernen.cloud/bridges/chatbot/my_courses',
 		# headers={
 		# 	"content-type": "application/json",
 		# 	"Authorization": 'Bearer {0}'.format(token)
@@ -287,22 +281,24 @@ class ActionAnswerInternalSearch(Action):
 		status = r.status_code
 		if status == 200:
 			response = json.loads(r.content)
-			for current_content_type in response.keys():
-				if(content_type == "All"):
-					dispatcher.utter_message(f'{inv_content_type_mapping[current_content_type]}:')
-				for item in response[current_content_type]:
-					dispatcher.utter_message(f'- {item["title"]}: lernen.cloud{item["href"]}')
-					print(response)
 
 			if(response == {}):
-				dispatcher.utter_message(f'Innerhalb der Kurse konnte nichts gefunden werden. Ich suche jetzt nach Kursen zum Thema {search_topic}.')
+				dispatcher.utter_message(f'Innerhalb deiner Kurse konnte ich nichts finden. Ich suche jetzt nach anderen Kursen zum Thema {search_topic}.')
 				ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
 				return [SlotSet('given_search_content_type', None)]
 
-		elif status == 404:
-			print('Not found')
+			else:
+				dispatcher.utter_message(f'Ich habe folgende Inhalte zu {search_topic} in deinen Kursen gefunden:')
+				for current_content_type in response.keys():
+					if(content_type == "All"):
+						dispatcher.utter_message(f'Inhalte vom Typ {inv_content_type_mapping[current_content_type]}:')
+					for item in response[current_content_type]:
+						dispatcher.utter_message(f'- {item["title"]}: lernen.cloud{item["href"]}')
+
+			
+
 		else:
-			print(status)
+			dispatcher.utter_message('Es ist leider ein Fehler aufgetreten. Probiere es später noch ein Mal.')
 		return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 
 
@@ -312,8 +308,6 @@ class ActionDefaultFallback(Action):
 		return "action_default_fallback"
 
 	def run(self, dispatcher, tracker, domain):
-
-		print(tracker.latest_message)
 		top_intents = []
 
 		if "intent_ranking"  in tracker.latest_message.keys():
@@ -323,10 +317,8 @@ class ActionDefaultFallback(Action):
 			top_intents.append(tracker.latest_message['intent']['name'])
 
 		if ('search_internal' in top_intents) or ('search_external' in top_intents):
-			#dispatcher.utter_message(f'Willst du in diesem Kurs suchen, oder einen neuen Kurs finden? Top_intents: {top_intents}')
 			dispatcher.utter_message(response = "utter_ask_internal_or_external_search")
 			return []
 		else:
-			#dispatcher.utter_message(f'Default Fallback. top_intents: {top_intents}')
 			dispatcher.utter_message(response = "utter_default")
 			return []

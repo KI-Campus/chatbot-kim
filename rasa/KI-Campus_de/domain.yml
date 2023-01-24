@@ -244,9 +244,9 @@ responses:
     - title: "neuer Kurs"
       payload: "/search_external"
   utter_ask_courses_other_language:
-  - text: "Willst du weitere Kurse zu diesem Thema in anderen Sprachen sehen?"
+  - text: "Soll ich nach weiteren Kursen in anderen Sprachen suchen?"
     buttons:
-    - title: "Ja!"
+    - title: "Ja"
       payload: "/affirm"
-    - title: "Nicht wirklich ..."
+    - title: "Nein"
       payload: "/deny"
