@@ -126,7 +126,7 @@ stories:
   - action: utter_anything_else
   - checkpoint: more_information
 
-## FIXME: conflict with DFKI
+# # modified by DFKI: combined with start_recommender_form 
 # - story: search for topics
 #   steps:
 #   - intent: search_topics

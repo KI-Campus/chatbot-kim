@@ -51,7 +51,7 @@ actions:
   - utter_bot_apology
   - action_check_recommender_form_active
   - utter_bot_information
-
+  - utter_recommender_or_search_topics
 entities:
   - language
   - topic
@@ -171,6 +171,7 @@ slots:
     mappings:
     - type: custom
 responses:
+# # FIXME
   utter_tip_login:
   - text: "💡 Tipp: Für eine möglichst gute Kursempfehlung helfen mir die Informationen aus deinem Profil. Melde dich bitte hier an." 
   utter_affirm_start_recommender_form_login:
@@ -187,6 +188,14 @@ responses:
         payload: /affirm   
       - title: Nein, ich habe ein anderes Anliegen!
         payload: /deny
+
+  utter_recommender_or_search_topics:
+  - text: Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für das Thema {search_topic} sehen?
+    buttons: 
+      - title: persönliche Kursempfehlung
+        payload: /start_recommender_form   
+      - title: Kursangebot zum Thema {search_topic}
+        payload: /search_topics
   utter_anything_else_v2:
   - text: Womit kann ich dir noch behilflich sein?
   - text: Wie kann ich dir sonst noch helfen?

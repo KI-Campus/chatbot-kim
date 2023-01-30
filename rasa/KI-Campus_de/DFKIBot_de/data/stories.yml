@@ -2,15 +2,97 @@ version: '3.1'
 
 stories:
 
-# # start recommender form + login check 
-  - story: check login happy + start recommender
+  - story: start recommender 
     steps:
-    - intent: start_recommender_form
+    - intent: greet
+    - action: utter_greet
+    - action: utter_tip_formulation
+    - slot_was_set:
+      - search_topic: None
+    - or:
+      - intent: start_recommender_form
+      - intent: search_topics
+      - slot_was_set: 
+        - search_topic: "Daten"   
+    - action: utter_recommender_or_search_topics #
+    - intent: start_recommender_form #
+    - checkpoint: start_recommender_profile_check #
+
+  - story: start search topic
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - action: utter_tip_formulation
+    - slot_was_set:
+      - search_topic: None
+    - or:
+      - intent: start_recommender_form
+      - intent: search_topics
+      - slot_was_set: 
+        - search_topic: "Machine Learning"
+    - action: utter_recommender_or_search_topics #
+    - intent: search_topics #
+    - action: action_search_topic
+    - action: utter_anything_else
+    - checkpoint: more_information
+
+# # FIXME: fix paths for utter_tip_login + affirm
+
+# # start recommender form + login check 
+  # - story: check login happy + start recommender
+  #   steps:
+  #   - intent: start_recommender_form
+  #   - action: action_delete_slot_value
+  #   - slot_was_set:
+  #     - user_login: true
+  #   - action: utter_affirm_start_recommender_form 
+  #   - intent: affirm
+  #   - action: action_fetch_profile
+  #   - slot_was_set:
+  #     - enrollments: "Einführung in die KI"
+  #     - course_visits: "Big Data Analytics"
+  #     - search_terms: "KI"
+  #   - checkpoint: start_recommender_form
+
+  # - story: check login happy + no recommender
+  #   steps:
+  #   - intent: start_recommender_form
+  #   - action: action_delete_slot_value
+  #   - slot_was_set:
+  #     - user_login: true
+  #   - action: utter_affirm_start_recommender_form
+  #   - intent: deny 
+  #   - action: utter_anything_else_v2
+
+  # - story: check login unhappy + start recommender
+  #   steps:
+  #   - intent: start_recommender_form
+  #   - action: action_delete_slot_value
+  #   - slot_was_set:
+  #     - user_login: false
+  #   - action: utter_tip_login
+  #   - action: utter_affirm_start_recommender_form_login 
+  #   - intent: affirm
+  #   - checkpoint: start_recommender_form
+
+  # - story: check login unhappy + no courseseach
+  #   steps:
+  #   - intent: start_recommender_form
+  #   - action: action_delete_slot_value
+  #   - slot_was_set:
+  #     - user_login: false
+  #   - action: utter_tip_login
+  #   - action: utter_affirm_start_recommender_form_login 
+  #   - intent: deny
+  #   - action: utter_anything_else_v2
+
+# # fetch profile information
+  - story: login happy
+    steps:
+    - checkpoint: start_recommender_profile_check
     - action: action_delete_slot_value
     - slot_was_set:
       - user_login: true
-    - action: utter_affirm_start_recommender_form 
-    - intent: affirm
     - action: action_fetch_profile
     - slot_was_set:
       - enrollments: "Einführung in die KI"
@@ -18,44 +100,29 @@ stories:
       - search_terms: "KI"
     - checkpoint: start_recommender_form
 
-  - story: check login happy + no recommender
+  - story: login unhappy
     steps:
-    - intent: start_recommender_form
-    - action: action_delete_slot_value
-    - slot_was_set:
-      - user_login: true
-    - action: utter_affirm_start_recommender_form
-    - intent: deny 
-    - action: utter_anything_else_v2
-
-  - story: check login unhappy + start recommender
-    steps:
-    - intent: start_recommender_form
+    - checkpoint: start_recommender_profile_check
     - action: action_delete_slot_value
     - slot_was_set:
       - user_login: false
-    - action: utter_tip_login
-    - action: utter_affirm_start_recommender_form_login 
-    - intent: affirm
     - checkpoint: start_recommender_form
 
-  - story: check login unhappy + no courseseach
-    steps:
-    - intent: start_recommender_form
-    - action: action_delete_slot_value
-    - slot_was_set:
-      - user_login: false
-    - action: utter_tip_login
-    - action: utter_affirm_start_recommender_form_login 
-    - intent: deny
-    - action: utter_anything_else_v2
-
 # # recommender form basic
-  - story: activate recommender form
+  - story: activate recommender form + login happy
     steps:
     - checkpoint: start_recommender_form
     - action: recommender_form      
     - active_loop: recommender_form 
+
+  - story: activate recommender form + login unhappy
+    steps:
+    - checkpoint: start_recommender_form
+    - action: action_delete_slot_value
+    - slot_was_set:
+      - user_login: false
+    - action: recommender_form      
+    - active_loop: recommender_form
 
 # # recommender form variations
   - story: faq interjection
