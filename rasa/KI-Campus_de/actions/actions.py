@@ -150,7 +150,7 @@ class ActionAnswerExternalSearch(Action):
 			dispatcher.utter_message('Ich hab leider nicht verstanden nach welchem Thema du suchst.')
 			return []
 		else:
-			r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={search_topic}')
+			r = requests.get(f'http://82.140.0.82/api/external_search?keyword={search_topic}')
 			status = r.status_code
 
 			course_in_other_language = False
@@ -187,7 +187,7 @@ class ActionAnswerExternalSearch(Action):
 		def run(self, dispatcher, tracker, domain):
 			search_topic = tracker.get_slot("given_search_topic")
 
-			r = requests.get(f'http://127.0.0.1:5000/api/external_search?keyword={search_topic}')
+			r = requests.get(f'http://82.140.0.82/api/external_search?keyword={search_topic}')
 			status = r.status_code
 			if status == 200:
 				response = json.loads(r.content)
@@ -213,8 +213,11 @@ class ActionAnswerInternalSearch(Action):
 	def name(self) -> Text:
 		return "action_answer_internal_search"
 	
-	def run(self, dispatcher, tracker, domain):
-		content_type = tracker.get_slot('given_search_content_type')
+	def run(self, dispatcher, tracker, domain, second_run = False):
+		if second_run:
+			content_type = 'All'
+		else:
+			content_type = tracker.get_slot('given_search_content_type')
 		search_topic = tracker.get_slot('given_search_topic')
 
 		got_response = False
@@ -238,9 +241,14 @@ class ActionAnswerInternalSearch(Action):
 			"content-type": "application/json",
 			"Authorization": 'Bearer {0}'.format(token)
 		})
+
 		status_courses = r_courses.status_code
+
+		#TODO: remove
+		status_courses = 200
+		response = [{'course_id': 'cs4s-citizien-science', 'title': 'Citizen Science'}, {'course_id': 'cs4s-bigdata-und-datenschutz', 'title': 'Datenschutz & Big Data'}, {'course_id': 'TtTcybersecurity-passwords-and-data-protection2021', 'title': 'Passwords & Data security'} ]
 		if status_courses == 200:
-			response = json.loads(r_courses.content)
+			#response = json.loads(r_courses.content)
 			# TODO: Check what is returned when not enrolled in a course 200 and empty list or 401
 			if len(response) < 1:
 				dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben. Hier sind passende Kurse zu dem Thema:')
@@ -251,10 +259,10 @@ class ActionAnswerInternalSearch(Action):
 					# If the content type is given use it in the API request
 					if content_type not in ['Video', 'Text', 'Quiz', 'Übung']:
 						content_type = 'All'
-						req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&course={course["course_id"]}'
+						req = f'http://82.140.0.82/api/keyword_search?keyword={search_topic}&course={course["course_id"]}'
 					else:
-						req = f'http://127.0.0.1:5000/api/keyword_search?keyword={search_topic}&content_type={content_type_mapping["content_type"]}&course={course["course_id"]}'
-					
+						req = f'http://82.140.0.82/api/keyword_search?keyword={search_topic}&content_type={content_type_mapping[content_type]}&course={course["course_id"]}'
+
 					r = requests.get(req)
 					status = r.status_code
 					if status == 200:
@@ -266,18 +274,23 @@ class ActionAnswerInternalSearch(Action):
 								if(content_type == "All"):
 									dispatcher.utter_message(f'Inhalte vom Typ {inv_content_type_mapping[current_content_type]}:')
 								for item in response[current_content_type]:
-									dispatcher.utter_message(f'- {item["title"]}: lernen.cloud{item["href"]}')
+									dispatcher.utter_message(f'- {item["title"]}: http://lernen.cloud{item["href"]}')
 							got_response = True			
 					
 					# If status code for get internal items is != 200
 					else:
 						dispatcher.utter_message('Leider ist ein Fehler aufgetreten. Probiere es später noch ein Mal.')
-					return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
+						return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 				
 				# Nothing with the search topic was found in none of the courses where the user is enrolled
 				if(not got_response):
-					dispatcher.utter_message(f'Innerhalb deiner Kurse konnte ich nichts finden. Ich suche jetzt nach anderen Kursen zum Thema {search_topic}.')
-					ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
+					if content_type != 'All':
+						second_run = True
+						dispatcher.utter_message(f'Innerhalb deiner Kurse konnte ich nichts vom Typ {content_type} zum Thema {search_topic} finden.')
+						ActionAnswerInternalSearch.run(self, dispatcher, tracker, domain, second_run)
+					else:
+						dispatcher.utter_message(f'Innerhalb deiner Kurse konnte ich nichts finden. Ich suche jetzt nach anderen Kursen zum Thema {search_topic}.')
+						ActionAnswerExternalSearch.run(self, dispatcher, tracker, domain)
 				
 				return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 
