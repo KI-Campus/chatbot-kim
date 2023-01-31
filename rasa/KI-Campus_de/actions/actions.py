@@ -18,6 +18,7 @@ class CourseSet(Action):
 		else:
 			return [SlotSet('course-set', False)]
 
+
 class ActionGetCourses(Action):
 	def name(self) -> Text:
 		return "action_get_courses_buttons"
@@ -50,6 +51,7 @@ class ActionGetCourses(Action):
 		else:
 			return []
 
+
 class ActionGetCourses(Action):
 	def name(self) -> Text:
 		return "action_get_courses"
@@ -79,6 +81,7 @@ class ActionGetCourses(Action):
 			return [SlotSet('courses_available', False)]
 		else:
 			return []
+
 
 class ActionGetAchievements(Action):
 	def name(self) -> Text:
@@ -140,6 +143,24 @@ class ActionGetCertificate(Action):
 		return []
 
 
+def extract_courses(response):
+	# Merge all match types (potentially duplicated courses)
+	potential_duplicated_courses = [
+		course
+		for respones in response.values()
+		for course in respones
+	]
+
+	# Deduplicate dicts in a list
+	matches = [
+		dict(t) 
+		for t in 
+			{tuple(e.items()) for e in potential_duplicated_courses}
+	]
+
+	return matches
+
+
 class ActionAnswerExternalSearch(Action):
 	def name(self) -> Text:
 		return "action_answer_external_search"
@@ -156,8 +177,8 @@ class ActionAnswerExternalSearch(Action):
 			course_in_other_language = False
 			if status == 200:
 				response = json.loads(r.content)
-				matches = response['long_matches']
-
+		
+				matches = extract_courses(response)
 				if matches == []:
 					dispatcher.utter_message(f'Ich konnte leider keine Kurse zum Thema {search_topic} finden. Versuche es doch mit einem anderen Begriff.')
 				else:
@@ -180,34 +201,35 @@ class ActionAnswerExternalSearch(Action):
 
 			return [SlotSet('given_search_topic', None)]
 	
-	class ActionAnswerExternalSearchOtherLanguages(Action):
-		def name(self) -> Text:
-			return "action_answer_external_search_other_languages"
 
-		def run(self, dispatcher, tracker, domain):
-			search_topic = tracker.get_slot("given_search_topic")
+class ActionAnswerExternalSearchOtherLanguages(Action):
+	def name(self) -> Text:
+		return "action_answer_external_search_other_languages"
 
-			r = requests.get(f'http://82.140.0.82/api/external_search?keyword={search_topic}')
-			status = r.status_code
-			if status == 200:
-				response = json.loads(r.content)
-				matches = response['long_matches']
-				dispatcher.utter_message(f'Ich habe folgende Kurse zum Thema {search_topic} in anderen Sprachen gefunden:')
-				for match in matches:
-					if match['language'] != 'de':
-						m = match['title']
-						dispatcher.utter_message(f'- {m}: {match["url"]}')
-			
-			return [SlotSet('given_search_topic', None)]
+	def run(self, dispatcher, tracker, domain):
+		search_topic = tracker.get_slot("given_search_topic")
 
-	class ActionDeleteGivenSearchTopic(Action):
-		def name(self) -> Text:
-			return "action_delete_given_search_topic"
+		r = requests.get(f'http://82.140.0.82/api/external_search?keyword={search_topic}')
+		status = r.status_code
+		if status == 200:
+			response = json.loads(r.content)
+			matches = extract_courses(response)
+			dispatcher.utter_message(f'Ich habe folgende Kurse zum Thema {search_topic} in anderen Sprachen gefunden:')
+			for match in matches:
+				if match['language'] != 'de':
+					m = match['title']
+					dispatcher.utter_message(f'- {m}: {match["url"]}')
 		
-		def run(self, dispatcher, tracker, domain):
-			return [SlotSet('given_search_topic', None)]
-		
+		return [SlotSet('given_search_topic', None)]
 
+
+class ActionDeleteGivenSearchTopic(Action):
+	def name(self) -> Text:
+		return "action_delete_given_search_topic"
+	
+	def run(self, dispatcher, tracker, domain):
+		return [SlotSet('given_search_topic', None)]
+		
 
 class ActionAnswerInternalSearch(Action):
 	def name(self) -> Text:
@@ -231,8 +253,6 @@ class ActionAnswerInternalSearch(Action):
 
 		inv_content_type_mapping = {v: k for k, v in content_type_mapping.items()}
 
-
-		# TODO: Not working with lernen.cloud
 		# Get courses where the user is enrolled
 		current_state = tracker.current_state()
 		token = current_state['sender_id']
@@ -244,11 +264,8 @@ class ActionAnswerInternalSearch(Action):
 
 		status_courses = r_courses.status_code
 
-		#TODO: remove
-		status_courses = 200
-		response = [{'course_id': 'cs4s-citizien-science', 'title': 'Citizen Science'}, {'course_id': 'cs4s-bigdata-und-datenschutz', 'title': 'Datenschutz & Big Data'}, {'course_id': 'TtTcybersecurity-passwords-and-data-protection2021', 'title': 'Passwords & Data security'} ]
 		if status_courses == 200:
-			#response = json.loads(r_courses.content)
+			response = json.loads(r_courses.content)
 			# TODO: Check what is returned when not enrolled in a course 200 and empty list or 401
 			if len(response) < 1:
 				dispatcher.utter_message('Du bist derzeit in keinem Kurs eingeschrieben. Hier sind passende Kurse zu dem Thema:')
@@ -259,9 +276,9 @@ class ActionAnswerInternalSearch(Action):
 					# If the content type is given use it in the API request
 					if content_type not in ['Video', 'Text', 'Quiz', 'Übung']:
 						content_type = 'All'
-						req = f'http://82.140.0.82/api/keyword_search?keyword={search_topic}&course={course["course_id"]}'
+						req = f'http://82.140.0.82/api/keyword_search?keyword={search_topic}&course={course["course_code"]}'
 					else:
-						req = f'http://82.140.0.82/api/keyword_search?keyword={search_topic}&content_type={content_type_mapping[content_type]}&course={course["course_id"]}'
+						req = f'http://82.140.0.82/api/keyword_search?keyword={search_topic}&content_type={content_type_mapping[content_type]}&course={course["course_code"]}'
 
 					r = requests.get(req)
 					status = r.status_code
@@ -300,10 +317,7 @@ class ActionAnswerInternalSearch(Action):
 			return [SlotSet('given_search_content_type', None), SlotSet('given_search_topic', None)]
 			
 		
-
-
 class ActionDefaultFallback(Action):
-
 	def name(self) -> Text:
 		return "action_default_fallback"
 
