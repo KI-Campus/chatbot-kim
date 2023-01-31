@@ -143,6 +143,7 @@ stories:
   - action: action_answer_external_search
   - intent: affirm
   - action: action_answer_external_search_other_languages
+  - action: action_delete_given_search_topic
 
 - story: activate search form from search
   steps:

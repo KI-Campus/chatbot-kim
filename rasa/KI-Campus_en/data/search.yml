@@ -78,3 +78,10 @@ nlu:
       - test
       - selftest
       - self test
+
+  - synonym: exercise
+    examples: |
+      - programming exercise
+      - task
+      - programming task
+      

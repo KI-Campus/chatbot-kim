@@ -188,8 +188,7 @@ class ActionAnswerExternalSearch(Action):
 							if not first_found_match:
 								dispatcher.utter_message(f'Ich habe folgende Kurse zum Thema {search_topic} gefunden:')
 								first_found_match = True
-							m = match['title']
-							dispatcher.utter_message(f'- {m}: {match["url"]}')
+							dispatcher.utter_message(f'- {match["title"]}: {match["url"]}')
 						else:
 							course_in_other_language = True
 			else:
@@ -217,8 +216,7 @@ class ActionAnswerExternalSearchOtherLanguages(Action):
 			dispatcher.utter_message(f'Ich habe folgende Kurse zum Thema {search_topic} in anderen Sprachen gefunden:')
 			for match in matches:
 				if match['language'] != 'de':
-					m = match['title']
-					dispatcher.utter_message(f'- {m}: {match["url"]}')
+					dispatcher.utter_message(f'- {match["title"]}: {match["url"]}')
 		
 		return [SlotSet('given_search_topic', None)]
 
@@ -274,7 +272,7 @@ class ActionAnswerInternalSearch(Action):
 			else:
 				for course in response:
 					# If the content type is given use it in the API request
-					if content_type not in ['Video', 'Text', 'Quiz', 'Übung']:
+					if content_type not in content_type_mapping.keys():
 						content_type = 'All'
 						req = f'http://82.140.0.82/api/keyword_search?keyword={search_topic}&course={course["course_code"]}'
 					else:

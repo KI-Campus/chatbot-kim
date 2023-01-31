@@ -71,3 +71,4 @@ rules:
       - requested_slot: null
     # The actions we want to run when the form is submitted.
     - action: action_answer_internal_search
+    - action: action_delete_given_search_topic

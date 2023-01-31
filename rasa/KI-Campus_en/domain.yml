@@ -119,13 +119,15 @@ responses:
   - text: For which kind of content are you looking?
     buttons:
     - title: "video"
-      payload: '/specify_search_content_type{{"search_content_type":"Video"}}'
+      payload: '/specify_search_content_type{{"search_content_type":"video"}}'
     - title: "text"
-      payload: '/specify_search_content_type{{"search_content_type":"Text"}}'
+      payload: '/specify_search_content_type{{"search_content_type":"text"}}'
     - title: "quiz"
-      payload: '/specify_search_content_type{{"search_content_type":"Quiz"}}'
-    - title: "everything/ I don't know"
-      payload: '/specify_search_content_type{{"search_content_type":"Alles"}}'
+      payload: '/specify_search_content_type{{"search_content_type":"quiz"}}'
+    - title: "exercise"
+      payload: '/specify_search_content_type{{"search_content_type":"exercise"}}'
+    - title: "all"
+      payload: '/specify_search_content_type{{"search_content_type":"all"}}'
   utter_ask_internal_or_external_search:
   - text: "Do you want to search in the courses you are enroled in or find a new course?"
     buttons:
