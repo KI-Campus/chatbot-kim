@@ -120,10 +120,13 @@ nlu:
 - intent: search_topics
   examples: |
     - ich will kurse zum thema [daten](search_topic)
+    - kurse zum thema [schule](search_topic)
+    - lernangebot zum thema [medizin](search_topic)
 - intent: start_recommender_form
   examples: |
     - ich möchte eine empfehlung
     - ich suche nen kurs
+    - ich möchte doch eine empfehlung
 - synonym: englisch
   examples: |
     - Englisch

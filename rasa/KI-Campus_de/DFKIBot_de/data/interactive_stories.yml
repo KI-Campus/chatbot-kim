@@ -1690,7 +1690,7 @@ stories:
   - intent: affirm
   - action: utter_more_info
   - intent: start_recommender_form
-  - action: utter_recommender_or_search_topics
+  - action: action_recommender_or_search_topics
   - intent: start_recommender_form
   - action: action_delete_slot_value
   - slot_was_set:
@@ -1893,7 +1893,7 @@ stories:
   - action: utter_greet
   - action: utter_tip_formulation
   - intent: start_recommender_form
-  - action: utter_recommender_or_search_topics
+  - action: action_recommender_or_search_topics
   - intent: start_recommender_form
   - action: action_delete_slot_value
   - slot_was_set:
@@ -2427,3 +2427,529 @@ stories:
     - courses_available: true
   - action: utter_anything_else
   - checkpoint: more_information
+
+- story: interactive_story_3
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: search_topics
+    entities:
+    - search_topic: schule
+  - slot_was_set:
+    - search_topic: schule
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
+  - action: action_search_topic
+  - slot_was_set:
+    - search_topic: null
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - intent: start_recommender_form
+  - action: action_recommender_or_search_topics
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - language: egal
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - topic: egal
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - certificate: egal
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - max_duration: '51'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Anfänger
+  - slot_was_set:
+    - level: anfänger
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: 85603788-a388-458d-9ee7-e5b6eb58b0ad
+        id_neo: 46d863e7-1e3d-4591-9762-bb4f71b761af
+        id_hpi: 102ebb49-44bb-4bc0-a146-234a2ab30443
+        name: KI und Leadership - Mikrokurs
+        language: german
+        level: '1'
+        duration: '18'
+        achievement_record: qc
+      - id: 509b29e7-2f57-4b33-a4c8-5372d4211b0f
+        id_neo: 216dad8b-5dbd-4fa2-abe0-33c82eea32a3
+        id_hpi: 752e96ae-4d02-4dc5-a846-4b72e5ee42b8
+        name: Einführung in die KI
+        language: german
+        level: '1'
+        duration: '40'
+        achievement_record: roa
+      - id: 8ff338a1-c25a-4d3d-9db0-c87b0b7801d1
+        id_neo: e09b3669-a842-41f1-b69e-0f2dba17bffa
+        id_hpi: df2bd001-9611-4ea0-9a1d-162223205737
+        name: Daten- und Algorithmenethik
+        language: german
+        level: '1'
+        duration: '14'
+        achievement_record: cop
+      - id: 28bf501c-b135-4df0-9293-ff537261ffa6
+        id_neo: 5bd74daf-1d30-4074-9408-d3a864d6e174
+        id_hpi: 5b57917a-64e2-4a47-9252-b1c8e468df20
+        name: 'Natural Language Processing '
+        language: english
+        level: '1'
+        duration: '72'
+        achievement_record: ECTS-possible
+      - id: 96be4c74-34f6-4e83-aea6-c4e31801ecdf
+        id_neo: efa8d717-19bd-4575-ac22-9cd54b211884
+        id_hpi: d5ab75d0-f202-4e46-9ef8-b19c6e60a4a0
+        name: botKI - Smart Home, Robotik und Industrie 4.0 per Chatbot mit Simulationsmodellen
+        language: german
+        level: '1'
+        duration: '20'
+        achievement_record: roa
+      - id: fdc501e5-5bbc-470b-bd1e-8aa39546a497
+        id_neo: bf7e6b5c-3144-4212-806a-6b3f2e8f166b
+        id_hpi: e2dfc221-985b-4924-8a18-e58992cf835a
+        name: 'KI und Ethik I: Grundlagen der Ethik'
+        language: german
+        level: '1'
+        duration: '8'
+        achievement_record: roa
+      - id: 90732706-41f1-4669-9031-c503e715bcf5
+        id_neo: 001242f0-1077-4237-aede-e244e6ad2777
+        id_hpi: 384eb67a-cbbc-43e5-b478-3bad5e9701d3
+        name: Foundations of Artificial Intelligence I
+        language: english
+        level: '1'
+        duration: '12'
+        achievement_record: roa
+      - id: d10e2202-796c-48be-ac99-3d5b652cc362
+        id_neo: 35620854-dbe8-4d7a-a3da-a535428224b5
+        id_hpi: bff3ab1a-9786-49bb-afb1-d4d445239724
+        name: KIÖV – KI in öffentlichen Verwaltungen
+        language: german
+        level: '1'
+        duration: None
+        achievement_record: cop
+      - id: 94c3985e-dd9d-4f94-98bc-47db4743cbf8
+        id_neo: 46a05b6d-6ea8-4637-af41-d408797bf1bd
+        id_hpi: None
+        name: Building AI
+        language: english
+        level: '1'
+        duration: '50'
+        achievement_record: cop
+      - id: a145c444-b1ed-4c40-a0cb-66aa19c362a0
+        id_neo: 5cfbbea4-8e1a-4b6e-9fc8-aec3f1339fc4
+        id_hpi: None
+        name: Elements of AI
+        language: german
+        level: '1'
+        duration: '60'
+        achievement_record: cop
+      - id: b195a90c-5827-4b95-b402-3c741f977332
+        id_neo: 73274170-3642-4df1-898b-26e2a7160e6a
+        id_hpi: 62981882-a0ff-4c44-9253-92783dc69e59
+        name: Dr. med. KI - Basics
+        language: german
+        level: '1'
+        duration: None
+        achievement_record: roa
+      - id: d5bc7b3d-23ed-420a-b455-befd9a4d612a
+        id_neo: 1545c70d-52fd-4aa8-aefd-28930cd10b1f
+        id_hpi: None
+        name: Launchpad to AI - An Introduction to Applications, Risks, and Opportunities
+        language: english
+        level: '1'
+        duration: '4'
+        achievement_record: cop
+      - id: 5bbe7afa-6c89-44c9-aeee-2d2d990fd351
+        id_neo: c553808b-b70e-4b31-8700-7a2f894d7323
+        id_hpi: 41fd8869-1be2-4527-9a97-378f97a20759
+        name: Schule macht KI
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: cop
+      - id: 07441b37-a241-4fb5-9760-8e78e6e1ac7e
+        id_neo: c08deeeb-e001-42de-8282-4a42c86856ab
+        id_hpi: None
+        name: Unterrichtsmaterial Künstliche Intelligenz
+        language: german
+        level: '1'
+        duration: None
+        achievement_record: ''
+      - id: 47720db2-76c2-48d9-871c-9e453fd7d648
+        id_neo: 886486bb-2dd4-44eb-a242-2d29edc4bdf8
+        id_hpi: de89ff0a-1a6f-42eb-98d6-7eb940fd1d14
+        name: Building Visual Machine Learning Models
+        language: english
+        level: '1'
+        duration: None
+        achievement_record: ''
+      - id: 866e7be2-d3cc-4d5d-a891-bb23cdf203df
+        id_neo: ac45406d-6cf2-4fea-b83e-98ddb9753361
+        id_hpi: 95f16a80-4476-4a02-a4c5-812dfe02b168
+        name: Schule macht Daten
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: cop
+      - id: f14e4389-12bd-4741-bf35-af99f8924d91
+        id_neo: 6e9dc553-8325-4327-af9a-538f8fd7a649
+        id_hpi: dde9eb0c-261a-40bc-8e14-27e11af6780a
+        name: Foundations of Artificial Intelligence II
+        language: english
+        level: '1'
+        duration: '12'
+        achievement_record: roa
+      - id: 0d9db246-821c-4e7c-99de-0ebe479dfc45
+        id_neo: 6e623058-43fb-471f-8131-139481741168
+        id_hpi: None
+        name: Foundations of Artificial Intelligence III
+        language: english
+        level: '1'
+        duration: '12'
+        achievement_record: roa
+      - id: 691620ce-436a-4546-89f9-f075bc848ac2
+        id_neo: edad2218-931e-4b0a-8f90-31e04d6bfe39
+        id_hpi: None
+        name: Foundations of Artificial Intelligence IV
+        language: english
+        level: '1'
+        duration: '12'
+        achievement_record: roa
+      - id: 39c74b53-e2d4-4740-bba1-f2f78c0ea5a1
+        id_neo: d67e40e6-dc81-4f0a-a5a8-4934b787d0f2
+        id_hpi: 5413c88f-18de-42be-9801-d839dfb5cb87
+        name: Foundations of Artificial Intelligence V
+        language: english
+        level: '1'
+        duration: '12'
+        achievement_record: roa
+      - id: 4e745962-2a32-44ef-9608-091b2cfd02ee
+        id_neo: 1485839c-b270-4b5e-aa37-110a9492cd84
+        id_hpi: 26840b57-7c4c-4faa-b860-3e85792c3606
+        name: KI und Ziele für nachhaltige Entwicklung
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: cop
+      - id: d042d917-2626-4d0b-8649-985b7d728dbc
+        id_neo: 0848aa4d-703e-41ff-aadf-40574ec90d83
+        id_hpi: None
+        name: Künstliche Intelligenz (KI) in der Gesundheitsversorgung - Grundlagen, Anwendungen, Perspektiven
+        language: german
+        level: '1'
+        duration: '180'
+        achievement_record: ECTS-possible
+      - id: 91554de2-2186-4062-a659-50b8800d81fc
+        id_neo: 47c3f07d-715d-40a2-99ba-e37403e01156
+        id_hpi: 0af0e2c4-4a9b-4d28-ba2f-39a34ae3d70a
+        name: 'Deep Learning mit TensorFlow, Keras und TensorFlow.js '
+        language: german
+        level: '1'
+        duration: '48'
+        achievement_record: roa
+      - id: f6e76a32-73fe-480b-bf80-faa8a251de53
+        id_neo: 9f968b15-80ce-46cf-b5cb-9fe3887b780c
+        id_hpi: aaa6a738-93cc-4f46-87ed-4609a791ed4e
+        name: Mensch-Maschine-Interaktion
+        language: german
+        level: '1'
+        duration: '30'
+        achievement_record: ''
+      - id: 85e45450-cd56-41f1-9b4c-8ed3a8bb75ba
+        id_neo: e2976ffb-688a-44ae-8b11-1493a5b0dc71
+        id_hpi: None
+        name: Behind an accurate prediction –  Machine Learning in an industrial environment
+        language: english
+        level: '1'
+        duration: '50'
+        achievement_record: cop
+      - id: 8be13c22-0007-40fb-98ea-c7941c6ec8d0
+        id_neo: 288f1605-c136-4030-bfb4-bf6cfbf6004e
+        id_hpi: ca3ee312-719a-473a-a495-b2fe6c5efbeb
+        name: KI–LAURA – KI in der Lehre der AUgenheilkunde und RAdiologie
+        language: german
+        level: '1'
+        duration: None
+        achievement_record: ''
+      - id: 8f6f5467-8064-45cc-9192-71d46fde79fc
+        id_neo: 07055326-685f-492a-b555-d7b1f381b158
+        id_hpi: 0cf46a4b-9022-4cd5-9815-92312b3a84dc
+        name: 'KI und Ethik II: Ethische Herausforderungen digitaler Transformation'
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: roa
+      - id: 1bf27fa1-5fd4-4acc-8e2b-62295f1e0f95
+        id_neo: 6e4bd0e0-c718-4d2f-b7ce-bb89b3d34710
+        id_hpi: 7190dfd2-0985-4efa-a6b2-678aa05f7e0a
+        name: 'KI und Ethik III: Künstliche Intelligenz und Ethik - Grundlagen'
+        language: german
+        level: '1'
+        duration: '8'
+        achievement_record: roa
+      - id: a1e58fc7-d28e-4616-b74e-38a851438419
+        id_neo: 7272818b-f03b-4f05-a4ff-ef156ae776bd
+        id_hpi: d49c2565-f9a8-4691-be99-7565bda2e6ed
+        name: 'KI und Ethik IV: Künstliche Intelligenz und Ethik - Anwendungen '
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: roa
+      - id: 738ea4b8-30c9-4cae-89ac-96c35d98861c
+        id_neo: b3455e71-b565-4fbf-9908-83a02a4eda95
+        id_hpi: 2a77264b-1969-49d5-8019-8359d29ef208
+        name: 'KI und Ethik V: Künstliche Intelligenz in der Lebenswelt'
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: roa
+      - id: e1fae6c0-fa3f-4477-8d43-86913248913d
+        id_neo: 9c796dd4-4fd5-486c-925b-67228b8b1e5c
+        id_hpi: f55341d8-3e69-4b30-b6b9-3913146664dd
+        name: Foundations of Artificial Intelligence VI
+        language: english
+        level: '1'
+        duration: '12'
+        achievement_record: roa
+      - id: 9fb3213e-11a4-4220-b0c0-9623b3280db1
+        id_neo: 3feac6ad-47d7-4ee5-be8c-5a704ad9bd03
+        id_hpi: None
+        name: Identifikation von KI-Use-Cases
+        language: german
+        level: '1'
+        duration: '12'
+        achievement_record: roa
+      - id: 04ade0f2-d71f-4263-9cf2-0554d0d06456
+        id_neo: a9cbea5f-8edd-4a40-abdd-f53fe2c8dfe8
+        id_hpi: 20d94b6a-a4a8-4aee-a7e4-a847f2afbec8
+        name: AI_VET IV - KI als Werkzeug in der beruflichen Bildung
+        language: german
+        level: '1'
+        duration: '25'
+        achievement_record: roa
+      - id: 94430cbd-b315-4f90-a6fd-a43b96c36558
+        id_neo: ad27ab53-dc25-42a7-96ea-4236d8253ae6
+        id_hpi: 0cc9017a-b797-4ca2-ab3b-5fdeb2946acf
+        name: AI_VET III - KI als Inhalt der beruflichen Bildung
+        language: german
+        level: '1'
+        duration: '50'
+        achievement_record: roa
+      - id: 0780f313-1f5d-433f-a265-99b6385b8839
+        id_neo: 598c9848-59e1-4df0-867a-7f754f33d29c
+        id_hpi: 5c704e45-abc4-41bd-af7a-c67da86ec0d1
+        name: AI_VET II - Learning Analytics
+        language: german
+        level: '1'
+        duration: '50'
+        achievement_record: roa
+      - id: 41e47e21-86bf-4234-86ad-979c1856330f
+        id_neo: db44ce84-5591-4ec5-99b0-580dc05dc46e
+        id_hpi: 596e7371-c72f-4738-a0ef-fa845a4aa300
+        name: 'KI und Leadership '
+        language: german
+        level: '1'
+        duration: '45'
+        achievement_record: roa
+      - id: c29b440f-6906-4d32-a767-134061a9f8ff
+        id_neo: bc38e218-590a-4dcf-8866-e7358460a366
+        id_hpi: d73f6ff5-3392-4b11-b99a-d15f5091f3c3
+        name: AI_VET I - KI im Kontext von Lehren und Lernen
+        language: german
+        level: '1'
+        duration: '25'
+        achievement_record: roa
+      - id: ea661882-3dcd-43d5-b707-43d07f3fd238
+        id_neo: 459cb1e2-a967-4c31-bf30-e106bd763484
+        id_hpi: None
+        name: Data Literacy - Basiskurs Data Lifecycle
+        language: german
+        level: '1'
+        duration: None
+        achievement_record: cop
+      - id: 6a818c88-7bdf-4243-8808-ed2927a81496
+        id_neo: 72d77d03-4a23-4627-8900-e851bce06b01
+        id_hpi: a633ebe9-97a2-472e-a1c0-16744e1e258a
+        name: Data-informed Decision-Making in a Pandemic
+        language: english
+        level: '1'
+        duration: '40'
+        achievement_record: roa
+      - id: e972392b-6e3a-49f1-99a9-dd745e3fd166
+        id_neo: 137e24f2-3a4b-45d7-b7dc-c73050aec9ad
+        id_hpi: 041c6c9c-8dbf-49fb-83b5-98feafc2359f
+        name: Data Literacy für die Grundschule
+        language: german
+        level: '1'
+        duration: '5'
+        achievement_record: cop
+      - id: e236d6d0-d5c9-4e99-a49b-9043f95a9ef5
+        id_neo: 994e7861-0100-49b8-a014-406a76fda64c
+        id_hpi: 84bafef4-de62-443e-9353-c38edaad9905
+        name: KI im technischen Service
+        language: german
+        level: '1'
+        duration: '40'
+        achievement_record: cop
+      - id: 9e8892bd-221a-4973-9c35-dd7b835d34e6
+        id_neo: 5e0ad3fa-0af6-4fbc-8aa6-62bc4fa262fb
+        id_hpi: c37bdd7b-c95e-4554-8545-bd690c33a6c9
+        name: Data2Teach - Wie Daten Schule und Schulen Daten machen
+        language: german
+        level: '1'
+        duration: '30'
+        achievement_record: cop
+      - id: e0e5c052-4c5e-409c-b3fc-55cccd326368
+        id_neo: e174f458-f24a-4348-b4bb-d3d307293452
+        id_hpi: db1b3cae-5314-48ec-ab06-98c9e89fb859
+        name: Step by Step zu deinem Chatbot - KI praktisch anwenden!
+        language: german
+        level: '1'
+        duration: '40'
+        achievement_record: ''
+      - id: 5484585f-ea03-440c-ac30-b868ca9a2886
+        id_neo: 3cef7cd6-0f84-41c2-b88c-d4a75004e545
+        id_hpi: 7c8012d9-8729-4462-9ad0-be7d71118f37
+        name: Was, wie, warum? - Einführungskurs Kausale Inferenz
+        language: german
+        level: '1'
+        duration: '24'
+        achievement_record: roa
+      - id: 6109c627-6434-4d45-be47-7b09db7069db
+        id_neo: a0ec6458-f992-49b0-8b77-2cb9016a5d06
+        id_hpi: 29e3b66e-2874-4ec6-9f30-e154eba89305
+        name: Introduction to AI and Entrepreneurship
+        language: english
+        level: '1'
+        duration: '25'
+        achievement_record: ''
+      - id: 5b8b8b89-e0be-4e1f-a9d8-2bca40556ab9
+        id_neo: a6508dc2-ce8f-4bd3-9aaf-4a44053dfe98
+        id_hpi: b9158d13-3157-48a7-b036-474f78e83a8d
+        name: KI-Explorables für die Schule
+        language: german
+        level: '1'
+        duration: '10'
+        achievement_record: cop
+      - id: 49fa83b9-9013-49a3-ae7d-5baff837ac02
+        id_neo: ef414412-8d0e-4bad-8da5-5bc3fa837436
+        id_hpi: 07ac625b-5a9c-4814-8ead-129362075526
+        name: AI Explorables for Schools
+        language: english
+        level: '1'
+        duration: '10'
+        achievement_record: cop
+      - id: 3b054bb4-cffa-4f95-ab69-bbaba4f5b7a8
+        id_neo: c399f106-beae-41b0-b072-7c86c613d5b3
+        id_hpi: ca3ee312-719a-473a-a495-b2fe6c5efbeb
+        name: Dr. med. KI - Anwendungen für Ärztinnen und Ärzte
+        language: german
+        level: '1'
+        duration: None
+        achievement_record: qc
+      - id: 8f2347eb-1b07-4678-baa9-c1c87e674afb
+        id_neo: 4e847ccf-e9c5-46e8-817f-eca0f89bfd1c
+        id_hpi: 405f59e6-8ba5-4324-bd4c-49dd786810ab
+        name: Entscheidungsbäume do it yourself (DIY) – Datenbasiertes Entscheiden
+        language: german
+        level: '1'
+        duration: '12'
+        achievement_record: roa
+      - id: 04828a89-a279-469d-b6eb-08d39a21e19e
+        id_neo: e68612e5-e5b8-492d-bfb4-b358fcdf776a
+        id_hpi: 2bc152b1-51a2-463b-b6b5-7739351aca9e
+        name: Dr. med. KI - Grundlagen für Ärztinnen und Ärzte
+        language: german
+        level: '1'
+        duration: None
+        achievement_record: qc
+      - id: 45a245cf-1d0d-4b3d-9616-b12ce7ab000a
+        id_neo: 27bd7616-e928-4397-a1e4-51793d11e6e6
+        id_hpi: None
+        name: Ethisch fragwürdig – Willkommen in Futuris
+        language: german
+        level: '1'
+        duration: '2'
+        achievement_record: ''
+      - id: a64d005b-d738-4189-889c-d5cbd0a3e337
+        id_neo: 2436fdd6-6e60-48c4-ac5e-9abf47e635a7
+        id_hpi: None
+        name: Müllsortierung mit KI
+        language: german
+        level: '1'
+        duration: '26'
+        achievement_record: ''
+      - id: 6ded3834-1f02-4e12-bc45-feb0a2d9e905
+        id_neo: 8c99de25-6d0e-4c8f-b79e-04b7f0985c7a
+        id_hpi: b4f3bf71-74b1-48d8-a4c4-61aef5a808eb
+        name: What, how, why? - An introduction to causal inference
+        language: english
+        level: '1'
+        duration: '24'
+        achievement_record: roa
+  - action: utter_anything_else_v2
+  - intent: search_topics
+    entities:
+    - search_topic: medizin
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - search_topic: medizin
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
+  - action: action_search_topic
+  - slot_was_set:
+    - search_topic: null
+  - action: utter_anything_else
