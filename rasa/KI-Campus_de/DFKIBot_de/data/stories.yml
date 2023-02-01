@@ -14,7 +14,7 @@ stories:
       - intent: search_topics
       - slot_was_set: 
         - search_topic: "Daten"   
-    - action: utter_recommender_or_search_topics #
+    - action: action_recommender_or_search_topics #
     - intent: start_recommender_form #
     - checkpoint: start_recommender_profile_check #
 
@@ -30,7 +30,7 @@ stories:
       - intent: search_topics
       - slot_was_set: 
         - search_topic: "Machine Learning"
-    - action: utter_recommender_or_search_topics #
+    - action: action_recommender_or_search_topics #
     - intent: search_topics #
     - action: action_search_topic
     - action: utter_anything_else

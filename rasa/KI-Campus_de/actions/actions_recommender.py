@@ -569,6 +569,52 @@ class ActionCheckRecommenderFormActive(Action):
 
 		else: return [SlotSet("recommender_form_active", False)]
 
+class ActionRecommenderOrSearchTopics(Action):
+	class Responses(ResponseEnum):
+		recommender_or_search_topics_unspecified = auto()
+		recommender_or_search_topics = auto()
+		recommender_option = auto()
+		search_topics_option = auto()
+		search_topics_option_unspecified = auto()
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name(), ActionResponsesFiles.actions_recommender)
+		assert_responses_exist(self.responses, self.Responses)
+
+	def name(self):
+		return "action_recommender_or_search_topics"
+
+	def run(self, dispatcher, tracker, domain):
+		search_topic = tracker.get_slot("search_topic")
+
+		if search_topic == None:
+			buttons =[
+				{'title': get_response(self.responses, self.Responses.recommender_option), 'payload': '/start_recommender_form'},
+				{'title': get_response(self.responses, self.Responses.search_topics_option_unspecified), 'payload': '/search_topics'},
+			
+
+			#	{"payload": "/start_recommender", "title": "persönliche Kursempfehlung"},
+			#	{"payload": "/search_topics", "title": "allgemeine Themensuche"}
+			]
+			# text = "Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für allgemeine Themen sehen?"
+			text = get_response(self.responses, self.Responses.recommender_or_search_topics_unspecified)
+		else:
+			search_topic = str(search_topic).capitalize()
+			buttons = [
+				{'title': get_response(self.responses, self.Responses.recommender_option), 'payload': '/start_recommender_form'},
+				{'title': get_response(self.responses, self.Responses.search_topics_option).format(search_topic), 'payload': '/search_topics'},
+				
+			#	{"payload": "/start_recommender", "title": "persönliche Kursempfehlung"},
+			#	{"payload": "/search_topics", "title": "Kursangebot zum Thema {search_topic}"}
+			]
+			# text = "Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für das Thema {search_topic} sehen?"
+			text = get_response(self.responses, self.Responses.recommender_or_search_topics).format(search_topic)
+		
+		dispatcher.utter_message(text=text, buttons=buttons)
+		return []
+
 ###################################
 # VALIDATONS
 ###################################
