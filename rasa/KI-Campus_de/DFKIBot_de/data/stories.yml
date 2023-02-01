@@ -12,8 +12,6 @@ stories:
     - or:
       - intent: start_recommender_form
       - intent: search_topics
-      - slot_was_set: 
-        - search_topic: "Daten"   
     - action: action_recommender_or_search_topics #
     - intent: start_recommender_form #
     - checkpoint: start_recommender_profile_check #

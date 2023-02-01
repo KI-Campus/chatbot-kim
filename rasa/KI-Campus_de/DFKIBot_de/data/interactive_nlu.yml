@@ -122,11 +122,21 @@ nlu:
     - ich will kurse zum thema [daten](search_topic)
     - kurse zum thema [schule](search_topic)
     - lernangebot zum thema [medizin](search_topic)
+    - kurse zum thmea [ki]{"entity": "search_topic", "value": "KI"}
+    - ich suche kurse zum thema [schule](search_topic)
+    - ich suche kurse zum thema [ki]{"entity": "search_topic", "value": "KI"}
 - intent: start_recommender_form
   examples: |
     - ich möchte eine empfehlung
     - ich suche nen kurs
     - ich möchte doch eine empfehlung
+    - kannst du mir bei der kursauswahl helfen
+    - ich möchte eine kursempfehlung
+    - ich suche einen kurs
+- intent: nlu_fallback
+  examples: |
+    - hund
+    - katze
 - synonym: englisch
   examples: |
     - Englisch

@@ -2,6 +2,8 @@ version: "3.1"
 
 stories:
 
+# # OLD VERSION start_recommender_form solo path
+
 # - story: interactive_story_1
 #   steps:
 #   - intent: greet
@@ -1662,6 +1664,8 @@ stories:
 #   - slot_was_set:
 #     - recommender_form_active: false
 #   - action: utter_goodbye
+
+# # action_recommender_or_search_topics 
 - story: interactive_story_1
   steps:
   - intent: greet
@@ -1683,6 +1687,8 @@ stories:
     - search_topic: daten
   - slot_was_set:
     - search_topic: daten
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
   - action: action_search_topic
   - slot_was_set:
     - search_topic: null
@@ -2953,3 +2959,660 @@ stories:
   - slot_was_set:
     - search_topic: null
   - action: utter_anything_else
+
+- story: interactive_story_4
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - user_id: 5bbc35c4-5041-4239-83e6-238b9e0d7860
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: start_recommender_form
+  - action: action_recommender_or_search_topics
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: action_fetch_profile
+  - slot_was_set:
+    - enrollments:
+      - id: 5b57917a-64e2-4a47-9252-b1c8e468df20
+        title: Natural Language Processing
+        course_code: nlp-dfki2021
+        start_date: '2021-10-01T09:00:00Z'
+        language: en
+        self_paced: false
+        certificates:
+          roa:
+            enabled: true
+            requirement: 60
+          cop:
+            enabled: true
+            requirement: 50
+  - slot_was_set:
+    - course_visits: []
+  - slot_was_set:
+    - search_terms: []
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-vertiefung
+  - slot_was_set:
+    - topic: ki-vertiefung
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - certificate: leistungsnachweis
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - level: fortgeschritten
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: b020636d-3520-4054-9f63-788e97bb037a
+        id_neo: 1189df15-40fd-4c3a-900c-021456946393
+        id_hpi: None
+        name: Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+        language: german
+        level: '2'
+        duration: '24'
+        achievement_record: qc
+      - id: 4e47c9fb-aaf2-476f-8a6a-e1d0d91f516a
+        id_neo: 4368868c-62a4-454b-a473-2b3908fac519
+        id_hpi: 8ca3704c-eaf9-49b8-b79f-5dbe5ca3f000
+        name: Ganzheitliche angewandte KI im Ingenieurbereich - Maschinelles Lernen in der Produktion
+        language: german
+        level: '2'
+        duration: '24'
+        achievement_record: roa
+  - action: utter_anything_else_v2
+  - slot_was_set:
+    - search_topic: None
+  - intent: start_recommender_form
+  - action: action_recommender_or_search_topics
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: action_fetch_profile
+  - slot_was_set:
+    - enrollments:
+      - id: 5b57917a-64e2-4a47-9252-b1c8e468df20
+        title: Natural Language Processing
+        course_code: nlp-dfki2021
+        start_date: '2021-10-01T09:00:00Z'
+        language: en
+        self_paced: false
+        certificates:
+          roa:
+            enabled: true
+            requirement: 60
+          cop:
+            enabled: true
+            requirement: 50
+  - slot_was_set:
+    - course_visits: []
+  - slot_was_set:
+    - search_terms: []
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-vertiefung
+  - slot_was_set:
+    - topic: ki-vertiefung
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Leistungsnachweis
+  - slot_was_set:
+    - certificate: leistungsnachweis
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - max_duration: '50'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Fortgeschritten
+  - slot_was_set:
+    - level: fortgeschritten
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: b020636d-3520-4054-9f63-788e97bb037a
+        id_neo: 1189df15-40fd-4c3a-900c-021456946393
+        id_hpi: None
+        name: Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
+        language: german
+        level: '2'
+        duration: '24'
+        achievement_record: qc
+      - id: 4e47c9fb-aaf2-476f-8a6a-e1d0d91f516a
+        id_neo: 4368868c-62a4-454b-a473-2b3908fac519
+        id_hpi: 8ca3704c-eaf9-49b8-b79f-5dbe5ca3f000
+        name: Ganzheitliche angewandte KI im Ingenieurbereich - Maschinelles Lernen in der Produktion
+        language: german
+        level: '2'
+        duration: '24'
+        achievement_record: roa
+  - action: utter_anything_else_v2
+  - intent: search_topics
+    entities:
+    - search_topic: medizin
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - search_topic: medizin
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
+  - action: action_search_topic
+  - slot_was_set:
+    - search_topic: null
+  - action: utter_anything_else
+
+- story: interactive_story_5
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - slot_was_set:
+    - search_topic: None
+  - intent: search_topics
+    entities:
+    - search_topic: schule
+  - slot_was_set:
+    - search_topic: schule
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
+  - action: action_search_topic
+  - slot_was_set:
+    - search_topic: null
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - slot_was_set:
+    - search_topic: None
+  - intent: search_topics
+    entities:
+    - search_topic: KI
+  - slot_was_set:
+    - search_topic: KI
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
+  - action: action_search_topic
+  - slot_was_set:
+    - search_topic: null
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+  - slot_was_set:
+    - search_topic: None
+  - intent: start_recommender_form
+  - action: action_recommender_or_search_topics
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - topic: ki-einführung
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - certificate: teilnahmebescheinigung
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Anfänger
+  - slot_was_set:
+    - level: anfänger
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations: null
+  - action: utter_anything_else_v2
+
+- story: interactive_story_6
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: true
+  - slot_was_set:
+    - user_id: 5bbc35c4-5041-4239-83e6-238b9e0d7860
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: start_recommender_form
+  - action: action_recommender_or_search_topics
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: action_fetch_profile
+  - slot_was_set:
+    - enrollments:
+      - id: 5b57917a-64e2-4a47-9252-b1c8e468df20
+        title: Natural Language Processing
+        course_code: nlp-dfki2021
+        start_date: '2021-10-01T09:00:00Z'
+        language: en
+        self_paced: false
+        certificates:
+          roa:
+            enabled: true
+            requirement: 60
+          cop:
+            enabled: true
+            requirement: 50
+  - slot_was_set:
+    - course_visits: []
+  - slot_was_set:
+    - search_terms: []
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: ki-berufsfelder
+  - slot_was_set:
+    - topic: ki-berufsfelder
+  - slot_was_set:
+    - requested_slot: certificate
+  - slot_was_set:
+    - certificate: Teilnahmebescheinigung
+  - slot_was_set:
+    - certificate: teilnahmebescheinigung
+  - slot_was_set:
+    - requested_slot: max_duration
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - max_duration: '10'
+  - slot_was_set:
+    - requested_slot: level
+  - slot_was_set:
+    - level: Anfänger
+  - slot_was_set:
+    - level: anfänger
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation
+  - slot_was_set:
+    - recommendations:
+      - id: 5bbe7afa-6c89-44c9-aeee-2d2d990fd351
+        id_neo: c553808b-b70e-4b31-8700-7a2f894d7323
+        id_hpi: 41fd8869-1be2-4527-9a97-378f97a20759
+        name: Schule macht KI
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: cop
+      - id: 866e7be2-d3cc-4d5d-a891-bb23cdf203df
+        id_neo: ac45406d-6cf2-4fea-b83e-98ddb9753361
+        id_hpi: 95f16a80-4476-4a02-a4c5-812dfe02b168
+        name: Schule macht Daten
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: cop
+      - id: 4e745962-2a32-44ef-9608-091b2cfd02ee
+        id_neo: 1485839c-b270-4b5e-aa37-110a9492cd84
+        id_hpi: 26840b57-7c4c-4faa-b860-3e85792c3606
+        name: KI und Ziele für nachhaltige Entwicklung
+        language: german
+        level: '1'
+        duration: '4'
+        achievement_record: cop
+      - id: e972392b-6e3a-49f1-99a9-dd745e3fd166
+        id_neo: 137e24f2-3a4b-45d7-b7dc-c73050aec9ad
+        id_hpi: 041c6c9c-8dbf-49fb-83b5-98feafc2359f
+        name: Data Literacy für die Grundschule
+        language: german
+        level: '1'
+        duration: '5'
+        achievement_record: cop
+      - id: 5b8b8b89-e0be-4e1f-a9d8-2bca40556ab9
+        id_neo: a6508dc2-ce8f-4bd3-9aaf-4a44053dfe98
+        id_hpi: b9158d13-3157-48a7-b036-474f78e83a8d
+        name: KI-Explorables für die Schule
+        language: german
+        level: '1'
+        duration: '10'
+        achievement_record: cop
+  - action: utter_anything_else_v2
+  - intent: search_topics
+    entities:
+    - search_topic: schule
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - search_topic: schule
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
+  - action: action_search_topic
+  - slot_was_set:
+    - search_topic: null
+  - action: utter_anything_else
+  - slot_was_set:
+      - search_topic: None
+  - intent: start_recommender_form
+  - action: action_recommender_or_search_topics 
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - user_login: true
+  - action: action_fetch_profile
+  - slot_was_set:
+    - enrollments: "Einführung in die KI"
+    - course_visits: "Big Data Analytics"
+    - search_terms: "KI"
+  - action: recommender_form      
+  - active_loop: recommender_form
+  - action: recommender_form      
+  - active_loop: null           
+  - action: utter_submit_recommender_form
+  - action: action_get_learning_recommendation  
+  - action: utter_anything_else_v2
+
+
+
+- story: interactive_story_7
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: start_recommender_form
+  - action: action_recommender_or_search_topics
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - slot_was_set:
+    - requested_slot: language
+  - slot_was_set:
+    - language: Deutsch
+  - slot_was_set:
+    - language: deutsch
+  - slot_was_set:
+    - requested_slot: topic
+  - slot_was_set:
+    - topic: Data Science
+  - slot_was_set:
+    - topic: data science
+  - slot_was_set:
+    - requested_slot: certificate
+  - intent: stop_form
+  - action: utter_ask_continue_recommender_form
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_bot_information
+  - intent: search_topics
+    entities:
+    - search_topic: schule
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - search_topic: schule
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
+  - action: action_search_topic
+  - slot_was_set:
+    - search_topic: null
+  - action: utter_anything_else
+  - intent: affirm
+  - action: utter_more_info
+
+- story: interactive_story_8
+  steps:
+  - intent: greet
+  - slot_was_set:
+    - recommender_form_active: false
+  - slot_was_set:
+    - user_login: false
+  - action: utter_greet
+  - action: utter_tip_formulation
+  - intent: nlu_fallback
+  - action: utter_default
+  - intent: start_recommender_form
+  - action: action_recommender_or_search_topics
+  - intent: start_recommender_form
+  - action: action_delete_slot_value
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - action: recommender_form
+  - active_loop: recommender_form
+  - slot_was_set:
+    - recommender_form_active: true
+  - slot_was_set:
+    - language: null
+  - slot_was_set:
+    - topic: null
+  - slot_was_set:
+    - level: null
+  - slot_was_set:
+    - max_duration: null
+  - slot_was_set:
+    - certificate: null
+  - slot_was_set:
+    - requested_slot: language
+  - intent: stop_form
+  - action: utter_ask_continue_recommender_form
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_bot_information
+  - intent: nlu_fallback
+  - slot_was_set:
+    - recommender_form_active: false
+  - action: utter_default
+  - intent: search_topics
+    entities:
+    - search_topic: KI
+  - slot_was_set:
+    - search_topic: KI
+  - action: action_recommender_or_search_topics
+  - intent: search_topics
+  - action: action_search_topic
+  - slot_was_set:
+    - search_topic: null
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_feedback
+  - intent: deny
+  - action: utter_thankyou_feedback
+  - action: utter_have_a_nice_day
