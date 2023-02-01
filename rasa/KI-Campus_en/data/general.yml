@@ -283,7 +283,7 @@ nlu:
       - let me speak to a real person please
       - i want to talk to a real person
 
-  - intent: inform
+  - intent: courses
     examples: |
       - Erklärbares Maschinelles Lernen für Ingenieurwissenschaften
       - Launchpad to Fundamental Questions on AI
@@ -301,3 +301,26 @@ nlu:
       - Schule macht Daten
       - Dr. med. KI
       - Team Peer Assessments
+
+  - intent: search_topics
+    examples: |
+      - I am looking for offer on the subject of [medicine](search_topic)
+      - I am looking for courses on [school](search_topic)
+      - Show me all courses on [machine Learning](search_topic)
+      - Show me courses on [entrepreneurship](search_topic)
+      - I want courses on [data](search_topic)
+      - I need the offer on [teaching](search_topic)
+      - Offer on [internet of things](search_topic)
+      - Courses on [education](search_topic)
+      - I want the offer on [AI](search_topic)
+      - [University](search_topic) offer
+      - [nutrition](search_topic) courses
+      - Courses in [cancer](search_topic)
+      - offer courses in [economy](search_topic)
+      - I am looking for a course
+      - learning offer
+      - Courses on the topic
+      - I need the course offer
+      - I am looking for a course on the topic
+      - I would like to have the learning offer
+      - I want to have a [medicine](search_topic) course

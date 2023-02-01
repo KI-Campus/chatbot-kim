@@ -15,6 +15,7 @@ nlu:
       - Ich will wissen was Mooc bedeutet
       - Ich will wissen was ein mooc ist
       - Kannst du mir sagen was ein Mooc ist?
+      - MOOC
 
   - intent: faq/ask_about_ki
     examples: |
@@ -28,6 +29,7 @@ nlu:
       - Was ist AI
       - Was ist Artificial Intelligence
       - Ich will mich über AI informieren
+      - KI
 
   - intent: faq/ask_about_ki_campus
     examples: |
@@ -36,6 +38,7 @@ nlu:
       - Was ist die Idee des KI Campus?
       - Warum gibt es den KI Campus?
       - Wo kann ich mehr über den KI-Campus erfahren?
+      - KI Campus
 
   - intent: faq/ask_about_target_group
     examples: |
@@ -104,6 +107,7 @@ nlu:
       - Muss ich Student sein?
       - Muss ich Student sein, um den KI Campus nutzen zu können?
       - Kann ich als die Kurze belegen obwohl ich kein Student bin?
+      - Ich bin Student
 
   - intent: faq/ask_about_recognition
     examples: |
@@ -112,6 +116,8 @@ nlu:
       - Gibt es Kurse die ich mir an der Uni anrechnen lassen kann?
       - Werden die Kurse von Hochschulen anerkannt?
       - Werden die Kurse von Unis anerkannt?
+      - Anerkennung Hochschule
+      - Universität
 
   - intent: faq/ask_about_lang_english
     examples: |
@@ -120,6 +126,10 @@ nlu:
       - Bietet der KI Campus auch englische Kurse an?
       - Gibt es auch ein englisches Kursangebot?
       - Kann ich den KI Campus auch auf Englisch verwenden?
+      - Welche Sprachen habt ihr?
+      - Habt ihr weitere Sprachen?
+      - Gibt es auch andere Sprachen?
+      - Habt ihr mehr Sprachoptionen?
 
   - intent: faq/ask_about_certification
     examples: |
@@ -137,6 +147,11 @@ nlu:
       - Erhalte ich ein Zertifikat am Ende des Kurses?
       - Was erhalte ich bei Abschluss des Kurses?
       - Erhalte ich eine Bescheinigung am Ende des Kurses?
+      - Zertifikat
+      - Zertifikat erhalten
+      - Zertifikat bekommen
+      - Bescheinigung
+      - Bescheinigung bekommen
 
   - intent: faq/ask_about_course_timelimit
     examples: |
@@ -156,6 +171,9 @@ nlu:
       - Welche Zahlungsmöglichkeiten gibt es? 
       - Wie kann ich bezahlen? 
       - Ich habe kein Geld. 
+      - Was kosten die Kurse?
+      - Kosten die Kurse was?
+      - Kosten
 
   - intent: faq/ask_become_editor
     examples: |
@@ -184,6 +202,7 @@ nlu:
       - Wie bekomme ich ein neues Passwort?
       - Reset Passwort
       - Passwort zurücksetzen
+      - Passwort
   
   - intent: faq/ask_go_to_profile
     examples: |
@@ -310,6 +329,18 @@ nlu:
       - Ich möchte Fellow werden
       - Ich möchte ein Fellowship
       - Fellow
+
+# added by DFKI
+  - intent: faq/ask_duration_parameter
+    examples: |
+      - Erkläre die Dauer der Kurse
+      - Wie ist die Zeitangabe gemeint
+      - Erkläre die Stundenzahl
+      - Wie funktionieren die Zeitangaben
+      - Bezieht sich die Zeiteinteilung der Kurse auf den Monat
+      - Ist die Kursdauer wöchtentlich gemeint
+      - Wie ist der Umfang gemeint
+      - Erkläre den Kursumfang
 
   - synonym: KI
     examples: |

@@ -6,8 +6,7 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-#  # added by DFKI TODO enable when recommender is enabled
-#  - action: utter_tip_formulation
+  - action: utter_tip_formulation
 
 - story: User goodbye
   steps:

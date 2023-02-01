@@ -90,3 +90,13 @@ action_ask_certificate:
 validate_recommender_form:
   # unsupported_language_selection parameter {0}: the (unsupported) language
   unsupported_language_selection: "Wir bieten auf dem KI-Campus keine Kurse auf {0} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!"
+
+action_recommender_or_search_topics:
+# search_topics parameter {0}: the topic
+  recommender_or_search_topics_unspecified: Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für allgemeine Themen sehen?
+  recommender_or_search_topics: Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für das Thema {0} sehen?
+  recommender_option: persönliche Kursempfehlung
+  search_topics_option: Kursangebot zum Thema {0}
+  search_topics_option_unspecified: allgemeine Themensuche
+
+

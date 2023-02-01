@@ -215,3 +215,95 @@ class ActionGetCertificate(Action):
 				else:
 					dispatcher.utter_message(get_response(self.responses, self.Responses.download_not_available).format(achievement['name']))
 		return []
+
+
+class ActionSearchTopic(Action):
+	class Responses(ResponseEnum):
+		topicpage_present = auto()
+		"""
+		text topicpage_present has 2 parameters:
+        * parameter {0}: (textual) search topic
+        * parameter {1}: (textual) link to search topic
+		"""
+		topicpage_not_present = auto()
+		"""
+		text topicpage_present has 1 parameter:
+        * parameter {0}: (textual) search topic
+		"""
+		topic_page_url = auto()
+		"""
+		text topic_page_url has 1 parameter:
+        * parameter {0}: the URL path segment for the topic page (e.g. "medizin")
+		"""
+		topic_medicine = auto()
+		topic_title_medicine = auto()
+		topic_url_medicine = auto()
+		topic_school = auto()
+		topic_title_school = auto()
+		topic_url_school = auto()
+		topic_data = auto()
+		topic_title_data = auto()
+		topic_url_data = auto()
+		topic_machine_learning = auto()
+		topic_machine_learning_alt = auto()
+		topic_title_machine_learning = auto()
+		topic_url_machine_learning = auto()
+		topic_entrepreneurship = auto()
+		topic_title_entrepreneurship = auto()
+		topic_url_entrepreneurship = auto()
+
+	responses: Dict[str, str]
+
+	topic_medicine: str
+	topic_school: str
+	topic_data: str
+	topic_machine_learning: str
+	topic_machine_learning_alt: str
+	topic_entrepreneurship: str
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name())
+		assert_responses_exist(self.responses, self.Responses)
+		self.topic_medicine = get_response(self.responses, self.Responses.topic_medicine)
+		self.topic_school = get_response(self.responses, self.Responses.topic_school)
+		self.topic_data = get_response(self.responses, self.Responses.topic_data)
+		self.topic_machine_learning = get_response(self.responses, self.Responses.topic_machine_learning)
+		self.topic_machine_learning_alt = get_response(self.responses, self.Responses.topic_machine_learning_alt)
+		self.topic_entrepreneurship = get_response(self.responses, self.Responses.topic_entrepreneurship)
+
+	def name(self) -> Text:
+		return "action_search_topic"
+
+	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+		# # modified by DFKI
+		# searchTopic = tracker.latest_message['entities'][0]['value']
+
+		searchTopic = str(tracker.get_slot("search_topic"))
+		searchTopicLower = searchTopic.lower()
+
+		if searchTopicLower == self.topic_medicine:
+			title = get_response(self.responses, self.Responses.topic_title_medicine)
+			segment = get_response(self.responses, self.Responses.topic_url_medicine)
+		elif searchTopicLower == self.topic_school:
+			title = get_response(self.responses, self.Responses.topic_title_school)
+			segment = get_response(self.responses, self.Responses.topic_url_school)
+		elif searchTopicLower == self.topic_data:
+			title = get_response(self.responses, self.Responses.topic_title_data)
+			segment = get_response(self.responses, self.Responses.topic_url_data)
+		elif searchTopicLower == self.topic_machine_learning or searchTopicLower == self.topic_machine_learning_alt:
+			title = get_response(self.responses, self.Responses.topic_title_machine_learning)
+			segment = get_response(self.responses, self.Responses.topic_url_machine_learning)
+		elif searchTopicLower == self.topic_entrepreneurship:
+			title = get_response(self.responses, self.Responses.topic_title_entrepreneurship)
+			segment = get_response(self.responses, self.Responses.topic_url_entrepreneurship)
+		else:
+			title = None
+
+		if title is not None:
+			page = get_response(self.responses, self.Responses.topic_page_url)
+			message = get_response(self.responses, self.Responses.topicpage_present).format(title, page.format(segment))
+			dispatcher.utter_message(message)
+		else:
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_not_present).format(searchTopic))
+		# # modified by DFKI
+		return[SlotSet("search_topic", None)]
