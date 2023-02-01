@@ -17,8 +17,7 @@ intents:
 - human_handoff
 - insults
 - courses # modified by DFKI: inform -> courses
-# # modified by DFKI: conflict
-# - search_topics
+- search_topics
 
 actions:
 - action_get_courses
@@ -36,6 +35,14 @@ entities:
 - search_topic
 
 slots:
+# # added by DFKI
+  search_topic:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: search_topic
+      intent: search_topics
   all_courses:
     type: list
     influence_conversation: false
@@ -97,7 +104,7 @@ responses:
   - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". ' 
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
-  # # modified by DFKI: move to greetbot
+  # # modified by DFKI: moved to greetbot
   # utter_have_a_nice_day: 
   # - text: Hab einen schönen Tag und bis bald!
   # utter_bye:

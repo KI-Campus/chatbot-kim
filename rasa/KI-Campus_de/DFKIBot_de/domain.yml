@@ -51,7 +51,7 @@ actions:
   - utter_bot_apology
   - action_check_recommender_form_active
   - utter_bot_information
-
+  - action_recommender_or_search_topics
 entities:
   - language
   - topic
@@ -171,6 +171,7 @@ slots:
     mappings:
     - type: custom
 responses:
+# # FIXME
   utter_tip_login:
   - text: "💡 Tipp: Für eine möglichst gute Kursempfehlung helfen mir die Informationen aus deinem Profil. Melde dich bitte hier an." 
   utter_affirm_start_recommender_form_login:

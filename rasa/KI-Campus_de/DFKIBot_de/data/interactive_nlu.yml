@@ -7,22 +7,6 @@ nlu:
     - hi kim
     - hallöchen
     - heyho
-- intent: start_recommender_form
-  examples: |
-    - kannst du mir einen kurs suchen
-    - ich suche einen kurs
-    - ich suche nen kurs zum thema [ki]{"entity": "topic", "value": "KI"}
-    - empfehle mir einen kurs!
-    - dann gib mir eine empfehlung
-    - starte die kurssuche
-    - gib mir mal ne empfehlung
-    - ich möchte eine kursempfehlung haben
-    - kurssuche starten
-    - ich möchte eine empfehlung
-    - gib mir eine empfehlung
-    - ich möchte eine kursempfehlung bekommen
-    - empfehle mir einen kurs
-    - welche empfehlung kannst du mir geben
 - intent: affirm
   examples: |
     - ja
@@ -42,6 +26,7 @@ nlu:
     - gib mir weitere empfehlungen
     - hast du noch mehr empfehlungen für mich?
     - gib mir zusätzliche empfehlungen
+    - weitere empfehlungen
 - intent: thank
   examples: |
     - danke das wars
@@ -85,6 +70,8 @@ nlu:
     - was kosten die kurse
     - welche sprachen habt ihr
     - welche themen bietet dr ki campus an
+    - was ist ki
+    - gibt es auch kurse auf englisch
 - intent: get_courses
   examples: |
     - zeige mir meine Kurse
@@ -130,12 +117,32 @@ nlu:
 - intent: bot_challenge
   examples: |
     - bist du ein bot
-- synonym: KI
+- intent: search_topics
   examples: |
-    - ki
+    - ich will kurse zum thema [daten](search_topic)
+    - kurse zum thema [schule](search_topic)
+    - lernangebot zum thema [medizin](search_topic)
+    - kurse zum thmea [ki]{"entity": "search_topic", "value": "KI"}
+    - ich suche kurse zum thema [schule](search_topic)
+    - ich suche kurse zum thema [ki]{"entity": "search_topic", "value": "KI"}
+- intent: start_recommender_form
+  examples: |
+    - ich möchte eine empfehlung
+    - ich suche nen kurs
+    - ich möchte doch eine empfehlung
+    - kannst du mir bei der kursauswahl helfen
+    - ich möchte eine kursempfehlung
+    - ich suche einen kurs
+- intent: nlu_fallback
+  examples: |
+    - hund
+    - katze
 - synonym: englisch
   examples: |
     - Englisch
+- synonym: KI
+  examples: |
+    - ki
 - synonym: Maschinelles Lernen
   examples: |
     - ML
@@ -145,3 +152,4 @@ nlu:
 - synonym: Leistungsnachweis
   examples: |
     - zertifikat
+    - benotet
