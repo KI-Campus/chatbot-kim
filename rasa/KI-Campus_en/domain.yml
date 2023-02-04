@@ -13,7 +13,6 @@ intents:
 - human_handoff
 - insults
 - inform
-- search
 - search_internal
 - search_external
 - specify_search_content_type
@@ -27,6 +26,7 @@ actions:
 - action_download_certificate
 - action_answer_external_search
 - action_answer_internal_search
+- action_default_fallback
 - action_answer_external_search_other_languages
 - action_delete_given_search_topic
 
@@ -106,42 +106,56 @@ forms:
   course_form:
     ignored_intents: []
     required_slots:
-      - current_course_title
+    - current_course_title
   search_form:
     required_slots:
-      - given_search_topic
-      - given_search_content_type
-
+    - given_search_topic
+    - given_search_content_type
+    
 responses:
+  utter_anything_else:
+  - text: Is there anything else I can help you with?
+    buttons:
+    - title: Yes
+      payload: /affirm
+    - title: No
+      payload: /deny
+  utter_greet:
+  - text: Hello! What can I help you with?
+  - text: Hello! How can I help you?
+  utter_goodbye:
+  - text: Goodbye!
+  utter_you_are_welcome:
+  - text: You are welcome.
   utter_ask_search_form_given_search_topic:
   - text: About which topic would you like to know something?
   utter_ask_search_form_given_search_content_type:
   - text: For which kind of content are you looking?
     buttons:
-    - title: "video"
-      payload: '/specify_search_content_type{{"search_content_type":"video"}}'
-    - title: "text"
-      payload: '/specify_search_content_type{{"search_content_type":"text"}}'
-    - title: "quiz"
-      payload: '/specify_search_content_type{{"search_content_type":"quiz"}}'
-    - title: "exercise"
-      payload: '/specify_search_content_type{{"search_content_type":"exercise"}}'
-    - title: "all"
-      payload: '/specify_search_content_type{{"search_content_type":"all"}}'
+    - title: video
+      payload: /specify_search_content_type{{"search_content_type":"video"}}
+    - title: text
+      payload: /specify_search_content_type{{"search_content_type":"text"}}
+    - title: quiz
+      payload: /specify_search_content_type{{"search_content_type":"quiz"}}
+    - title: exercise
+      payload: /specify_search_content_type{{"search_content_type":"exercise"}}
+    - title: all
+      payload: /specify_search_content_type{{"search_content_type":"all"}}
   utter_ask_internal_or_external_search:
-  - text: "Do you want to search in the courses you are enroled in or find a new course?"
+  - text: Do you want to search in the courses you are enroled in or find a new course?
     buttons:
-    - title: "my courses"
-      payload: "/search_internal"
-    - title: "new course"
-      payload: "/search_external"
+    - title: my courses
+      payload: /search_internal
+    - title: new course
+      payload: /search_external
   utter_ask_courses_other_language:
-  - text: "Would you like to see other courses about the topic in other languages?"
+  - text: Would you like to see other courses about the topic in other languages?
     buttons:
-    - title: "Yes"
-      payload: "/affirm"
-    - title: "No"
-      payload: "/deny"
+    - title: Yes
+      payload: /affirm
+    - title: No
+      payload: /deny
   utter_submit:
   - text: Thanks for providing me with the course title!
   utter_download_certificate:
@@ -149,7 +163,7 @@ responses:
   utter_ask_which_course:
   - text: Please select a course for which you want to receive your achievements.
   utter_out_of_scope:
-  - text: 'Sorry, I cannot answer that. Feel free to use our contact form to ask your question or type "help".'
+  - text: Sorry, I cannot answer that. Feel free to use our contact form to ask your question or type "help".
   utter_use_contact_form:
   - text: You can also use our contact form to get help for your technical problem. We will try to answer you as soon as possible.
   utter_have_a_nice_day:
@@ -158,19 +172,12 @@ responses:
   - text: Bye!
   utter_more_info:
   - text: Okay. What can I help you with?
-  utter_anything_else:
-  - text: Is there anything else I can help you with?
-    buttons:
-    - title: "Yes"
-      payload: "/affirm"
-    - title: "No"
-      payload: "/deny"
   utter_faq/ask_about_moocs:
   - text: We've compiled some basic information about online courses <a href="https://open.hpi.de/pages/mooc">here</a>.
   utter_faq/ask_about_ki:
   - text: Artificial intelligence (AI) is a branch of computer science that deals with concepts and methods that enable computers to perceive, think, act, communicate, and learn about their environment. The concepts and methods are realized by algorithms as AI systems.
   utter_faq/ask_about_ki_campus:
-  - text: The AI Campus is a digital learning platform specializing in Artificial Intelligence (AI) that provides free, publicly funded learning opportunities. 
+  - text: The AI Campus is a digital learning platform specializing in Artificial Intelligence (AI) that provides free, publicly funded learning opportunities.
   utter_faq/ask_about_target_group:
   - text: The declared goal of the AI Campus is an AI-competent society. The learning platform wants to teach AI and data skills and get more people excited about the topic. Learners should be enabled to understand, question and help shape AI developments. In this way, the AI Campus addresses the acute shortage of skilled workers and at the same time strengthens a responsible approach to AI across the board.
   utter_faq/ask_about_goals:
@@ -180,7 +187,7 @@ responses:
   utter_faq/ask_about_learningoffer:
   - text: From online courses to videos and podcasts to interactive exercises - the AI Campus provides learners with a diverse selection of high-quality free learning opportunities on various AI topics bundled on one learning platform.
   utter_faq/ask_about_topics:
-  - text: 'The AI Campus covers the basics as well as interdisciplinary issues and in-depth studies of individual areas and topics in AI (such as machine learning). In addition, there are specific offerings that specifically cover the needs of individual professional fields or disciplines (such as AI in medicine, AI in education). The learning offerings are continuously being expanded.'
+  - text: The AI Campus covers the basics as well as interdisciplinary issues and in-depth studies of individual areas and topics in AI (such as machine learning). In addition, there are specific offerings that specifically cover the needs of individual professional fields or disciplines (such as AI in medicine, AI in education). The learning offerings are continuously being expanded.
   utter_faq/ask_about_prior_knowledge:
   - text: For courses for beginners, only basic mathematical knowledge is required and no prior technical knowledge. More advanced courses require prior knowledge, which is specified on the respective course page.
   utter_faq/ask_about_student:
@@ -188,29 +195,29 @@ responses:
   utter_faq/ask_about_recognition:
   - text: Selected courses can be awarded ECTS credits and recognized or credited in coordination with the respective university. The AI-Campus cannot give a general approval for recognition. Please contact your university with this request.
   utter_faq/ask_about_certification:
-  - text: Currently, certificates of attendance can be obtained on the AI campus for all online courses and certificates of achievement can also be obtained for selected online courses. 
+  - text: Currently, certificates of attendance can be obtained on the AI campus for all online courses and certificates of achievement can also be obtained for selected online courses.
   utter_faq/ask_about_course_timelimit:
   - text: Most of our learning opportunities can be completed at your own pace, for some of them there are time constraints. You will find this information in the description of the respective learning offer.
   utter_faq/ask_about_course_costs:
-  - text: The use of all learning offers of the AI-Campus is free of charge. 
+  - text: The use of all learning offers of the AI-Campus is free of charge.
   utter_faq/ask_become_editor:
   - text: We are always open to new learning opportunities and welcome your ideas. <a href="https://ki-campus.org/contact" _blank>Feel free to contact us!</a>!
   utter_faq/ask_about_partners_cooperations:
   - text: Cooperation with other platforms and initiatives is an important concern for us in the implementation of the AI Campus. We are very happy to exchange ideas on ways to collaborate in order to jointly develop innovative learning opportunities and reach as many learners as possible. <a href="https://ki-campus.org/contact" _blank>Feel free to contact us!</a>!
   utter_faq/ask_password_reset:
-  - text: You can change your password at any time in your profile. To access your profile, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name. 
+  - text: You can change your password at any time in your profile. To access your profile, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name.
   utter_faq/ask_go_to_profile:
-  - text: To access your profile, go to the <a href="https://ki-campus.org" _blank>AI Campus main page</a>, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name. 
+  - text: To access your profile, go to the <a href="https://ki-campus.org" _blank>AI Campus main page</a>, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name.
   utter_faq/ask_change_name:
-  - text: You can change your first and last name at any time in your profile. To access your profile, go to the <a href="https://ki-campus.org" _blank>AI Campus main page</a>, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name. 
+  - text: You can change your first and last name at any time in your profile. To access your profile, go to the <a href="https://ki-campus.org" _blank>AI Campus main page</a>, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name.
   utter_faq/ask_change_username:
-  - text: Unfortunately, you can no longer change your username, but don't worry, it won't show up anywhere. You can change your first and last name and your email address in your profile at any time. To access your profile, go to the <a href="https://ki-campus.org" _blank>AI Campus main page</a>, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name. 
+  - text: Unfortunately, you can no longer change your username, but don't worry, it won't show up anywhere. You can change your first and last name and your email address in your profile at any time. To access your profile, go to the <a href="https://ki-campus.org" _blank>AI Campus main page</a>, click on your avatar and select "Profile". Then click "Edit Profile" on the left side just above your first name.
   utter_faq/ask_delete_account:
-  - text: To delete your account, please send us a request using the contact form next to it. 
+  - text: To delete your account, please send us a request using the contact form next to it.
   utter_faq/ask_report_error:
-  - text: Oh, thank you for your attentive review of our learning materials. We appreciate your feedback, as it helps us to improve and develop our learning offerings. Feel free to send us a message with a description of the error using the contact form on the right. Preferably from the page where the error is. 
+  - text: Oh, thank you for your attentive review of our learning materials. We appreciate your feedback, as it helps us to improve and develop our learning offerings. Feel free to send us a message with a description of the error using the contact form on the right. Preferably from the page where the error is.
   utter_faq/ask_technical_error:
-  - text: Please contact us using the contact form on the right and describe your problem as precisely as possible. We will try to help you as soon as possible. 
+  - text: Please contact us using the contact form on the right and describe your problem as precisely as possible. We will try to help you as soon as possible.
   utter_faq/ask_video_problem:
   - text: Hmm... It seems to be a technical problem. Could you try refreshing the page or trying a different browser? If the problem persists, feel free to contact us using the contact form on the right and describe your problem as precisely as possible. We will try to help you as soon as possible.
   utter_faq/ask_finish_course:
@@ -218,11 +225,11 @@ responses:
   utter_faq/ask_learning_offer:
   - text: You can find them on the topic pages or of course via our "topics" filter on the learning opportunities page. Have fun browsing!
   utter_faq/ask_expert_labs:
-  - text: 'The AI ExpertLabs are the think & do tanks of the AI Campus and serve as central innovation hubs in terms of content and methodology, enabling the networking of experts in particularly relevant application areas. Would you like to know more about the AI ExpertLabs in the respective subject areas of medicine, university teaching or school? Then check out <a href="https://ki-campus.org/expertlabs" _blank>this page</a>.'
+  - text: The AI ExpertLabs are the think & do tanks of the AI Campus and serve as central innovation hubs in terms of content and methodology, enabling the networking of experts in particularly relevant application areas. Would you like to know more about the AI ExpertLabs in the respective subject areas of medicine, university teaching or school? Then check out <a href="https://ki-campus.org/expertlabs" _blank>this page</a>.
   utter_faq/ask_fellowship:
-  - text: 'The AI Campus Fellowship Program is aimed at university teachers from all departments who want to bring the future topic of AI into their teaching and test the integration of AI Campus learning opportunities for this purpose. Would you like to learn more? Then check out <a href="https://ki-campus.org/fellowships" _blank>this page</a> on the AI Fellowship.'
+  - text: The AI Campus Fellowship Program is aimed at university teachers from all departments who want to bring the future topic of AI into their teaching and test the integration of AI Campus learning opportunities for this purpose. Would you like to learn more? Then check out <a href="https://ki-campus.org/fellowships" _blank>this page</a> on the AI Fellowship.
   utter_help:
-  - text: I'm happy to help you with technical problems and questions about the courses. For example, I can explain the course structure and answer questions about the certificate, resetting the password or changing your personal data. 
+  - text: I'm happy to help you with technical problems and questions about the courses. For example, I can explain the course structure and answer questions about the certificate, resetting the password or changing your personal data.
   utter_default:
   - text: I didn't quite understand that. Can you rephrase that?
   utter_iamabot:
@@ -230,20 +237,20 @@ responses:
   utter_ask_handoff:
   - text: Would you rather talk to our helpdesk team?
     buttons:
-    - title: "Yes"
-      payload: "/affirm"
-    - title: "No"
-      payload: "/deny"
+    - title: Yes
+      payload: /affirm
+    - title: No
+      payload: /deny
   utter_handoff:
-  - text: 'To speak with our helpdesk team, click on the "Contact Form" tab and briefly describe your concern there. The helpdesk team will get back to you as soon as possible.'
+  - text: To speak with our helpdesk team, click on the "Contact Form" tab and briefly describe your concern there. The helpdesk team will get back to you as soon as possible.
   utter_insults:
-  - text: "Well, well, well, you are quite a bad one :) Please pay a little better attention to your wording! I'm just a machine, but I also have feelings!!!"
+  - text: Well, well, well, you are quite a bad one :) Please pay a little better attention to your wording! I'm just a machine, but I also have feelings!!!
   utter_feedback:
-  - text: "Was I able to help you with your request?"
+  - text: Was I able to help you with your request?
     buttons:
-    - title: "Yes"
-      payload: "/affirm"
-    - title: "Not really ..."
-      payload: "/deny"
+    - title: Yes
+      payload: /affirm
+    - title: Not really ...
+      payload: /deny
   utter_thankyou_feedback:
-  - text: "Thanks for your feedback!"
+  - text: Thanks for your feedback!

@@ -12,9 +12,11 @@ nlu:
       - Gibt es Kurse über [k-Means]{"entity": "search_topic"}?
       - Wo kann ich etwas über [Data Science]{"entity": "search_topic"} lernen?
       - Welche Kurse behandeln [machinellem Lernen]{"entity": "search_topic"}?
+      - Wo finde ich einen Kurs zum Thema [Funktionen]{"entity": "search_topic"}?    
 
   - intent: search_internal
     examples: |
+      - Wo kann ich etwas über [Zufallszahlen]{"entity": "search_topic"} in meinen Kursen finden?     
       - Zeig mir etwas über [Machine Learning]{"entity": "search_topic"}.
       - Zeig mir etwas zum Thema [Wirtschaft]{"entity": "search_topic"}.
       - Gibt es in meinem aktuellen Kurs etwas zu [Listen]{"entity": "search_topic"}?

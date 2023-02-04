@@ -10,7 +10,7 @@ rules:
   - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
     steps:
     - intent: nlu_fallback
-    - action: utter_default
+    - action: action_default_fallback
 
   - rule: answer bot challenge
     steps:
@@ -52,6 +52,12 @@ rules:
     - slot_was_set:
       - current_course_achieved: true
     - action: utter_download_certificate
+
+  - rule: activate search form from search
+    steps:
+    - intent: search_internal
+    - action: search_form
+    - active_loop: search_form
 
   - rule: activate search form from content type
     steps:

@@ -1,9 +1,10 @@
 version: '3.1'
 
 nlu:
-  - intent: search
+  - intent: search_external
     examples: |
-      - Is there a course about [AI]{"entity": "search_topic"}?
+      - Is there a course about [Schleifen]{"entity": "search_topic"}?
+      - Where can I find a course about [Schleifen]{"entity": "search_topic"}?
       - Can you recommend a course about the topic [data]{"entity": "search_topic"}?
       - Can I learn something about [health]{"entity": "search_topic"} in one of the courses?
       - Where can I find a course about [AI]{"entity": "search_topic"} on this page?
@@ -11,6 +12,9 @@ nlu:
       - Show me a course about [AI]{"entity": "search_topic"}.
       - Are there courses about [data science]{"entity": "search_topic"}?
       - Where can I learn something about [data science]{"entity": "search_topic"}?
+
+  - intent: search_internal
+    examples: |
       - Which courses address [machine learning]{"entity": "search_topic"}?
       - Show me something about [machine learning]{"entity": "search_topic"}.
       - Sow me something about the topic [business]{"entity": "search_topic"}.

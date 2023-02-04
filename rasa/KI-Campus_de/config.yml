@@ -12,10 +12,10 @@ pipeline:
     min_ngram: 1
     max_ngram: 4
   - name: DIETClassifier
-    epochs: 50 #150
+    epochs: 150
   - name: EntitySynonymMapper
   - name: ResponseSelector
-    epochs: 100 #500
+    epochs: 500
     retrieval_intent: faq
   - name: FallbackClassifier
     threshold: 0.7
@@ -25,7 +25,7 @@ policies:
     max_history: 4
   - name: TEDPolicy
     max_history: 4
-    epochs: 20 #100
+    epochs: 100
   - name: RulePolicy
 
 importers:

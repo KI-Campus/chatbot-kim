@@ -126,8 +126,6 @@ stories:
 
 - story: answer external search other language deny
   steps:
-  - intent: search
-  - action: utter_ask_internal_or_external_search
   - intent: search_external
   - action: action_answer_external_search
   - intent: deny
@@ -137,18 +135,9 @@ stories:
 
 - story: answer external search other language accept
   steps:
-  - intent: search
-  - action: utter_ask_internal_or_external_search
   - intent: search_external
   - action: action_answer_external_search
   - intent: affirm
   - action: action_answer_external_search_other_languages
   - action: action_delete_given_search_topic
 
-- story: activate search form from search
-  steps:
-  - intent: search
-  - action: utter_ask_internal_or_external_search
-  - intent: search_internal
-  - action: search_form
-  - active_loop: search_form
