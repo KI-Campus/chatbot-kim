@@ -593,23 +593,14 @@ class ActionRecommenderOrSearchTopics(Action):
 			buttons =[
 				{'title': get_response(self.responses, self.Responses.recommender_option), 'payload': '/start_recommender_form'},
 				{'title': get_response(self.responses, self.Responses.search_topics_option_unspecified), 'payload': '/search_topics'},
-			
-
-			#	{"payload": "/start_recommender", "title": "persönliche Kursempfehlung"},
-			#	{"payload": "/search_topics", "title": "allgemeine Themensuche"}
 			]
-			# text = "Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für allgemeine Themen sehen?"
 			text = get_response(self.responses, self.Responses.recommender_or_search_topics_unspecified)
 		else:
 			search_topic = str(search_topic).capitalize()
 			buttons = [
 				{'title': get_response(self.responses, self.Responses.recommender_option), 'payload': '/start_recommender_form'},
 				{'title': get_response(self.responses, self.Responses.search_topics_option).format(search_topic), 'payload': '/search_topics'},
-				
-			#	{"payload": "/start_recommender", "title": "persönliche Kursempfehlung"},
-			#	{"payload": "/search_topics", "title": "Kursangebot zum Thema {search_topic}"}
 			]
-			# text = "Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für das Thema {search_topic} sehen?"
 			text = get_response(self.responses, self.Responses.recommender_or_search_topics).format(search_topic)
 		
 		dispatcher.utter_message(text=text, buttons=buttons)

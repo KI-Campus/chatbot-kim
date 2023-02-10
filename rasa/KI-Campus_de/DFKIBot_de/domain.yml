@@ -188,6 +188,7 @@ responses:
         payload: /affirm   
       - title: Nein, ich habe ein anderes Anliegen!
         payload: /deny
+        
   utter_anything_else_v2:
   - text: Womit kann ich dir noch behilflich sein?
   - text: Wie kann ich dir sonst noch helfen?
