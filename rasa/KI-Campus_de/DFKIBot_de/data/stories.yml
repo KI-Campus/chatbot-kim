@@ -12,9 +12,9 @@ stories:
     - or:
       - intent: start_recommender_form
       - intent: search_topics
-    - action: action_recommender_or_search_topics #
-    - intent: start_recommender_form #
-    - checkpoint: start_recommender_profile_check #
+    - action: action_recommender_or_search_topics 
+    - intent: start_recommender_form 
+    - checkpoint: start_recommender_profile_check 
 
   - story: start search topic
     steps:
@@ -28,61 +28,11 @@ stories:
       - intent: search_topics
       - slot_was_set: 
         - search_topic: "Machine Learning"
-    - action: action_recommender_or_search_topics #
-    - intent: search_topics #
+    - action: action_recommender_or_search_topics 
+    - intent: search_topics 
     - action: action_search_topic
     - action: utter_anything_else
     - checkpoint: more_information
-
-# # FIXME: fix paths for utter_tip_login + affirm
-
-# # start recommender form + login check 
-  # - story: check login happy + start recommender
-  #   steps:
-  #   - intent: start_recommender_form
-  #   - action: action_delete_slot_value
-  #   - slot_was_set:
-  #     - user_login: true
-  #   - action: utter_affirm_start_recommender_form 
-  #   - intent: affirm
-  #   - action: action_fetch_profile
-  #   - slot_was_set:
-  #     - enrollments: "Einführung in die KI"
-  #     - course_visits: "Big Data Analytics"
-  #     - search_terms: "KI"
-  #   - checkpoint: start_recommender_form
-
-  # - story: check login happy + no recommender
-  #   steps:
-  #   - intent: start_recommender_form
-  #   - action: action_delete_slot_value
-  #   - slot_was_set:
-  #     - user_login: true
-  #   - action: utter_affirm_start_recommender_form
-  #   - intent: deny 
-  #   - action: utter_anything_else_v2
-
-  # - story: check login unhappy + start recommender
-  #   steps:
-  #   - intent: start_recommender_form
-  #   - action: action_delete_slot_value
-  #   - slot_was_set:
-  #     - user_login: false
-  #   - action: utter_tip_login
-  #   - action: utter_affirm_start_recommender_form_login 
-  #   - intent: affirm
-  #   - checkpoint: start_recommender_form
-
-  # - story: check login unhappy + no courseseach
-  #   steps:
-  #   - intent: start_recommender_form
-  #   - action: action_delete_slot_value
-  #   - slot_was_set:
-  #     - user_login: false
-  #   - action: utter_tip_login
-  #   - action: utter_affirm_start_recommender_form_login 
-  #   - intent: deny
-  #   - action: utter_anything_else_v2
 
 # # fetch profile information
   - story: login happy
