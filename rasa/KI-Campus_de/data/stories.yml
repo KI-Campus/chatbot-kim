@@ -5,6 +5,8 @@ stories:
   steps:
   - intent: faq
   - action: utter_faq
+  - slot_was_set: # modified by DFKI
+    - recommender_form_active: false
   - action: utter_anything_else
   - checkpoint: more_information
 
@@ -24,7 +26,7 @@ stories:
   - action: utter_ask_handoff
   - intent: affirm
   - action: utter_handoff
-  - action: utter_bye
+  - action: utter_goodbye
 
 - story: Provide handoff deny
   steps:
@@ -124,9 +126,10 @@ stories:
   - action: utter_anything_else
   - checkpoint: more_information
 
-- story: search for topics
-  steps:
-  - intent: search_topics
-  - action: action_search_topic
-  - action: utter_anything_else
-  - checkpoint: more_information
+# # modified by DFKI: combined with start_recommender_form 
+# - story: search for topics
+#   steps:
+#   - intent: search_topics
+#   - action: action_search_topic
+#   - action: utter_anything_else
+#   - checkpoint: more_information

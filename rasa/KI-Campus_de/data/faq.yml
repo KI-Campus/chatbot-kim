@@ -126,6 +126,10 @@ nlu:
       - Bietet der KI Campus auch englische Kurse an?
       - Gibt es auch ein englisches Kursangebot?
       - Kann ich den KI Campus auch auf Englisch verwenden?
+      - Welche Sprachen habt ihr?
+      - Habt ihr weitere Sprachen?
+      - Gibt es auch andere Sprachen?
+      - Habt ihr mehr Sprachoptionen?
 
   - intent: faq/ask_about_certification
     examples: |
@@ -325,6 +329,18 @@ nlu:
       - Ich möchte Fellow werden
       - Ich möchte ein Fellowship
       - Fellow
+
+# added by DFKI
+  - intent: faq/ask_duration_parameter
+    examples: |
+      - Erkläre die Dauer der Kurse
+      - Wie ist die Zeitangabe gemeint
+      - Erkläre die Stundenzahl
+      - Wie funktionieren die Zeitangaben
+      - Bezieht sich die Zeiteinteilung der Kurse auf den Monat
+      - Ist die Kursdauer wöchtentlich gemeint
+      - Wie ist der Umfang gemeint
+      - Erkläre den Kursumfang
 
   - synonym: KI
     examples: |

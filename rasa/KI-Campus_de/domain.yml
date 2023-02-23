@@ -16,8 +16,7 @@ intents:
 - bot_challenge
 - human_handoff
 - insults
-- courses
-- inform
+- courses # modified by DFKI: inform -> courses
 - search_topics
 
 actions:
@@ -36,6 +35,14 @@ entities:
 - search_topic
 
 slots:
+# # added by DFKI
+  search_topic:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: search_topic
+      intent: search_topics
   all_courses:
     type: list
     influence_conversation: false
@@ -46,13 +53,13 @@ slots:
     influence_conversation: false
     mappings:
     - type: from_entity
-      intent: inform
+      intent: courses
       entity: Course
       conditions:
       - active_loop: course_form
         requested_slot: current_course_title
     - type: from_text
-      intent: inform
+      intent: courses
       not_intent:
       - faq
       - affirm
@@ -85,9 +92,6 @@ slots:
     influence_conversation: true
     mappings:
     - type: custom
-session_config:
-  session_expiration_time: 5
-  carry_over_slots_to_new_session: false
 responses:
   utter_submit:
   - text: Alles klar!
@@ -100,10 +104,11 @@ responses:
   - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". ' 
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
-  utter_have_a_nice_day:
-  - text: Hab einen schönen Tag und bis bald!
-  utter_bye:
-  - text: Tschüss!
+  # # modified by DFKI: moved to greetbot
+  # utter_have_a_nice_day: 
+  # - text: Hab einen schönen Tag und bis bald!
+  # utter_bye:
+  # - text: Tschüss!
   utter_more_info:
   - text: Okay. Wie kann ich dir weiterhelfen?
   utter_anything_else:
@@ -128,6 +133,12 @@ responses:
   utter_faq/ask_about_learningoffer:
   - text: Von Online-Kursen über Videos und Podcasts bis hin zu interaktiven Übungen – der KI-Campus stellt Lernenden eine vielfältige Auswahl hochwertiger kostenloser Lernangebote zu unterschiedlichen Themenfeldern der KI gebündelt auf einer Lernplattform zur Verfügung.
   utter_faq/ask_about_topics:
+  # # added by DFKI
+  - condition:
+    - type: slot
+      name: recommender_form_active
+      value: True
+    text: 'Du findest auf dem KI-Campus sowohl Kurse über Grundlagenwissen zu KI als auch interdisziplinäre Fragestellungen und vertiefende Lernangebote.'
   - text: 'Der KI-Campus umfasst sowohl Grundlagen als auch interdisziplinäre Fragestellungen und Vertiefungen einzelner Bereiche und Themenfelder der KI (wie z. B. Machine Learning). Darüber hinaus gibt es spezifische Angebote, die gezielt die Bedürfnisse einzelner Berufsfelder bzw. Fachbereiche (wie z. B. KI in der Medizin, KI in der Bildung) abdecken. Die Lernangebote werden fortlaufend ausgebaut.'
   utter_faq/ask_about_prior_knowledge:
   - text: Bei Lernangeboten für Anfänger:innen sind lediglich mathematische Grundkenntnisse und keine fachlichen Vorkenntnisse notwendig. Weiterführende Lernangebote setzen Vorkenntnisse voraus, die auf der jeweiligen Kursseite genannt werden.  
@@ -136,13 +147,28 @@ responses:
   utter_faq/ask_about_recognition:
   - text: Ausgewählte Kurse können mit ECTS-Punkten ausgewiesen und in Abstimmung mit der jeweiligen Hochschule anerkannt bzw. angerechnet werden. Eine generelle Zusage für eine Anerkennung kann der KI-Campus  nicht geben. Bitte wende dich mit diesem Anliegen an deine Hochschule.
   utter_faq/ask_about_lang_english:
+  # # added by DFKI
+  - condition:
+    - type: slot
+      name: recommender_form_active
+      value: True
+    text: Wir bieten auf dem KI-Campus nur Kurse auf Deutsch und Englisch an. Bestimmt ist für dich etwas Passendes dabei!
   - text: Ausgewählte Lernangebote stehen auf Englisch zur Verfügung. Unser englischsprachiges Angebot wird fortlaufend ausgebaut.
   utter_faq/ask_about_certification:
   - text: Aktuell können auf dem KI-Campus für alle Online-Kurse Teilnahmebestätigungen und für ausgewählte Online-Kurse auch Leistungsnachweise erworben werden. 
   utter_faq/ask_about_course_timelimit:
   - text: Die meisten unserer Lernangebote können nach eigener Zeiteinteilung absolviert werden, für einzelne gibt es Zeitvorgaben. Du findest diese Information in der Beschreibung des jeweiligen Lernangebots.
   utter_faq/ask_about_course_costs:
-  - text: Die Nutzung aller Lernangebote des KI-Campus ist kostenlos. 
+  # # added by DFKI
+  - condition:
+    - type: slot
+      name: recommender_form_active
+      value: True 
+    text: Alle Kurse des KI-Campus sind kostenlos und du kannst jederzeit loslegen.
+  - text: Die Nutzung aller Lernangebote des KI-Campus ist kostenlos.
+  # # added by DFKI
+  utter_faq/ask_duration_parameter:
+  - text: Damit du den Arbeitsaufwand eines Kurses gut einschätzen kannst, wurden unsere Kurse nach ihrer gesamten Stundenanzahl unterteilt.
   utter_faq/ask_become_editor:
   - text: Wir sind immer offen für neue Lernangebote und freuen uns über deine Ideen. <a href="https://ki-campus.org/contact" _blank>Kontaktiere uns gerne!</a>!
   utter_faq/ask_about_partners_cooperations:
@@ -197,3 +223,6 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
+session_config:
+  session_expiration_time: 5
+  carry_over_slots_to_new_session: false

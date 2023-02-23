@@ -231,7 +231,7 @@ nlu:
       - Konversation neustarten .
       - Konversation neu machen .
     
-# recommender
+# # Recommender_form
   - intent: start_recommender_form
     examples: |
       - Ich will eine Kursempfehlung erhalten
@@ -300,30 +300,6 @@ nlu:
       - Gibt es hier eine Kursberatung ?
       - Such mir einen Kurs!
       - Finde mir einen Kurs!
-      - Ich suche Kurse über [ML](topic)
-      - Ich suche Kurse über [Machine Learning](topic)
-      - Ich suche Kurse über [Data Science](topic)
-      - Ich suche Kurse über [Maschinelles Lernen](topic)
-      - Ich suche Kurse über [AI](topic)
-      - Ich suche Kurse über [KI](topic)
-      - Ich suche Kurse über [Artificial Intelligence](topic)
-      - Ich suche Kurse über [Künstliche Intelligenz](topic)
-      - Ich suche Kurse zu [ML](topic)
-      - Ich suche Kurse zu [Machine Learning](topic)
-      - Ich suche Kurse zu [Data Science](topic)
-      - Ich suche Kurse zu [Maschinelles Lernen](topic)
-      - Ich suche Kurse zu [AI](topic)
-      - Ich suche Kurse zu [KI](topic)
-      - Ich suche Kurse zu [Artificial Intelligence](topic)
-      - Ich suche Kurse zu [Künstliche Intelligenz](topic)
-      - Ich suche Kurse zum Thema [ML](topic)
-      - Ich suche Kurse zum Thema [Machine Learning](topic)
-      - Ich suche Kurse zum Thema [Data Science](topic)
-      - Ich suche Kurse zum Thema [Maschinelles Lernen](topic)
-      - Ich suche Kurse zum Thema [AI](topic)
-      - Ich suche Kurse zum Thema [KI](topic)
-      - Ich suche Kurse zum Thema [Artificial Intelligence](topic)
-      - Ich suche Kurse zum Thema [Künstliche Intelligenz](topic)
       - Welche Kurse habt ihr im Angebot ?
       - Welche Kurse habt ihr zur Auswahl ?
       - Welche Kurse habt ihr im Katalog ?
@@ -341,6 +317,44 @@ nlu:
       - neue Empfehlung
       - empfehle mir einen kurs
       - empfehle mir was
+      - kannst du mir einen kurs suchen
+      - ich suche einen kurs
+      - empfehle mir einen kurs!
+      - dann gib mir eine empfehlung
+      - starte die kurssuche
+      - gib mir mal ne empfehlung
+      - ich möchte eine kursempfehlung haben
+      - kurssuche starten
+      - ich möchte eine empfehlung
+      - gib mir eine empfehlung
+      - ich möchte eine kursempfehlung bekommen
+      - empfehle mir einen kurs
+      - welche empfehlung kannst du mir geben      
+# #
+      # - Ich suche Kurse über [ML](topic)
+      # - Ich suche Kurse über [Machine Learning](topic)
+      # - Ich suche Kurse über [Data Science](topic)
+      # - Ich suche Kurse über [Maschinelles Lernen](topic)
+      # - Ich suche Kurse über [AI](topic)
+      # - Ich suche Kurse über [KI](topic)
+      # - Ich suche Kurse über [Artificial Intelligence](topic)
+      # - Ich suche Kurse über [Künstliche Intelligenz](topic)
+      # - Ich suche Kurse zu [ML](topic)
+      # - Ich suche Kurse zu [Machine Learning](topic)
+      # - Ich suche Kurse zu [Data Science](topic)
+      # - Ich suche Kurse zu [Maschinelles Lernen](topic)
+      # - Ich suche Kurse zu [AI](topic)
+      # - Ich suche Kurse zu [KI](topic)
+      # - Ich suche Kurse zu [Artificial Intelligence](topic)
+      # - Ich suche Kurse zu [Künstliche Intelligenz](topic)
+      # - Ich suche Kurse zum Thema [ML](topic)
+      # - Ich suche Kurse zum Thema [Machine Learning](topic)
+      # - Ich suche Kurse zum Thema [Data Science](topic)
+      # - Ich suche Kurse zum Thema [Maschinelles Lernen](topic)
+      # - Ich suche Kurse zum Thema [AI](topic)
+      # - Ich suche Kurse zum Thema [KI](topic)
+      # - Ich suche Kurse zum Thema [Artificial Intelligence](topic)
+      # - Ich suche Kurse zum Thema [Künstliche Intelligenz](topic)
 
   - intent: inform
     examples: |
@@ -517,7 +531,7 @@ nlu:
       - sofort abbrechen
       - ich will abbrechen
 
-# synonyme recommender_form  
+# # Synonyms recommender_form  
   - synonym: Teilnahmebescheinigung
     examples: |
       - Teilnahme
