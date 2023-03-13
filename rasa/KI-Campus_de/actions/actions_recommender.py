@@ -199,7 +199,7 @@ class ActionGetLearningRecommendation(Action):
 		search_terms = tracker.get_slot("search_terms")
 
 		if enrollments:
-			enrollments = [course['id'] for course in enrollments]  # TODO use course_code instead of id when available?
+			enrollments = [course['course_code'] for course in enrollments]
 
 		# to do: maybe option 2 implement after delete slot value
 
