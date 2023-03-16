@@ -240,10 +240,16 @@ class ActionGetLearningRecommendation(Action):
 				button_group = []
 				for course in response[0:limit]:
 					title = course['name']
-					url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
-					# dispatcher.utter_message(text="* [{0}](https://ki-campus.org/course/{1})".format(title, url_param))
-					button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-				dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
+					url_param = course['course_code']
+					# FIXME [russa] course_code is sometimes empty ... but there is not really a viable alternative, since
+					#               other available IDs/fields cannot be used to directly link to course on the KIC site
+					# HACK: for now, if course_code is not available to not create link, but simply show the course-title
+					btn_title = course_label.format(title, url_param) if url_param else "{}".format(title)
+					# FIXME [russa]: disabled setting a payload with the course-title, since there is no real
+					#                interaction, if payload were to be triggered here
+					btn_payload = ''  # '{0}'.format(title)
+					button_group.append({"title": btn_title, "payload": btn_payload})
+				dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 				if limit < size:
 					rest = size - limit
@@ -325,9 +331,16 @@ class ActionAdditionalLearningRecommendation(Action):
 			button_group = []
 			for course in recommendations[0:limit]:
 				title = course['name']
-				url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
-				button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-			dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
+				url_param = course['course_code']
+				# FIXME [russa] course_code is sometimes empty ... but there is not really a viable alternative, since
+				#               other available IDs/fields cannot be used to directly link to course on the KIC site
+				# HACK: for now, if course_code is not available to not create link, but simply show the course-title
+				btn_title = course_label.format(title, url_param) if url_param else "{}".format(title)
+				# FIXME [russa]: disabled setting a payload with the course-title, since there is no real
+				#                interaction, if payload were to be triggered here
+				btn_payload = ''  # '{0}'.format(title)
+				button_group.append({"title": btn_title, "payload": btn_payload})
+			dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 			if limit < size:
 				rest = size - limit
