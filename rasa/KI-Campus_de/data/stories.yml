@@ -17,6 +17,7 @@ stories:
   steps:
   - intent: out_of_scope
   - action: utter_out_of_scope
+  - checkpoint: more_information
 
 - story: Provide handoff accept
   steps:
@@ -38,6 +39,7 @@ stories:
   steps:
   - intent: get_courses
   - action: action_get_courses
+  - checkpoint: more_information
 
 - story: more information
   steps:
