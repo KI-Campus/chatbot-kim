@@ -1,10 +1,25 @@
 version: '3.1'
 
 stories:
+
 - story: faq
   steps:
   - intent: faq
   - action: utter_faq
+  - action: utter_anything_else
+  - checkpoint: more_information
+
+- story: answer bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - action: utter_anything_else
+  - checkpoint: more_information
+
+- story: Handle insults
+  steps:
+  - intent: insults
+  - action: utter_insults
   - action: utter_anything_else
   - checkpoint: more_information
 
@@ -17,6 +32,7 @@ stories:
   steps:
   - intent: out_of_scope
   - action: utter_out_of_scope
+  - action: utter_anything_else
   - checkpoint: more_information
 
 - story: Provide handoff accept
@@ -39,6 +55,7 @@ stories:
   steps:
   - intent: get_courses
   - action: action_get_courses
+  - action: utter_anything_else
   - checkpoint: more_information
 
 - story: more information
