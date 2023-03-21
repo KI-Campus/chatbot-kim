@@ -1,5 +1,6 @@
 from enum import auto
 from typing import Text, Dict, Any, List, Optional
+from urllib import parse
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
@@ -127,9 +128,15 @@ class ActionGetLearningRecommendation(Action):
 		"""
 		found_course_item = auto()
 		"""
-		text found_course_item has 2 parameters:
+		text found_course_item has 2 parameters:  
         * parameter {0}: the title of the course
         * parameter {1}: the URL-parameter /-ID for the course
+		"""
+		found_course_item_without_code = auto()
+		"""
+		text found_course_item_without_code has 2 parameters:  
+        * parameter {0}: the title of the course
+        * parameter {1}: URL-encoded string for the title of the course
 		"""
 		found_recommendations_more_single = auto()
 		"""
@@ -237,13 +244,22 @@ class ActionGetLearningRecommendation(Action):
 				limit = min(size, 3)
 				dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations_single).format(size)) if size == 1 else dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations).format(size))
 				course_label = get_response(self.responses, self.Responses.found_course_item)
+				course_label_without_code = get_response(self.responses, self.Responses.found_course_item_without_code)
 				button_group = []
 				for course in response[0:limit]:
 					title = course['name']
-					url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
-					# dispatcher.utter_message(text="* [{0}](https://ki-campus.org/course/{1})".format(title, url_param))
-					button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-				dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
+					url_param = course['course_code']
+					# NOTE [russa] course_code is sometimes empty ...
+					# WORKAROUND: if course_code is not available, create link for searching by course title
+					if url_param:
+						btn_title = course_label.format(title, url_param)
+					else:
+						btn_title = course_label_without_code.format(title, parse.quote_plus(title))
+					# FIXME [russa]: disabled setting a payload with the course-title, since there is no real
+					#                interaction, if payload were to be triggered here
+					btn_payload = ''  # '{0}'.format(title)
+					button_group.append({"title": btn_title, "payload": btn_payload})
+				dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 				if limit < size:
 					rest = size - limit
@@ -289,6 +305,12 @@ class ActionAdditionalLearningRecommendation(Action):
         * parameter {0}: the title of the course
         * parameter {1}: the URL-parameter /-ID for the course
 		"""
+		additional_course_item_without_code = auto()
+		"""
+		text additional_course_item_without has 2 parameters:
+        * parameter {0}: the title of the course
+        * parameter {1}: URL-encoded string for the title of the course
+		"""
 		additional_recommendations_more_single = auto()
 		"""
 		text additional_recommendations_more_single has 1 parameter:
@@ -322,12 +344,22 @@ class ActionAdditionalLearningRecommendation(Action):
 			limit = min(size, 3)
 			dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations_single).format(size)) if size == 1 else dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations).format(size))
 			course_label = get_response(self.responses, self.Responses.additional_course_item)
+			course_label_without_code = get_response(self.responses, self.Responses.additional_course_item_without_code)
 			button_group = []
 			for course in recommendations[0:limit]:
 				title = course['name']
-				url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
-				button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-			dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
+				url_param = course['course_code']
+				# NOTE [russa] course_code is sometimes empty ...
+				# WORKAROUND: if course_code is not available, create link for searching by course title
+				if url_param:
+					btn_title = course_label.format(title, url_param)
+				else:
+					btn_title = course_label_without_code.format(title, parse.quote_plus(title))
+				# FIXME [russa]: disabled setting a payload with the course-title, since there is no real
+				#                interaction, if payload were to be triggered here
+				btn_payload = ''  # '{0}'.format(title)
+				button_group.append({"title": btn_title, "payload": btn_payload})
+			dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 			if limit < size:
 				rest = size - limit
