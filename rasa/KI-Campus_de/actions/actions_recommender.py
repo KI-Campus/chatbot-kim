@@ -245,21 +245,27 @@ class ActionGetLearningRecommendation(Action):
 				dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations_single).format(size)) if size == 1 else dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations).format(size))
 				course_label = get_response(self.responses, self.Responses.found_course_item)
 				course_label_without_code = get_response(self.responses, self.Responses.found_course_item_without_code)
-				button_group = []
+				# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances
+				#          TODO maybe change to buttons again, when we allow selecting a course for enrolling
+				# button_group = []
 				for course in response[0:limit]:
 					title = course['name']
 					url_param = course['course_code']
 					# NOTE [russa] course_code is sometimes empty ...
 					# WORKAROUND: if course_code is not available, create link for searching by course title
 					if url_param:
-						btn_title = course_label.format(title, url_param)
+						message = course_label.format(title, url_param)
 					else:
-						btn_title = course_label_without_code.format(title, parse.quote_plus(title))
-					# FIXME [russa]: disabled setting a payload with the course-title, since there is no real
-					#                interaction, if payload were to be triggered here
-					btn_payload = ''  # '{0}'.format(title)
-					button_group.append({"title": btn_title, "payload": btn_payload})
-				dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
+						message = course_label_without_code.format(title, parse.quote_plus(title))
+					# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances:
+					# # NOTE [russa]: disabled setting a payload with the course-title, since there is no real
+					# #                interaction, if payload were to be triggered here
+					# btn_payload = ''  # '{0}'.format(title)  # TODO enable if/when enrolling in courses is implemented
+					# button_group.append({"title": message, "payload": btn_payload})
+					dispatcher.utter_message(message)
+
+				# # DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances:
+				# dispatcher.utter_message(text=" ", buttons=button_group)  # NOTE [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 				if limit < size:
 					rest = size - limit
@@ -345,21 +351,27 @@ class ActionAdditionalLearningRecommendation(Action):
 			dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations_single).format(size)) if size == 1 else dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations).format(size))
 			course_label = get_response(self.responses, self.Responses.additional_course_item)
 			course_label_without_code = get_response(self.responses, self.Responses.additional_course_item_without_code)
-			button_group = []
+			# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances
+			#          TODO maybe change to buttons again, when we allow selecting a course for enrolling
+			# button_group = []
 			for course in recommendations[0:limit]:
 				title = course['name']
 				url_param = course['course_code']
 				# NOTE [russa] course_code is sometimes empty ...
 				# WORKAROUND: if course_code is not available, create link for searching by course title
 				if url_param:
-					btn_title = course_label.format(title, url_param)
+					message = course_label.format(title, url_param)
 				else:
-					btn_title = course_label_without_code.format(title, parse.quote_plus(title))
-				# FIXME [russa]: disabled setting a payload with the course-title, since there is no real
-				#                interaction, if payload were to be triggered here
-				btn_payload = ''  # '{0}'.format(title)
-				button_group.append({"title": btn_title, "payload": btn_payload})
-			dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
+					message = course_label_without_code.format(title, parse.quote_plus(title))
+				# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances:
+				# # NOTE [russa]: disabled setting a payload with the course-title, since there is no real
+				# #                interaction, if payload were to be triggered here
+				# btn_payload = ''  # '{0}'.format(title)  # TODO enable if/when enrolling in courses is implemented
+				# button_group.append({"title": message, "payload": btn_payload})
+				dispatcher.utter_message(message)
+
+			# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances:
+			# dispatcher.utter_message(text=" ", buttons=button_group)  # NOTE [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 			if limit < size:
 				rest = size - limit
