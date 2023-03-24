@@ -93,7 +93,7 @@ validate_recommender_form:
 
 action_recommender_or_search_topics:
 # search_topics parameter {0}: the topic
-  recommender_or_search_topics_unspecified: Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für allgemeine Themen sehen?
+  recommender_or_search_topics_unspecified: Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder die allgemeinen Themen des Kursangebots durchsuchen?
   recommender_or_search_topics: Okay. Möchtest du eine persönliche Kursempfehlung erhalten oder möchest du unser Kursangebot für das Thema {0} sehen?
   recommender_option: persönliche Kursempfehlung
   search_topics_option: Kursangebot zum Thema {0}

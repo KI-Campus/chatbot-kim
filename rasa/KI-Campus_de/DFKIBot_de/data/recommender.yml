@@ -329,7 +329,9 @@ nlu:
       - gib mir eine empfehlung
       - ich möchte eine kursempfehlung bekommen
       - empfehle mir einen kurs
-      - welche empfehlung kannst du mir geben      
+      - welche empfehlung kannst du mir geben   
+      - ich möchte eine themensuche machen
+      - themensuche starten   
 # #
       # - Ich suche Kurse über [ML](topic)
       # - Ich suche Kurse über [Machine Learning](topic)

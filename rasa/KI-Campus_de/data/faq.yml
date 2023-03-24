@@ -90,6 +90,10 @@ nlu:
       - Zeig mir Themen zum Lernen
       - Zeig mir Themen
       - Welche Themen
+      - Thema
+      - Welches Thema
+      - Was für ein Thema hat der KI-Campus
+      - Über welches Thema kann ich was lernen
 
   - intent: faq/ask_about_prior_knowledge
     examples: |
@@ -130,6 +134,10 @@ nlu:
       - Habt ihr weitere Sprachen?
       - Gibt es auch andere Sprachen?
       - Habt ihr mehr Sprachoptionen?
+      - Sprache
+      - Welche Sprache
+      - Was für Sprache habt ihr 
+      - Habt ihr englische Sprache
 
   - intent: faq/ask_about_certification
     examples: |
