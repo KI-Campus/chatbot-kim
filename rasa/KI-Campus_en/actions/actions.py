@@ -65,10 +65,10 @@ class ActionGetCoursesButtons(Action):
 				buttonGroup = []
 				for course in response:
 					title = course['title']
-					buttonGroup.append({"title": courseTitle.format(title), "payload": '/inform{{"Course": "{0}"}}'.format(title)})
+					buttonGroup.append({"title": courseTitle.format(title), "payload": '/courses{{"Course": "{0}"}}'.format(title)})
 				dispatcher.utter_message(buttons = buttonGroup)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
-		elif status == 401: # Status-Code 401 None
+		elif status == 401:  # Status-Code 401 None
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
 			return [SlotSet('courses_available', False)]
 		else:
@@ -116,7 +116,7 @@ class ActionGetCourses(Action):
 					title = courseTitle.format(course['title'])
 					dispatcher.utter_message(title)
 				return [SlotSet('all_courses', response), SlotSet('courses_available', True)]
-		elif status == 401: # Status-Code 401 None
+		elif status == 401:  # Status-Code 401 None
 			dispatcher.utter_message(get_response(self.responses, self.Responses.error_401))
 			return [SlotSet('courses_available', False)]
 		else:
@@ -158,10 +158,10 @@ class ActionGetAchievements(Action):
 				break
 		if courseId != 0:
 			req_lang = get_response(self.responses, self.Responses.request_language_code)
-			r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses/{0}/achievements'.format(courseId), 
+			r = requests.get('https://learn.ki-campus.org/bridges/chatbot/my_courses/{0}/achievements'.format(courseId),
 			headers={
 				"content-type": "application/json",
-				"Authorization": 'Bearer {0}'.format(token), 
+				"Authorization": 'Bearer {0}'.format(token),
 				"Accept-Language": "{0}".format(req_lang)
 			})
 			status = r.status_code
@@ -218,41 +218,90 @@ class ActionGetCertificate(Action):
 					dispatcher.utter_message(get_response(self.responses, self.Responses.download_not_available).format(achievement['name']))
 		return []
 
+
 class ActionSearchTopic(Action):
 	class Responses(ResponseEnum):
 		topicpage_present = auto()
 		"""
-		text topicpage_present has 2 parameter:
+		text topicpage_present has 2 parameters:
         * parameter {0}: (textual) search topic
-								* parameter {0}: (textual) link to search topic
+        * parameter {1}: (textual) link to search topic
 		"""
 		topicpage_not_present = auto()
 		"""
 		text topicpage_present has 1 parameter:
         * parameter {0}: (textual) search topic
 		"""
+		topic_page_url = auto()
+		"""
+		text topic_page_url has 1 parameter:
+        * parameter {0}: the URL path segment for the topic page (e.g. "medizin")
+		"""
+		topic_medicine = auto()
+		topic_title_medicine = auto()
+		topic_url_medicine = auto()
+		topic_school = auto()
+		topic_title_school = auto()
+		topic_url_school = auto()
+		topic_data = auto()
+		topic_title_data = auto()
+		topic_url_data = auto()
+		topic_machine_learning = auto()
+		topic_machine_learning_alt = auto()
+		topic_title_machine_learning = auto()
+		topic_url_machine_learning = auto()
+		topic_entrepreneurship = auto()
+		topic_title_entrepreneurship = auto()
+		topic_url_entrepreneurship = auto()
 
 	responses: Dict[str, str]
+
+	topic_medicine: str
+	topic_school: str
+	topic_data: str
+	topic_machine_learning: str
+	topic_machine_learning_alt: str
+	topic_entrepreneurship: str
 
 	def __init__(self):
 		self.responses = get_response_texts(self.name())
 		assert_responses_exist(self.responses, self.Responses)
+		self.topic_medicine = get_response(self.responses, self.Responses.topic_medicine)
+		self.topic_school = get_response(self.responses, self.Responses.topic_school)
+		self.topic_data = get_response(self.responses, self.Responses.topic_data)
+		self.topic_machine_learning = get_response(self.responses, self.Responses.topic_machine_learning)
+		self.topic_machine_learning_alt = get_response(self.responses, self.Responses.topic_machine_learning_alt)
+		self.topic_entrepreneurship = get_response(self.responses, self.Responses.topic_entrepreneurship)
+
 	def name(self) -> Text:
 		return "action_search_topic"
-	
+
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 		searchTopic = tracker.latest_message['entities'][0]['value']
+		searchTopicLower = searchTopic.lower()
 
-		if searchTopic.lower() == 'medicine':
-			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("AI in Medicine", "https://ki-campus.org/themen/medizin?locale=en"))
-		elif searchTopic.lower() == 'school':
-			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("AI in Education", "https://ki-campus.org/themen/schule?locale=en"))
-		elif searchTopic.lower() == 'data':
-			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Data Literacy", "https://ki-campus.org/themen/daten?locale=en"))
-		elif searchTopic.lower() == 'machine learning':
-			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("Machine Learning", "https://ki-campus.org/themen/machine-learning?locale=en"))
-		elif searchTopic.lower() == 'entrepreneurship':
-			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_present).format("AI and Entrepreneurship", "https://ki-campus.org/themen/entrepreneurship?locale=en"))
+		if searchTopicLower == self.topic_medicine:
+			title = get_response(self.responses, self.Responses.topic_title_medicine)
+			segment = get_response(self.responses, self.Responses.topic_url_medicine)
+		elif searchTopicLower == self.topic_school:
+			title = get_response(self.responses, self.Responses.topic_title_school)
+			segment = get_response(self.responses, self.Responses.topic_url_school)
+		elif searchTopicLower == self.topic_data:
+			title = get_response(self.responses, self.Responses.topic_title_data)
+			segment = get_response(self.responses, self.Responses.topic_url_data)
+		elif searchTopicLower == self.topic_machine_learning or searchTopicLower == self.topic_machine_learning_alt:
+			title = get_response(self.responses, self.Responses.topic_title_machine_learning)
+			segment = get_response(self.responses, self.Responses.topic_url_machine_learning)
+		elif searchTopicLower == self.topic_entrepreneurship:
+			title = get_response(self.responses, self.Responses.topic_title_entrepreneurship)
+			segment = get_response(self.responses, self.Responses.topic_url_entrepreneurship)
+		else:
+			title = None
+
+		if title is not None:
+			page = get_response(self.responses, self.Responses.topic_page_url)
+			message = get_response(self.responses, self.Responses.topicpage_present).format(title, page.format(segment))
+			dispatcher.utter_message(message)
 		else:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_not_present).format(searchTopic))
 		return[]

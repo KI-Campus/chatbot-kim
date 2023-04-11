@@ -90,6 +90,10 @@ nlu:
       - Zeig mir Themen zum Lernen
       - Zeig mir Themen
       - Welche Themen
+      - Thema
+      - Welches Thema
+      - Was für ein Thema hat der KI-Campus
+      - Über welches Thema kann ich was lernen
 
   - intent: faq/ask_about_prior_knowledge
     examples: |
@@ -126,6 +130,14 @@ nlu:
       - Bietet der KI Campus auch englische Kurse an?
       - Gibt es auch ein englisches Kursangebot?
       - Kann ich den KI Campus auch auf Englisch verwenden?
+      - Welche Sprachen habt ihr?
+      - Habt ihr weitere Sprachen?
+      - Gibt es auch andere Sprachen?
+      - Habt ihr mehr Sprachoptionen?
+      - Sprache
+      - Welche Sprache
+      - Was für Sprache habt ihr 
+      - Habt ihr englische Sprache
 
   - intent: faq/ask_about_certification
     examples: |
@@ -325,6 +337,18 @@ nlu:
       - Ich möchte Fellow werden
       - Ich möchte ein Fellowship
       - Fellow
+
+# added by DFKI
+  - intent: faq/ask_duration_parameter
+    examples: |
+      - Erkläre die Dauer der Kurse
+      - Wie ist die Zeitangabe gemeint
+      - Erkläre die Stundenzahl
+      - Wie funktionieren die Zeitangaben
+      - Bezieht sich die Zeiteinteilung der Kurse auf den Monat
+      - Ist die Kursdauer wöchtentlich gemeint
+      - Wie ist der Umfang gemeint
+      - Erkläre den Kursumfang
 
   - synonym: KI
     examples: |

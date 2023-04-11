@@ -7,15 +7,6 @@ nlu:
     - hi kim
     - hallöchen
     - heyho
-- intent: start_recommender_form
-  examples: |
-    - kannst du mir einen kurs suchen
-    - ich suche einen kurs
-    - ich suche nen kurs zum thema [ki]{"entity": "topic", "value": "KI"}
-    - empfehle mir einen kurs!
-    - dann gib mir eine empfehlung
-    - starte die kurssuche
-    - gib mir mal ne empfehlung
 - intent: affirm
   examples: |
     - ja
@@ -29,11 +20,13 @@ nlu:
     - ändere die Sprache auf [Englisch]{"entity": "language", "value": "englisch"}
     - kannst du die sprache auf [deutsch](language) ändern?
     - mach mit der kurssuche weiter
+    - kannst du die sprache auf [englisch](language) ändern?
 - intent: additional_learning_recommendation
   examples: |
     - gib mir weitere empfehlungen
     - hast du noch mehr empfehlungen für mich?
     - gib mir zusätzliche empfehlungen
+    - weitere empfehlungen
 - intent: thank
   examples: |
     - danke das wars
@@ -45,17 +38,8 @@ nlu:
     - nein
     - nein danke
     - gar nicht
-- intent: interjection_languages
-  examples: |
-    - welche sprachen habt ihr noch
-    - welche sprachen habt ir?
-- intent: interjection_costs
-  examples: |
-    - Kosten die Kurse was?
-- intent: interjection_topic
-  examples: |
-    - was für themen habt ihr überhaupt?
-    - was für themen habt ihr sonst noch?
+    - nichts
+    - nichts, danke
 - intent: change_topic_slot
   examples: |
     - hast du mehr empfehlungen zum thema [ki]{"entity": "topic", "value": "KI"}?
@@ -68,10 +52,31 @@ nlu:
     - an wen richtet sich der KI Campus
     - Was ist ein MOOC
     - kannst du mir erklären was ki ist
+    - welche themen bietet ihr an?
+    - welche themen habt ihr?
+    - welche kosten kommen auf mich zu?
+    - Erkläre mir den Kursumfang
+    - wie meinst du die kursdauer
+    - was ist mit kursumfang gemeint
+    - erkläre was mit umfang gemeint ist
+    - welche themen habt ihr
+    - bietet ihr auch kurse auf [englisch](language) an?
+    - wie kann man einen kurs beenden
+    - wie kann man kurse abschließen?
+    - kann ich meinen account löschen?
+    - Kannst du den Kursumfang erklären?
+    - welche themen werden auf dem ki campus angeboten
+    - wie ist die kursdauer gemeint
+    - was kosten die kurse
+    - welche sprachen habt ihr
+    - welche themen bietet dr ki campus an
+    - was ist ki
+    - gibt es auch kurse auf englisch
 - intent: get_courses
   examples: |
     - zeige mir meine Kurse
     - in welche kurse bin ich eingeschrieben?
+    - in welchen kursen bin ich eingeschrieben
 - intent: stop_form
   examples: |
     - abbrechen
@@ -79,9 +84,13 @@ nlu:
 - intent: change_max_duration_slot
   examples: |
     - Ändere die Dauer der Kurse
+    - ich möchte die kursdauer ändern
+    - ändere die kursdauer bitte
 - intent: get_achievements
   examples: |
     - Welche Leistungen habe ich bereits?
+    - ich möchte meine erfolge sehen
+    - ich möchte meinen fortschritt sehen
 - intent: change_level_slot
   examples: |
     - ich möchte doch auch empfehlungen für [experten]{"entity": "level", "value": "Experte"} bekommen
@@ -91,18 +100,49 @@ nlu:
 - intent: goodbye
   examples: |
     - Tschüss
+    - danke, tschüss
 - intent: inform
   examples: |
     - hast du auch [russisch](language)
+    - [benotet]{"entity": "certificate", "value": "Leistungsnachweis"}
 - intent: help
   examples: |
     - hilfe
-- synonym: KI
+- intent: out_of_scope
   examples: |
-    - ki
+    - wie alt bist du?
+- intent: courses
+  examples: |
+    - natural language processing
+- intent: bot_challenge
+  examples: |
+    - bist du ein bot
+- intent: search_topics
+  examples: |
+    - ich will kurse zum thema [daten](search_topic)
+    - kurse zum thema [schule](search_topic)
+    - lernangebot zum thema [medizin](search_topic)
+    - kurse zum thmea [ki]{"entity": "search_topic", "value": "KI"}
+    - ich suche kurse zum thema [schule](search_topic)
+    - ich suche kurse zum thema [ki]{"entity": "search_topic", "value": "KI"}
+- intent: start_recommender_form
+  examples: |
+    - ich möchte eine empfehlung
+    - ich suche nen kurs
+    - ich möchte doch eine empfehlung
+    - kannst du mir bei der kursauswahl helfen
+    - ich möchte eine kursempfehlung
+    - ich suche einen kurs
+- intent: nlu_fallback
+  examples: |
+    - hund
+    - katze
 - synonym: englisch
   examples: |
     - Englisch
+- synonym: KI
+  examples: |
+    - ki
 - synonym: Maschinelles Lernen
   examples: |
     - ML
@@ -112,3 +152,4 @@ nlu:
 - synonym: Leistungsnachweis
   examples: |
     - zertifikat
+    - benotet

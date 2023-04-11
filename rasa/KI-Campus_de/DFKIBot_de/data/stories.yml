@@ -1,15 +1,46 @@
 version: '3.1'
 
 stories:
-# check user login utter_anything_else_v2 vs rule utter_anything_else ändern
-  - story: check login happy + start recommender
+
+  - story: start recommender 
     steps:
-    - intent: start_recommender_form
+    - intent: greet
+    - action: utter_greet
+    - action: utter_tip_formulation
+    - slot_was_set:
+      - search_topic: None
+    - or:
+      - intent: start_recommender_form
+      - intent: search_topics
+    - action: action_recommender_or_search_topics 
+    - intent: start_recommender_form 
+    - checkpoint: start_recommender_profile_check 
+
+  - story: start search topic
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - action: utter_tip_formulation
+    - slot_was_set:
+      - search_topic: None
+    - or:
+      - intent: start_recommender_form
+      - intent: search_topics
+      - slot_was_set: 
+        - search_topic: "Machine Learning"
+    - action: action_recommender_or_search_topics 
+    - intent: search_topics 
+    - action: action_search_topic
+    - action: utter_anything_else
+    - checkpoint: more_information
+
+# # fetch profile information
+  - story: login happy
+    steps:
+    - checkpoint: start_recommender_profile_check
     - action: action_delete_slot_value
     - slot_was_set:
       - user_login: true
-    - action: utter_affirm_start_recommender_form #v2 erstellen: Für die Kurssuche werde ich dir ein paar Fragen stellen. Wollen wir die Kurssuche starten?
-    - intent: affirm
     - action: action_fetch_profile
     - slot_was_set:
       - enrollments: "Einführung in die KI"
@@ -17,92 +48,61 @@ stories:
       - search_terms: "KI"
     - checkpoint: start_recommender_form
 
-  - story: check login happy + no recommender
+  - story: login unhappy
     steps:
-    - intent: start_recommender_form
-    - action: action_delete_slot_value
-    - slot_was_set:
-      - user_login: true
-    - action: utter_affirm_start_recommender_form # v2 erstellen
-    - intent: deny
-    - action: utter_anything_else_v2
-
-  - story: check login unhappy + start recommender
-    steps:
-    - intent: start_recommender_form
+    - checkpoint: start_recommender_profile_check
     - action: action_delete_slot_value
     - slot_was_set:
       - user_login: false
-    - action: utter_tip_login
-    - action: utter_affirm_start_recommender_form_login # v1
-    - intent: affirm
     - checkpoint: start_recommender_form
 
-  - story: check login unhappy + no courseseach
-    steps:
-    - intent: start_recommender_form
-    - action: action_delete_slot_value
-    - slot_was_set:
-      - user_login: false
-    - action: utter_tip_login
-    - action: utter_affirm_start_recommender_form_login #v1
-    - intent: deny
-    - action: utter_anything_else_v2
-
-# recommender form
-  - story: activate course form
+# # recommender form basic
+  - story: activate recommender form + login happy
     steps:
     - checkpoint: start_recommender_form
     - action: recommender_form      
     - active_loop: recommender_form 
 
-# recommender form variations
-  - story: languages interjection
+  - story: activate recommender form + login unhappy
     steps:
     - checkpoint: start_recommender_form
-    - action: recommender_form
+    - action: action_delete_slot_value
+    - slot_was_set:
+      - user_login: false
+    - action: recommender_form      
     - active_loop: recommender_form
-    - intent: interjection_languages
-    - action: utter_interjection_languages
-    - action: recommender_form
 
-  - story: time interjection
-    steps:
-    - checkpoint: start_recommender_form
-    - action: recommender_form
-    - active_loop: recommender_form
-    - intent: interjection_time
-    - action: utter_interjection_time
-    - action: recommender_form
-
-  - story: costs interjection
-    steps:
-    - checkpoint: start_recommender_form
-    - action: recommender_form
-    - active_loop: recommender_form
-    - intent: interjection_costs
-    - action: utter_interjection_costs
-    - action: recommender_form
-
-  - story: topic interjection
-    steps:
-    - checkpoint: start_recommender_form
-    - action: recommender_form
-    - active_loop: recommender_form
-    - intent: interjection_topic
-    - action: utter_interjection_topic
-    - action: recommender_form
-
-## KONFLIKT MIT KIC FAQ?
+# # recommender form variations
   - story: faq interjection
     steps:
     - checkpoint: start_recommender_form
     - action: recommender_form
     - active_loop: recommender_form
+    - slot_was_set:
+      - recommender_form_active: true
     - intent: faq
     - action: utter_faq
     - action: recommender_form
 
+  - story: out of scope interjection
+    steps:
+    - checkpoint: start_recommender_form
+    - action: recommender_form
+    - active_loop: recommender_form
+    - intent: help
+    - action: utter_help
+    - action: recommender_form
+
+  - story: out of scope interjection
+    steps:
+    - checkpoint: start_recommender_form
+    - action: recommender_form
+    - active_loop: recommender_form
+    - intent: out_of_scope
+    - action: utter_out_of_scope
+    - action: recommender_form
+
+# # stop form
   - story: stop recommender form happy
     steps:
     - checkpoint: start_recommender_form 
@@ -134,7 +134,7 @@ stories:
     - action: utter_bot_information
     - intent: faq
     - action: utter_faq
-    - action: utter_anything_else
+    - action: utter_anything_else_v2
 
   - story: stop recommender form unhappy
     steps:
@@ -146,6 +146,7 @@ stories:
     - intent: deny
     - action: recommender_form
 
+# # feedback
   - story: negative feedback reaction
     steps:
     - intent: negative_feedback 
@@ -153,7 +154,7 @@ stories:
     - action: utter_anything_else
     - checkpoint: more_information
 
-# change course search parameter
+# # change course search parameter
   - story: get more learning recommendation
     steps:
     - intent: additional_learning_recommendation

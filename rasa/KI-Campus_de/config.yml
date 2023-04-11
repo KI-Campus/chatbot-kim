@@ -13,7 +13,8 @@ pipeline:
     max_ngram: 4
   - name: DIETClassifier
     epochs: 150
-  - name: CRFEntityExtractor
+  # # modified by DFKI: conflict with DIETClassifier
+  # - name: CRFEntityExtractor
   - name: EntitySynonymMapper
   - name: ResponseSelector
     epochs: 500
@@ -37,4 +38,4 @@ importers:
 
 imports:
   - ./GreetBot_de
-#  - ./DFKIBot_de
+  - ./DFKIBot_de
