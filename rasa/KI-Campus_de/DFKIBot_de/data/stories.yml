@@ -86,12 +86,14 @@ stories:
   - story: activate recommender form + login happy
     steps:
     - checkpoint: start_recommender_form
+    - action: utter_introduction_recommender_form
     - action: recommender_form      
     - active_loop: recommender_form 
 
   - story: activate recommender form + login unhappy
     steps:
     - checkpoint: start_recommender_form
+    - action: utter_introduction_recommender_form
     - action: action_delete_slot_value
     - slot_was_set:
       - user_login: false
