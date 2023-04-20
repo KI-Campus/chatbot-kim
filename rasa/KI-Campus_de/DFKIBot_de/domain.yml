@@ -49,6 +49,7 @@ actions:
   - action_check_recommender_form_active
   - utter_bot_information
   - action_recommender_or_search_topics
+  - utter_introduction_recommender_form
 entities:
   - language
   - topic
@@ -183,6 +184,8 @@ responses:
   - text: Wir starten die Konversation jetzt noch mal neu!
   utter_submit_recommender_form:
   - text: "Einen kleinen Moment bitte, ich suche passende Kurse für dich raus."
+  utter_introduction_recommender_form:
+  - text: "Für die Kurssuche werde ich dir ein paar Fragen stellen. Lass uns direkt loslegen!"
 
 session_config:
   session_expiration_time: 60  
