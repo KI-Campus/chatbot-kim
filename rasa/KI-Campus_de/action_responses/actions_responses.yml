@@ -39,7 +39,7 @@ action_download_certificate:
   download_not_available: "Es tut mir sehr leid! Das {0} ist nicht mehr verfügbar und kann leider nicht mehr heruntergeladen werden!"
 
 action_search_topic:
-  topicpage_present: "Du suchst Lernangebote zum Thema {0}? Dann schau direkt auf der <a href='{1}' _blank>Themenseite {0}</a> vorbei!"
+  topicpage_present: "Du suchst Lernangebote zum Thema {0}? Dann schau direkt auf der <a href='{1}' target='_blank'>Themenseite {0}</a> vorbei!"
   topicpage_not_present: "Du suchst Lernangebote zum Thema {0}? Am oberen Bildschirmrand findest du eine Lupe. Dort kannst du nach Kursen und Themen suchen."
   topic_page_url: "https://ki-campus.org/themen/{0}?locale=de"
   topic_medicine: "medizin"
