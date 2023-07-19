@@ -11,6 +11,17 @@ stories:
   - action: utter_anything_else
   - checkpoint: more_information
 
+- story: choose chatbot function faq
+  steps:
+    - intent: ask_question
+    - action: utter_which_question
+    - intent: faq
+    - action: utter_faq
+    - slot_was_set: # modified by DFKI
+      - recommender_form_active: false
+    - action: utter_anything_else
+    - checkpoint: more_information
+
 - story: answer bot challenge
   steps:
   - intent: bot_challenge

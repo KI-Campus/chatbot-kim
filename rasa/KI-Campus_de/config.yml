@@ -20,7 +20,7 @@ pipeline:
     epochs: 500
     retrieval_intent: faq
   - name: FallbackClassifier
-    threshold: 0.7
+    threshold: 0.9
 
 policies:
   - name: AugmentedMemoizationPolicy

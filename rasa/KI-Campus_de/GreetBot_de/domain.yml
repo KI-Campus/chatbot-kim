@@ -15,10 +15,15 @@ actions:
 responses:
 
   utter_greet:
-#  - text: Hey, wie kann ich dir helfen?
-#  - text: Hey, was kann ich für dich tun?
 #  # modified by DFKI
-  - text: Ich bin KIm, dein virtueller Assistent! Ich beantworte deine Fragen rund um den KI-Campus, zu deinen Kursen und deinen Erfolgen. Außerdem helfe dir dabei, deinen Wunschkurs zu finden. Ich muss noch einiges dazulernen, deine Fragen werden mir dabei helfen. Frag mich also alles, was du zum KI-Campus und deinen MOOCs wissen möchtest!
+  - text: Hallo, ich bin KIm, dein KI-Campus-Chatbot. Wie kann ich dir helfen?
+    buttons:
+    - title: "Ich habe eine technische Frage"
+      payload: "/ask_question" # TODO FAQ
+    - title: "Ich möchte eine Kursempfehlung"
+      payload: "/start_recommender_form"
+    - title: "Ich habe eine Frage zu meinen Kursen"
+      payload: "/get_courses"
 
   # added by DFKI
   utter_tip_formulation:

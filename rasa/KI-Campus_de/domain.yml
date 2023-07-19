@@ -18,6 +18,7 @@ intents:
 - insults
 - courses # modified by DFKI: inform -> courses
 - search_topics
+- ask_question
 
 actions:
 - action_get_courses
@@ -27,6 +28,7 @@ actions:
 - action_set_current_course
 - action_download_certificate
 - action_search_topic
+- action_fallback_buttons
 
 entities:
 - certificate_type
@@ -111,6 +113,13 @@ responses:
   # - text: Tschüss!
   utter_more_info:
   - text: Okay. Wie kann ich dir weiterhelfen?
+    buttons:
+    - title: "Ich habe eine technische Frage"
+      payload: "/ask_question" # TODO list FAQs
+    - title: "Ich möchte eine Kursempfehlung"
+      payload: "/start_recommender_form"
+    - title: "Ich habe eine Frage zu meinen Kursen"
+      payload: "/get_courses"
   utter_anything_else:
   - text: Kann ich dir noch bei etwas anderem helfen?
     buttons:
@@ -199,8 +208,16 @@ responses:
   - text: 'Das Fellowship-Programm des KI-Campus richtet sich an Hochschullehrende aller Fachbereiche, die das Zukunftsthema KI in ihre Lehre tragen wollen und dafür die Integration von KI-Campus-Lernangeboten erproben. Möchtest du mehr erfahren? Dann schaue dir <a href="https://ki-campus.org/fellowships" _blank>diese Seite</a> zum KI-Fellowship an.'
   utter_help:
   - text: Ich helfe dir gerne bei technischen Problemen und Fragen zu den Kursen. Ich erkläre dir zum Beispiel den Kursaufbau und beantworte Fragen zum Zertifikat, zum Zurücksetzen des Passworts oder zum Ändern deiner persönlichen Daten. 
-  utter_default:
-  - text: Das habe ich nicht ganz verstanden. Kannst du das umformulieren?
+  # # edited DFKI: moved to action_fallback_buttons
+  # utter_default:
+  # - text: Das habe ich nicht ganz verstanden. Kannst du das umformulieren?
+  #   buttons:
+  #   - title: "Ich habe eine technische Frage"
+  #     payload: "/ask_question" # TODO list FAQs
+  #   - title: "Ich möchte eine Kursempfehlung"
+  #     payload: "/start_recommender_form"
+  #   - title: "Ich habe eine Frage zu meinen Kursen"
+  #     payload: "/get_courses"
   utter_iamabot:
   - text: Ich bin KIm, dein virtueller Assistent. 
   utter_ask_handoff:
@@ -223,6 +240,13 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
+  # # added DFKI 
+  # # TODO get faq buttons working (problem response selector) decide on most common FAQs / build action to decide FAQs for buttons
+  utter_which_question:
+  - text: "Okay, stelle mir deine Frage."
+    # buttons:
+    # - title: "Welche Themen bietet ihr an?"
+    #   payload: "/faq"
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false

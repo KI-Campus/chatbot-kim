@@ -1,20 +1,19 @@
 version: '3.1'
 
 stories:
+  # # TODO check if checkpoint needed
 
-  - story: start recommender greet
-    steps:
-    - intent: greet
-    - action: utter_greet
-    - action: utter_tip_formulation
-    - slot_was_set:
-      - search_topic: None
-    - or:
-      - intent: start_recommender_form
-      - intent: search_topics
-    - action: action_recommender_or_search_topics 
-    - intent: start_recommender_form 
-    - checkpoint: start_recommender_profile_check 
+  # - story: start recommender
+  #   steps:
+  #   - checkpoint: choose_chatbot_function
+  #   - slot_was_set:
+  #     - search_topic: None
+  #   - or:
+  #     - intent: start_recommender_form
+  #     - intent: search_topics
+  #   - action: action_recommender_or_search_topics 
+  #   - intent: start_recommender_form 
+  #   - checkpoint: start_recommender_profile_check 
 
   - story: start recommender
     steps:
@@ -27,23 +26,21 @@ stories:
     - intent: start_recommender_form 
     - checkpoint: start_recommender_profile_check 
 
-  - story: start search topic greet
-    steps:
-    - intent: greet
-    - action: utter_greet
-    - action: utter_tip_formulation
-    - slot_was_set:
-      - search_topic: None
-    - or:
-      - intent: start_recommender_form
-      - intent: search_topics
-      - slot_was_set: 
-        - search_topic: "Machine Learning"
-    - action: action_recommender_or_search_topics 
-    - intent: search_topics 
-    - action: action_search_topic
-    - action: utter_anything_else
-    - checkpoint: more_information
+  # - story: start search topic greet
+  #   steps:
+  #   - checkpoint: choose_chatbot_function
+  #   - slot_was_set:
+  #     - search_topic: None
+  #   - or:
+  #     - intent: start_recommender_form
+  #     - intent: search_topics
+  #     - slot_was_set: 
+  #       - search_topic: "Machine Learning"
+  #   - action: action_recommender_or_search_topics 
+  #   - intent: search_topics 
+  #   - action: action_search_topic
+  #   - action: utter_anything_else
+  #   - checkpoint: mot-Programming/github_chatbot-kim$ cnformation
 
   - story: start search topic
     steps:

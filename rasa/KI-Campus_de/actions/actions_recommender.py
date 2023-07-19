@@ -778,3 +778,106 @@ class ValidateRecommenderForm(FormValidationAction):
 			return {"level": slot_value.lower()}
 		else:
 			return {"level": None}
+		
+		
+##########################
+# CUSTOM FALLBACK
+##########################
+
+class ActionFallbackButtons(Action):
+	class Responses(ResponseEnum):
+		fallback_message = auto()
+		fallback_button_start_recommender_form = auto()
+		fallback_button_get_courses = auto()
+		fallback_button_greet = auto()
+		fallback_button_goodbye = auto()
+		fallback_button_thank = auto()
+		fallback_button_undecided = auto()
+		fallback_button_restart = auto()
+		fallback_button_stop_form = auto()
+		fallback_button_negative_feedback = auto()
+		fallback_button_additional_learning_recommendation = auto()
+		fallback_button_change_language_slot = auto()
+		fallback_button_change_topic_slot = auto()
+		fallback_button_change_level_slot = auto()
+		fallback_button_change_max_duration_slot = auto()
+		fallback_button_change_certificate_slot = auto()
+		fallback_button_deny = auto()
+		fallback_button_affirm = auto()
+		fallback_button_get_achievements = auto()
+		fallback_button_help = auto()
+		fallback_button_bot_challenge = auto()
+		fallback_button_human_handoff = auto()
+		fallback_button_search_topics = auto()
+		fallback_button_ask_question = auto()
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name(), ActionResponsesFiles.actions_recommender)
+		assert_responses_exist(self.responses, self.Responses)
+
+	def name(self):
+		return 'action_fallback_buttons'
+
+	def run(self, dispatcher: CollectingDispatcher,
+			tracker: Tracker,
+			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+		
+        # select the top two intents from the tracker        
+        # ignore the first one - nlu fallback
+		predicted_intents = tracker.latest_message["intent_ranking"][1:4]
+		text = get_response(self.responses, self.Responses.fallback_message)
+
+		# mapping between intents and button text
+		intent_mappings = {
+			"greet": get_response(self.responses, self.Responses.fallback_button_greet),
+			"goodbye": get_response(self.responses, self.Responses.fallback_button_goodbye),
+			"thank": get_response(self.responses, self.Responses.fallback_button_thank),
+			"undecided": get_response(self.responses, self.Responses.fallback_button_undecided),
+			"restart": get_response(self.responses, self.Responses.fallback_button_restart),
+			"stop_form": get_response(self.responses, self.Responses.fallback_button_stop_form),
+			"negative_feedback": get_response(self.responses, self.Responses.fallback_button_negative_feedback),
+			"additional_learning_recommendation": get_response(self.responses, self.Responses.fallback_button_additional_learning_recommendation),
+			"change_language_slot": get_response(self.responses, self.Responses.fallback_button_change_language_slot),
+			"change_topic_slot": get_response(self.responses, self.Responses.fallback_button_change_topic_slot),
+			"change_level_slot": get_response(self.responses, self.Responses.fallback_button_change_level_slot),
+			"change_max_duration_slot": get_response(self.responses, self.Responses.fallback_button_change_max_duration_slot),
+			"change_certificate_slot": get_response(self.responses, self.Responses.fallback_button_change_certificate_slot),
+			"deny": get_response(self.responses, self.Responses.fallback_button_deny),
+			"affirm": get_response(self.responses, self.Responses.fallback_button_affirm),
+			"get_achievements": get_response(self.responses, self.Responses.fallback_button_get_achievements),
+			"help": get_response(self.responses, self.Responses.fallback_button_help),
+			"bot_challenge": get_response(self.responses, self.Responses.fallback_button_bot_challenge),
+			"human_handoff": get_response(self.responses, self.Responses.fallback_button_human_handoff),
+			"search_topics": get_response(self.responses, self.Responses.fallback_button_search_topics)
+        }
+
+		buttons = [
+			
+			{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'}]
+		
+		for intent in predicted_intents:
+			if intent['name'] not in intent_mappings:
+					continue
+			
+			button_title = "{}".format(intent_mappings[intent['name']])
+			button_payload = "/{}".format(intent['name'])
+			buttons.append({"title": button_title, "payload": button_payload})
+
+		# buttons = [
+        #     {
+        #         "title": intent['name'], # intent_mappings[intent['name']]
+        #         "payload": "/{}".format(intent['name'])
+        #     }
+        #     for intent in predicted_intents if intent in intent_mappings
+        # ]
+		# buttons.append([
+		# 	{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
+		# 	{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
+		# 	{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'}])
+
+		dispatcher.utter_message(text=text, buttons=buttons)
+		return []
