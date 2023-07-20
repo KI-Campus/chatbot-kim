@@ -200,7 +200,7 @@ responses:
   utter_help:
   - text: Ich helfe dir gerne bei technischen Problemen und Fragen zu den Kursen. Ich erkläre dir zum Beispiel den Kursaufbau und beantworte Fragen zum Zertifikat, zum Zurücksetzen des Passworts oder zum Ändern deiner persönlichen Daten. 
   utter_default:
-  - text: Das habe ich nicht ganz verstanden. Kannst du das umformulieren?
+  - text: Tut mir leid, ich kann dir leider nicht weiterhelfen!
   utter_iamabot:
   - text: Ich bin KIm, dein virtueller Assistent. 
   utter_ask_handoff:
@@ -223,6 +223,13 @@ responses:
       payload: "/deny"
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
+  utter_ask_rephrase:
+  - text: "Tut mir leid, das habe ich nicht ganz verstanden. Kannst du es anders formulieren?"
+
+
+
+
+
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false

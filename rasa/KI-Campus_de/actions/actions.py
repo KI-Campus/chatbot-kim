@@ -276,7 +276,7 @@ class ActionSearchTopic(Action):
 
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 		# # modified by DFKI
-		# searchTopic = tracker.latest_message['entities'][0]['value']
+		# searchTopic = tracker.latest_message['entities'][0]['value']ß
 
 		searchTopic = str(tracker.get_slot("search_topic"))
 		searchTopicLower = searchTopic.lower()
@@ -304,6 +304,6 @@ class ActionSearchTopic(Action):
 			message = get_response(self.responses, self.Responses.topicpage_present).format(title, page.format(segment))
 			dispatcher.utter_message(message)
 		else:
-			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_not_present).format(searchTopic))
+			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_not_present))
 		# # modified by DFKI
 		return[SlotSet("search_topic", None)]

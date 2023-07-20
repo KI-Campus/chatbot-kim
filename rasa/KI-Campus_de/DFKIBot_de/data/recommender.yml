@@ -331,7 +331,31 @@ nlu:
       - empfehle mir einen kurs
       - welche empfehlung kannst du mir geben   
       - ich möchte eine themensuche machen
-      - themensuche starten   
+      - themensuche starten
+      - Welche Kurse gibt es beim KI-Campus
+      - Welche Kurse gibt es beim KI-Campus zum Thema
+      - Welche Kurse gibt es zum Thema
+      - Ich suche Angebot zum Thema
+      - Ich suche Kurse zum Thema
+      - Zeige mir alle Kurse zu
+      - Zeig mir das Kursangebot zu
+      - Ich möchte Kurse zum Thema
+      - Ich brauch das Angebot zu
+      - Angebot zu 
+      - Kurse zum Thema
+      - Ich will das Angebot zu  haben
+      - Angebot
+      - Angebote
+      - Kurssuche
+      - Angebotssuche
+      - Kurse im Bereich
+      - Lernangebot zu
+      - Welche Kurse gibt es zum Thema ?
+      - Kurse zum Thema
+      - Ich suche Kurs über
+      - Welche Kurse habt ihr zum Thema
+      - Ich suche einen Kurs zum Thema
+      - Ich suche einen Kurs über
 # #
       # - Ich suche Kurse über [ML](topic)
       # - Ich suche Kurse über [Machine Learning](topic)

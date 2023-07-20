@@ -1,0 +1,12 @@
+- intent: TOPIC-NAME
+  examples: |
+    - EXAMPLE 1
+    - EXAMPLE 2
+    - EXAMPLE 3
+  answers: |
+    - RESPONSE 1
+    - RESPONSE 2
+    - RESPONSE 3
+
+- intent: TOPIC-NAME-2
+...

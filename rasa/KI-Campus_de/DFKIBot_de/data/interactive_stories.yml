@@ -3555,73 +3555,73 @@ stories:
   - intent: affirm
   - action: utter_more_info
 
-- story: interactive_story_8
-  steps:
-  - intent: greet
-  - slot_was_set:
-    - recommender_form_active: false
-  - slot_was_set:
-    - user_login: false
-  - action: utter_greet
-  - action: utter_tip_formulation
-  - intent: nlu_fallback
-  - action: utter_default
-  - intent: start_recommender_form
-  - action: action_recommender_or_search_topics
-  - intent: start_recommender_form
-  - action: action_delete_slot_value
-  - slot_was_set:
-    - language: null
-  - slot_was_set:
-    - topic: null
-  - slot_was_set:
-    - level: null
-  - slot_was_set:
-    - max_duration: null
-  - slot_was_set:
-    - certificate: null
-  - action: utter_introduction_recommender_form  
-  - action: recommender_form
-  - active_loop: recommender_form
-  - slot_was_set:
-    - recommender_form_active: true
-  - slot_was_set:
-    - language: null
-  - slot_was_set:
-    - topic: null
-  - slot_was_set:
-    - level: null
-  - slot_was_set:
-    - max_duration: null
-  - slot_was_set:
-    - certificate: null
-  - slot_was_set:
-    - requested_slot: language
-  - intent: stop_form
-  - action: utter_ask_continue_recommender_form
-  - intent: affirm
-  - action: action_deactivate_loop
-  - active_loop: null
-  - slot_was_set:
-    - requested_slot: null
-  - action: utter_bot_information
-  - intent: nlu_fallback
-  - slot_was_set:
-    - recommender_form_active: false
-  - action: utter_default
-  - intent: search_topics
-    entities:
-    - search_topic: KI
-  - slot_was_set:
-    - search_topic: KI
-  - action: action_recommender_or_search_topics
-  - intent: search_topics
-  - action: action_search_topic
-  - slot_was_set:
-    - search_topic: null
-  - action: utter_anything_else
-  - intent: deny
-  - action: utter_feedback
-  - intent: deny
-  - action: utter_thankyou_feedback
-  - action: utter_have_a_nice_day
+# - story: interactive_story_8
+#   steps:
+#   - intent: greet
+#   - slot_was_set:
+#     - recommender_form_active: false
+#   - slot_was_set:
+#     - user_login: false
+#   - action: utter_greet
+#   - action: utter_tip_formulation
+#   - intent: nlu_fallback
+#   - action: utter_default
+#   - intent: start_recommender_form
+#   - action: action_recommender_or_search_topics
+#   - intent: start_recommender_form
+#   - action: action_delete_slot_value
+#   - slot_was_set:
+#     - language: null
+#   - slot_was_set:
+#     - topic: null
+#   - slot_was_set:
+#     - level: null
+#   - slot_was_set:
+#     - max_duration: null
+#   - slot_was_set:
+#     - certificate: null
+#   - action: utter_introduction_recommender_form  
+#   - action: recommender_form
+#   - active_loop: recommender_form
+#   - slot_was_set:
+#     - recommender_form_active: true
+#   - slot_was_set:
+#     - language: null
+#   - slot_was_set:
+#     - topic: null
+#   - slot_was_set:
+#     - level: null
+#   - slot_was_set:
+#     - max_duration: null
+#   - slot_was_set:
+#     - certificate: null
+#   - slot_was_set:
+#     - requested_slot: language
+#   - intent: stop_form
+#   - action: utter_ask_continue_recommender_form
+#   - intent: affirm
+#   - action: action_deactivate_loop
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_bot_information
+#   - intent: nlu_fallback
+#   - slot_was_set:
+#     - recommender_form_active: false
+#   - action: utter_default
+#   - intent: search_topics
+#     entities:
+#     - search_topic: KI
+#   - slot_was_set:
+#     - search_topic: KI
+#   - action: action_recommender_or_search_topics
+#   - intent: search_topics
+#   - action: action_search_topic
+#   - slot_was_set:
+#     - search_topic: null
+#   - action: utter_anything_else
+#   - intent: deny
+#   - action: utter_feedback
+#   - intent: deny
+#   - action: utter_thankyou_feedback
+#   - action: utter_have_a_nice_day

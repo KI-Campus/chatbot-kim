@@ -16,5 +16,3 @@ rules:
     - action: utter_submit_recommender_form
     - action: action_get_learning_recommendation  
     - action: utter_anything_else_v2
-
-

@@ -157,7 +157,6 @@ nlu:
       - asd
       - titel
       - Wie sieht es mit der Vorhersage aus?
-      - dumm
       - witz
       - Kann ich einen Hamburger bekommen?
       - Kann YouTube reden?
@@ -296,6 +295,12 @@ nlu:
       - [Ernährung](search_topic) Kurse
       - Kurse im Bereich [Krebs](search_topic)
       - Lernangebot zu [Wirtschaft](search_topic)
+      - Welche Kurse gibt es zum Thema [Medizin](search_topic)?
+      - Kurse zum Thema [Daten](search_topic)
+      - Ich suche Kurs über [Medizin](search_topic)
+      - Welche Kurse habt ihr zum Thema [Lehre](search_topic)?
+      - Ich suche einen Kurs zum Thema [Frauen](search_topic)
+      - Ich suche einen Kurs über [KI](search_topic)
 # # modified by DFKI: conflict with start_recommender_form / not finished in action_search_topic
       # - Ich suche einen Kurs
       # - Lernangebot

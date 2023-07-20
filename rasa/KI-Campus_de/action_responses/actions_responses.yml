@@ -40,7 +40,7 @@ action_download_certificate:
 
 action_search_topic:
   topicpage_present: "Du suchst Lernangebote zum Thema {0}? Dann schau direkt auf der <a href='{1}' _blank>Themenseite {0}</a> vorbei!"
-  topicpage_not_present: "Du suchst Lernangebote zum Thema {0}? Am oberen Bildschirmrand findest du eine Lupe. Dort kannst du nach Kursen und Themen suchen."
+  topicpage_not_present: "Du bist auf der Suche nach einem bestimmen Kurs oder einem Thema? Am oberen Bildschirmrand findest du eine Lupe. Dort kannst du nach Kursen und Themen suchen."
   topic_page_url: "https://ki-campus.org/themen/{0}?locale=de"
   topic_medicine: "medizin"
   topic_title_medicine: "KI in der Medizin"
