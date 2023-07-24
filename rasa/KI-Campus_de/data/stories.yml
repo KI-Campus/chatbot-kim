@@ -70,12 +70,12 @@ stories:
   steps:
   - checkpoint: more_information
   - intent: deny
-  - action: utter_feedback
-  - or:
-    - intent: affirm
-    - intent: deny
-  - action: utter_thankyou_feedback
-  - action: utter_have_a_nice_day
+  - checkpoint: user_feedback
+  # - or:
+  #   - intent: affirm
+  #   - intent: deny
+  # - action: utter_thankyou_feedback
+  # - action: utter_have_a_nice_day
 
 - story: get achievements, no courses available
   steps:
@@ -144,6 +144,14 @@ stories:
   - intent: deny
   - action: utter_anything_else
   - checkpoint: more_information
+
+- story: feedback
+  steps:
+    - checkpoint: user_feedback
+    - action: utter_feedback_general
+    - action: feedback_form
+    - active_loop: feedback_form
+
 
 # # modified by DFKI: combined with start_recommender_form 
 # - story: search for topics
