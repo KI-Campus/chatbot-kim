@@ -11,7 +11,7 @@ forms:
       - feedback_reuse_chatbot
       - feedback_friendliness_chatbot
       - feedback_frustration_chatbot
-      # - feedback_general_remarks
+      - feedback_general_remarks
 
 
 intents:
@@ -70,13 +70,13 @@ slots:
     mappings:
     - type: from_entity
       entity: feedback_frustration_chatbot
-  # feedback_general_remarks:
-  #   type: text
-  #   mappings:
-  #   - type: from_text
-  #     conditions:
-  #     - active_loop: feedback_form
-  #       requested_slot: feedback_general_remarks
+  feedback_general_remarks:
+    type: text
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: feedback_form
+        requested_slot: feedback_general_remarks
     
 # # added by DFKI
   search_topic:
@@ -191,14 +191,15 @@ responses:
       payload: '/feedback{{"feedback_frustration_chatbot":"Sehr Frustrierend"}}'
     - title: "Äußerst Frustrierend"
       payload: '/feedback{{"feedback_frustration_chatbot":"Äußerst Frustrierend"}}'
-  # utter_ask_feedback_general_remarks: 
-  # - text: "Hast du noch weitere Anregungen / Feedback für uns? Welche Funktionen wünscht du dir?"
+  utter_ask_feedback_general_remarks: 
+  - text: "Hast du noch weitere Anregungen / Feedback für uns? Welche Funktionen wünscht du dir?"
   utter_feedback_slots_values:
   - text: "Feedback:\n
     - Passten die Antworten des Chatbots zu deinem Anliegen?: {feedback_conversation}\n
     - Wie wahrscheinlich ist es, dass du den Chatbot nocheinmal verwendest?: {feedback_reuse_chatbot}\n
     - Wie sympatisch wirkte der Chatbot auf dich?: {feedback_friendliness_chatbot}\n
-    - Wie frustrierend fandest du dein Gespräch mit dem Chatbot?: {feedback_frustration_chatbot}"
+    - Wie frustrierend fandest du dein Gespräch mit dem Chatbot?: {feedback_frustration_chatbot}\n
+    - Hast du noch weitere Anregungen / Feedback für uns? Welche Funktionen wünscht du dir?: {feedback_general_remarks}"
   utter_submit:
   - text: Alles klar!
   - text: In Ordnung!
@@ -210,6 +211,8 @@ responses:
   - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". ' 
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
+  utter_feedback_thank:
+  - text: "Vielen Dank für dein Feedback. Hab noch einen schönen Tag und bis bald!"
   # # modified by DFKI: moved to greetbot
   # utter_have_a_nice_day: 
   # - text: Hab einen schönen Tag und bis bald!

@@ -51,5 +51,5 @@ rules:
     - active_loop: null
     - slot_was_set:
       - requested_slot: null   
-    - action: utter_have_a_nice_day
+    - action: utter_feedback_thank
     - action: utter_feedback_slots_values
