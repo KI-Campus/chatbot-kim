@@ -853,8 +853,7 @@ class ActionFallbackButtons(Action):
 			"search_topics": get_response(self.responses, self.Responses.fallback_button_search_topics)
         }
 
-		buttons = [
-			
+		buttons = [	
 			{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
 			{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
 			{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'}]
@@ -866,18 +865,6 @@ class ActionFallbackButtons(Action):
 			button_title = "{}".format(intent_mappings[intent['name']])
 			button_payload = "/{}".format(intent['name'])
 			buttons.append({"title": button_title, "payload": button_payload})
-
-		# buttons = [
-        #     {
-        #         "title": intent['name'], # intent_mappings[intent['name']]
-        #         "payload": "/{}".format(intent['name'])
-        #     }
-        #     for intent in predicted_intents if intent in intent_mappings
-        # ]
-		# buttons.append([
-		# 	{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
-		# 	{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
-		# 	{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'}])
 
 		dispatcher.utter_message(text=text, buttons=buttons)
 		return []

@@ -19,7 +19,7 @@ responses:
   - text: Hallo, ich bin KIm, dein KI-Campus-Chatbot. Wie kann ich dir helfen?
     buttons:
     - title: "Ich habe eine technische Frage"
-      payload: "/ask_question" # TODO FAQ
+      payload: "/ask_question" # TODO add FAQ Buttons
     - title: "Ich möchte eine Kursempfehlung"
       payload: "/start_recommender_form"
     - title: "Ich habe eine Frage zu meinen Kursen"

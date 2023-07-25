@@ -241,12 +241,9 @@ responses:
   utter_thankyou_feedback:
   - text: "Vielen Dank für dein Feedback!"
   # # added DFKI 
-  # # TODO get faq buttons working (problem response selector) decide on most common FAQs / build action to decide FAQs for buttons
+  # # TODO get faq buttons working - build action to decide FAQs for buttons
   utter_which_question:
   - text: "Okay, stelle mir deine Frage."
-    # buttons:
-    # - title: "Welche Themen bietet ihr an?"
-    #   payload: "/faq"
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false
