@@ -71,11 +71,6 @@ stories:
   - checkpoint: more_information
   - intent: deny
   - checkpoint: user_feedback
-  # - or:
-  #   - intent: affirm
-  #   - intent: deny
-  # - action: utter_thankyou_feedback
-  # - action: utter_have_a_nice_day
 
 - story: get achievements, no courses available
   steps:

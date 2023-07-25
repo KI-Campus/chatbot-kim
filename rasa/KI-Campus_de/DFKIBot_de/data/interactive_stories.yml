@@ -3621,7 +3621,3 @@ stories:
     - search_topic: null
   - action: utter_anything_else
   - intent: deny
-  - action: utter_feedback
-  - intent: deny
-  - action: utter_thankyou_feedback
-  - action: utter_have_a_nice_day

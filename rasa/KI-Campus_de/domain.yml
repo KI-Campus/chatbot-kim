@@ -48,7 +48,6 @@ entities:
 - feedback_reuse_chatbot
 - feedback_friendliness_chatbot
 - feedback_frustration_chatbot
-- feedback_general_remarks
 
 slots:
   feedback_conversation:
@@ -74,8 +73,10 @@ slots:
   # feedback_general_remarks:
   #   type: text
   #   mappings:
-  #   - type: from_entity
-  #     entity: feedback_general_remarks
+  #   - type: from_text
+  #     conditions:
+  #     - active_loop: feedback_form
+  #       requested_slot: feedback_general_remarks
     
 # # added by DFKI
   search_topic:
@@ -136,8 +137,6 @@ slots:
     - type: custom
 
 responses:
-  utter_submit_feedback_form:
-  - text: "Feedback Form was submitted"
   utter_feedback_general: 
   - text: "Gerne würde wir dir im folgenden paar kurze Fragen zu unserem Chatbot stellen, damit wir uns weiterhin verbessern können!"
   utter_ask_feedback_conversation: 
@@ -321,15 +320,6 @@ responses:
   - text: 'Um mit unserem Helpdesk-Team zu sprechen, klicke auf den Reiter "Kontaktformular" und beschreibe uns dein Anliegen dort kurz. Das Helpdesk-Team wird sich zeitnah bei dir melden.'
   utter_insults:
   - text: "Na, na, na, du bist aber ein ganz Schlimmer :) Bitte achte etwas besser auf dein Wording! Ich bin zwar nur eine Maschine, aber ich habe auch Gefühle!!"
-  utter_feedback:
-  - text: "Hab ich dir bei deinem Anliegen helfen können?"
-    buttons:
-    - title: "Ja!"
-      payload: "/affirm"
-    - title: "Nicht wirklich ..."
-      payload: "/deny"
-  utter_thankyou_feedback:
-  - text: "Vielen Dank für dein Feedback!"
 
 session_config:
   session_expiration_time: 5
