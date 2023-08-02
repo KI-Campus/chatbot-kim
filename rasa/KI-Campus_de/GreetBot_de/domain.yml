@@ -15,15 +15,16 @@ actions:
 responses:
 
   utter_greet:
-#  # modified by DFKI
+# # modified by DFKI
   - text: Hallo, ich bin KIm, dein KI-Campus-Chatbot. Wie kann ich dir helfen?
     buttons:
-    - title: "Ich habe eine technische Frage"
-      payload: "/ask_question" # TODO add FAQ Buttons
+    - title: "Ich habe eine allgemeine Frage"
+      payload: "/ask_question"
     - title: "Ich möchte eine Kursempfehlung"
       payload: "/start_recommender_form"
     - title: "Ich habe eine Frage zu meinen Kursen"
       payload: "/get_courses"
+
 
   # added by DFKI
   utter_tip_formulation:
@@ -37,7 +38,7 @@ responses:
   
 # # modified by DFKI: moved to greetbot
   utter_have_a_nice_day:
-  - text: Hab einen schönen Tag und bis bald!
+  - text: Hab einen schönen Tag und bis bald 👋
 
   utter_you_are_welcome:
   - text: Bitte sehr.

@@ -45,24 +45,29 @@ stories:
   steps:
   - intent: out_of_scope
   - action: utter_out_of_scope
-  - action: utter_anything_else
-  - checkpoint: more_information
+  # # modified by DFKI
+  # - action: utter_anything_else
+  # - checkpoint: more_information
 
 - story: Provide handoff accept
   steps:
   - intent: human_handoff
-  - action: utter_ask_handoff
-  - intent: affirm
   - action: utter_handoff
-  - action: utter_goodbye
-
-- story: Provide handoff deny
-  steps:
-  - intent: human_handoff
-  - action: utter_ask_handoff
-  - intent: deny
   - action: utter_anything_else
   - checkpoint: more_information
+  # # modified DFKI
+  # - action: utter_ask_handoff
+  # - intent: affirm
+  # - action: utter_handoff
+  # - action: utter_goodbye
+
+# - story: Provide handoff deny
+#   steps:
+#   - intent: human_handoff
+#   - action: utter_ask_handoff
+#   - intent: deny
+#   - action: utter_anything_else
+#   - checkpoint: more_information
 
 - story: get my courses
   steps:
@@ -156,10 +161,10 @@ stories:
   - action: utter_anything_else
   - checkpoint: more_information
 
-# # modified by DFKI: combined with start_recommender_form 
-# - story: search for topics
-#   steps:
-#   - intent: search_topics
-#   - action: action_search_topic
-#   - action: utter_anything_else
-#   - checkpoint: more_information
+# # modified by DFKI: REMOVED! combined with start_recommender_form 
+- story: search for topics
+  steps:
+  - intent: search_topics
+  - action: action_search_topic
+  - action: utter_anything_else
+  - checkpoint: more_information
