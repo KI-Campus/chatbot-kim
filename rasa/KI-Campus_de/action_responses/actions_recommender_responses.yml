@@ -109,14 +109,13 @@ action_fallback_buttons:
   fallback_message: Das habe ich nicht ganz verstanden. Kannst du das bitte umformulieren?
   fallback_button_start_recommender_form: Ich möchte eine Kursempfehlung
   fallback_button_get_courses: Ich habe eine Frage zu meinen Kursen
-  fallback_button_ask_question: Ich habe eine technische Frage
+  fallback_button_ask_question: Ich habe eine allgemeine Frage
   fallback_button_greet: Ich möchte dich begrüßen
   fallback_button_goodbye: Ich möchte mich verabschieden
   fallback_button_thank: Ich möchte mich bedanken
   fallback_button_undecided: Ist mir egal
   fallback_button_restart: Ich möchte unsere Konversation neu starten
   fallback_button_stop_form: Ich möchte die Kursempfehlung abbrechen
-  fallback_button_negative_feedback: Du hast mir nicht weitergeholfen
   fallback_button_additional_learning_recommendation: Ich möchte weitere Kursempfehlungen
   fallback_button_change_language_slot: Ich möchte die Sprache meiner Kursempfehlung ändern 
   fallback_button_change_topic_slot: Ich möchte das Thema meiner Kursempfehlung ändern
@@ -128,7 +127,7 @@ action_fallback_buttons:
   fallback_button_get_achievements: Ich möchte meine Archievements sehen
   fallback_button_help: Ich brauche Hilfe
   fallback_button_bot_challenge: Bist du ein Bot?
-  fallback_button_human_handoff: Ich möchte einen menschlichen Mitarbeiter kontaktieren
+  fallback_button_human_handoff: Ich möchte mit dem Helpdesk-Team sprechen
   fallback_button_search_topics: Ich möchte das allgemeine Kursangebot sehen 
 # # intents without button option
   # fallback_button_inform

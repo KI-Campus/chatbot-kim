@@ -795,7 +795,6 @@ class ActionFallbackButtons(Action):
 		fallback_button_undecided = auto()
 		fallback_button_restart = auto()
 		fallback_button_stop_form = auto()
-		fallback_button_negative_feedback = auto()
 		fallback_button_additional_learning_recommendation = auto()
 		fallback_button_change_language_slot = auto()
 		fallback_button_change_topic_slot = auto()
@@ -837,7 +836,6 @@ class ActionFallbackButtons(Action):
 			"undecided": get_response(self.responses, self.Responses.fallback_button_undecided),
 			"restart": get_response(self.responses, self.Responses.fallback_button_restart),
 			"stop_form": get_response(self.responses, self.Responses.fallback_button_stop_form),
-			"negative_feedback": get_response(self.responses, self.Responses.fallback_button_negative_feedback),
 			"additional_learning_recommendation": get_response(self.responses, self.Responses.fallback_button_additional_learning_recommendation),
 			"change_language_slot": get_response(self.responses, self.Responses.fallback_button_change_language_slot),
 			"change_topic_slot": get_response(self.responses, self.Responses.fallback_button_change_topic_slot),
@@ -849,14 +847,14 @@ class ActionFallbackButtons(Action):
 			"get_achievements": get_response(self.responses, self.Responses.fallback_button_get_achievements),
 			"help": get_response(self.responses, self.Responses.fallback_button_help),
 			"bot_challenge": get_response(self.responses, self.Responses.fallback_button_bot_challenge),
-			"human_handoff": get_response(self.responses, self.Responses.fallback_button_human_handoff),
 			"search_topics": get_response(self.responses, self.Responses.fallback_button_search_topics)
         }
 
 		buttons = [	
 			{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
 			{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
-			{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'}]
+			{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_human_handoff), 'payload': '/human_handoff'}]
 		
 		for intent in predicted_intents:
 			if intent['name'] not in intent_mappings:
