@@ -72,7 +72,7 @@ stories:
     - action: utter_faq
     - action: recommender_form
 
-  - story: out of scope interjection
+  - story: help interjection
     steps:
     - checkpoint: start_recommender_form
     - action: recommender_form
@@ -91,7 +91,7 @@ stories:
     - action: recommender_form
 
 # # stop form
-  - story: stop recommender form happy
+  - story: stop recommender form happy 1
     steps:
     - checkpoint: start_recommender_form 
     - action: recommender_form    
@@ -133,14 +133,6 @@ stories:
     - action: utter_ask_continue_recommender_form
     - intent: deny
     - action: recommender_form
-
-# # feedback
-  # - story: negative feedback reaction
-  #   steps:
-  #   - intent: negative_feedback 
-  #   - action: utter_bot_apology
-  #   - action: utter_anything_else
-  #   - checkpoint: more_information
 
 # # change course search parameter
   - story: get more learning recommendation

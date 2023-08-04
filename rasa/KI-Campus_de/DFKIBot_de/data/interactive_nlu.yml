@@ -10,9 +10,6 @@ nlu:
 - intent: affirm
   examples: |
     - ja
-# - intent: negative_feedback
-#   examples: |
-#     - das waren schlechte Empfehlungen
 - intent: change_language_slot
   examples: |
     - kannst du die sprache der empfehlung ändern?

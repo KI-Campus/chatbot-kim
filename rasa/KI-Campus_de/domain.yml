@@ -331,17 +331,8 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff"
-  # # modified DFKI: utter_default moved to action_fallback_buttons
   utter_iamabot:
   - text: Ich bin KIm, dein virtueller Assistent. 
-  # # modified DFKI: removed to prevent two questions in a row
-  # utter_ask_handoff:
-  # - text: Willst du lieber mit unserem Helpdesk-Team sprechen?
-  #   buttons:
-  #   - title: "Ja, bitte"
-  #     payload: "/affirm"
-  #   - title: "Nö"
-  #     payload: "/deny"
   utter_handoff:
   - text: 'Um mit unserem Helpdesk-Team zu sprechen, klicke auf den Reiter "Kontaktformular" und beschreibe uns dein Anliegen dort kurz. Das Helpdesk-Team wird sich zeitnah bei dir melden.'
   utter_insults:
