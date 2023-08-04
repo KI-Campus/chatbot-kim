@@ -199,13 +199,6 @@ responses:
       payload: '/feedback{{"feedback_frustration_chatbot":"Keine Antwort"}}'
   utter_ask_feedback_general_remarks: 
   - text: "Hast du noch weitere Anregungen / Feedback für uns? Welche Funktionen wünscht du dir?"
-  utter_feedback_slots_values:
-  - text: "Feedback:\n
-    - Passten die Antworten des Chatbots zu deinem Anliegen?: {feedback_conversation}\n
-    - Wie wahrscheinlich ist es, dass du den Chatbot nocheinmal verwendest?: {feedback_reuse_chatbot}\n
-    - Wie sympatisch wirkte der Chatbot auf dich?: {feedback_friendliness_chatbot}\n
-    - Wie frustrierend fandest du dein Gespräch mit dem Chatbot?: {feedback_frustration_chatbot}\n
-    - Hast du noch weitere Anregungen / Feedback für uns? Welche Funktionen wünscht du dir?: {feedback_general_remarks}"
   utter_submit:
   - text: Alles klar!
   - text: In Ordnung!
