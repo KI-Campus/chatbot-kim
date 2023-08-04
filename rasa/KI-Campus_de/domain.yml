@@ -150,8 +150,8 @@ responses:
       payload: '/feedback{{"feedback_conversation":"Antwort passte nicht zum Anliegen"}}'
     - title: "Die Antwort war nicht verständlich"
       payload: '/feedback{{"feedback_conversation":"Die Antwort war nicht verständlich"}}'
-    - title: "Etwas anderes"
-      payload: '/feedback{{"feedback_conversation":"Etwas anderes"}}'
+    - title: "Keine Antwort"
+      payload: '/feedback{{"feedback_conversation":"Keine Antwort"}}'
   utter_ask_feedback_reuse_chatbot: 
   - text: "Wie wahrscheinlich ist es, dass du den Chatbot nocheinmal verwendest?"
     buttons:
@@ -165,6 +165,8 @@ responses:
       payload: '/feedback{{"feedback_reuse_chatbot":"Geringfügig Wahrscheinlich"}}'
     - title: "Unwahrscheinlich"
       payload: '/feedback{{"feedback_reuse_chatbot":"Unwahrscheinlich"}}'
+    - title: "Keine Antwort"
+      payload: '/feedback{{"feedback_reuse_chatbot":"Keine Antwort"}}'
   utter_ask_feedback_friendliness_chatbot: 
   - text: "Wie sympatisch wirkte der Chatbot auf dich?"
     buttons:
@@ -178,6 +180,8 @@ responses:
       payload: '/feedback{{"feedback_friendliness_chatbot":"Geringfügig Sympatisch"}}'
     - title: "Unsympatisch"
       payload: '/feedback{{"feedback_friendliness_chatbot":" Unsympatisch"}}'
+    - title: "Keine Antwort"
+      payload: '/feedback{{"feedback_friendliness_chatbot":"Keine Antwort"}}'
   utter_ask_feedback_frustration_chatbot: 
   - text: "Wie frustrierend fandest du dein Gespräch mit dem Chatbot?"
     buttons:
@@ -191,6 +195,8 @@ responses:
       payload: '/feedback{{"feedback_frustration_chatbot":"Sehr Frustrierend"}}'
     - title: "Äußerst Frustrierend"
       payload: '/feedback{{"feedback_frustration_chatbot":"Äußerst Frustrierend"}}'
+    - title: "Keine Antwort"
+      payload: '/feedback{{"feedback_frustration_chatbot":"Keine Antwort"}}'
   utter_ask_feedback_general_remarks: 
   - text: "Hast du noch weitere Anregungen / Feedback für uns? Welche Funktionen wünscht du dir?"
   utter_feedback_slots_values:
