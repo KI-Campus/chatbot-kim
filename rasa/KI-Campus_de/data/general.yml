@@ -281,6 +281,32 @@ nlu:
       - Dr. med. KI
       - Team Peer Assessments
 
+  - intent: feedback
+    examples: |
+      - [Die Antwort hat mein Anliegen beantwortet](feedback_conversation)
+      - [Die Antwort hat mein Anliegen teilweise beantwortet](feedback_conversation)
+      - [Antwort passte nicht zum Anliegen](feedback_conversation)
+      - [Die Antwort war nicht verständlich](feedback_conversation)
+      - [Keine Antwort](feedback_conversation)
+      - [Keine Antwort](feedback_reuse_chatbot)
+      - [Keine Antwort](feedback_friendliness_chatbot)
+      - [Keine Antwort](feedback_frustration_chatbot)
+      - [Äußerst Wahrscheinlich](feedback_reuse_chatbot)
+      - [Sehr Wahrscheinlich](feedback_reuse_chatbot)
+      - [Mäßig Wahrscheinlich](feedback_reuse_chatbot)
+      - [Geringfügig Wahrscheinlich](feedback_reuse_chatbot)
+      - [Unwahrscheinlich](feedback_reuse_chatbot)
+      - [Unsympatisch](feedback_friendliness_chatbot)
+      - [Geringfügig Sympatisch](feedback_friendliness_chatbot)
+      - [Mäßig Sympatisch](feedback_friendliness_chatbot)
+      - [Sehr Sympatisch](feedback_friendliness_chatbot)
+      - [Äußerst Sympatisch](feedback_friendliness_chatbot)
+      - [Äußerst Frustrierend](feedback_frustration_chatbot)
+      - [Sehr Frustrierend](feedback_frustration_chatbot)
+      - [Mäßig Frustrierend](feedback_frustration_chatbot)
+      - [Geringfügig Frustrierend](feedback_frustration_chatbot)
+      - [Überhaupt nicht Frustrierend](feedback_frustration_chatbot)
+
   - intent: search_topics
     examples: |
       - Ich suche Angebot zum Thema [Medizin](search_topic)

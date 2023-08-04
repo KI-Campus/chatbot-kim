@@ -42,3 +42,13 @@ rules:
     - slot_was_set:
       - current_course_achieved: true
     - action: utter_download_certificate
+
+  - rule: submit feedback form
+    condition:
+      - active_loop: feedback_form 
+    steps:
+    - action: feedback_form      
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null   
+    - action: utter_feedback_thank

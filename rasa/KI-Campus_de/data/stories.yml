@@ -6,7 +6,7 @@ stories:
   steps:
   - intent: faq
   - action: utter_faq
-  - slot_was_set: # modified by DFKI
+  - slot_was_set:
     - recommender_form_active: false
   - action: utter_anything_else
   - checkpoint: more_information
@@ -55,19 +55,6 @@ stories:
   - action: utter_handoff
   - action: utter_anything_else
   - checkpoint: more_information
-  # # modified DFKI
-  # - action: utter_ask_handoff
-  # - intent: affirm
-  # - action: utter_handoff
-  # - action: utter_goodbye
-
-# - story: Provide handoff deny
-#   steps:
-#   - intent: human_handoff
-#   - action: utter_ask_handoff
-#   - intent: deny
-#   - action: utter_anything_else
-#   - checkpoint: more_information
 
 - story: get my courses
   steps:
@@ -86,12 +73,7 @@ stories:
   steps:
   - checkpoint: more_information
   - intent: deny
-  - action: utter_feedback
-  - or:
-    - intent: affirm
-    - intent: deny
-  - action: utter_thankyou_feedback
-  - action: utter_have_a_nice_day
+  - checkpoint: user_feedback
 
 - story: get achievements, no courses available
   steps:
@@ -161,7 +143,13 @@ stories:
   - action: utter_anything_else
   - checkpoint: more_information
 
-# # modified by DFKI: REMOVED! combined with start_recommender_form 
+- story: feedback
+  steps:
+    - checkpoint: user_feedback
+    - action: utter_feedback_general
+    - action: feedback_form
+    - active_loop: feedback_form
+
 - story: search for topics
   steps:
   - intent: search_topics
