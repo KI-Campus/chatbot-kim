@@ -2,11 +2,12 @@ version: '3.1'
 
 stories:
 
-- story: User greets login
+- story: User greet
   steps:
   - intent: greet
   - action: utter_greet
-  - action: utter_tip_formulation
+  # - action: utter_tip_formulation
+  # - checkpoint: choose_chatbot_function
 
 - story: User goodbye
   steps:

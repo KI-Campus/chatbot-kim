@@ -2,28 +2,28 @@ version: '3.1'
 
 nlu:
 
-  - intent: negative_feedback
-    examples: |
-      - Das war nicht hilfreich
-      - Hat nicht geholfen
-      - Wirklich nich hilfreich
-      - Das war schlecht
-      - Die Empfehlungen waren schlecht
-      - Schlechte Vorschläge
-      - Hat mir nicht gefallen
-      - Das ist unhilfreich
-      - Unhilfreich
-      - Du bist schlecht
-      - Du bist dumm
-      - Schlecht
-      - Du bist schlecht
-      - Deine Vorschläge sind nutzlos
-      - Nutzlose Vorschläge
-      - Deine Vorschläge sind dumm
-      - Unhilfreich
-      - Du bist nutzlos
-      - Das ist nutzlos
-      - Das war  schlecht
+  # - intent: negative_feedback
+  #   examples: |
+  #     - Das war nicht hilfreich
+  #     - Hat nicht geholfen
+  #     - Wirklich nich hilfreich
+  #     - Das war schlecht
+  #     - Die Empfehlungen waren schlecht
+  #     - Schlechte Vorschläge
+  #     - Hat mir nicht gefallen
+  #     - Das ist unhilfreich
+  #     - Unhilfreich
+  #     - Du bist schlecht
+  #     - Du bist dumm
+  #     - Schlecht
+  #     - Du bist schlecht
+  #     - Deine Vorschläge sind nutzlos
+  #     - Nutzlose Vorschläge
+  #     - Deine Vorschläge sind dumm
+  #     - Unhilfreich
+  #     - Du bist nutzlos
+  #     - Das ist nutzlos
+  #     - Das war  schlecht
       
   - intent: additional_learning_recommendation
     examples: |

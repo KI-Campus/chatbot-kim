@@ -1,5 +1,6 @@
 from enum import auto
 from typing import Text, Dict, Any, List, Optional
+from urllib import parse
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
@@ -127,9 +128,15 @@ class ActionGetLearningRecommendation(Action):
 		"""
 		found_course_item = auto()
 		"""
-		text found_course_item has 2 parameters:
+		text found_course_item has 2 parameters:  
         * parameter {0}: the title of the course
         * parameter {1}: the URL-parameter /-ID for the course
+		"""
+		found_course_item_without_code = auto()
+		"""
+		text found_course_item_without_code has 2 parameters:  
+        * parameter {0}: the title of the course
+        * parameter {1}: URL-encoded string for the title of the course
 		"""
 		found_recommendations_more_single = auto()
 		"""
@@ -199,7 +206,7 @@ class ActionGetLearningRecommendation(Action):
 		search_terms = tracker.get_slot("search_terms")
 
 		if enrollments:
-			enrollments = [course['id'] for course in enrollments]  # TODO use course_code instead of id when available?
+			enrollments = [course['course_code'] for course in enrollments]
 
 		# to do: maybe option 2 implement after delete slot value
 
@@ -237,13 +244,28 @@ class ActionGetLearningRecommendation(Action):
 				limit = min(size, 3)
 				dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations_single).format(size)) if size == 1 else dispatcher.utter_message(get_response(self.responses, self.Responses.found_recommendations).format(size))
 				course_label = get_response(self.responses, self.Responses.found_course_item)
-				button_group = []
+				course_label_without_code = get_response(self.responses, self.Responses.found_course_item_without_code)
+				# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances
+				#          TODO maybe change to buttons again, when we allow selecting a course for enrolling
+				# button_group = []
 				for course in response[0:limit]:
 					title = course['name']
-					url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
-					# dispatcher.utter_message(text="* [{0}](https://ki-campus.org/course/{1})".format(title, url_param))
-					button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-				dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
+					url_param = course['course_code']
+					# NOTE [russa] course_code is sometimes empty ...
+					# WORKAROUND: if course_code is not available, create link for searching by course title
+					if url_param:
+						message = course_label.format(title, url_param)
+					else:
+						message = course_label_without_code.format(title, parse.quote_plus(title))
+					# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances:
+					# # NOTE [russa]: disabled setting a payload with the course-title, since there is no real
+					# #                interaction, if payload were to be triggered here
+					# btn_payload = ''  # '{0}'.format(title)  # TODO enable if/when enrolling in courses is implemented
+					# button_group.append({"title": message, "payload": btn_payload})
+					dispatcher.utter_message(message)
+
+				# # DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances:
+				# dispatcher.utter_message(text=" ", buttons=button_group)  # NOTE [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 				if limit < size:
 					rest = size - limit
@@ -289,6 +311,12 @@ class ActionAdditionalLearningRecommendation(Action):
         * parameter {0}: the title of the course
         * parameter {1}: the URL-parameter /-ID for the course
 		"""
+		additional_course_item_without_code = auto()
+		"""
+		text additional_course_item_without has 2 parameters:
+        * parameter {0}: the title of the course
+        * parameter {1}: URL-encoded string for the title of the course
+		"""
 		additional_recommendations_more_single = auto()
 		"""
 		text additional_recommendations_more_single has 1 parameter:
@@ -322,12 +350,28 @@ class ActionAdditionalLearningRecommendation(Action):
 			limit = min(size, 3)
 			dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations_single).format(size)) if size == 1 else dispatcher.utter_message(get_response(self.responses, self.Responses.additional_recommendations).format(size))
 			course_label = get_response(self.responses, self.Responses.additional_course_item)
-			button_group = []
+			course_label_without_code = get_response(self.responses, self.Responses.additional_course_item_without_code)
+			# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances
+			#          TODO maybe change to buttons again, when we allow selecting a course for enrolling
+			# button_group = []
 			for course in recommendations[0:limit]:
 				title = course['name']
-				url_param = course['id']  # FIXME use course_code when available & create URL for displaying course's website
-				button_group.append({"title": course_label.format(title, url_param), "payload": '{0}'.format(title)})
-			dispatcher.utter_message(text=" ", buttons=button_group)  # FIXME non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
+				url_param = course['course_code']
+				# NOTE [russa] course_code is sometimes empty ...
+				# WORKAROUND: if course_code is not available, create link for searching by course title
+				if url_param:
+					message = course_label.format(title, url_param)
+				else:
+					message = course_label_without_code.format(title, parse.quote_plus(title))
+				# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances:
+				# # NOTE [russa]: disabled setting a payload with the course-title, since there is no real
+				# #                interaction, if payload were to be triggered here
+				# btn_payload = ''  # '{0}'.format(title)  # TODO enable if/when enrolling in courses is implemented
+				# button_group.append({"title": message, "payload": btn_payload})
+				dispatcher.utter_message(message)
+
+			# DISABLED [russa] for consistency, do not use buttons, but normal (link) utterances:
+			# dispatcher.utter_message(text=" ", buttons=button_group)  # NOTE [russa] non-empty message as WORKAROUND for BUG in socketio-adapter (rasa v3.0-v3.2)
 
 			if limit < size:
 				rest = size - limit
@@ -734,3 +778,91 @@ class ValidateRecommenderForm(FormValidationAction):
 			return {"level": slot_value.lower()}
 		else:
 			return {"level": None}
+		
+		
+##########################
+# CUSTOM FALLBACK
+##########################
+
+class ActionFallbackButtons(Action):
+	class Responses(ResponseEnum):
+		fallback_message = auto()
+		fallback_button_start_recommender_form = auto()
+		fallback_button_get_courses = auto()
+		fallback_button_greet = auto()
+		fallback_button_goodbye = auto()
+		fallback_button_thank = auto()
+		fallback_button_undecided = auto()
+		fallback_button_restart = auto()
+		fallback_button_stop_form = auto()
+		fallback_button_additional_learning_recommendation = auto()
+		fallback_button_change_language_slot = auto()
+		fallback_button_change_topic_slot = auto()
+		fallback_button_change_level_slot = auto()
+		fallback_button_change_max_duration_slot = auto()
+		fallback_button_change_certificate_slot = auto()
+		fallback_button_deny = auto()
+		fallback_button_affirm = auto()
+		fallback_button_get_achievements = auto()
+		fallback_button_help = auto()
+		fallback_button_bot_challenge = auto()
+		fallback_button_human_handoff = auto()
+		fallback_button_search_topics = auto()
+		fallback_button_ask_question = auto()
+
+	responses: Dict[str, str]
+
+	def __init__(self):
+		self.responses = get_response_texts(self.name(), ActionResponsesFiles.actions_recommender)
+		assert_responses_exist(self.responses, self.Responses)
+
+	def name(self):
+		return 'action_fallback_buttons'
+
+	def run(self, dispatcher: CollectingDispatcher,
+			tracker: Tracker,
+			domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+		
+        # select the top two intents from the tracker        
+        # ignore the first one - nlu fallback
+		predicted_intents = tracker.latest_message["intent_ranking"][1:4]
+		text = get_response(self.responses, self.Responses.fallback_message)
+
+		# mapping between intents and button text
+		intent_mappings = {
+			"greet": get_response(self.responses, self.Responses.fallback_button_greet),
+			"goodbye": get_response(self.responses, self.Responses.fallback_button_goodbye),
+			"thank": get_response(self.responses, self.Responses.fallback_button_thank),
+			"undecided": get_response(self.responses, self.Responses.fallback_button_undecided),
+			"restart": get_response(self.responses, self.Responses.fallback_button_restart),
+			"stop_form": get_response(self.responses, self.Responses.fallback_button_stop_form),
+			"additional_learning_recommendation": get_response(self.responses, self.Responses.fallback_button_additional_learning_recommendation),
+			"change_language_slot": get_response(self.responses, self.Responses.fallback_button_change_language_slot),
+			"change_topic_slot": get_response(self.responses, self.Responses.fallback_button_change_topic_slot),
+			"change_level_slot": get_response(self.responses, self.Responses.fallback_button_change_level_slot),
+			"change_max_duration_slot": get_response(self.responses, self.Responses.fallback_button_change_max_duration_slot),
+			"change_certificate_slot": get_response(self.responses, self.Responses.fallback_button_change_certificate_slot),
+			"deny": get_response(self.responses, self.Responses.fallback_button_deny),
+			"affirm": get_response(self.responses, self.Responses.fallback_button_affirm),
+			"get_achievements": get_response(self.responses, self.Responses.fallback_button_get_achievements),
+			"help": get_response(self.responses, self.Responses.fallback_button_help),
+			"bot_challenge": get_response(self.responses, self.Responses.fallback_button_bot_challenge),
+			"search_topics": get_response(self.responses, self.Responses.fallback_button_search_topics)
+        }
+
+		buttons = [	
+			{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'},
+			{'title': get_response(self.responses, self.Responses.fallback_button_human_handoff), 'payload': '/human_handoff'}]
+		
+		for intent in predicted_intents:
+			if intent['name'] not in intent_mappings:
+					continue
+			
+			button_title = "{}".format(intent_mappings[intent['name']])
+			button_payload = "/{}".format(intent['name'])
+			buttons.append({"title": button_title, "payload": button_payload})
+
+		dispatcher.utter_message(text=text, buttons=buttons)
+		return []

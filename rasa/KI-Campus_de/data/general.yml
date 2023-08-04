@@ -322,6 +322,10 @@ nlu:
       - [Ernährung](search_topic) Kurse
       - Kurse im Bereich [Krebs](search_topic)
       - Lernangebot zu [Wirtschaft](search_topic)
+      - Welche Kurse gibt es zu [Medizin](search_topic)
+      - Welche Kurse gibt es zu [Schule](search_topic)
+      - Welche Kurse gibt es zu [Machinee Learning](search_topic)
+
 # # modified by DFKI: conflict with start_recommender_form / not finished in action_search_topic
       # - Ich suche einen Kurs
       # - Lernangebot
