@@ -130,6 +130,24 @@ nlu:
     - kannst du mir bei der kursauswahl helfen
     - ich möchte eine kursempfehlung
     - ich suche einen kurs
+- intent: greet
+  examples: |
+    - hallöchen
+- intent: faq
+  examples: |
+    - Kann ich Zertifikate erwerben?
+    - Auf welchen Sprachen bietet ihr Kurse an?
+    - Welche Kursthemen bietet ihr an?
+    - Nennne mir das Themenangebot
+- intent: start_recommender_form
+  examples: |
+    - ich suche einen kurs
+- intent: help
+  examples: |
+    - hilfe
+- intent: change_language_slot
+  examples: |
+    - änddere die sprache
 - intent: nlu_fallback
   examples: |
     - hund
