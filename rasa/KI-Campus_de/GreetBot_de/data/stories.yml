@@ -7,7 +7,6 @@ stories:
   - intent: greet
   - action: utter_greet
   # - action: utter_tip_formulation
-  # - checkpoint: choose_chatbot_function
 
 - story: User goodbye
   steps:

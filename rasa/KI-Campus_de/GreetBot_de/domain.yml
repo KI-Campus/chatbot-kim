@@ -26,12 +26,11 @@ responses:
       payload: "/get_courses"
 
 
-  # added by DFKI
+# # added by DFKI
   utter_tip_formulation:
   - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
 
   utter_goodbye:
-#  - text: Auf Wiedersehen!
 # # modified by DFKI
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Bis bald 👋
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Auf Wiedersehen 👋
