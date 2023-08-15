@@ -22,8 +22,6 @@ class CourseSet(Action):
 		else:
 			return [SlotSet('course-set', False)]
 
-
-
 class ActionGetCoursesButtons(Action):
 	class Responses(ResponseEnum):
 		no_courses = auto()

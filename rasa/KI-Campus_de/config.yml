@@ -1,41 +1,39 @@
 recipe: default.v1
-
+assistant_id: ki-campus-de
 language: "de"
 
 pipeline:
-  - name: WhitespaceTokenizer
-  - name: RegexFeaturizer
-  - name: LexicalSyntacticFeaturizer
-  - name: CountVectorsFeaturizer
-  - name: CountVectorsFeaturizer
-    analyzer: char_wb
-    min_ngram: 1
-    max_ngram: 4
-  - name: DIETClassifier
-    epochs: 150
-  # # modified by DFKI: conflict with DIETClassifier
-  # - name: CRFEntityExtractor
-  - name: EntitySynonymMapper
-  - name: ResponseSelector
-    epochs: 500
-    retrieval_intent: faq
-  - name: FallbackClassifier
-    threshold: 0.7
+- name: WhitespaceTokenizer
+- name: RegexFeaturizer
+- name: LexicalSyntacticFeaturizer
+- name: CountVectorsFeaturizer
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: DIETClassifier
+  epochs: 150
+- name: EntitySynonymMapper
+- name: ResponseSelector
+  epochs: 500
+  retrieval_intent: faq
+- name: FallbackClassifier
+  threshold: 0.9
 
 policies:
-  - name: AugmentedMemoizationPolicy
-    max_history: 4
-  - name: TEDPolicy
-    max_history: 4
-    epochs: 100
-  - name: RulePolicy
-    core_fallback_threshold: 0.4
-    core_fallback_action_name: "action_default_fallback"
-    enable_fallback_prediction: True
+- name: AugmentedMemoizationPolicy
+  max_history: 4
+- name: TEDPolicy
+  max_history: 4
+  epochs: 100
+- name: RulePolicy
+  core_fallback_threshold: 0.4
+  core_fallback_action_name: "action_default_fallback"
+  enable_fallback_prediction: true
 
 importers:
 - name: MultiProjectImporter
 
 imports:
-  - ./GreetBot_de
-  - ./DFKIBot_de
+- ./GreetBot_de
+- ./DFKIBot_de

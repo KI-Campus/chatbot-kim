@@ -47,6 +47,7 @@ nlu:
       - Wer kann den KI Campus nutzen?
       - An wen richtet sich diese Seite?
       - Zielgruppe
+      - Für wen ist der KI-Campus?
 
   - intent: faq/ask_about_goals
     examples: |
@@ -68,6 +69,7 @@ nlu:
       - Welches Unternehmen hat den KI Campus entwickelt?
       - Wer hat den KI Campus entwickelt?
       - wer hat's gebaut?
+      - Welche Institutionen arbeiten mit dem KI-Campus zusammen?
 
   - intent: faq/ask_about_learningoffer
     examples: |
@@ -94,6 +96,8 @@ nlu:
       - Welches Thema
       - Was für ein Thema hat der KI-Campus
       - Über welches Thema kann ich was lernen
+      - Welche Bereiche deckt der KI Campus ab?
+      - In welchen Bereichen kann ich mich weiterbeilden?
 
   - intent: faq/ask_about_prior_knowledge
     examples: |
@@ -122,6 +126,8 @@ nlu:
       - Werden die Kurse von Unis anerkannt?
       - Anerkennung Hochschule
       - Universität
+      - Bekomme ich ECTS Punkte für Kurse?
+      - Kann ich den KI-Campus auch in meinem Studium nutzen?
 
   - intent: faq/ask_about_lang_english
     examples: |
@@ -168,6 +174,7 @@ nlu:
       - Gibt es ein Zeitlimit für Kurse?
       - Kann ich mir für meinen Kurs Zeit lassen?
       - Wie lange kann ich für meinen Kurs brauchen?
+      - Wie lange dauert ein Kurs ungefähr?
 
   - intent: faq/ask_about_course_costs
     examples: |
@@ -338,7 +345,7 @@ nlu:
       - Ich möchte ein Fellowship
       - Fellow
 
-# added by DFKI
+# # added by DFKI
   - intent: faq/ask_duration_parameter
     examples: |
       - Erkläre die Dauer der Kurse
@@ -349,6 +356,17 @@ nlu:
       - Ist die Kursdauer wöchtentlich gemeint
       - Wie ist der Umfang gemeint
       - Erkläre den Kursumfang
+
+  - intent: ask_question
+    examples: |
+      - Ich habe eine Frage
+      - technische Frage
+      - Ich möchte eine FAQ stellen
+      - Habt ihr FAQs
+      - Gehe zu FAQ
+      - Ich will eine Frage stellen
+      - Beantworte mir eine Frage 
+      - Kannst du meine Fragen beantworten?
 
   - synonym: KI
     examples: |

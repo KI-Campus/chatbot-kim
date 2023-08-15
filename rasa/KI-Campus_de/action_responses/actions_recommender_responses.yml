@@ -18,7 +18,10 @@ action_get_learning_recommendation:
   found_recommendations_single: "Also, ich empfehle dir folgenden Kurs: "
   # found_course_item parameter {0}: the title of the course
   # found_course_item parameter {1}: the URL-parameter /-ID for the course
-  found_course_item: "{0}"
+  found_course_item: "<a href='https://ki-campus.org/courses/{1}?locale=de' target='_blank'>{0}</a>"
+  # found_course_item_without_code parameter {0}: the title of the course
+  # found_course_item_without_code parameter {1}: URL-encoded string for the title of the course
+  found_course_item_without_code: "<a href='https://ki-campus.org/search/content?keys={1}&locale=de#views-exposed-form-search-content-search' target='_blank'>{0}</a>"
   # found_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   found_recommendations_more_single: "... und einen weiteren Kurs"
   # found_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
@@ -42,7 +45,10 @@ action_additional_learning_recommendation:
   additional_recommendations_single: "Also, ich empfehle dir folgenden Kurs: "
   # additional_course_item parameter {0}: the title of the course
   # additional_course_item parameter {1}: the URL-parameter /-ID for the course
-  additional_course_item: "{0}"
+  additional_course_item: "<a href='https://ki-campus.org/courses/{1}?locale=de' target='_blank'>{0}</a>"
+  # additional_course_item_without_code parameter {0}: the title of the course
+  # additional_course_item_without_code parameter {1}: URL-encoded string for the title of the course
+  additional_course_item_without_code: "<a href='https://ki-campus.org/search/content?keys={1}&locale=de#views-exposed-form-search-content-search' target='_blank'>{0}</a>"
   # additional_recommendations_more_single parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
   additional_recommendations_more_single: "... und einen weiteren Kurs"
   # additional_recommendations_more_multiple parameter {0}: number (int) of found, additional course recommendations (that are not shown yet)
@@ -99,4 +105,34 @@ action_recommender_or_search_topics:
   search_topics_option: Kursangebot zum Thema {0}
   search_topics_option_unspecified: allgemeine Themensuche
 
-
+action_fallback_buttons:
+  fallback_message: Das habe ich nicht ganz verstanden. Kannst du das bitte umformulieren?
+  fallback_button_start_recommender_form: Ich möchte eine Kursempfehlung
+  fallback_button_get_courses: Ich habe eine Frage zu meinen Kursen
+  fallback_button_ask_question: Ich habe eine allgemeine Frage
+  fallback_button_greet: Ich möchte dich begrüßen
+  fallback_button_goodbye: Ich möchte mich verabschieden
+  fallback_button_thank: Ich möchte mich bedanken
+  fallback_button_undecided: Ist mir egal
+  fallback_button_restart: Ich möchte unsere Konversation neu starten
+  fallback_button_stop_form: Ich möchte die Kursempfehlung abbrechen
+  fallback_button_additional_learning_recommendation: Ich möchte weitere Kursempfehlungen
+  fallback_button_change_language_slot: Ich möchte die Sprache meiner Kursempfehlung ändern 
+  fallback_button_change_topic_slot: Ich möchte das Thema meiner Kursempfehlung ändern
+  fallback_button_change_level_slot: Ich möchte das Level meiner Kursempfehlung ändern
+  fallback_button_change_max_duration_slot: Ich möchte die Kursdauer meiner Empfehlung ändern
+  fallback_button_change_certificate_slot: Ich möchte den Nachweis meiner Kursempfehlung ändern
+  fallback_button_deny: Nein
+  fallback_button_affirm: Ja
+  fallback_button_get_achievements: Ich möchte meine Archievements sehen
+  fallback_button_help: Ich brauche Hilfe
+  fallback_button_bot_challenge: Bist du ein Bot?
+  fallback_button_human_handoff: Ich möchte mit dem Helpdesk-Team sprechen
+  fallback_button_search_topics: Ich möchte das allgemeine Kursangebot sehen 
+# # intents without button option
+  # fallback_button_inform
+  # fallback_button_insults
+  # fallback_button_courses
+  # fallback_button_out_of_scope
+  # fallback_button_faq
+  # fallback_button_get_course

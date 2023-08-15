@@ -2,28 +2,28 @@ version: '3.1'
 
 nlu:
 
-  - intent: negative_feedback
-    examples: |
-      - Das war nicht hilfreich
-      - Hat nicht geholfen
-      - Wirklich nich hilfreich
-      - Das war schlecht
-      - Die Empfehlungen waren schlecht
-      - Schlechte Vorschläge
-      - Hat mir nicht gefallen
-      - Das ist unhilfreich
-      - Unhilfreich
-      - Du bist schlecht
-      - Du bist dumm
-      - Schlecht
-      - Du bist schlecht
-      - Deine Vorschläge sind nutzlos
-      - Nutzlose Vorschläge
-      - Deine Vorschläge sind dumm
-      - Unhilfreich
-      - Du bist nutzlos
-      - Das ist nutzlos
-      - Das war  schlecht
+  # - intent: negative_feedback
+  #   examples: |
+  #     - Das war nicht hilfreich
+  #     - Hat nicht geholfen
+  #     - Wirklich nich hilfreich
+  #     - Das war schlecht
+  #     - Die Empfehlungen waren schlecht
+  #     - Schlechte Vorschläge
+  #     - Hat mir nicht gefallen
+  #     - Das ist unhilfreich
+  #     - Unhilfreich
+  #     - Du bist schlecht
+  #     - Du bist dumm
+  #     - Schlecht
+  #     - Du bist schlecht
+  #     - Deine Vorschläge sind nutzlos
+  #     - Nutzlose Vorschläge
+  #     - Deine Vorschläge sind dumm
+  #     - Unhilfreich
+  #     - Du bist nutzlos
+  #     - Das ist nutzlos
+  #     - Das war  schlecht
       
   - intent: additional_learning_recommendation
     examples: |
@@ -331,32 +331,7 @@ nlu:
       - empfehle mir einen kurs
       - welche empfehlung kannst du mir geben   
       - ich möchte eine themensuche machen
-      - themensuche starten   
-# #
-      # - Ich suche Kurse über [ML](topic)
-      # - Ich suche Kurse über [Machine Learning](topic)
-      # - Ich suche Kurse über [Data Science](topic)
-      # - Ich suche Kurse über [Maschinelles Lernen](topic)
-      # - Ich suche Kurse über [AI](topic)
-      # - Ich suche Kurse über [KI](topic)
-      # - Ich suche Kurse über [Artificial Intelligence](topic)
-      # - Ich suche Kurse über [Künstliche Intelligenz](topic)
-      # - Ich suche Kurse zu [ML](topic)
-      # - Ich suche Kurse zu [Machine Learning](topic)
-      # - Ich suche Kurse zu [Data Science](topic)
-      # - Ich suche Kurse zu [Maschinelles Lernen](topic)
-      # - Ich suche Kurse zu [AI](topic)
-      # - Ich suche Kurse zu [KI](topic)
-      # - Ich suche Kurse zu [Artificial Intelligence](topic)
-      # - Ich suche Kurse zu [Künstliche Intelligenz](topic)
-      # - Ich suche Kurse zum Thema [ML](topic)
-      # - Ich suche Kurse zum Thema [Machine Learning](topic)
-      # - Ich suche Kurse zum Thema [Data Science](topic)
-      # - Ich suche Kurse zum Thema [Maschinelles Lernen](topic)
-      # - Ich suche Kurse zum Thema [AI](topic)
-      # - Ich suche Kurse zum Thema [KI](topic)
-      # - Ich suche Kurse zum Thema [Artificial Intelligence](topic)
-      # - Ich suche Kurse zum Thema [Künstliche Intelligenz](topic)
+      - themensuche starten
 
   - intent: inform
     examples: |

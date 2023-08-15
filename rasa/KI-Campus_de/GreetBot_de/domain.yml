@@ -15,24 +15,29 @@ actions:
 responses:
 
   utter_greet:
-#  - text: Hey, wie kann ich dir helfen?
-#  - text: Hey, was kann ich für dich tun?
-#  # modified by DFKI
-  - text: Ich bin KIm, dein virtueller Assistent! Ich beantworte deine Fragen rund um den KI-Campus, zu deinen Kursen und deinen Erfolgen. Außerdem helfe dir dabei, deinen Wunschkurs zu finden. Ich muss noch einiges dazulernen, deine Fragen werden mir dabei helfen. Frag mich also alles, was du zum KI-Campus und deinen MOOCs wissen möchtest!
+# # modified by DFKI
+  - text: Hallo, ich bin KIm, dein KI-Campus-Chatbot. Wie kann ich dir helfen?
+    buttons:
+    - title: "Ich habe eine allgemeine Frage"
+      payload: "/ask_question"
+    - title: "Ich möchte eine Kursempfehlung"
+      payload: "/start_recommender_form"
+    - title: "Ich habe eine Frage zu meinen Kursen"
+      payload: "/get_courses"
 
-  # added by DFKI
+
+# # added by DFKI
   utter_tip_formulation:
   - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
 
   utter_goodbye:
-#  - text: Auf Wiedersehen!
 # # modified by DFKI
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Bis bald 👋
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Auf Wiedersehen 👋
   
 # # modified by DFKI: moved to greetbot
   utter_have_a_nice_day:
-  - text: Hab einen schönen Tag und bis bald!
+  - text: Hab einen schönen Tag und bis bald 👋
 
   utter_you_are_welcome:
   - text: Bitte sehr.

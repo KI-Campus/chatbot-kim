@@ -3,6 +3,9 @@
 ## exclude virtual env
 chatbot-env
 
+##exclude story graph
+rasa/KI-Campus_de/story_graph.dot
+
 ## exclude models folder ##
 rasa/models/*
 
