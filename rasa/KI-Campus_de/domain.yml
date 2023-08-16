@@ -40,6 +40,7 @@ actions:
 - action_download_certificate
 - action_search_topic
 - action_fallback_buttons
+- action_reset_feedback_slots
 
 entities:
 - certificate_type

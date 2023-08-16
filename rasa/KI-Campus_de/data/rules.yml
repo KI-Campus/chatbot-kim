@@ -52,3 +52,4 @@ rules:
     - slot_was_set:
       - requested_slot: null   
     - action: utter_feedback_thank
+    - action: action_reset_feedback_slots

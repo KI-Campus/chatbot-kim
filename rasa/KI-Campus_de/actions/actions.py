@@ -10,6 +10,16 @@ import json
 
 from .responses import get_response_texts, assert_responses_exist, ResponseEnum, get_response
 
+class ResetFeedbackSlots(Action):
+	def name(self):
+		return "action_reset_feedback_slots"
+	
+	def run(self, dispatcher, tracker, domain):
+		return [SlotSet("feedback_conversation", None), 
+	  SlotSet("feedback_reuse_chatbot", None), 
+			SlotSet("feedback_friendliness_chatbot", None),
+			SlotSet("feedback_frustration_chatbot", None),
+			SlotSet("feedback_general_remarks", None)]
 
 class CourseSet(Action):
 	def name(self):
@@ -273,8 +283,6 @@ class ActionSearchTopic(Action):
 		return "action_search_topic"
 
 	def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-		# # modified by DFKI
-		# searchTopic = tracker.latest_message['entities'][0]['value']
 
 		searchTopic = str(tracker.get_slot("search_topic"))
 		searchTopicLower = searchTopic.lower()
@@ -303,5 +311,4 @@ class ActionSearchTopic(Action):
 			dispatcher.utter_message(message)
 		else:
 			dispatcher.utter_message(get_response(self.responses, self.Responses.topicpage_not_present).format(searchTopic))
-		# # modified by DFKI
 		return[SlotSet("search_topic", None)]
