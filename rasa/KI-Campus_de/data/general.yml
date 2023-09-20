@@ -1,6 +1,7 @@
 version: '3.1'
 
 nlu:
+  - intent: text_input
   - intent: get_courses
     examples: |
       - Ich möchte meine Kurse

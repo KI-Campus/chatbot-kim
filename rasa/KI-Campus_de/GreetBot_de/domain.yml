@@ -24,6 +24,8 @@ responses:
       payload: "/start_recommender_form"
     - title: "Ich habe eine Frage zu meinen Kursen"
       payload: "/get_courses"
+    - title: "Etwas anderes"
+      payload: "/text_input"
 
 
 # # added by DFKI

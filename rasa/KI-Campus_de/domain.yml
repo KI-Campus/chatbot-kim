@@ -30,6 +30,7 @@ intents:
 - search_topics
 - feedback
 - ask_question
+- text_input
 
 actions:
 - action_get_courses
@@ -220,6 +221,8 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff" 
+    - title: "Etwas anderes"
+      payload: "/text_input"
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
   utter_feedback_thank:
@@ -235,6 +238,8 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff"
+    - title: "Etwas anderes"
+      payload: "/text_input"
   utter_anything_else:
   - text: Kann ich dir noch bei etwas anderem helfen?
     buttons:
@@ -332,6 +337,8 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff"
+    - title: "Etwas anderes"
+      payload: "/text_input"
   utter_iamabot:
   - text: Ich bin KIm, dein virtueller Assistent. 
   utter_handoff:
@@ -353,6 +360,8 @@ responses:
       payload: "Ich hab ein technisches Problem"
     - title: "Lernangebot"
       payload: "Wo finde ich das Lernangebot?"
+    - title: "Etwas anderes"
+      payload: "/text_input"
 
 session_config:
   session_expiration_time: 5
