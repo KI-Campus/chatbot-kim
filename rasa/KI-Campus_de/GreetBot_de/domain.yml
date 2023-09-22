@@ -24,13 +24,13 @@ responses:
       payload: "/start_recommender_form"
     - title: "Ich habe eine Frage zu meinen Kursen"
       payload: "/get_courses"
-    - title: "Etwas anderes"
+    - title: "Ich möchte eine eigene Nachricht schreiben"
       payload: "/text_input"
 
 
-# # added by DFKI
-  utter_tip_formulation:
-  - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
+# # # added by DFKI
+#   utter_tip_formulation:
+#   - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
 
   utter_goodbye:
 # # modified by DFKI

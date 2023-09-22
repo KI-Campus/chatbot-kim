@@ -160,3 +160,4 @@ stories:
 - story: text_input
   steps:
     - intent: text_input
+    - action: utter_text_input

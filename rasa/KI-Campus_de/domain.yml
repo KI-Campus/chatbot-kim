@@ -141,6 +141,8 @@ slots:
     - type: custom
 
 responses:
+  utter_text_input: 
+  - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
   utter_feedback_general: 
   - text: "Gerne würde wir dir im folgenden paar kurze Fragen zu unserem Chatbot stellen, damit wir uns weiterhin verbessern können!"
   utter_ask_feedback_conversation: 
@@ -221,7 +223,7 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff" 
-    - title: "Etwas anderes"
+    - title: "Ich möchte eine eigene Nachricht schreiben"
       payload: "/text_input"
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
@@ -238,7 +240,7 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff"
-    - title: "Etwas anderes"
+    - title: "Ich möchte eine eigene Nachricht schreiben"
       payload: "/text_input"
   utter_anything_else:
   - text: Kann ich dir noch bei etwas anderem helfen?
@@ -337,7 +339,7 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff"
-    - title: "Etwas anderes"
+    - title: "Ich möchte eine eigene Nachricht schreiben"
       payload: "/text_input"
   utter_iamabot:
   - text: Ich bin KIm, dein virtueller Assistent. 
@@ -360,7 +362,7 @@ responses:
       payload: "Ich hab ein technisches Problem"
     - title: "Lernangebot"
       payload: "Wo finde ich das Lernangebot?"
-    - title: "Etwas anderes"
+    - title: "Ich möchte eine eigene Nachricht schreiben"
       payload: "/text_input"
 
 session_config:
