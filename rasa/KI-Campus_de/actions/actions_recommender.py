@@ -411,6 +411,7 @@ class ActionAskLanguage(Action):
 		language_option_german = auto()
 		language_option_english = auto()
 		language_option_any = auto()
+		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -428,7 +429,8 @@ class ActionAskLanguage(Action):
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.language_option_german), 'payload': '/inform{"language":"Deutsch"}'},
 			{'title': get_response(self.responses, self.Responses.language_option_english), 'payload': '/inform{"language":"Englisch"}'},
-			{'title': get_response(self.responses, self.Responses.language_option_any), 'payload': '/undecided'}]
+			{'title': get_response(self.responses, self.Responses.language_option_any), 'payload': '/undecided'},
+			{'title': get_response(self.responses, self.Responses.activate_text_input), 'payload':'/text_input'}]
 
 		# check if slot value should get changed
 		intent = str(tracker.get_intent_of_latest_message())
@@ -453,6 +455,7 @@ class ActionAskTopic(Action):
 		topic_option_data_science = auto()
 		topic_option_machine_learning = auto()
 		topic_option_any = auto()
+		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -474,7 +477,8 @@ class ActionAskTopic(Action):
 			{'title': get_response(self.responses, self.Responses.topic_option_society_and_ai), 'payload': '/inform{"topic":"ki-gesellschaft"}'},
 			{'title': get_response(self.responses, self.Responses.topic_option_data_science), 'payload': '/inform{"topic":"Data Science"}'},
 			{'title': get_response(self.responses, self.Responses.topic_option_machine_learning), 'payload': '/inform{"topic":"Maschinelles Lernen"}'},
-			{'title': get_response(self.responses, self.Responses.topic_option_any), 'payload': '/undecided'}]
+			{'title': get_response(self.responses, self.Responses.topic_option_any), 'payload': '/undecided'},
+			{'title': get_response(self.responses, self.Responses.activate_text_input), 'payload':'/text_input'}]
 
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_topic_slot':
@@ -493,6 +497,7 @@ class ActionAskLevel(Action):
 		level_option_beginner = auto()
 		level_option_advanced = auto()
 		level_option_expert = auto()
+		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -510,7 +515,8 @@ class ActionAskLevel(Action):
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.level_option_beginner), 'payload': '/inform{"level":"Anfänger"}'},
 			{'title': get_response(self.responses, self.Responses.level_option_advanced), 'payload': '/inform{"level":"Fortgeschritten"}'},
-			{'title': get_response(self.responses, self.Responses.level_option_expert), 'payload': '/inform{"level":"Experte"}'}]
+			{'title': get_response(self.responses, self.Responses.level_option_expert), 'payload': '/inform{"level":"Experte"}'},
+			{'title': get_response(self.responses, self.Responses.activate_text_input), 'payload':'/text_input'}]
 
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_level_slot':
@@ -529,6 +535,7 @@ class ActionAskMaxDuration(Action):
 		duration_option_max_10h = auto()
 		duration_option_max_50h = auto()
 		duration_option_any = auto()
+		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -546,7 +553,8 @@ class ActionAskMaxDuration(Action):
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.duration_option_max_10h), 'payload': '/inform{"max_duration":"10"}'},
 			{'title': get_response(self.responses, self.Responses.duration_option_max_50h), 'payload': '/inform{"max_duration":"50"}'},
-			{'title': get_response(self.responses, self.Responses.duration_option_any), 'payload': '/inform{"max_duration":"51"}'}]
+			{'title': get_response(self.responses, self.Responses.duration_option_any), 'payload': '/inform{"max_duration":"51"}'},
+			{'title': get_response(self.responses, self.Responses.activate_text_input), 'payload':'/text_input'}]
 
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_max_duration_slot':
@@ -565,6 +573,7 @@ class ActionAskCertificate(Action):
 		certificate_option_unqualified = auto()
 		certificate_option_qualified = auto()
 		certificate_option_any = auto()
+		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -582,7 +591,8 @@ class ActionAskCertificate(Action):
 		buttons = [
 			{'title': get_response(self.responses, self.Responses.certificate_option_unqualified), 'payload': '/inform{"certificate":"Teilnahmebescheinigung"}'},
 			{'title': get_response(self.responses, self.Responses.certificate_option_qualified), 'payload': '/inform{"certificate":"Leistungsnachweis"}'},
-			{'title': get_response(self.responses, self.Responses.certificate_option_any), 'payload': '/undecided'}]
+			{'title': get_response(self.responses, self.Responses.certificate_option_any), 'payload': '/undecided'},
+			{'title': get_response(self.responses, self.Responses.activate_text_input), 'payload':'/text_input'}]
 
 		intent = str(tracker.get_intent_of_latest_message())
 		if intent == 'change_certificate_slot':
@@ -809,6 +819,7 @@ class ActionFallbackButtons(Action):
 		fallback_button_human_handoff = auto()
 		fallback_button_search_topics = auto()
 		fallback_button_ask_question = auto()
+		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -848,13 +859,15 @@ class ActionFallbackButtons(Action):
 			"help": get_response(self.responses, self.Responses.fallback_button_help),
 			"bot_challenge": get_response(self.responses, self.Responses.fallback_button_bot_challenge),
 			"search_topics": get_response(self.responses, self.Responses.fallback_button_search_topics)
-        }
+			}
 
 		buttons = [	
 			{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
 			{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
 			{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'},
-			{'title': get_response(self.responses, self.Responses.fallback_button_human_handoff), 'payload': '/human_handoff'}]
+			{'title': get_response(self.responses, self.Responses.fallback_button_human_handoff), 'payload': '/human_handoff'},
+			{'title': get_response(self.responses, self.Responses.activate_text_input), 'payload':'/text_input'}
+			]
 		
 		for intent in predicted_intents:
 			if intent['name'] not in intent_mappings:
