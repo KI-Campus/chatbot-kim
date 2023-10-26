@@ -178,6 +178,8 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff"
+    - title: "Ich möchte eine eigene Nachricht schreiben"
+      payload: "/text_input"
   - text: Wie kann ich dir sonst noch helfen?
     buttons:
     - title: "Ich habe eine allgemeine Frage"
@@ -188,6 +190,8 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff"
+    - title: "Ich möchte eine eigene Nachricht schreiben"
+      payload: "/text_input"
   utter_ask_continue_recommender_form:
   - text: Alles klar, dann beenden wir die Kurssuche und wechseln das Thema! Einverstanden?
   # utter_bot_apology:
@@ -205,6 +209,8 @@ responses:
       payload: "/get_courses"
     - title: "Ich möchte mit dem Helpdesk-Team sprechen"
       payload: "/human_handoff"
+    - title: "Ich möchte eine eigene Nachricht schreiben"
+      payload: "/text_input"
   utter_restart:
   - text: Wir starten die Konversation jetzt noch mal neu!
   utter_submit_recommender_form:
