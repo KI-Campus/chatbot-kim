@@ -17,16 +17,15 @@ responses:
   utter_greet:
 # # modified by DFKI
   - text: Hallo, ich bin KIm, dein KI-Campus-Chatbot. Wie kann ich dir helfen?
-    buttons:
-    - title: "Ich habe eine allgemeine Frage"
-      payload: "/ask_question"
-    - title: "Ich möchte eine Kursempfehlung"
-      payload: "/start_recommender_form"
-    - title: "Ich habe eine Frage zu meinen Kursen"
-      payload: "/get_courses"
-    - title: "Ich möchte eine eigene Nachricht schreiben"
-      payload: "/text_input"
-
+    custom:
+      button: "true"
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
 
 # # # added by DFKI
 #   utter_tip_formulation:

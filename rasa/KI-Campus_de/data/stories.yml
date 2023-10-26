@@ -156,8 +156,3 @@ stories:
   - action: action_search_topic
   - action: utter_anything_else
   - checkpoint: more_information
-
-- story: text_input
-  steps:
-    - intent: text_input
-    - action: utter_text_input
