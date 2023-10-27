@@ -26,7 +26,7 @@ intents:
 - bot_challenge
 - human_handoff
 - insults
-- courses # modified by DFKI: inform -> courses
+- courses
 - search_topics
 - feedback
 - ask_question
@@ -81,7 +81,6 @@ slots:
       - active_loop: feedback_form
         requested_slot: feedback_general_remarks
     
-# # added by DFKI
   search_topic:
     type: text
     influence_conversation: true
@@ -259,7 +258,6 @@ responses:
   utter_faq/ask_about_learningoffer:
   - text: Von Online-Kursen über Videos und Podcasts bis hin zu interaktiven Übungen – der KI-Campus stellt Lernenden eine vielfältige Auswahl hochwertiger kostenloser Lernangebote zu unterschiedlichen Themenfeldern der KI gebündelt auf einer Lernplattform zur Verfügung.
   utter_faq/ask_about_topics:
-  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
@@ -273,7 +271,6 @@ responses:
   utter_faq/ask_about_recognition:
   - text: Ausgewählte Kurse können mit ECTS-Punkten ausgewiesen und in Abstimmung mit der jeweiligen Hochschule anerkannt bzw. angerechnet werden. Eine generelle Zusage für eine Anerkennung kann der KI-Campus  nicht geben. Bitte wende dich mit diesem Anliegen an deine Hochschule.
   utter_faq/ask_about_lang_english:
-  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
@@ -285,14 +282,12 @@ responses:
   utter_faq/ask_about_course_timelimit:
   - text: Die meisten unserer Lernangebote können nach eigener Zeiteinteilung absolviert werden, für einzelne gibt es Zeitvorgaben. Du findest diese Information in der Beschreibung des jeweiligen Lernangebots.
   utter_faq/ask_about_course_costs:
-  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
       value: True 
     text: Alle Kurse des KI-Campus sind kostenlos und du kannst jederzeit loslegen.
   - text: Die Nutzung aller Lernangebote des KI-Campus ist kostenlos.
-  # # added by DFKI
   utter_faq/ask_duration_parameter:
   - text: Damit du den Arbeitsaufwand eines Kurses gut einschätzen kannst, wurden unsere Kurse nach ihrer gesamten Stundenanzahl unterteilt.
   utter_faq/ask_become_editor:

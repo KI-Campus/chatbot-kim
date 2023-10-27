@@ -4,7 +4,6 @@ intents:
 - goodbye
 - thank
 
-# # added by DFKI
 actions: 
 - utter_tip_formulation
 - utter_greet
@@ -15,7 +14,6 @@ actions:
 responses:
 
   utter_greet:
-# # modified by DFKI
   - text: Hallo, ich bin KIm, dein KI-Campus-Chatbot. Wie kann ich dir helfen?
     custom:
       buttons:
@@ -26,16 +24,10 @@ responses:
       - title: "Ich habe eine Frage zu meinen Kursen"
         payload: "/get_courses"
 
-# # # added by DFKI
-#   utter_tip_formulation:
-#   - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
-
   utter_goodbye:
-# # modified by DFKI
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Bis bald 👋
   - text: Alles klar. Ich wünsche dir noch einen schönen Tag! Auf Wiedersehen 👋
   
-# # modified by DFKI: moved to greetbot
   utter_have_a_nice_day:
   - text: Hab einen schönen Tag und bis bald 👋
 
