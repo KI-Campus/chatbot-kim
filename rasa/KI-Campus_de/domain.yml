@@ -140,8 +140,6 @@ slots:
     - type: custom
 
 responses:
-  # utter_text_input: 
-  # - text: "💡 Übrigens: Ich verstehe dich am besten, wenn du deine Fragen kurz und präzise formulierst!"
   utter_feedback_general: 
   - text: "Gerne würde wir dir im folgenden paar kurze Fragen zu unserem Chatbot stellen, damit wir uns weiterhin verbessern können!"
   utter_ask_feedback_conversation: 
@@ -214,7 +212,6 @@ responses:
   utter_out_of_scope:
   - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". '
     custom:
-      button: "true"
       buttons:
       - title: "Ich habe eine allgemeine Frage"
         payload: "/ask_question" 
@@ -231,7 +228,6 @@ responses:
   utter_more_info:
   - text: Okay. Wie kann ich dir weiterhelfen?
     custom:
-      button: "true"
       buttons:
       - title: "Ich habe eine allgemeine Frage"
         payload: "/ask_question" 
@@ -330,7 +326,6 @@ responses:
   utter_help:
   - text: Ich helfe dir gerne bei technischen Problemen und Fragen zu den Kursen. Ich erkläre dir zum Beispiel den Kursaufbau und beantworte Fragen zum Zertifikat, zum Zurücksetzen des Passworts oder zum Ändern deiner persönlichen Daten. 
     custom:
-      button: "true"
       buttons:
       - title: "Ich habe eine allgemeine Frage"
         payload: "/ask_question" 
@@ -349,7 +344,6 @@ responses:
   utter_which_question:
   - text: "Hier sind einige Themen, zu denen du Fragen stellen kannst oder stelle mir deine eigene Frage."
     custom:
-      button: "true"
       buttons:
       - title: "Ich habe eine allgemeine Frage"
         payload: "/ask_question" 

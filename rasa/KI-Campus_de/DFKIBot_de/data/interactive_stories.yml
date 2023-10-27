@@ -56,8 +56,6 @@ stories:
       - language: egal
     - slot_was_set:
       - requested_slot: topic
-    - intent: text_input
-    - action: utter_text_input
     - slot_was_set:
       - topic: Data Science
     - slot_was_set:
@@ -183,8 +181,6 @@ stories:
     - action: recommender_form
     - slot_was_set:
       - requested_slot: language
-    - intent: text_input
-    - action: utter_text_input
     - slot_was_set:
       - language: Englisch
     - slot_was_set:
@@ -717,8 +713,6 @@ stories:
       - topic: data science
     - slot_was_set:
       - requested_slot: certificate
-    - intent: text_input
-    - action: utter_text_input
     - slot_was_set:
       - certificate: egal
     - slot_was_set:

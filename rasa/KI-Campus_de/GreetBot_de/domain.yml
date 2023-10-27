@@ -18,7 +18,6 @@ responses:
 # # modified by DFKI
   - text: Hallo, ich bin KIm, dein KI-Campus-Chatbot. Wie kann ich dir helfen?
     custom:
-      button: "true"
       buttons:
       - title: "Ich habe eine allgemeine Frage"
         payload: "/ask_question" 

@@ -68,9 +68,6 @@ stories:
     - active_loop: recommender_form
     - slot_was_set:
       - recommender_form_active: true
-    - intent: text_input
-    - action: utter_text_input
-
   - story: faq interjection
     steps:
     - checkpoint: start_recommender_form
