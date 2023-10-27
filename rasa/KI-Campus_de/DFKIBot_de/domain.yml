@@ -179,17 +179,17 @@ responses:
         payload: "/get_courses"
       - title: "Ich möchte mit dem Helpdesk-Team sprechen"
         payload: "/human_handoff"
-    - text: Wie kann ich dir sonst noch helfen?
-      custom:
-        buttons:
-        - title: "Ich habe eine allgemeine Frage"
-          payload: "/ask_question" 
-        - title: "Ich möchte eine Kursempfehlung"
-          payload: "/start_recommender_form"
-        - title: "Ich habe eine Frage zu meinen Kursen"
-          payload: "/get_courses"
-        - title: "Ich möchte mit dem Helpdesk-Team sprechen"
-          payload: "/human_handoff"
+  - text: Wie kann ich dir sonst noch helfen?
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff"
   utter_ask_continue_recommender_form:
   - text: Alles klar, dann beenden wir die Kurssuche und wechseln das Thema! Einverstanden?
   # utter_bot_apology:
