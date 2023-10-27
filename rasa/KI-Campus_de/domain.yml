@@ -345,14 +345,18 @@ responses:
   - text: "Hier sind einige Themen, zu denen du Fragen stellen kannst oder stelle mir deine eigene Frage."
     custom:
       buttons:
-      - title: "Ich habe eine allgemeine Frage"
-        payload: "/ask_question" 
-      - title: "Ich möchte eine Kursempfehlung"
-        payload: "/start_recommender_form"
-      - title: "Ich habe eine Frage zu meinen Kursen"
-        payload: "/get_courses"
-      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
-        payload: "/human_handoff" 
+      - title: "MOOCs"
+        payload: "Was sind Massive Open Online Courses?"
+      - title: "KI-Campus"
+        payload: "Was ist der KI Campus?"
+      - title: "Zertifikat"
+        payload: "Kann ich Zertifikate erwerben?"
+      - title: "Passwort"
+        payload: "Passwort zurücksetzen"
+      - title: "Technisches Problem"
+        payload: "Ich hab ein technisches Problem"
+      - title: "Lernangebot"
+        payload: "Wo finde ich das Lernangebot?"
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false
