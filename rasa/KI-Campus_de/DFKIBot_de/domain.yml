@@ -169,29 +169,27 @@ slots:
 responses:
   utter_anything_else_v2:
   - text: Womit kann ich dir noch behilflich sein?
-    buttons:
-    - title: "Ich habe eine allgemeine Frage"
-      payload: "/ask_question" 
-    - title: "Ich möchte eine Kursempfehlung"
-      payload: "/start_recommender_form"
-    - title: "Ich habe eine Frage zu meinen Kursen"
-      payload: "/get_courses"
-    - title: "Ich möchte mit dem Helpdesk-Team sprechen"
-      payload: "/human_handoff"
-    - title: "Ich möchte eine eigene Nachricht schreiben"
-      payload: "/text_input"
-  - text: Wie kann ich dir sonst noch helfen?
-    buttons:
-    - title: "Ich habe eine allgemeine Frage"
-      payload: "/ask_question" 
-    - title: "Ich möchte eine Kursempfehlung"
-      payload: "/start_recommender_form"
-    - title: "Ich habe eine Frage zu meinen Kursen"
-      payload: "/get_courses"
-    - title: "Ich möchte mit dem Helpdesk-Team sprechen"
-      payload: "/human_handoff"
-    - title: "Ich möchte eine eigene Nachricht schreiben"
-      payload: "/text_input"
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff"
+    - text: Wie kann ich dir sonst noch helfen?
+      custom:
+        buttons:
+        - title: "Ich habe eine allgemeine Frage"
+          payload: "/ask_question" 
+        - title: "Ich möchte eine Kursempfehlung"
+          payload: "/start_recommender_form"
+        - title: "Ich habe eine Frage zu meinen Kursen"
+          payload: "/get_courses"
+        - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+          payload: "/human_handoff"
   utter_ask_continue_recommender_form:
   - text: Alles klar, dann beenden wir die Kurssuche und wechseln das Thema! Einverstanden?
   # utter_bot_apology:
@@ -200,17 +198,16 @@ responses:
   # - text: Ich freue mich über dein Feedback! Um mir Feedback zu hinterlassen, klicke hier. 
   utter_bot_information:
   - text: Ich helfe dir bei Fragen rund um den KI-Campus oder unterstütze dich bei der Suche nach einem passenden Kurs! Was kann ich für dich tun?
-    buttons:
-    - title: "Ich habe eine allgemeine Frage"
-      payload: "/ask_question" 
-    - title: "Ich möchte eine Kursempfehlung"
-      payload: "/start_recommender_form"
-    - title: "Ich habe eine Frage zu meinen Kursen"
-      payload: "/get_courses"
-    - title: "Ich möchte mit dem Helpdesk-Team sprechen"
-      payload: "/human_handoff"
-    - title: "Ich möchte eine eigene Nachricht schreiben"
-      payload: "/text_input"
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff"
   utter_restart:
   - text: Wir starten die Konversation jetzt noch mal neu!
   utter_submit_recommender_form:

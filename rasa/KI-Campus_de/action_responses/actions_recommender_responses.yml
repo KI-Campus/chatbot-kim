@@ -60,7 +60,6 @@ action_ask_language:
   language_option_german: Deutsch
   language_option_english: Englisch
   language_option_any: Beide Sprachen
-  activate_text_input: Ich möchte eine eigene Nachricht schreiben
 
 action_ask_topic:
   confirm_and_show_change_topic: "Du möchtest also das Thema für deine Kursempfehlungen ändern. Hier ist eine Auswahl unserer Themen:"
@@ -72,7 +71,6 @@ action_ask_topic:
   topic_option_data_science: Data Science
   topic_option_machine_learning: Maschinelles Lernen
   topic_option_any: egal
-  activate_text_input: Ich möchte eine eigene Nachricht schreiben
 
 action_ask_level:
   confirm_and_show_change_level: "Du möchtest also das Level von deinem Wunschkurs ändern. Die Kurse auf dem KI-Campus haben die folgenden Level zur Auswahl:"
@@ -80,7 +78,6 @@ action_ask_level:
   level_option_beginner: Anfänger:in
   level_option_advanced: Fortgeschrittene:r
   level_option_expert: Expert:in
-  activate_text_input: Ich möchte eine eigene Nachricht schreiben
 
 action_ask_max_duration:
   confirm_and_show_change_duration: Wir haben unsere Kurse nach ihrer gesamten Stundenzahl unterteilt, wähle die für dich passende Kursdauer!
@@ -88,16 +85,14 @@ action_ask_max_duration:
   duration_option_max_10h: bis zu 10 Stunden
   duration_option_max_50h: maximal 50 Stunden
   duration_option_any: auch über 50 Stunden
-  activate_text_input: Ich möchte eine eigene Nachricht schreiben
-
+ 
 action_ask_certificate:
   confirm_and_show_change_certificate: "Wie ich verstanden habe, möchtest du einen neuen Nachweis wählen, den du in deinem Wunschkurs erhalten kannst. Wir haben zwei Optionen:"
   ask_select_certificate: Welcher Nachweis ist dir wichtig?
   certificate_option_unqualified: Teilnahmebescheinigung
   certificate_option_qualified: Leistungsnachweis (benotet)
   certificate_option_any: egal
-  activate_text_input: Ich möchte eine eigene Nachricht schreiben
-
+  
 validate_recommender_form:
   # unsupported_language_selection parameter {0}: the (unsupported) language
   unsupported_language_selection: "Wir bieten auf dem KI-Campus keine Kurse auf {0} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!"
