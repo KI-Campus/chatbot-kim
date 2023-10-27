@@ -411,7 +411,6 @@ class ActionAskLanguage(Action):
 		language_option_german = auto()
 		language_option_english = auto()
 		language_option_any = auto()
-		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -454,7 +453,6 @@ class ActionAskTopic(Action):
 		topic_option_data_science = auto()
 		topic_option_machine_learning = auto()
 		topic_option_any = auto()
-		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -495,7 +493,6 @@ class ActionAskLevel(Action):
 		level_option_beginner = auto()
 		level_option_advanced = auto()
 		level_option_expert = auto()
-		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -532,7 +529,6 @@ class ActionAskMaxDuration(Action):
 		duration_option_max_10h = auto()
 		duration_option_max_50h = auto()
 		duration_option_any = auto()
-		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -569,7 +565,6 @@ class ActionAskCertificate(Action):
 		certificate_option_unqualified = auto()
 		certificate_option_qualified = auto()
 		certificate_option_any = auto()
-		activate_text_input = auto()
 
 	responses: Dict[str, str]
 
@@ -859,8 +854,7 @@ class ActionFallbackButtons(Action):
 			{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},
 			{'title': get_response(self.responses, self.Responses.fallback_button_start_recommender_form), 'payload': '/start_recommender_form'},
 			{'title': get_response(self.responses, self.Responses.fallback_button_get_courses), 'payload': '/get_courses'},
-			{'title': get_response(self.responses, self.Responses.fallback_button_human_handoff), 'payload': '/human_handoff'}
-			]
+			{'title': get_response(self.responses, self.Responses.fallback_button_human_handoff), 'payload': '/human_handoff'}]
 		
 		for intent in predicted_intents:
 			if intent['name'] not in intent_mappings:

@@ -128,8 +128,7 @@ action_fallback_buttons:
   fallback_button_help: Ich brauche Hilfe
   fallback_button_bot_challenge: Bist du ein Bot?
   fallback_button_human_handoff: Ich möchte mit dem Helpdesk-Team sprechen
-  fallback_button_search_topics: Ich möchte das allgemeine Kursangebot sehen 
-  activate_text_input: Ich möchte eine eigene Nachricht schreiben
+  fallback_button_search_topics: Ich möchte das allgemeine Kursangebot sehen
 # # intents without button option
   # fallback_button_inform
   # fallback_button_insults
