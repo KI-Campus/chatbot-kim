@@ -26,7 +26,7 @@ intents:
 - bot_challenge
 - human_handoff
 - insults
-- courses # modified by DFKI: inform -> courses
+- courses
 - search_topics
 - feedback
 - ask_question
@@ -81,7 +81,6 @@ slots:
       - active_loop: feedback_form
         requested_slot: feedback_general_remarks
     
-# # added by DFKI
   search_topic:
     type: text
     influence_conversation: true
@@ -211,30 +210,32 @@ responses:
   - text: Bitte wähle einen Kurs aus, für den du deinen Fortschritt oder deine Bescheinigungen sehen möchtest.
   utter_out_of_scope:
   - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". '
-    buttons:
-    - title: "Ich habe eine technische Frage"
-      payload: "/ask_question" 
-    - title: "Ich möchte eine Kursempfehlung"
-      payload: "/start_recommender_form"
-    - title: "Ich habe eine Frage zu meinen Kursen"
-      payload: "/get_courses"
-    - title: "Ich möchte mit dem Helpdesk-Team sprechen"
-      payload: "/human_handoff" 
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff" 
   utter_use_contact_form:
   - text: Du kannst auch das Kontaktformular nebenan verwenden, um Hilfe zu erhalten. Wir werden versuchen, dir so schnell wie möglich zu antworten.
   utter_feedback_thank:
   - text: "Vielen Dank für dein Feedback. Hab noch einen schönen Tag und bis bald!"
   utter_more_info:
   - text: Okay. Wie kann ich dir weiterhelfen?
-    buttons:
-    - title: "Ich habe eine allgemeine Frage"
-      payload: "/ask_question" 
-    - title: "Ich möchte eine Kursempfehlung"
-      payload: "/start_recommender_form"
-    - title: "Ich habe eine Frage zu meinen Kursen"
-      payload: "/get_courses"
-    - title: "Ich möchte mit dem Helpdesk-Team sprechen"
-      payload: "/human_handoff"
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff" 
   utter_anything_else:
   - text: Kann ich dir noch bei etwas anderem helfen?
     buttons:
@@ -257,7 +258,6 @@ responses:
   utter_faq/ask_about_learningoffer:
   - text: Von Online-Kursen über Videos und Podcasts bis hin zu interaktiven Übungen – der KI-Campus stellt Lernenden eine vielfältige Auswahl hochwertiger kostenloser Lernangebote zu unterschiedlichen Themenfeldern der KI gebündelt auf einer Lernplattform zur Verfügung.
   utter_faq/ask_about_topics:
-  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
@@ -271,7 +271,6 @@ responses:
   utter_faq/ask_about_recognition:
   - text: Ausgewählte Kurse können mit ECTS-Punkten ausgewiesen und in Abstimmung mit der jeweiligen Hochschule anerkannt bzw. angerechnet werden. Eine generelle Zusage für eine Anerkennung kann der KI-Campus  nicht geben. Bitte wende dich mit diesem Anliegen an deine Hochschule.
   utter_faq/ask_about_lang_english:
-  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
@@ -283,14 +282,12 @@ responses:
   utter_faq/ask_about_course_timelimit:
   - text: Die meisten unserer Lernangebote können nach eigener Zeiteinteilung absolviert werden, für einzelne gibt es Zeitvorgaben. Du findest diese Information in der Beschreibung des jeweiligen Lernangebots.
   utter_faq/ask_about_course_costs:
-  # # added by DFKI
   - condition:
     - type: slot
       name: recommender_form_active
       value: True 
     text: Alle Kurse des KI-Campus sind kostenlos und du kannst jederzeit loslegen.
   - text: Die Nutzung aller Lernangebote des KI-Campus ist kostenlos.
-  # # added by DFKI
   utter_faq/ask_duration_parameter:
   - text: Damit du den Arbeitsaufwand eines Kurses gut einschätzen kannst, wurden unsere Kurse nach ihrer gesamten Stundenanzahl unterteilt.
   utter_faq/ask_become_editor:
@@ -323,15 +320,16 @@ responses:
   - text: 'Das Fellowship-Programm des KI-Campus richtet sich an Hochschullehrende aller Fachbereiche, die das Zukunftsthema KI in ihre Lehre tragen wollen und dafür die Integration von KI-Campus-Lernangeboten erproben. Möchtest du mehr erfahren? Dann schaue dir <a href="https://ki-campus.org/fellowships" _blank>diese Seite</a> zum KI-Fellowship an.'
   utter_help:
   - text: Ich helfe dir gerne bei technischen Problemen und Fragen zu den Kursen. Ich erkläre dir zum Beispiel den Kursaufbau und beantworte Fragen zum Zertifikat, zum Zurücksetzen des Passworts oder zum Ändern deiner persönlichen Daten. 
-    buttons:
-    - title: "Ich habe eine allgemeine Frage"
-      payload: "/ask_question" 
-    - title: "Ich möchte eine Kursempfehlung"
-      payload: "/start_recommender_form"
-    - title: "Ich habe eine Frage zu meinen Kursen"
-      payload: "/get_courses"
-    - title: "Ich möchte mit dem Helpdesk-Team sprechen"
-      payload: "/human_handoff"
+    custom:
+      buttons:
+      - title: "Ich habe eine allgemeine Frage"
+        payload: "/ask_question" 
+      - title: "Ich möchte eine Kursempfehlung"
+        payload: "/start_recommender_form"
+      - title: "Ich habe eine Frage zu meinen Kursen"
+        payload: "/get_courses"
+      - title: "Ich möchte mit dem Helpdesk-Team sprechen"
+        payload: "/human_handoff" 
   utter_iamabot:
   - text: Ich bin KIm, dein virtueller Assistent. 
   utter_handoff:
@@ -340,20 +338,20 @@ responses:
   - text: "Na, na, na, du bist aber ein ganz Schlimmer :) Bitte achte etwas besser auf dein Wording! Ich bin zwar nur eine Maschine, aber ich habe auch Gefühle!!"
   utter_which_question:
   - text: "Hier sind einige Themen, zu denen du Fragen stellen kannst oder stelle mir deine eigene Frage."
-    buttons:
-    - title: "MOOCs"
-      payload: "Was sind Massive Open Online Courses?"
-    - title: "KI-Campus"
-      payload: "Was ist der KI Campus?"
-    - title: "Zertifikat"
-      payload: "Kann ich Zertifikate erwerben?"
-    - title: "Passwort"
-      payload: "Passwort zurücksetzen"
-    - title: "Technisches Problem"
-      payload: "Ich hab ein technisches Problem"
-    - title: "Lernangebot"
-      payload: "Wo finde ich das Lernangebot?"
-
+    custom:
+      buttons:
+      - title: "MOOCs"
+        payload: "Was sind Massive Open Online Courses?"
+      - title: "KI-Campus"
+        payload: "Was ist der KI Campus?"
+      - title: "Zertifikat"
+        payload: "Kann ich Zertifikate erwerben?"
+      - title: "Passwort"
+        payload: "Passwort zurücksetzen"
+      - title: "Technisches Problem"
+        payload: "Ich hab ein technisches Problem"
+      - title: "Lernangebot"
+        payload: "Wo finde ich das Lernangebot?"
 session_config:
   session_expiration_time: 5
   carry_over_slots_to_new_session: false

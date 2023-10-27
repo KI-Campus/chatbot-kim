@@ -345,7 +345,6 @@ nlu:
       - Ich möchte ein Fellowship
       - Fellow
 
-# # added by DFKI
   - intent: faq/ask_duration_parameter
     examples: |
       - Erkläre die Dauer der Kurse

@@ -17,7 +17,7 @@ stories:
     - action: utter_which_question
     - intent: faq
     - action: utter_faq
-    - slot_was_set: # modified by DFKI
+    - slot_was_set:
       - recommender_form_active: false
     - action: utter_anything_else
     - checkpoint: more_information
@@ -45,9 +45,6 @@ stories:
   steps:
   - intent: out_of_scope
   - action: utter_out_of_scope
-  # # modified by DFKI
-  # - action: utter_anything_else
-  # - checkpoint: more_information
 
 - story: Provide handoff accept
   steps:
@@ -156,3 +153,4 @@ stories:
   - action: action_search_topic
   - action: utter_anything_else
   - checkpoint: more_information
+  

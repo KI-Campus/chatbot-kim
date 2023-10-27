@@ -848,7 +848,7 @@ class ActionFallbackButtons(Action):
 			"help": get_response(self.responses, self.Responses.fallback_button_help),
 			"bot_challenge": get_response(self.responses, self.Responses.fallback_button_bot_challenge),
 			"search_topics": get_response(self.responses, self.Responses.fallback_button_search_topics)
-        }
+			}
 
 		buttons = [	
 			{'title': get_response(self.responses, self.Responses.fallback_button_ask_question), 'payload': '/ask_question'},

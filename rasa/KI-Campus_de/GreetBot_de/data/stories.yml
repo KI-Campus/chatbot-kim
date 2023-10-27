@@ -6,7 +6,6 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-  # - action: utter_tip_formulation
 
 - story: User goodbye
   steps:

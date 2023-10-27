@@ -85,14 +85,14 @@ action_ask_max_duration:
   duration_option_max_10h: bis zu 10 Stunden
   duration_option_max_50h: maximal 50 Stunden
   duration_option_any: auch über 50 Stunden
-
+ 
 action_ask_certificate:
   confirm_and_show_change_certificate: "Wie ich verstanden habe, möchtest du einen neuen Nachweis wählen, den du in deinem Wunschkurs erhalten kannst. Wir haben zwei Optionen:"
   ask_select_certificate: Welcher Nachweis ist dir wichtig?
   certificate_option_unqualified: Teilnahmebescheinigung
   certificate_option_qualified: Leistungsnachweis (benotet)
   certificate_option_any: egal
-
+  
 validate_recommender_form:
   # unsupported_language_selection parameter {0}: the (unsupported) language
   unsupported_language_selection: "Wir bieten auf dem KI-Campus keine Kurse auf {0} an. Bestimmt ist für dich etwas Passendes auf Deutsch oder Englisch dabei!"
@@ -128,7 +128,7 @@ action_fallback_buttons:
   fallback_button_help: Ich brauche Hilfe
   fallback_button_bot_challenge: Bist du ein Bot?
   fallback_button_human_handoff: Ich möchte mit dem Helpdesk-Team sprechen
-  fallback_button_search_topics: Ich möchte das allgemeine Kursangebot sehen 
+  fallback_button_search_topics: Ich möchte das allgemeine Kursangebot sehen
 # # intents without button option
   # fallback_button_inform
   # fallback_button_insults
