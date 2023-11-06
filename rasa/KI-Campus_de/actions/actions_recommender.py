@@ -438,7 +438,11 @@ class ActionAskLanguage(Action):
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_language)
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 
@@ -482,7 +486,11 @@ class ActionAskTopic(Action):
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_topic)
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 
@@ -518,7 +526,11 @@ class ActionAskLevel(Action):
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_level)
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 
@@ -554,7 +566,11 @@ class ActionAskMaxDuration(Action):
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_duration)
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 
@@ -589,8 +605,12 @@ class ActionAskCertificate(Action):
 			text = get_response(self.responses, self.Responses.confirm_and_show_change_certificate)
 		else:
 			text = get_response(self.responses, self.Responses.ask_select_certificate)
+		
+		custom_buttons = {
+                "buttons": buttons
+        }
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
 
 ###################################
@@ -864,5 +884,9 @@ class ActionFallbackButtons(Action):
 			button_payload = "/{}".format(intent['name'])
 			buttons.append({"title": button_title, "payload": button_payload})
 
-		dispatcher.utter_message(text=text, buttons=buttons)
+		custom_buttons = {
+                "buttons": buttons
+        }
+
+		dispatcher.utter_message(text = text, json_message=custom_buttons)
 		return []
