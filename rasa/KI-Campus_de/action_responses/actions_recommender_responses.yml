@@ -106,7 +106,7 @@ action_recommender_or_search_topics:
   search_topics_option_unspecified: allgemeine Themensuche
 
 action_fallback_buttons:
-  fallback_message: Das habe ich nicht ganz verstanden. Kannst du das bitte umformulieren?
+  fallback_message: Das habe ich nicht ganz verstanden. Meintest du ...
   fallback_button_start_recommender_form: Ich möchte eine Kursempfehlung
   fallback_button_get_courses: Ich habe eine Frage zu meinen Kursen
   fallback_button_ask_question: Ich habe eine allgemeine Frage

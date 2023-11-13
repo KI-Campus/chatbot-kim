@@ -209,7 +209,7 @@ responses:
   utter_ask_which_course:
   - text: Bitte wähle einen Kurs aus, für den du deinen Fortschritt oder deine Bescheinigungen sehen möchtest.
   utter_out_of_scope:
-  - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular, um deine Frage zu stellen oder tippe "Hilfe". '
+  - text: 'Tut mir leid, das kann ich leider nicht beantworten. Benutze gerne unser Kontaktformular oder wähle eine der follgenden Möglichkeiten aus.'
     custom:
       buttons:
       - title: "Ich habe eine allgemeine Frage"
